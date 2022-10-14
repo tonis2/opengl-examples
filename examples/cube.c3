@@ -20,7 +20,7 @@ const char* FRAGMENT_SHADER = `
 `;
 
 float[] cube_data = {
- -0.5, -0.5, 0.0,
+    -0.5, -0.5, 0.0,
      0.5, -0.5, 0.0,
      0.0,  0.5, 0.0
 };
