@@ -16,10 +16,12 @@
   // Targets
   "targets": {
     "cube": {
-      "type": "executable"
+      "type": "executable",
+      "source": "./examples/cube.c3"
     },
     "texture": {
-      "type": "executable"
+      "type": "executable",
+      "source": "./examples/texture.c3"
     },
   },
   "output": "./build",
