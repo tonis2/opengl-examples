@@ -6,7 +6,8 @@ C3 and OpenGL examples
 
 Install `C3` lang and `glfw` library
 
-Clone the repository `git clone --recursive git@github.com:tonis2/opengl-examples.git`
+Clone the repository and sub-modules `git clone --recursive git@github.com:tonis2/opengl-examples.git`
 
+Then you can run examples with
 
 `c3c run cube -l glfw`
