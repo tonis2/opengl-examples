@@ -1,0 +1,26 @@
+{
+  // language version of C3
+  "langrev": "1",
+  // warnings used for all targets
+  "warnings": [ "no-unused" ],
+  // directories where C3 library files may be found
+  "lib-dir": [ "dependencies" ],
+  // libraries to use for all targets
+  "libs": [],
+  // authors, optionally with email
+  "authors": [ ],
+  // Version using semantic versioning
+  "version": "0.1.0",
+  // sources compiled for all targets
+  "sources": [ "./examples/**", "./dependencies/calgebra/src/**", "./dependencies/gl/gl.c3", "./dependencies/glfw/glfw.c3" ],
+  // Targets
+  "targets": {
+    "cube": {
+      "type": "executable"
+    },
+    "texture": {
+      "type": "executable"
+    },
+  },
+  "output": "./build",
+}
