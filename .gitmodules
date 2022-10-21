@@ -1,3 +1,5 @@
 [submodule "dependencies/calgebra"]
 	path = dependencies/calgebra
 	url = git@github.com:tonis2/calgebra.git
+	update = merge
+	branch = main
