@@ -11,3 +11,6 @@ Clone the repository and sub-modules `git clone --recursive git@github.com:tonis
 Then you can run examples with
 
 `c3c run cube -l glfw`
+
+
+Work in progress, currently only a triangle :D
