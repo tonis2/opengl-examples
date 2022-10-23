@@ -1,16 +1,13 @@
-module cube;
+module triangle;
 
 import libc;
 import glfw;
 import gl;
 import util;
-import calgebra;
 
 const char* VERTEX_SHADER = `
   #version 410
 
-  uniform mat4 viewProjection;
-  
   layout( location = 0 ) in vec3 vp;
   layout( location = 1 ) in vec3 vcolor;
 
@@ -121,22 +118,12 @@ fn int main()
   gl::linkProgram(shader_program);
   gl::useProgram(shader_program);
 
+
   gl::enableVertexAttribArray(0);
   gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 6*float.sizeof, null);
 
   gl::enableVertexAttribArray(1);
   gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
-
-  Mat4x4 projection = calgebra::mat4::perspective(90, 1.3, 0.1, 100);
-  Mat4x4 view = calgebra::mat4::fromTranslate(Vec3 {0.0, 0.0, -5.0 });
-  
-  view.rotate(90.0, Vec3 {1.0, 1.0, 1.0 });
-
-  Mat4x4 viewPtr = calgebra::mat4::mul(projection, view);
-
-  // Add uniform matrix to shader
-  uint uniform_mvp = gl::getUniformLocation(shader_program, "viewProjection");
-  gl::uniformMatrix4fv(uniform_mvp, 1, false, (float*)&viewPtr.data[1][1]); 
 
   gl::enable(gl::GL_DEPTH_TEST);
   gl::depthFunc(gl::GL_LESS);
