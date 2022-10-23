@@ -118,8 +118,6 @@ fn int main()
   gl::linkProgram(shader_program);
   gl::useProgram(shader_program);
 
-  uint posAttrib = gl::getAttribLocation(shader_program, "vp");
-  uint colAttrib = gl::getAttribLocation(shader_program, "vcolor");
 
   gl::enableVertexAttribArray(0);
   gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 6*float.sizeof, null);
