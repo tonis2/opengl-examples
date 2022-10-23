@@ -10,7 +10,6 @@ const char* VERTEX_SHADER = `
   #version 410
 
   uniform mat4 viewProjection;
-  
   layout( location = 0 ) in vec3 vp;
   layout( location = 1 ) in vec3 vcolor;
 
@@ -18,7 +17,7 @@ const char* VERTEX_SHADER = `
 
   void main () {
     theColor = vcolor;
-    gl_Position = vec4(vp, 1.0);
+    gl_Position = viewProjection * vec4(vp, 1.0);
   }
 `;
 
@@ -34,14 +33,61 @@ const char* FRAGMENT_SHADER = `
 `;
 
 float[] cube_data = {
-    -0.5, -0.5, 0.0, 1.0, 0.5, 1.0,
-     0.5, -0.5, 0.0, 1.0, 0.5, 1.0,
-     0.0,  0.5, 0.0, 1.0, 0.5, 1.0
+    1.0, 1.0, 1.0,       1.0, 0.0, 0.0, // vertex 0
+    -1.0, 1.0, 1.0,       1.0, 0.0, 0.0, // vertex 1
+    1.0,-1.0, 1.0,       1.0, 0.0, 0.0, // vertex 2
+    -1.0,-1.0, 1.0,       1.0, 0.0, 0.0, // vertex 3
+
+    // face 1:
+    1.0, 1.0, 1.0,       0.0, 1.0, 0.0, // vertex 0
+    1.0,-1.0, 1.0,       0.0, 1.0, 0.0, // vertex 1
+    1.0, 1.0,-1.0,       0.0, 1.0, 0.0, // vertex 2
+    1.0,-1.0,-1.0,       0.0, 1.0, 0.0, // vertex 3
+
+    // face 2:
+    1.0, 1.0, 1.0,       0.0, 0.0, 1.0, // vertex 0
+    1.0, 1.0,-1.0,       0.0, 0.0, 1.0, // vertex 1
+    -1.0, 1.0, 1.0,       0.0, 0.0, 1.0, // vertex 2
+    -1.0, 1.0,-1.0,       0.0, 0.0, 1.0, // vertex 3
+
+    // face 3:
+    1.0, 1.0,-1.0,       1.0, 1.0, 0.0, // vertex 0
+    1.0,-1.0,-1.0,       1.0, 1.0, 0.0, // vertex 1
+    -1.0, 1.0,-1.0,       1.0, 1.0, 0.0, // vertex 2
+    -1.0,-1.0,-1.0,       1.0, 1.0, 0.0, // vertex 3
+
+    // face 4:
+    -1.0, 1.0, 1.0,       0.0, 1.0, 1.0, // vertex 0
+    -1.0, 1.0,-1.0,       0.0, 1.0, 1.0, // vertex 1
+    -1.0,-1.0, 1.0,       0.0, 1.0, 1.0, // vertex 2
+    -1.0,-1.0,-1.0,       0.0, 1.0, 1.0, // vertex 3
+
+    // face 5:
+    1.0,-1.0, 1.0,       1.0, 0.0, 1.0, // vertex 0
+    -1.0,-1.0, 1.0,       1.0, 0.0, 1.0, // vertex 1
+    1.0,-1.0,-1.0,       1.0, 0.0, 1.0, // vertex 2
+    -1.0,-1.0,-1.0,       1.0, 0.0, 1.0, // vertex 3
 };
 
-float [] indices = {
-  0, 1, 3,
-	1, 2, 3	
+uint [] indices = {
+    // face 0:
+    0,1,2,      // first triangle
+    2,1,3,      // second triangle
+    // face 1:
+    4,5,6,      // first triangle
+    6,5,7,      // second triangle
+    // face 2:
+    8,9,10,     // first triangle
+    10,9,11,    // second triangle
+    // face 3:
+    12,13,14,   // first triangle
+    14,13,15,   // second triangle
+    // face 4:
+    16,17,18,   // first triangle
+    18,17,19,   // second triangle
+    // face 5:
+    20,21,22,   // first triangle
+    22,21,23,   // second triangle
 };
 
 fn int main()   
@@ -50,6 +96,13 @@ fn int main()
   const int HEIGHT = 720;
   char* renderer;
   char* version;
+
+
+  Mat4x4 projection = calgebra::mat4::perspective(90, WIDTH / HEIGHT, 0.1, 100);
+  Mat4x4 view = calgebra::mat4::lookAt(Vec3 {1,1,1}, Vec3 {0,0,0}, Vec3 {0,1,0});
+  Mat4x4 model = calgebra::mat4::identity();
+
+  Mat4x4 viewPtr = projection.mul(view).mul(model);
 
   glfw::init();
   glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
@@ -83,13 +136,22 @@ fn int main()
   gl::depthFunc( gl::GL_LESS );
   
   int cube_size = cube_data.len * float.sizeof;
+  int indices_size = indices.len * uint.sizeof;
 
   uint vertexBuffer;
+  uint indexBuffer;
   uint vao;
 
+
+  // Vertex buffer
   gl::genBuffers(1, &vertexBuffer );
   gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
   gl::bufferData(gl::GL_ARRAY_BUFFER, cube_size, cube_data, gl::GL_STATIC_DRAW);
+
+  // Index buffer
+  gl::genBuffers(1, &indexBuffer );
+  gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+  gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, indices_size, indices, gl::GL_STATIC_DRAW);
 
   gl::genVertexArrays(1, &vao );
   gl::bindVertexArray( vao );
@@ -121,18 +183,15 @@ fn int main()
   gl::linkProgram(shader_program);
   gl::useProgram(shader_program);
 
+
+  // Shader settings
   gl::enableVertexAttribArray(0);
   gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 6*float.sizeof, null);
 
   gl::enableVertexAttribArray(1);
   gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
 
-  Mat4x4 projection = calgebra::mat4::perspective(90, 1.3, 0.1, 100);
-  Mat4x4 view = calgebra::mat4::fromTranslate(Vec3 {0.0, 0.0, -5.0 });
-  
-  view.rotate(90.0, Vec3 {1.0, 1.0, 1.0 });
 
-  Mat4x4 viewPtr = calgebra::mat4::mul(projection, view);
 
   // Add uniform matrix to shader
   uint uniform_mvp = gl::getUniformLocation(shader_program, "viewProjection");
@@ -144,7 +203,9 @@ fn int main()
   while(!glfw::windowShouldClose(window)) {
     gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
     gl::useProgram( shader_program );
-    gl::drawArrays( gl::GL_TRIANGLES, 0, 6);
+  
+
+    gl::drawElements(gl::GL_TRIANGLES, 6*6, gl::GL_UNSIGNED_INT, &indices[0]);
 
     glfw::pollEvents();
     glfw::swapBuffers(window);

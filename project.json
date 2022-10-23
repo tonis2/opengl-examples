@@ -1,7 +1,6 @@
 {
   "langrev": "1",
   "warnings": [ "no-unused" ],
-  "dependencies-dir": [ "dependencies" ],
   "dependencies": [],
   "authors": [ ],
   "version": "0.1.0",
