@@ -7,9 +7,15 @@ import util;
 import calgebra;
 
 const char* VERTEX_SHADER = `
-  #version 410
+  #version 420
+  
+  // uniform mat4 projection;
+  // uniform mat4 view;
+  layout(binding = 0) uniform matrix
+  {
+      mat4 model;
+  };
 
-  uniform mat4 viewProjection;
   layout( location = 0 ) in vec3 vp;
   layout( location = 1 ) in vec3 vcolor;
 
@@ -17,12 +23,12 @@ const char* VERTEX_SHADER = `
 
   void main () {
     theColor = vcolor;
-    gl_Position = viewProjection * vec4(vp, 1.0);
+    gl_Position = model * vec4(vp, 1.0);
   }
 `;
 
 const char* FRAGMENT_SHADER = `
-  #version 410
+  #version 420
 
   in vec3 theColor;
   out vec4 frag_colour;
@@ -33,62 +39,79 @@ const char* FRAGMENT_SHADER = `
 `;
 
 float[] cube_data = {
-    1.0, 1.0, 1.0,       1.0, 0.0, 0.0, // vertex 0
-    -1.0, 1.0, 1.0,       1.0, 0.0, 0.0, // vertex 1
-    1.0,-1.0, 1.0,       1.0, 0.0, 0.0, // vertex 2
-    -1.0,-1.0, 1.0,       1.0, 0.0, 0.0, // vertex 3
+    -1.0, 1.0, -1.0,   0.5, 0.2, 0.5,
+		-1.0, 1.0, 1.0,    0.5, 0.5, 0.5,
+		1.0, 1.0, 1.0,     0.5, 0.5, 0.5,
+		1.0, 1.0, -1.0,    0.5, 0.5, 0.5,
 
-    // face 1:
-    1.0, 1.0, 1.0,       0.0, 1.0, 0.0, // vertex 0
-    1.0,-1.0, 1.0,       0.0, 1.0, 0.0, // vertex 1
-    1.0, 1.0,-1.0,       0.0, 1.0, 0.0, // vertex 2
-    1.0,-1.0,-1.0,       0.0, 1.0, 0.0, // vertex 3
+		// Left
+		-1.0, 1.0, 1.0,    0.75, 0.25, 0.5,
+		-1.0, -1.0, 1.0,   0.75, 0.25, 0.5,
+		-1.0, -1.0, -1.0,  0.75, 0.25, 0.5,
+		-1.0, 1.0, -1.0,   0.75, 0.25, 0.5,
 
-    // face 2:
-    1.0, 1.0, 1.0,       0.0, 0.0, 1.0, // vertex 0
-    1.0, 1.0,-1.0,       0.0, 0.0, 1.0, // vertex 1
-    -1.0, 1.0, 1.0,       0.0, 0.0, 1.0, // vertex 2
-    -1.0, 1.0,-1.0,       0.0, 0.0, 1.0, // vertex 3
+		// Right
+		1.0, 1.0, 1.0,    0.25, 0.25, 0.75,
+		1.0, -1.0, 1.0,   0.25, 0.25, 0.75,
+		1.0, -1.0, -1.0,  0.25, 0.25, 0.75,
+		1.0, 1.0, -1.0,   0.25, 0.25, 0.75,
 
-    // face 3:
-    1.0, 1.0,-1.0,       1.0, 1.0, 0.0, // vertex 0
-    1.0,-1.0,-1.0,       1.0, 1.0, 0.0, // vertex 1
-    -1.0, 1.0,-1.0,       1.0, 1.0, 0.0, // vertex 2
-    -1.0,-1.0,-1.0,       1.0, 1.0, 0.0, // vertex 3
+		// Front
+		1.0, 1.0, 1.0,    1.0, 0.0, 0.15,
+		1.0, -1.0, 1.0,    1.0, 0.0, 0.15,
+		-1.0, -1.0, 1.0,    1.0, 0.0, 0.15,
+		-1.0, 1.0, 1.0,    1.0, 0.0, 0.15,
 
-    // face 4:
-    -1.0, 1.0, 1.0,       0.0, 1.0, 1.0, // vertex 0
-    -1.0, 1.0,-1.0,       0.0, 1.0, 1.0, // vertex 1
-    -1.0,-1.0, 1.0,       0.0, 1.0, 1.0, // vertex 2
-    -1.0,-1.0,-1.0,       0.0, 1.0, 1.0, // vertex 3
+		// Back
+		1.0, 1.0, -1.0,    0.0, 1.0, 0.15,
+		1.0, -1.0, -1.0,    0.0, 1.0, 0.15,
+		-1.0, -1.0, -1.0,    0.0, 1.0, 0.15,
+		-1.0, 1.0, -1.0,    0.0, 1.0, 0.15,
 
-    // face 5:
-    1.0,-1.0, 1.0,       1.0, 0.0, 1.0, // vertex 0
-    -1.0,-1.0, 1.0,       1.0, 0.0, 1.0, // vertex 1
-    1.0,-1.0,-1.0,       1.0, 0.0, 1.0, // vertex 2
-    -1.0,-1.0,-1.0,       1.0, 0.0, 1.0, // vertex 3
+		// Bottom
+		-1.0, -1.0, -1.0,   0.5, 0.5, 1.0,
+		-1.0, -1.0, 1.0,    0.5, 0.5, 1.0,
+		1.0, -1.0, 1.0,     0.5, 0.5, 1.0,
+		1.0, -1.0, -1.0,    0.5, 0.5, 1.0,
 };
 
 uint [] indices = {
-    // face 0:
-    0,1,2,      // first triangle
-    2,1,3,      // second triangle
-    // face 1:
-    4,5,6,      // first triangle
-    6,5,7,      // second triangle
-    // face 2:
-    8,9,10,     // first triangle
-    10,9,11,    // second triangle
-    // face 3:
-    12,13,14,   // first triangle
-    14,13,15,   // second triangle
-    // face 4:
-    16,17,18,   // first triangle
-    18,17,19,   // second triangle
-    // face 5:
-    20,21,22,   // first triangle
-    22,21,23,   // second triangle
+	// Top
+		0, 1, 2,
+		0, 2, 3,
+
+		// Left
+		5, 4, 6,
+		6, 4, 7,
+
+		// Right
+		8, 9, 10,
+		8, 10, 11,
+
+		// Front
+		13, 12, 14,
+		15, 14, 12,
+
+		// Back
+		16, 17, 18,
+		16, 18, 19,
+
+		// Bottom
+		21, 20, 22,
+		22, 20, 23
 };
+
+fn void printMat(Mat4x4 matrix) {
+    libc::printf("\n ------------ \n");
+    foreach (column, value: matrix.data) 
+    {
+        foreach (row, value2: matrix.data[column]) { 
+            // For debugging
+            libc::printf("Col: %d, Row: %d, value %f\n", column + 1, row + 1, matrix.data[column][row]);
+        }
+    }
+    libc::printf("\n ------------ \n");
+}
 
 fn int main()   
 {
@@ -98,15 +121,18 @@ fn int main()
   char* version;
 
 
-  Mat4x4 projection = calgebra::mat4::perspective(90, WIDTH / HEIGHT, 0.1, 100);
-  Mat4x4 view = calgebra::mat4::lookAt(Vec3 {1,1,1}, Vec3 {0,0,0}, Vec3 {0,1,0});
+  Mat4x4 projection = calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 1000);
+  Mat4x4 view = calgebra::mat4::lookAt(Vec3 {0,0,0}, Vec3 {0,0,0}, Vec3 {0,1,0});
   Mat4x4 model = calgebra::mat4::identity();
 
-  Mat4x4 viewPtr = projection.mul(view).mul(model);
+
+  // printMat(projection);
+  // printMat(projection);
+  // printMat(model);
 
   glfw::init();
   glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
-  glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 6);
+  glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 3);
   glfw::windowHint(glfw::OPENGL_PROFILE, glfw::OPENGL_CORE_PROFILE);
   glfw::windowHint(glfw::OPENGL_FORWARD_COMPAT, 1);
   glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "GLFW OpenGL", null, null);
@@ -140,6 +166,7 @@ fn int main()
 
   uint vertexBuffer;
   uint indexBuffer;
+  uint uniformBuffer;
   uint vao;
 
 
@@ -192,10 +219,20 @@ fn int main()
   gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
 
 
-
   // Add uniform matrix to shader
-  uint uniform_mvp = gl::getUniformLocation(shader_program, "viewProjection");
-  gl::uniformMatrix4fv(uniform_mvp, 1, false, (float*)&viewPtr.data[1][1]); 
+  // uint projection_mvp = gl::getUniformBlockIndex(shader_program, "projection");
+  // gl::uniformMatrix4fv(projection_mvp, 1, false, (float*)&projection.data[0][0]);
+
+  // uint view_mvp = gl::getUniformBlockIndex(shader_program, "view");
+  // gl::uniformMatrix4fv(view_mvp, 1, false, (float*)&view.data[0][0]); 
+
+
+  // Bind uniform buffer
+  uint model_mvp = gl::getUniformBlockIndex(shader_program, "matrix");
+  gl::genBuffers(1, &uniformBuffer);
+  gl::bindBuffer(gl::GL_UNIFORM_BUFFER, uniformBuffer);
+  gl::bindBufferBase(gl::GL_UNIFORM_BUFFER, model_mvp, uniformBuffer);
+  gl::bufferData(gl::GL_UNIFORM_BUFFER, 16 * 4, &model.data, gl::GL_DYNAMIC_DRAW);
 
   gl::enable(gl::GL_DEPTH_TEST);
   gl::depthFunc(gl::GL_LESS);
