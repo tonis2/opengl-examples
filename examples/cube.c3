@@ -9,10 +9,10 @@ import calgebra;
 const char* VERTEX_SHADER = `
   #version 420
   
-  // uniform mat4 projection;
-  // uniform mat4 view;
-  layout(binding = 0) uniform matrix
+  layout(row_major, binding = 0) uniform matrix
   {
+      mat4 projection;
+      mat4 view;
       mat4 model;
   };
 
@@ -23,7 +23,7 @@ const char* VERTEX_SHADER = `
 
   void main () {
     theColor = vcolor;
-    gl_Position = model * vec4(vp, 1.0);
+    gl_Position = projection * view * model * vec4(vp, 1.0);
   }
 `;
 
@@ -58,21 +58,21 @@ float[] cube_data = {
 
 		// Front
 		1.0, 1.0, 1.0,    1.0, 0.0, 0.15,
-		1.0, -1.0, 1.0,    1.0, 0.0, 0.15,
-		-1.0, -1.0, 1.0,    1.0, 0.0, 0.15,
-		-1.0, 1.0, 1.0,    1.0, 0.0, 0.15,
+		1.0, -1.0, 1.0,   1.0, 0.0, 0.15,
+		-1.0, -1.0, 1.0,  1.0, 0.0, 0.15,
+		-1.0, 1.0, 1.0,   1.0, 0.0, 0.15,
 
 		// Back
 		1.0, 1.0, -1.0,    0.0, 1.0, 0.15,
-		1.0, -1.0, -1.0,    0.0, 1.0, 0.15,
-		-1.0, -1.0, -1.0,    0.0, 1.0, 0.15,
-		-1.0, 1.0, -1.0,    0.0, 1.0, 0.15,
+		1.0, -1.0, -1.0,   0.0, 1.0, 0.15,
+		-1.0, -1.0, -1.0,  0.0, 1.0, 0.15,
+		-1.0, 1.0, -1.0,   0.0, 1.0, 0.15,
 
 		// Bottom
 		-1.0, -1.0, -1.0,   0.5, 0.5, 1.0,
 		-1.0, -1.0, 1.0,    0.5, 0.5, 1.0,
-		1.0, -1.0, 1.0,     0.5, 0.5, 1.0,
-		1.0, -1.0, -1.0,    0.5, 0.5, 1.0,
+		 1.0, -1.0, 1.0,     0.5, 0.5, 1.0,
+		 1.0, -1.0, -1.0,    0.5, 0.5, 1.0,
 };
 
 uint [] indices = {
@@ -113,6 +113,12 @@ fn void printMat(Mat4x4 matrix) {
     libc::printf("\n ------------ \n");
 }
 
+struct UniformBuffer {
+    Mat4x4 projection;
+    Mat4x4 view;
+    Mat4x4 model;
+}
+
 fn int main()   
 {
   const int WIDTH = 1280;
@@ -120,13 +126,13 @@ fn int main()
   char* renderer;
   char* version;
 
+  UniformBuffer uniformData = UniformBuffer {
+    calgebra::mat4::perspective(90, WIDTH / HEIGHT, 1, 100),
+    calgebra::mat4::lookAt(Vec3 {0, 0, 5}, Vec3 {0,0,0}, Vec3 {0,1,0}),
+    calgebra::mat4::identity()
+  };
 
-  Mat4x4 projection = calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 1000);
-  Mat4x4 view = calgebra::mat4::lookAt(Vec3 {0,0,0}, Vec3 {0,0,0}, Vec3 {0,1,0});
-  Mat4x4 model = calgebra::mat4::identity();
-
-
-  // printMat(projection);
+  // printMat(uniformData.projection);
   // printMat(projection);
   // printMat(model);
 
@@ -157,9 +163,6 @@ fn int main()
 
   libc::printf( "Renderer: %s\n", renderer );
   libc::printf( "OpenGL version supported %s\n", version );
-
-  gl::enable( gl::GL_DEPTH_TEST );
-  gl::depthFunc( gl::GL_LESS );
   
   int cube_size = cube_data.len * float.sizeof;
   int indices_size = indices.len * uint.sizeof;
@@ -168,7 +171,6 @@ fn int main()
   uint indexBuffer;
   uint uniformBuffer;
   uint vao;
-
 
   // Vertex buffer
   gl::genBuffers(1, &vertexBuffer );
@@ -219,28 +221,23 @@ fn int main()
   gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
 
 
-  // Add uniform matrix to shader
-  // uint projection_mvp = gl::getUniformBlockIndex(shader_program, "projection");
-  // gl::uniformMatrix4fv(projection_mvp, 1, false, (float*)&projection.data[0][0]);
-
-  // uint view_mvp = gl::getUniformBlockIndex(shader_program, "view");
-  // gl::uniformMatrix4fv(view_mvp, 1, false, (float*)&view.data[0][0]); 
-
-
   // Bind uniform buffer
   uint model_mvp = gl::getUniformBlockIndex(shader_program, "matrix");
   gl::genBuffers(1, &uniformBuffer);
   gl::bindBuffer(gl::GL_UNIFORM_BUFFER, uniformBuffer);
   gl::bindBufferBase(gl::GL_UNIFORM_BUFFER, model_mvp, uniformBuffer);
-  gl::bufferData(gl::GL_UNIFORM_BUFFER, 16 * 4, &model.data, gl::GL_DYNAMIC_DRAW);
+  gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
+  gl::depthFunc( gl::GL_LESS );
   gl::enable(gl::GL_DEPTH_TEST);
-  gl::depthFunc(gl::GL_LESS);
+  gl::enable(gl::GL_CULL_FACE);
+  gl::cullFace( gl::GL_BACK );
+  gl::frontFace( gl::GL_CW ); 
 
   while(!glfw::windowShouldClose(window)) {
     gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
     gl::useProgram( shader_program );
-  
+    gl::viewport(0, 0, WIDTH, HEIGHT);
 
     gl::drawElements(gl::GL_TRIANGLES, 6*6, gl::GL_UNSIGNED_INT, &indices[0]);
 
