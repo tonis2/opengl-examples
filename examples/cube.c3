@@ -38,41 +38,43 @@ const char* FRAGMENT_SHADER = `
   }
 `;
 
+const float CUBE_WIDTH = 1;
+
 float[] cube_data = {
-    -1.0, 1.0, -1.0,   0.5, 0.2, 0.5,
-		-1.0, 1.0, 1.0,    0.5, 0.5, 0.5,
-		1.0, 1.0, 1.0,     0.5, 0.5, 0.5,
-		1.0, 1.0, -1.0,    0.5, 0.5, 0.5,
+    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.5, 0.2, 0.5,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0.5, 0.5, 0.5,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0.5, 0.5, 0.5,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0.5, 0.5, 0.5,
 
 		// Left
-		-1.0, 1.0, 1.0,    0.75, 0.25, 0.5,
-		-1.0, -1.0, 1.0,   0.75, 0.25, 0.5,
-		-1.0, -1.0, -1.0,  0.75, 0.25, 0.5,
-		-1.0, 1.0, -1.0,   0.75, 0.25, 0.5,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0.75, 0.25, 0.5,
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0.75, 0.25, 0.5,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0.75, 0.25, 0.5,
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.75, 0.25, 0.5,
 
 		// Right
-		1.0, 1.0, 1.0,    0.25, 0.25, 0.75,
-		1.0, -1.0, 1.0,   0.25, 0.25, 0.75,
-		1.0, -1.0, -1.0,  0.25, 0.25, 0.75,
-		1.0, 1.0, -1.0,   0.25, 0.25, 0.75,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0.25, 0.25, 0.75,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0.25, 0.25, 0.75,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0.25, 0.25, 0.75,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.25, 0.25, 0.75,
 
 		// Front
-		1.0, 1.0, 1.0,    1.0, 0.0, 0.15,
-		1.0, -1.0, 1.0,   1.0, 0.0, 0.15,
-		-1.0, -1.0, 1.0,  1.0, 0.0, 0.15,
-		-1.0, 1.0, 1.0,   1.0, 0.0, 0.15,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    1.0, 0.0, 0.15,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   1.0, 0.0, 0.15,
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  1.0, 0.0, 0.15,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   1.0, 0.0, 0.15,
 
 		// Back
-		1.0, 1.0, -1.0,    0.0, 1.0, 0.15,
-		1.0, -1.0, -1.0,   0.0, 1.0, 0.15,
-		-1.0, -1.0, -1.0,  0.0, 1.0, 0.15,
-		-1.0, 1.0, -1.0,   0.0, 1.0, 0.15,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0.0, 1.0, 0.15,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0.0, 1.0, 0.15,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0.0, 1.0, 0.15,
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.0, 1.0, 0.15,
 
 		// Bottom
-		-1.0, -1.0, -1.0,   0.5, 0.5, 1.0,
-		-1.0, -1.0, 1.0,    0.5, 0.5, 1.0,
-		 1.0, -1.0, 1.0,     0.5, 0.5, 1.0,
-		 1.0, -1.0, -1.0,    0.5, 0.5, 1.0,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0.5, 0.5, 1.0,
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0.5, 0.5, 1.0,
+		 CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0.5, 0.5, 1.0,
+		 CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0.5, 0.5, 1.0,
 };
 
 uint [] indices = {
@@ -127,8 +129,8 @@ fn int main()
   char* version;
 
   UniformBuffer uniformData = UniformBuffer {
-    calgebra::mat4::perspective(90, WIDTH / HEIGHT, 1, 100),
-    calgebra::mat4::lookAt(Vec3 {0, 0, 5}, Vec3 {0,0,0}, Vec3 {0,1,0}),
+    calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 100),
+    calgebra::mat4::lookAt(Vec3 {0, 0, -10}, Vec3 {0,0,0}, Vec3 {0,1,0}),
     calgebra::mat4::identity()
   };
 
