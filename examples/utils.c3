@@ -3,6 +3,7 @@ module util;
 import gl;
 import std;
 import libc;
+import calgebra;
 
 struct Color
 {
@@ -35,4 +36,16 @@ fn uint! create_shader(int shadertype, char** resources) {
 	} else {
         return shader;
     }
+}
+
+fn void printMat(Mat4x4 matrix) {
+    libc::printf("\n ------------ \n");
+    foreach (column, value: matrix.data) 
+    {
+        foreach (row, value2: matrix.data[column]) { 
+            // For debugging
+            libc::printf("Col: %d, Row: %d, value %f\n", column + 1, row + 1, matrix.data[column][row]);
+        }
+    }
+    libc::printf("\n ------------ \n");
 }

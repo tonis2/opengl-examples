@@ -38,7 +38,7 @@ const char* FRAGMENT_SHADER = `
   }
 `;
 
-const float CUBE_WIDTH = 1;
+const float CUBE_WIDTH = 0.5;
 
 float[] cube_data = {
     -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0, // Red
@@ -81,17 +81,7 @@ uint [] indices = {
     20, 21, 22,     20, 22, 23    // left
 };
 
-fn void printMat(Mat4x4 matrix) {
-    libc::printf("\n ------------ \n");
-    foreach (column, value: matrix.data) 
-    {
-        foreach (row, value2: matrix.data[column]) { 
-            // For debugging
-            libc::printf("Col: %d, Row: %d, value %f\n", column + 1, row + 1, matrix.data[column][row]);
-        }
-    }
-    libc::printf("\n ------------ \n");
-}
+
 
 struct UniformBuffer {
     Mat4x4 projection;
@@ -106,20 +96,20 @@ fn int main()
   char* renderer;
   char* version;
 
-  UniformBuffer uniformData = UniformBuffer {
-    calgebra::mat4::fromScale(Vec3{0.5, 0.5, 0.5}),
-    calgebra::mat4::lookAt(Vec3{0,0,-4}, Vec3{0,0,0}, Vec3{0,1,0}),
-    calgebra::mat4::fromTranslate(Vec3{0, 0, 0})
-  };
+  float rotation = 35;
 
-  // printMat(uniformData.projection);
+  UniformBuffer uniformData = UniformBuffer {
+    calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 1000),
+    calgebra::mat4::fromTranslate(Vec3{0.0, 0.0, -4}),
+    calgebra::mat4::fromRotate(rotation, Vec3{1, 1, 0})
+  };
 
   glfw::init();
   glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
   glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 3);
   glfw::windowHint(glfw::OPENGL_PROFILE, glfw::OPENGL_CORE_PROFILE);
   glfw::windowHint(glfw::OPENGL_FORWARD_COMPAT, 1);
-  glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "GLFW OpenGL", null, null);
+  glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "OpenGL rotating cube", null, null);
 
   if (window == null)
   {
@@ -209,13 +199,24 @@ fn int main()
   gl::depthFunc( gl::GL_LESS );
   gl::enable(gl::GL_DEPTH_TEST);
   gl::enable(gl::GL_CULL_FACE);
-  gl::cullFace( gl::GL_BACK );
+  gl::cullFace( gl::GL_FRONT );
   gl::frontFace( gl::GL_CW ); 
 
   while(!glfw::windowShouldClose(window)) {
     gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
     gl::useProgram( shader_program );
     gl::viewport(0, 0, WIDTH, HEIGHT);
+
+
+    if (rotation < 360) {
+      rotation += 0.3;
+    } else {
+      rotation = 35;
+    }
+    
+    // Update model rotation
+    uniformData.model = calgebra::mat4::fromRotate(rotation, Vec3{1, 1, 0});
+    gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
     gl::drawElements(gl::GL_TRIANGLES, 6*6, gl::GL_UNSIGNED_INT, &indices[0]);
 
