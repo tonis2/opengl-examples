@@ -4,6 +4,14 @@ import gl;
 import std;
 import libc;
 
+struct Color
+{
+    float r;
+    float g;
+    float b;
+}
+
+
 fault ShaderError
 {
     FILE_NOT_FOUND,

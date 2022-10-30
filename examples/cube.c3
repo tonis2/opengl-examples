@@ -9,7 +9,7 @@ import calgebra;
 const char* VERTEX_SHADER = `
   #version 420
   
-  layout(row_major, binding = 0) uniform matrix
+  layout(binding = 0) uniform matrix
   {
       mat4 projection;
       mat4 view;
@@ -41,66 +41,44 @@ const char* FRAGMENT_SHADER = `
 const float CUBE_WIDTH = 1;
 
 float[] cube_data = {
-    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.5, 0.2, 0.5,
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0.5, 0.5, 0.5,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0.5, 0.5, 0.5,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0.5, 0.5, 0.5,
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0, // Red
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    255, 0, 0,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,
 
-		// Left
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0.75, 0.25, 0.5,
-		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0.75, 0.25, 0.5,
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0.75, 0.25, 0.5,
-		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.75, 0.25, 0.5,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH, 0, 255, 0, // Green
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 255, 0,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,
 
-		// Right
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0.25, 0.25, 0.75,
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0.25, 0.25, 0.75,
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0.25, 0.25, 0.75,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.25, 0.25, 0.75,
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  245, 40, 145, //Pink
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   245, 40, 145,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    245, 40, 145,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   245, 40, 145,
 
-		// Front
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    1.0, 0.0, 0.15,
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   1.0, 0.0, 0.15,
-		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  1.0, 0.0, 0.15,
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   1.0, 0.0, 0.15,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  254, 206, 33,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   254, 206, 33, // Yellow
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    254, 206, 33,
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   254, 206, 33,
 
-		// Back
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0.0, 1.0, 0.15,
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0.0, 1.0, 0.15,
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0.0, 1.0, 0.15,
-		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0.0, 1.0, 0.15,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 193, //Blue
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0, 0, 193,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0, 0, 193,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0, 0, 193,
 
-		// Bottom
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0.5, 0.5, 1.0,
-		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0.5, 0.5, 1.0,
-		 CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0.5, 0.5, 1.0,
-		 CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0.5, 0.5, 1.0,
+    -CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 0, 1, //Black
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0, 0, 1,
+    -CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0, 0, 1,
+    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 1,
 };
 
 uint [] indices = {
-	// Top
-		0, 1, 2,
-		0, 2, 3,
-
-		// Left
-		5, 4, 6,
-		6, 4, 7,
-
-		// Right
-		8, 9, 10,
-		8, 10, 11,
-
-		// Front
-		13, 12, 14,
-		15, 14, 12,
-
-		// Back
-		16, 17, 18,
-		16, 18, 19,
-
-		// Bottom
-		21, 20, 22,
-		22, 20, 23
+    0,  1,  2,      0,  2,  3,    // front
+    4,  5,  6,      4,  6,  7,    // back
+    8,  9,  10,     8,  10, 11,   // top
+    12, 13, 14,     12, 14, 15,   // bottom
+    16, 17, 18,     16, 18, 19,   // right
+    20, 21, 22,     20, 22, 23    // left
 };
 
 fn void printMat(Mat4x4 matrix) {
@@ -129,14 +107,12 @@ fn int main()
   char* version;
 
   UniformBuffer uniformData = UniformBuffer {
-    calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 100),
-    calgebra::mat4::lookAt(Vec3 {0, 0, -10}, Vec3 {0,0,0}, Vec3 {0,1,0}),
-    calgebra::mat4::identity()
+    calgebra::mat4::fromScale(Vec3{0.5, 0.5, 0.5}),
+    calgebra::mat4::fromRotation(45, Vec3{1,1,1}),
+    calgebra::mat4::fromTranslate(Vec3{0, 0, 0})
   };
 
   // printMat(uniformData.projection);
-  // printMat(projection);
-  // printMat(model);
 
   glfw::init();
   glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
