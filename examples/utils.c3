@@ -31,7 +31,7 @@ fn uint! create_shader(int shadertype, char** resources) {
 
   if (!success) {
 		gl::getShaderInfoLog(shader, 512, null, &infoLog);
-        libc::printf("error message %s \n", infoLog);
+        libc::printf("shader failed with error message %s \n", infoLog);
         return ShaderError.FAILED!;
 	} else {
         return shader;
