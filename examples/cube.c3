@@ -108,7 +108,7 @@ fn int main()
 
   UniformBuffer uniformData = UniformBuffer {
     calgebra::mat4::fromScale(Vec3{0.5, 0.5, 0.5}),
-    calgebra::mat4::fromRotation(45, Vec3{1,1,1}),
+    calgebra::mat4::lookAt(Vec3{0,0,-4}, Vec3{0,0,0}, Vec3{0,1,0}),
     calgebra::mat4::fromTranslate(Vec3{0, 0, 0})
   };
 
