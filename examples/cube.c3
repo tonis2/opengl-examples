@@ -194,6 +194,8 @@ fn int main()
   gl::bindBufferBase(gl::GL_UNIFORM_BUFFER, model_mvp, uniformBuffer);
   gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
+  defer gl::deleteBuffers(1, &uniformBuffer);
+
   gl::depthFunc( gl::GL_LESS );
   gl::enable(gl::GL_DEPTH_TEST);
   gl::enable(gl::GL_CULL_FACE);
