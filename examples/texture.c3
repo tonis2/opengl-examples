@@ -1,36 +1,91 @@
-module texture;
+module cube;
 
 import libc;
 import glfw;
 import gl;
 import util;
+import calgebra;
 
 const char* VERTEX_SHADER = `
-  #version 410
-  in vec3 vp;
+  #version 420
+  
+  layout(binding = 0) uniform matrix
+  {
+      mat4 projection;
+      mat4 view;
+      mat4 model;
+  };
+
+  layout( location = 0 ) in vec3 vp;
+  layout( location = 1 ) in vec3 vcolor;
+
+  out vec3 theColor;
+
   void main () {
-    gl_Position = vec4(vp, 1.0);
+    theColor = vcolor;
+    gl_Position = projection * view * model * vec4(vp, 1.0);
   }
 `;
 
 const char* FRAGMENT_SHADER = `
-  #version 410
+  #version 420
+
+  in vec3 theColor;
   out vec4 frag_colour;
+
   void main () {
-    frag_colour = vec4(0.5, 0.0, 0.5, 1.0);
+    frag_colour = vec4(theColor, 1.0);
   }
 `;
 
+const float CUBE_WIDTH = 0.5;
+
 float[] cube_data = {
-    -0.5, -0.5, 0.0,
-     0.5, -0.5, 0.0,
-     0.0,  0.5, 0.0
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0, // Red
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    255, 0, 0,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,
+
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH, 0, 255, 0, // Green
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 255, 0,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,
+
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  245, 40, 145, //Pink
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   245, 40, 145,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    245, 40, 145,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   245, 40, 145,
+
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  254, 206, 33,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   254, 206, 33, // Yellow
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    254, 206, 33,
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   254, 206, 33,
+
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 193, //Blue
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0, 0, 193,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0, 0, 193,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0, 0, 193,
+
+    -CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 0, 1, //Black
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0, 0, 1,
+    -CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0, 0, 1,
+    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 1,
 };
 
-float [] indices = {
-  0, 1, 3,
-	1, 2, 3	
+uint [] indices = {
+    0,  1,  2,      0,  2,  3,    // front
+    4,  5,  6,      4,  6,  7,    // back
+    8,  9,  10,     8,  10, 11,   // top
+    12, 13, 14,     12, 14, 15,   // bottom
+    16, 17, 18,     16, 18, 19,   // right
+    20, 21, 22,     20, 22, 23    // left
 };
+
+struct UniformBuffer {
+    Mat4x4 projection;
+    Mat4x4 view;
+    Mat4x4 model;
+}
 
 fn int main()   
 {
@@ -39,12 +94,20 @@ fn int main()
   char* renderer;
   char* version;
 
+  float rotation = 35;
+
+  UniformBuffer uniformData = UniformBuffer {
+    calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 1000),
+    calgebra::mat4::fromTranslate(Vec3{0.0, 0.0, -4}),
+    calgebra::mat4::fromRotate(rotation, Vec3{1, 1, 0})
+  };
+
   glfw::init();
-  glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 3);
-  glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 2);
+  glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
+  glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 3);
   glfw::windowHint(glfw::OPENGL_PROFILE, glfw::OPENGL_CORE_PROFILE);
   glfw::windowHint(glfw::OPENGL_FORWARD_COMPAT, 1);
-  glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "GLFW OpenGL", null, null);
+  glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "OpenGL rotating cube", null, null);
 
   if (window == null)
   {
@@ -66,23 +129,27 @@ fn int main()
 
   libc::printf( "Renderer: %s\n", renderer );
   libc::printf( "OpenGL version supported %s\n", version );
-
-  gl::enable( gl::GL_DEPTH_TEST );
-  gl::depthFunc( gl::GL_LESS );
   
   int cube_size = cube_data.len * float.sizeof;
+  int indices_size = indices.len * uint.sizeof;
 
   uint vertexBuffer;
+  uint indexBuffer;
+  uint uniformBuffer;
   uint vao;
 
-  gl::genBuffers( 1, &vertexBuffer );
+  // Vertex buffer
+  gl::genBuffers(1, &vertexBuffer );
   gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
   gl::bufferData(gl::GL_ARRAY_BUFFER, cube_size, cube_data, gl::GL_STATIC_DRAW);
 
-  gl::genVertexArrays( 1, &vao );
+  // Index buffer
+  gl::genBuffers(1, &indexBuffer );
+  gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+  gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, indices_size, indices, gl::GL_STATIC_DRAW);
+
+  gl::genVertexArrays(1, &vao );
   gl::bindVertexArray( vao );
-  gl::enableVertexAttribArray( 0 );
-  gl::vertexAttribPointer( 0, 3, gl::GL_FLOAT, false, 0, null );
 
   defer {
     gl::deleteBuffers(1, &vertexBuffer);
@@ -91,25 +158,65 @@ fn int main()
 
   uint! vertex_shader = util::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
   uint! fragment_shader = util::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
-  uint shader_programme = gl::createProgram();
+  uint shader_program = gl::createProgram();
+
+  defer {
+    gl::detachShader(shader_program, vertex_shader);	
+    gl::detachShader(shader_program, fragment_shader);
+    gl::deleteShader(vertex_shader);
+    gl::deleteShader(fragment_shader);
+    gl::deleteProgram(shader_program);
+  }
 
   if (catch err = vertex_shader) {
     libc::printf("Error was %s\n", err); 
     return 1;
   }
- 
-  gl::attachShader(shader_programme, vertex_shader);
-  gl::attachShader(shader_programme, fragment_shader);
-  gl::linkProgram(shader_programme);
-  gl::useProgram(shader_programme);
 
+  gl::attachShader(shader_program, vertex_shader);
+  gl::attachShader(shader_program, fragment_shader);
+  gl::linkProgram(shader_program);
+  gl::useProgram(shader_program);
+
+
+  // Shader settings
+  gl::enableVertexAttribArray(0);
+  gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 6*float.sizeof, null);
+
+  gl::enableVertexAttribArray(1);
+  gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
+
+
+  // Bind uniform buffer
+  uint model_mvp = gl::getUniformBlockIndex(shader_program, "matrix");
+  gl::genBuffers(1, &uniformBuffer);
+  gl::bindBuffer(gl::GL_UNIFORM_BUFFER, uniformBuffer);
+  gl::bindBufferBase(gl::GL_UNIFORM_BUFFER, model_mvp, uniformBuffer);
+  gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
+
+  gl::depthFunc( gl::GL_LESS );
   gl::enable(gl::GL_DEPTH_TEST);
-  gl::depthFunc(gl::GL_LESS);
+  gl::enable(gl::GL_CULL_FACE);
+  gl::cullFace( gl::GL_FRONT );
+  gl::frontFace( gl::GL_CW ); 
 
   while(!glfw::windowShouldClose(window)) {
     gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
-    gl::useProgram( shader_programme );
-    gl::drawArrays( gl::GL_TRIANGLES, 0, 3 );
+    gl::useProgram( shader_program );
+    gl::viewport(0, 0, WIDTH, HEIGHT);
+
+
+    if (rotation < 360) {
+      rotation += 0.3;
+    } else {
+      rotation = 35;
+    }
+    
+    // Update model rotation
+    uniformData.model = calgebra::mat4::fromRotate(rotation, Vec3{1, 1, 0});
+    gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
+
+    gl::drawElements(gl::GL_TRIANGLES, 6*6, gl::GL_UNSIGNED_INT, &indices[0]);
 
     glfw::pollEvents();
     glfw::swapBuffers(window);

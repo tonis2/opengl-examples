@@ -1,8 +1,8 @@
 # See https://www.dartlang.org/guides/libraries/private-files
 
-
-./cube
-./texture
+triangle
+cube
+texture
 # Prerequisites
 *.d
 build/*

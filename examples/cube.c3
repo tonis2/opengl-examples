@@ -81,8 +81,6 @@ uint [] indices = {
     20, 21, 22,     20, 22, 23    // left
 };
 
-
-
 struct UniformBuffer {
     Mat4x4 projection;
     Mat4x4 view;
