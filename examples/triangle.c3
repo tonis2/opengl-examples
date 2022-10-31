@@ -50,7 +50,7 @@ fn int main()
 
   glfw::init();
   glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
-  glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 6);
+  glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 1);
   glfw::windowHint(glfw::OPENGL_PROFILE, glfw::OPENGL_CORE_PROFILE);
   glfw::windowHint(glfw::OPENGL_FORWARD_COMPAT, 1);
   glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "GLFW OpenGL", null, null);
