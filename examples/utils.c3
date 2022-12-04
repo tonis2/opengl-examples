@@ -5,15 +5,8 @@ import std;
 import libc;
 import calgebra;
 
-struct Color
-{
-    float r;
-    float g;
-    float b;
-}
 
-
-fault ShaderError
+fault FileError
 {
     FILE_NOT_FOUND,
     FILE_NOT_READABLE,
@@ -32,7 +25,7 @@ fn uint! create_shader(int shadertype, char** resources) {
   if (!success) {
 		gl::getShaderInfoLog(shader, 512, null, &infoLog);
         libc::printf("shader failed with error message %s \n", infoLog);
-        return ShaderError.FAILED!;
+        return FileError.FAILED!;
 	} else {
         return shader;
     }
@@ -49,3 +42,5 @@ fn void printMat(Mat4x4 matrix) {
     }
     libc::printf("\n ------------ \n");
 }
+
+

@@ -5,6 +5,11 @@ import glfw;
 import gl;
 import util;
 import calgebra;
+import png;
+
+import std::core::mem;
+
+// Shader data
 
 const char* VERTEX_SHADER = `
   #version 420
@@ -18,11 +23,14 @@ const char* VERTEX_SHADER = `
 
   layout( location = 0 ) in vec3 vp;
   layout( location = 1 ) in vec3 vcolor;
+  layout( location = 2 ) in vec2 textureCord;
 
-  out vec3 theColor;
+  out vec3 ourColor;
+  out vec2 texCords;
 
   void main () {
-    theColor = vcolor;
+    ourColor = vcolor;
+    texCords = textureCord;
     gl_Position = projection * view * model * vec4(vp, 1.0);
   }
 `;
@@ -30,46 +38,60 @@ const char* VERTEX_SHADER = `
 const char* FRAGMENT_SHADER = `
   #version 420
 
-  in vec3 theColor;
+  in vec3 ourColor;
+  in vec2 texCords;
+
+  uniform sampler2D ourTexture;
+  
   out vec4 frag_colour;
 
   void main () {
-    frag_colour = vec4(theColor, 1.0);
+    frag_colour = vec4(ourColor + 0.8, 1.0) * texture(ourTexture, texCords);
   }
 `;
 
 const float CUBE_WIDTH = 0.5;
 
+// Vertex data
+
 float[] cube_data = {
-    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0, // Red
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    255, 0, 0,
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,
 
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH, 0, 255, 0, // Green
-		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 255, 0,
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,
+    // Red
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0,  1.0, 1.0,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,  1.0, 0.0,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    255, 0, 0,  0.0, 0.0,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,  0.0, 1.0,
 
-		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  245, 40, 145, //Pink
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   245, 40, 145,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    245, 40, 145,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   245, 40, 145,
+    // Green
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH, 0, 255, 0,  1.0, 1.0,
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,  1.0, 0.0,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 255, 0,  0.0, 0.0, 
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,  0.0, 1.0,
 
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  254, 206, 33,
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   254, 206, 33, // Yellow
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    254, 206, 33,
-		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   254, 206, 33,
+    //Pink
 
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 193, //Blue
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0, 0, 193,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0, 0, 193,
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0, 0, 193,
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  245, 40, 145, 1.0, 1.0,
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   245, 40, 145, 1.0, 0.0,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    245, 40, 145, 0.0, 0.0,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   245, 40, 145, 0.0, 1.0,
 
-    -CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 0, 1, //Black
-    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0, 0, 1,
-    -CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0, 0, 1,
-    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 1,
+    // Yellow
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  254, 206, 33, 1.0, 1.0,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   254, 206, 33, 1.0, 0.0,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    254, 206, 33, 0.0, 0.0,
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   254, 206, 33, 0.0, 1.0,
+
+    // Blue
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 193, 1.0, 1.0,
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0, 0, 193, 1.0, 0.0,
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0, 0, 193, 0.0, 0.0,
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0, 0, 193, 0.0, 1.0,
+
+    // Black
+    -CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 0, 1, 1.0, 1.0, 
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0, 0, 1, 1.0, 0.0,
+    -CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0, 0, 1, 0.0, 0.0,
+    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 1, 0.0, 1.0,
 };
 
 uint [] indices = {
@@ -129,6 +151,22 @@ fn int main()
 
   libc::printf( "Renderer: %s\n", renderer );
   libc::printf( "OpenGL version supported %s\n", version );
+
+
+  // Load texture
+
+  Png! image = png::loadPNG("./assets/logo.png");
+  if (catch err = image) return 1;
+
+  defer image.free();
+
+
+  // Bind texture
+  uint texture;
+  gl::genTextures(1, &texture);
+  gl::bindTexture(gl::GL_TEXTURE_2D, texture);
+  gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
+  gl::generateMipmap(gl::GL_TEXTURE_2D);
   
   int cube_size = cube_data.len * float.sizeof;
   int indices_size = indices.len * uint.sizeof;
@@ -181,10 +219,13 @@ fn int main()
 
   // Shader settings
   gl::enableVertexAttribArray(0);
-  gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 6*float.sizeof, null);
+  gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 8*float.sizeof, null);
 
   gl::enableVertexAttribArray(1);
-  gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
+  gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 8*float.sizeof, (void*)(3*float.sizeof));
+
+  gl::enableVertexAttribArray(2);
+  gl::vertexAttribPointer(2, 2, gl::GL_FLOAT, false, 8*float.sizeof, (void*)(6*float.sizeof));
 
 
   // Bind uniform buffer
@@ -198,7 +239,13 @@ fn int main()
   gl::enable(gl::GL_DEPTH_TEST);
   gl::enable(gl::GL_CULL_FACE);
   gl::cullFace( gl::GL_FRONT );
-  gl::frontFace( gl::GL_CW ); 
+  gl::frontFace( gl::GL_CW );
+
+  // Set texture settings
+  gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_S, gl::GL_REPEAT);	
+  gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_T, gl::GL_REPEAT);
+  gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GL_LINEAR_MIPMAP_LINEAR);
+  gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GL_LINEAR);
 
   while(!glfw::windowShouldClose(window)) {
     gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );

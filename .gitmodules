@@ -3,3 +3,9 @@
 	url = git@github.com:tonis2/calgebra.git
 	update = merge
 	branch = main
+[submodule "dependencies/ok-files"]
+	path = dependencies/ok-files
+	url = https://github.com/brackeen/ok-file-formats
+[submodule "dependencies/png"]
+	path = dependencies/png
+	url = git@github.com:lvandeve/lodepng.git
