@@ -1,4 +1,4 @@
-C3 and OpenGL examples
+# C3 and OpenGL examples
 
 
 ### How to run
