@@ -4,7 +4,9 @@ C3 and OpenGL examples
 ### How to run
 
 
-Install `C3` lang and `glfw` library
+Install [C3](https://github.com/c3lang/c3c/releases/tag/latest) lang and `glfw` library
+
+glfw on linux `sudo apt-get install libglfw3-dev`
 
 Clone the repository and sub-modules `git clone --recursive git@github.com:tonis2/opengl-examples.git`
 
