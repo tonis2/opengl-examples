@@ -5,7 +5,7 @@ import glfw;
 import gl;
 import util;
 import calgebra;
-import png;
+import stb;
 
 import std::core::mem;
 
@@ -155,7 +155,7 @@ fn int main()
 
   // Load texture
 
-  Png! image = png::loadPNG("./assets/logo.png");
+  Image! image = stb::loadImage("./assets/logo.png", Channel.STBI_RGB_ALPHA);
   if (catch err = image) return 1;
 
   defer image.free();
