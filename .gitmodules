@@ -3,6 +3,3 @@
 	url = git@github.com:tonis2/calgebra.git
 	update = merge
 	branch = main
-[submodule "dependencies/png"]
-	path = dependencies/png
-	url = git@github.com:lvandeve/lodepng.git
