@@ -4,9 +4,11 @@
 ### How to run
 
 
-Install [C3](https://github.com/c3lang/c3c/releases/tag/latest) lang and `glfw` library
+Install [C3](https://github.com/c3lang/c3c/releases/tag/latest) lang and `glfw` and `stb` library
 
 glfw on linux `sudo apt-get install libglfw3-dev`
+
+stb on linux `sudo apt install libstb-dev`
 
 Clone the repository and sub-modules `git clone --recursive git@github.com:tonis2/opengl-examples.git`
 
@@ -21,8 +23,5 @@ Then you can run examples with
 `c3c run triangle`
 
 
-#### Texture example
-
-To run texture example, you need to change `lodepng.cpp` to `lodepng.c` in `/depencencies/png` folder
 
 
