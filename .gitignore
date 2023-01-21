@@ -3,6 +3,7 @@
 triangle
 cube
 texture
+gltf
 # Prerequisites
 *.d
 build/*
