@@ -18,7 +18,7 @@ fault FileError
     FILE_NOT_FOUND,
     FILE_NOT_READABLE,
     FAILED
-}   
+} 
 
 struct Image
 {

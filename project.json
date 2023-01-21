@@ -18,6 +18,10 @@
 		"texture": {
 			"type": "executable",
 			"sources-add": ["./examples/texture.c3", "./dependencies/stb.c3"]
+		},
+		"gltf": {
+			"type": "executable",
+			"sources-add": ["./examples/gltf.c3", "./dependencies/json.c3"]
 		}
 	},
 	"output": "./build"
