@@ -6,7 +6,8 @@ char* data = "{\"asset\":{\"generator\":\"Khronos glTF Blender I/O v3.4.50\",\"v
 
 fn void main() {
     JsonParser parser = json::decoder(data);
+    defer parser.destroy();
 
-    libc::printf("first char %c \n", parser.skipSpaces());
-    libc::printf("second char %c \n", parser.skipSpaces());
+    // char[] = parser.get("asset.generator.version");
+
 }

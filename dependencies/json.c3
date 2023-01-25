@@ -1,52 +1,52 @@
 module json;
 
 import libc;
+import std::map;
+import std::math;
+
+define JsonMap = HashMap<char[], JSONType>;
 
 enum JSONType : int 
 {
+	J_VALUE,
     J_OBJECT,
-	J_STRING,
-	J_ARRAY,
-	J_NUMBER,
-	J_BOOL,
-	J_ERROR,
-}
-
-enum JSONTokenType : int 
-{
-    T_LBRACE,
-	T_LBRACKET,
-	T_COMMA,
-	T_COLON,
-	T_RBRACE,
-	T_RBRACKET,
-	T_STRING,
-	T_NUMBER,
-	T_ERROR,
-	T_TRUE,
-	T_FALSE,
-	T_NULL,
-	T_EOF,
+	J_ARRAY
 }
 
 struct JsonParser {
 	uint pos;
 	uint end;
 	char* buffer;
-	bool usestring;
+	JsonMap map;
+}
+
+struct JSONItem {
+	JSONType itemType;
+	char* value;
 }
 
 
-fn JsonParser decoder(char* data) {
-	return JsonParser {
+fn JsonParser decoder(char* buffer, uint end = 0, JsonMap map = JsonMap{}) {
+	if (end  == 0) {
+		end = (uint)libc::strlen(buffer);
+	}
+
+	JsonParser parser = JsonParser {
 		0,
-		(uint)libc::strlen(data),
-		data,
-		false
+		end,
+		buffer,
+		map
 	};
+
+	while (parser.pos != parser.end) parser.parse();
+	return parser;
 }
 
-fn char JsonParser.skipSpaces(JsonParser* self) {
+fn void JsonParser.destroy(JsonParser* self) {
+	self.map.destroy();
+}
+
+private fn char JsonParser.skipSpaces(JsonParser* self) {
  	return {|
 		while(true) {
 			if (self.pos == self.end) {
@@ -70,139 +70,105 @@ fn char JsonParser.skipSpaces(JsonParser* self) {
 	|};
 }
 
-// void fn json_lexer_advance(JsonParser *parser)
-// {
-// 	json_skip_whitespace(parser);
-// 	switch (parser->current[0])
-// 	{
-// 		case '\0':
-// 			parser->current_token_type = T_EOF;
-// 			return;
-// 		case '{':
-// 			parser->current_token_type = T_LBRACE;
-// 			parser->current++;
-// 			return;
-// 		case '}':
-// 			parser->current_token_type = T_RBRACE;
-// 			parser->current++;
-// 			return;
-// 		case '[':
-// 			parser->current_token_type = T_LBRACKET;
-// 			parser->current++;
-// 			return;
-// 		case ']':
-// 			parser->current_token_type = T_RBRACKET;
-// 			parser->current++;
-// 			return;
-// 		case ':':
-// 			parser->current_token_type = T_COLON;
-// 			parser->current++;
-// 			return;
-// 		case ',':
-// 			parser->current_token_type = T_COMMA;
-// 			parser->current++;
-// 			return;
-// 		case '"':
-// 			json_parse_string(parser);
-// 			return;
-// 		case '-':
-// 		case '0':
-// 		case '1':
-// 		case '2':
-// 		case '3':
-// 		case '4':
-// 		case '5':
-// 		case '6':
-// 		case '7':
-// 		case '8':
-// 		case '9':
-// 			json_parse_number(parser);
-// 			return;
-// 		case 't':
-// 			if (!json_match(parser, "true"))
-// 			{
-// 				json_error(parser, "Unexpected symbol, I expected maybe 'true' here.");
-// 				return;
-// 			}
-// 			parser->current += 4;
-// 			parser->current_token_type = T_TRUE;
-// 			return;
-// 		case 'f':
-// 			if (!json_match(parser, "false"))
-// 			{
-// 				json_error(parser, "Unexpected symbol, I expected maybe 'false' here.");
-// 				return;
-// 			}
-// 			parser->current += 5;
-// 			parser->current_token_type = T_FALSE;
-// 			return;
-// 		case 'n':
-// 			if (!json_match(parser, "null"))
-// 			{
-// 				json_error(parser, "Unexpected symbol, I expected maybe 'null' here.");
-// 				return;
-// 			}
-// 			parser->current += 4;
-// 			parser->current_token_type = T_NULL;
-// 			return;
-// 		default:
-// 			json_error(parser, "Unexpected symbol found.");
-// 			return;
-// 	}
-// 	UNREACHABLE
-// }
+
+private fn uint JsonParser.findToken(JsonParser* self, char searchToken, char skipToken = ' ') {
+	uint skip = 0;
+	uint endIndex = 0;
+	uint startIndex = self.pos;
+	uint seekPos = self.pos;
+
+ 	while (endIndex == 0) {
+		if (seekPos == self.end) {
+			libc::printf("Error, token end not found %c at %d \n", searchToken, seekPos);
+			break;
+		}
+
+		char token = self.buffer[seekPos];
+		
+		if (token == skipToken && skipToken != ' ') skip += 1;
+		if (token == searchToken) {
+			if (skip > 0) { skip -= 1; }
+			else {
+				endIndex = seekPos;
+				break;
+			}
+		};
+		seekPos += 1;
+	}
+	return endIndex;
+}
+
+private fn void JsonParser.skipToken(JsonParser* self, char token) {
+   if (self.buffer[self.pos + 1] == token) {
+	   self.pos +=1;
+   } else {
+	  libc::printf("Token not found at %d \n", self.pos + 1);
+   }
+}
+
+private fn char JsonParser.peek(JsonParser* self, int value) {
+   // Try to see previous or next character if it's not overflowing.
+
+   if (value > 0 && (self.pos + value <= self.end)) {
+	   return self.buffer[self.pos + value];
+   } else if (self.pos - value >= 0) {
+	   return self.buffer[self.pos - math::abs(value)];
+   }
+
+   return ' ';
+}
 
 
-// JSONObject *json_parse(JsonParser *parser)
-// {
-// 	if (parser->error_message) return &error;
-// 	switch (parser->current_token_type)
-// 	{
-// 		case T_EOF:
-// 			return NULL;
-// 		case T_ERROR:
-// 			UNREACHABLE
-// 		case T_LBRACE:
-// 			return json_parse_object(parser);
-// 		case T_LBRACKET:
-// 			return json_parse_array(parser);
-// 		case T_COMMA:
-// 		case T_RBRACE:
-// 		case T_RBRACKET:
-// 		case T_COLON:
-// 			json_error(parser, "Unexpected character.");
-// 			return NULL;
-// 		case T_STRING:
-// 		{
-// 			JSONObject *obj = json_new_object(parser->allocator, J_STRING);
-// 			obj->type = J_STRING;
-// 			obj->str = parser->last_string;
-// 			json_lexer_advance(parser);
-// 			return obj;
-// 		}
-// 		case T_NUMBER:
-// 		{
-// 			JSONObject *obj = NULL;
-// 			if (parser->last_number == 0) 
-// 			{
-// 				json_lexer_advance(parser);
-// 				return &zero_val;
-// 			}
-// 			obj = json_new_object(parser->allocator, J_NUMBER);
-// 			obj->type = J_NUMBER;
-// 			obj->f = parser->last_number;
-// 			json_lexer_advance(parser);
-// 			return obj;
-// 		}
-// 		case T_TRUE:
-// 			json_lexer_advance(parser);
-// 			return &true_val;
-// 		case T_FALSE:
-// 			json_lexer_advance(parser);
-// 			return &false_val;
-// 		case T_NULL:
-// 			json_lexer_advance(parser);
-// 			return NULL;
-// 	}
-// 	UNREACHABLE
-// }
+
+
+
+private fn void JsonParser.parse(JsonParser* self)
+{	
+	char[100] lastKey;
+	char[100] lastValue;
+	char token = self.skipSpaces();
+	self.pos += 1;
+	libc::printf("Token = %c %d\n", token, self.pos);
+	
+	switch (token) {
+		case '"':
+			uint index = self.findToken('"');
+
+			if (self.peek(-1) == ':') {
+				// It's a value field;
+				libc::strncpy(&lastValue, self.buffer + self.pos, index - self.pos);
+				libc::printf("Last value = %s \n", lastValue);
+			} 
+			else {
+				// it's a key field
+				libc::strncpy(&lastKey, self.buffer + self.pos, index - self.pos);
+				libc::printf("Last key = %s \n", lastKey);
+				self.pos = index;
+				self.skipToken(':');
+			}
+
+		case '{':
+			// Parse the Object
+			uint index = self.findToken('}', '{');
+			libc::printf("Object { closes at %d \n", index);
+			decoder(self.buffer + self.pos, self.end - self.pos, self.map);
+			self.pos = index;
+
+			// self.map.set(lastKey, J_OBJECT);
+		// case '}':
+		case '[':
+		// case ']':
+		case ':':
+			char nextToken = self.peek(-1);
+			// self.pos += 1;
+		case ',':
+
+		default:
+			break;
+	};
+}
+
+private fn void JsonParser.parseObject(JsonParser* self)
+{	
+	
+}
