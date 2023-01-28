@@ -8,6 +8,10 @@ fn void main() {
     JsonParser parser = json::decoder(data);
     defer parser.destroy();
 
+
+    if (try value = parser.map.get("nodes")) {
+        libc::printf("Key value = %d \n", value);
+    }
     // char[] = parser.get("asset.generator.version");
 
 }
