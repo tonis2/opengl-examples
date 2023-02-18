@@ -2,7 +2,7 @@
 	"langrev": "1",
 	"warnings": ["no-unused"],
 	"dependencies": [],
-	"linked-libraries": ["glfw", "stb"],
+	"linked-libraries": ["glfw", "GL"],
 	"authors": [],
 	"version": "0.1.0",
 	"sources": ["./examples/utils.c3", "./dependencies/calgebra/src/**", "./dependencies/gl/gl.c3", "./dependencies/glfw/glfw.c3"],
@@ -17,11 +17,13 @@
 		},
 		"texture": {
 			"type": "executable",
-			"sources-add": ["./examples/texture.c3", "./dependencies/stb.c3"]
+			"sources-add": ["./examples/texture.c3", "./dependencies/stb.c3"],
+			"c-sources-add": ["-lstb"]
 		},
 		"gltf": {
 			"type": "executable",
 			"sources-add": ["./examples/gltf.c3", "./dependencies/json.c3"]
+			
 		}
 	},
 	"output": "./build"
