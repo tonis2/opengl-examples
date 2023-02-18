@@ -20,21 +20,21 @@ define GLeglImageOES = void;
 define GLchar = char;
 define GLcharARB = char;
 
-define GLhalf = ushort;
-define GLhalfARB = ushort;
-define GLfixed = int;
-define GLintptr = usize;
-define GLintptrARB = usize;
-define GLsizeiptr = isize;
-define GLsizeiptrARB = isize;
-define GLint64 = long;
-define GLint64EXT = long;
-define GLuint64 = ulong;
-define GLuint64EXT = ulong;
-define GLsync = void*;
-define GLdebugproc = void*;
-define GLdebugprocarb = void*;
-define GLdebugprockhr = void*;
+typedef GLhalf = ushort;
+typedef GLhalfARB = ushort;
+typedef GLfixed = int;
+typedef GLintptr = usz;
+typedef GLintptrARB = usz;
+typedef GLsizeiptr = isz;
+typedef GLsizeiptrARB = isz;
+typedef GLint64 = long;
+typedef GLint64EXT = long;
+typedef GLuint64 = ulong;
+typedef GLuint64EXT = ulong;
+typedef GLsync = void*;
+typedef GLdebugproc = void*;
+typedef GLdebugprocarb = void*;
+typedef GLdebugprockhr = void*;
 
  
 
