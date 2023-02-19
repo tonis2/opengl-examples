@@ -2,10 +2,10 @@
 	"langrev": "1",
 	"warnings": ["no-unused"],
 	"dependencies": [],
-	"linked-libraries": ["glfw", "stb"],
+	"linked-libraries": ["glfw"],
 	"authors": [],
 	"version": "0.1.0",
-	"sources": ["./examples/utils.c3", "./dependencies/calgebra/src/**", "./dependencies/gl/gl.c3", "./dependencies/glfw/glfw.c3"],
+	"sources": ["./examples/utils.c3", "./dependencies/calgebra/src/**", "./dependencies/gl/gl.c3", "./dependencies/glfw.c3"],
 	"targets": {
 		"cube": {
 			"type": "executable",
@@ -17,7 +17,9 @@
 		},
 		"texture": {
 			"type": "executable",
-			"sources-add": ["./examples/texture.c3", "./dependencies/stb.c3"]
+			"sources-add": ["./examples/texture.c3", "./dependencies/stb/stb.c3"],
+			"c-sources-add": ["./dependencies/stb/native/*"],
+			"cflags-add": "-fPIE"
 		},
 		"gltf": {
 			"type": "executable",

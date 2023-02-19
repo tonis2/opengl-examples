@@ -4,7 +4,7 @@ import libc;
 import std::map;
 import std::math;
 
-define JsonMap = HashMap<char*, JSONType>;
+define JsonMap = HashMap<char*, JSONValue>;
 
 enum JSONType : int 
 {
@@ -13,13 +13,24 @@ enum JSONType : int
 	J_ARRAY
 }
 
+struct JSONValue {
+	JSONType type;
+	char* key;
+	char* value;
+	JSONValue* array;
+}
+
 struct JsonParser {
 	uint pos;
 	uint end;
 	uint depth;
 	char* buffer;
 	JsonMap map;
-	char[100] lastJsonKey;
+}
+
+
+fn void JSONValue.destroy(JSONValue* self) {
+
 }
 
 // struct JSONItem {
@@ -37,8 +48,7 @@ fn JsonParser decoder(char* buffer, uint end = 0, JsonMap map = JsonMap{}) {
 		end,
 		0,
 		buffer,
-		map,
-		{}
+		map
 	};
 
 	while (parser.pos != parser.end) parser.parse();
@@ -120,11 +130,18 @@ private fn void JsonParser.parse(JsonParser* self) {
 			// Parse json key
 			if ((nextChar != ':') && (nextChar != '}') && (nextChar != ',')) {
 				uint endIndex = self.findToken('"');
-				libc::memset(&self.lastJsonKey, 0);
-				libc::memcpy(&self.lastJsonKey[0], self.buffer + self.pos + 1, (ulong)(endIndex - self.pos) - 1 );
+				JSONValue value = JSONValue {
+											JSONType.J_VALUE,
+											(char*)libc::malloc(100),
+											(char*)libc::malloc(100),
+											null
+										};
+				
+				// libc::memset(&self.lastJsonKey, 0);
+				libc::memcpy(value.key, self.buffer + self.pos + 1, (ulong)(endIndex - self.pos) - 1 );
+				// libc::printf("Key = %s \n", value.key);
 
-				self.map.set(&self.lastJsonKey, J_OBJECT);
-				libc::printf("Last key = %s \n", self.lastJsonKey[0..]);
+				self.map.set(value.key, value);
 			}
 		case '{':
 			// JSON goes deeper :O
