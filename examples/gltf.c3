@@ -2,7 +2,7 @@ module gltf;
 import libc;
 import std::io;
 import json;
-import std::map;
+import hashmap;
 
 define JsonMap = HashMap<char*, char*>;
 
@@ -13,8 +13,16 @@ fn void main() {
 
 
 
-    // JsonParser parser = json::decoder(data);
-    // defer parser.destroy();
+    JsonParser parser = json::decoder(data);
+    defer parser.free();
+
+
+    JSONValue*! version = parser.get("version");
+
+    if (try version)
+    {
+        libc::printf("Found %s \n", version.value);
+    }
 
     // JSONValue value = JSONValue {
     //                                 JSONType.J_VALUE,
@@ -23,26 +31,24 @@ fn void main() {
     //                                 null
     //                             };
 
-    JsonMap data;
-    data.init();
-    defer data.destroy();
+    // JsonMap data;
+    // defer data.free();
 
-    char* key = (char*)libc::malloc(10);
-    char* value = (char*)libc::malloc(10);
+    // char* key = (char*)libc::malloc(10);
+    // char* value = (char*)libc::malloc(10);
 
-    libc::memcpy(key, "test", 4);
-    libc::memcpy(value, "body", 4);
+    // String keyValue = "test";
 
-    data.set(key, value);
+    // libc::memcpy(key, "test", 4);
+    // libc::memcpy(value, "body", 4);
 
-    char**! ref = data.get_ref("test");
+    // data.set(key, value);
 
-    if (try ref)
-    {
-        libc::printf("Found \n");
-    }
+    // char*! ref = data.get("test");
 
-    io::printfn("Has key: %s", data.has_key("test"));
+
+
+    // io::printfn("Has key: %s", data.has_key("test"));
 
     // char*! test = data["test"];
 

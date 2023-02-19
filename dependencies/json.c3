@@ -1,8 +1,8 @@
 module json;
 
 import libc;
-import std::map;
 import std::math;
+import hashmap;
 
 define JsonMap = HashMap<char*, JSONValue>;
 
@@ -29,8 +29,8 @@ struct JsonParser {
 }
 
 
-fn void JSONValue.destroy(JSONValue* self) {
-
+fn void JSONValue.free(JSONValue* self) {
+    // Free memory
 }
 
 // struct JSONItem {
@@ -55,8 +55,13 @@ fn JsonParser decoder(char* buffer, uint end = 0, JsonMap map = JsonMap{}) {
 	return parser;
 }
 
-fn void JsonParser.destroy(JsonParser* self) {
-	self.map.destroy();
+fn void JsonParser.free(JsonParser* self) {
+    foreach (JSONValue entry : self.map.value_list())
+	{
+        entry.free();
+	}
+
+	self.map.free();
 }
 
 private fn uint JsonParser.skipSpaces(JsonParser* self) {
@@ -139,6 +144,8 @@ private fn void JsonParser.parse(JsonParser* self) {
 				
 				// libc::memset(&self.lastJsonKey, 0);
 				libc::memcpy(value.key, self.buffer + self.pos + 1, (ulong)(endIndex - self.pos) - 1 );
+				// Set correct value here
+				libc::memcpy(value.value, "test", 4);
 				// libc::printf("Key = %s \n", value.key);
 
 				self.map.set(value.key, value);
@@ -162,6 +169,10 @@ private fn void JsonParser.parseObject(JsonParser* self)
 	
 }
 
+
+fn JSONValue*! JsonParser.get(JsonParser* self, char* key) {
+	return self.map.get_ref(key);
+}
 
 
 	// switch (token) {
@@ -202,10 +213,10 @@ private fn void JsonParser.parseObject(JsonParser* self)
 	// };
 
 
-// 	private fn void JsonParser.skipToken(JsonParser* self, char token) {
-//    if (self.buffer[self.pos + 1] == token) {
-// 	   self.pos +=1;
-//    } else {
-// 	  libc::printf("Token not found at %d \n", self.pos + 1);
-//    }
-// }
+private fn void JsonParser.skipToken(JsonParser* self, char token) {
+   if (self.buffer[self.pos + 1] == token) {
+	   self.pos +=1;
+   } else {
+	  libc::printf("Token not found at %d \n", self.pos + 1);
+   }
+}
