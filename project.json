@@ -5,7 +5,7 @@
 	"linked-libraries": ["glfw"],
 	"authors": [],
 	"version": "0.1.0",
-	"sources": ["./examples/utils.c3", "./dependencies/calgebra/src/**", "./dependencies/gl/gl.c3", "./dependencies/glfw.c3", "./dependencies/hashmap.c3"],
+	"sources": ["./dependencies/helpers.c3", "./dependencies/gl/gl.c3", "./dependencies/glfw.c3", "./dependencies/hashmap.c3"],
 	"targets": {
 		"cube": {
 			"type": "executable",

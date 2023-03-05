@@ -3,7 +3,7 @@ module triangle;
 import libc;
 import glfw;
 import gl;
-import util;
+import helpers;
 
 const char* VERTEX_SHADER = `
   #version 410

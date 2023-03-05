@@ -1,12 +1,12 @@
-module cube;
-
-import libc;
+module texture;
 import glfw;
+import helpers;
 import gl;
-import util;
-import calgebra;
+import std::io;
+import std::math;
+import std::math::vector;
+import std::math::matrix;
 import stb;
-
 import std::core::mem;
 
 // Shader data
@@ -50,7 +50,7 @@ const char* FRAGMENT_SHADER = `
   }
 `;
 
-const float CUBE_WIDTH = 0.5;
+const float CUBE_WIDTH = 1.0;
 
 // Vertex data
 
@@ -104,9 +104,9 @@ uint [] indices = {
 };
 
 struct UniformBuffer {
-    Mat4x4 projection;
-    Mat4x4 view;
-    Mat4x4 model;
+    Matrix4f projection;
+    Matrix4f view;
+    Matrix4f model;
 }
 
 fn int main()   
@@ -116,12 +116,16 @@ fn int main()
   char* renderer;
   char* version;
 
-  float rotation = 35;
+  float rotation = 0;
+
+  Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, -5.0, 1000);
+  Matrix4f lookAt = vector::matrix4f_look_at(Vec3f{0.0, 0.0, -1}, Vec3f{0.0, 0.0, 0.0}, Vec3f{0.0, 1.0, 0.0});
+  Matrix4f model = helpers::identity_4x4().rotate_y(rotation).rotate_x(20);
 
   UniformBuffer uniformData = UniformBuffer {
-    calgebra::mat4::perspective(45, WIDTH / HEIGHT, 0.1, 1000),
-    calgebra::mat4::fromTranslate(Vec3{0.0, 0.0, -4}),
-    calgebra::mat4::fromRotate(rotation, Vec3{1, 1, 0})
+     perspective,
+     lookAt,
+     model
   };
 
   glfw::init();
@@ -133,7 +137,7 @@ fn int main()
 
   if (window == null)
   {
-        libc::printf("Failed to init gl window");
+        io::printf("Failed to init gl window");
         glfw::terminate();
         return 1;
   }
@@ -149,8 +153,8 @@ fn int main()
   renderer = gl::getString( gl::GL_RENDERER );
   version  = gl::getString( gl::GL_VERSION );
 
-  libc::printf( "Renderer: %s\n", renderer );
-  libc::printf( "OpenGL version supported %s\n", version );
+  io::printf( "Renderer: %s\n", renderer );
+  io::printf( "OpenGL version supported %s\n", version );
 
 
   // Load texture
@@ -194,8 +198,8 @@ fn int main()
     gl::deleteBuffers(1, &vao);
   }
 
-  uint! vertex_shader = util::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
-  uint! fragment_shader = util::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
+  uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
+  uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
   uint shader_program = gl::createProgram();
 
   defer {
@@ -207,7 +211,7 @@ fn int main()
   }
 
   if (catch err = vertex_shader) {
-    libc::printf("Error was %s\n", err); 
+    io::printf("Error was %s\n", err); 
     return 1;
   }
 
@@ -254,13 +258,13 @@ fn int main()
 
 
     if (rotation < 360) {
-      rotation += 0.3;
+      rotation += 0.01;
     } else {
-      rotation = 35;
+      rotation = 0;
     }
     
     // Update model rotation
-    uniformData.model = calgebra::mat4::fromRotate(rotation, Vec3{1, 1, 0});
+    uniformData.model = model.rotate_y(rotation);
     gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
     gl::drawElements(gl::GL_TRIANGLES, 6*6, gl::GL_UNSIGNED_INT, &indices[0]);
