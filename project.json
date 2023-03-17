@@ -5,7 +5,7 @@
 	"linked-libraries": ["glfw"],
 	"authors": [],
 	"version": "0.1.0",
-	"sources": ["./dependencies/helpers.c3", "./dependencies/gl/gl.c3", "./dependencies/glfw.c3", "./dependencies/hashmap.c3"],
+	"sources": ["./dependencies/helpers.c3", "./dependencies/gl/gl.c3", "./dependencies/glfw.c3"],
 	"targets": {
 		"cube": {
 			"type": "executable",
@@ -23,7 +23,7 @@
 		},
 		"gltf": {
 			"type": "executable",
-			"sources-add": ["./examples/gltf.c3", "./dependencies/json.c3"]
+			"sources-add": ["./examples/gltf.c3"]
 		}
 	},
 	"output": "./build"
