@@ -39,7 +39,7 @@ fn Image! loadImage(char* file_path, Channel channel) {
 
   uint error;
 
-  data.pixels = stbi_load(file_path, &data.width, &data.height, &data.channels, channel);
+  data.pixels = stbi_load(file_path, &data.width, &data.height, &data.channels, (uint)channel);
 
   if(data.pixels == null) {
      libc::printf("Image loading failed \n");
