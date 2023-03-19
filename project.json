@@ -23,7 +23,7 @@
 		},
 		"gltf": {
 			"type": "executable",
-			"sources-add": ["./examples/gltf.c3"]
+			"sources-add": ["./examples/gltf.c3", "./dependencies/gltf.c3"]
 		}
 	},
 	"output": "./build"
