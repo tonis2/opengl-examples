@@ -137,7 +137,7 @@ fn int main()
 
   if (window == null)
   {
-        io::printf("Failed to init gl window");
+        io::printfn("Failed to init gl window");
         glfw::terminate();
         return 1;
   }
@@ -153,8 +153,8 @@ fn int main()
   renderer = gl::getString( gl::GL_RENDERER );
   version  = gl::getString( gl::GL_VERSION );
 
-  io::printf( "Renderer: %s\n", renderer );
-  io::printf( "OpenGL version supported %s\n", version );
+  io::printfn( "Renderer: %s", renderer );
+  io::printfn( "OpenGL version supported %s", version );
 
 
   // Load texture
@@ -210,8 +210,8 @@ fn int main()
     gl::deleteProgram(shader_program);
   }
 
-  if (catch err = vertex_shader) {
-    io::printf("Error was %s\n", err); 
+  if (catch err = (vertex_shader, fragment_shader)) {
+    io::printfn("Error was %s", err);
     return 1;
   }
 
