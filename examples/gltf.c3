@@ -8,5 +8,4 @@ fn void main() {
     Gltf! data = gltf::loadFile("assets/casa.gltf");
     
     defer data.close();
-
 }
