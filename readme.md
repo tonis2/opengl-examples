@@ -19,5 +19,5 @@ Then you can run examples with
 
 
 
-The OpenGL binding generator repository is (here)[https://github.com/tonis2/opengl-c3] 
+The OpenGL binding generator repository is [here](https://github.com/tonis2/opengl-c3) 
 
