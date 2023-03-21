@@ -1,24 +1,24 @@
 module gl;
  
-define GLenum = CUInt;
-define GLboolean = bool;
-define GLbitfield = CUInt;
-define GLbyte = ichar;
-define GLubyte = char;
-define GLshort = short;
-define GLushort = ushort;
-define GLint = CInt;
-define GLuint = CUInt;
-define GLclampx = int;
-define GLsizei = CInt;
-define GLfloat = float;
-define GLclampf = float;
-define GLdouble = double;
-define GLclampd = double;
-define GLeglClientBufferEXT = void;
-define GLeglImageOES = void;
-define GLchar = char;
-define GLcharARB = char;
+typedef GLenum = CUInt;
+typedef GLboolean = bool;
+typedef GLbitfield = CUInt;
+typedef GLbyte = ichar;
+typedef GLubyte = char;
+typedef GLshort = short;
+typedef GLushort = ushort;
+typedef GLint = CInt;
+typedef GLuint = CUInt;
+typedef GLclampx = int;
+typedef GLsizei = CInt;
+typedef GLfloat = float;
+typedef GLclampf = float;
+typedef GLdouble = double;
+typedef GLclampd = double;
+typedef GLeglClientBufferEXT = void;
+typedef GLeglImageOES = void;
+typedef GLchar = char;
+typedef GLcharARB = char;
 
 typedef GLhalf = ushort;
 typedef GLhalfARB = ushort;
@@ -36,12 +36,12 @@ typedef GLdebugproc = void*;
 typedef GLdebugprocarb = void*;
 typedef GLdebugprockhr = void*;
 
- 
 
 
-/** 
-* Constants 
-*/ 
+
+/**
+* Constants
+*/
 const GL_CURRENT_BIT = 0x00000001;
 const GL_POINT_BIT = 0x00000002;
 const GL_LINE_BIT = 0x00000004;
@@ -1730,4141 +1730,4141 @@ const GL_SHADER_BINARY_FORMAT_SPIR_V = 0x9551;
 const GL_SPIR_V_BINARY = 0x9552;
 const GL_SPIR_V_EXTENSIONS = 0x9553;
 const GL_NUM_SPIR_V_EXTENSIONS = 0x9554;
- 
 
 
-/** 
-* Function definitions 
-*/ 
-define GL_Accum = fn void  (GLenum op, GLfloat value );
-define GL_ActiveShaderProgram = fn void  (GLuint pipeline, GLuint program );
-define GL_AlphaFunc = fn void  (GLenum func_param, GLfloat ref );
-define GL_AreTexturesResident = fn GLboolean  (GLsizei n,  GLuint *textures, GLboolean *residences );
-define GL_ArrayElement = fn void  (GLint i );
-define GL_AttachShader = fn void  (GLuint program, GLuint shader );
-define GL_Begin = fn void  (GLenum mode );
-define GL_BeginConditionalRender = fn void  (GLuint id, GLenum mode );
-define GL_BeginQuery = fn void  (GLenum target, GLuint id );
-define GL_BeginQueryIndexed = fn void  (GLenum target, GLuint index, GLuint id );
-define GL_BeginTransformFeedback = fn void  (GLenum primitiveMode );
-define GL_BindAttribLocation = fn void  (GLuint program, GLuint index,  GLchar *name );
-define GL_BindBuffer = fn void  (GLenum target, GLuint buffer );
-define GL_BindBufferBase = fn void  (GLenum target, GLuint index, GLuint buffer );
-define GL_BindBufferRange = fn void  (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size );
-define GL_BindBuffersBase = fn void  (GLenum target, GLuint first, GLsizei count,  GLuint *buffers );
-define GL_BindBuffersRange = fn void  (GLenum target, GLuint first, GLsizei count,  GLuint *buffers,  GLintptr *offsets,  GLsizeiptr *sizes );
-define GL_BindFragDataLocation = fn void  (GLuint program, GLuint color,  GLchar *name );
-define GL_BindFragDataLocationIndexed = fn void  (GLuint program, GLuint colorNumber, GLuint index,  GLchar *name );
-define GL_BindFramebuffer = fn void  (GLenum target, GLuint framebuffer );
-define GL_BindImageTexture = fn void  (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format );
-define GL_BindImageTextures = fn void  (GLuint first, GLsizei count,  GLuint *textures );
-define GL_BindProgramPipeline = fn void  (GLuint pipeline );
-define GL_BindRenderbuffer = fn void  (GLenum target, GLuint renderbuffer );
-define GL_BindSampler = fn void  (GLuint unit, GLuint sampler );
-define GL_BindSamplers = fn void  (GLuint first, GLsizei count,  GLuint *samplers );
-define GL_BindTexture = fn void  (GLenum target, GLuint texture );
-define GL_BindTextureUnit = fn void  (GLuint unit, GLuint texture );
-define GL_BindTextures = fn void  (GLuint first, GLsizei count,  GLuint *textures );
-define GL_BindTransformFeedback = fn void  (GLenum target, GLuint id );
-define GL_BindVertexArray = fn void  (GLuint array );
-define GL_BindVertexBuffer = fn void  (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride );
-define GL_BindVertexBuffers = fn void  (GLuint first, GLsizei count,  GLuint *buffers,  GLintptr *offsets,  GLsizei *strides );
-define GL_Bitmap = fn void  (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove,  GLubyte *bitmap );
-define GL_BlendEquationSeparate = fn void  (GLenum modeRGB, GLenum modeAlpha );
-define GL_BlendEquationSeparatei = fn void  (GLuint buf, GLenum modeRGB, GLenum modeAlpha );
-define GL_BlendEquationi = fn void  (GLuint buf, GLenum mode );
-define GL_BlendFunc = fn void  (GLenum sfactor, GLenum dfactor );
-define GL_BlendFuncSeparatei = fn void  (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha );
-define GL_BlendFunci = fn void  (GLuint buf, GLenum src, GLenum dst );
-define GL_BlitFramebuffer = fn void  (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter );
-define GL_BlitNamedFramebuffer = fn void  (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter );
-define GL_BufferData = fn void  (GLenum target, GLsizeiptr size,  void *data, GLenum usage );
-define GL_BufferStorage = fn void  (GLenum target, GLsizeiptr size,  void *data, GLbitfield flags );
-define GL_BufferSubData = fn void  (GLenum target, GLintptr offset, GLsizeiptr size,  void *data );
-define GL_CallList = fn void  (GLuint list );
-define GL_CallLists = fn void  (GLsizei n, GLenum value_type,  void *lists );
-define GL_CheckFramebufferStatus = fn GLenum  (GLenum target );
-define GL_CheckNamedFramebufferStatus = fn GLenum  (GLuint framebuffer, GLenum target );
-define GL_ClampColor = fn void  (GLenum target, GLenum clamp );
-define GL_Clear = fn void  (GLbitfield mask );
-define GL_ClearAccum = fn void  (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
-define GL_ClearBufferData = fn void  (GLenum target, GLenum internalformat, GLenum format, GLenum value_type,  void *data );
-define GL_ClearBufferSubData = fn void  (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type,  void *data );
-define GL_ClearBufferfi = fn void  (GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil );
-define GL_ClearBufferfv = fn void  (GLenum buffer, GLint drawbuffer,  GLfloat *value );
-define GL_ClearBufferiv = fn void  (GLenum buffer, GLint drawbuffer,  GLint *value );
-define GL_ClearBufferuiv = fn void  (GLenum buffer, GLint drawbuffer,  GLuint *value );
-define GL_ClearColor = fn void  (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
-define GL_ClearDepth = fn void  (GLdouble depth );
-define GL_ClearDepthf = fn void  (GLfloat d );
-define GL_ClearIndex = fn void  (GLfloat c );
-define GL_ClearNamedBufferData = fn void  (GLuint buffer, GLenum internalformat, GLenum format, GLenum value_type,  void *data );
-define GL_ClearNamedBufferSubData = fn void  (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type,  void *data );
-define GL_ClearNamedFramebufferfi = fn void  (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil );
-define GL_ClearNamedFramebufferfv = fn void  (GLuint framebuffer, GLenum buffer, GLint drawbuffer,  GLfloat *value );
-define GL_ClearNamedFramebufferiv = fn void  (GLuint framebuffer, GLenum buffer, GLint drawbuffer,  GLint *value );
-define GL_ClearNamedFramebufferuiv = fn void  (GLuint framebuffer, GLenum buffer, GLint drawbuffer,  GLuint *value );
-define GL_ClearStencil = fn void  (GLint s );
-define GL_ClearTexImage = fn void  (GLuint texture, GLint level, GLenum format, GLenum value_type,  void *data );
-define GL_ClearTexSubImage = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type,  void *data );
-define GL_ClientActiveTexture = fn void  (GLenum texture );
-define GL_ClientWaitSync = fn GLenum  (GLsync sync, GLbitfield flags, GLuint64 timeout );
-define GL_ClipControl = fn void  (GLenum origin, GLenum depth );
-define GL_ClipPlane = fn void  (GLenum plane,  GLdouble *equation );
-define GL_Color3b = fn void  (GLbyte red, GLbyte green, GLbyte blue );
-define GL_Color3bv = fn void  ( GLbyte *v );
-define GL_Color3d = fn void  (GLdouble red, GLdouble green, GLdouble blue );
-define GL_Color3dv = fn void  ( GLdouble *v );
-define GL_Color3f = fn void  (GLfloat red, GLfloat green, GLfloat blue );
-define GL_Color3fv = fn void  ( GLfloat *v );
-define GL_Color3i = fn void  (GLint red, GLint green, GLint blue );
-define GL_Color3iv = fn void  ( GLint *v );
-define GL_Color3s = fn void  (GLshort red, GLshort green, GLshort blue );
-define GL_Color3sv = fn void  ( GLshort *v );
-define GL_Color3ub = fn void  (GLubyte red, GLubyte green, GLubyte blue );
-define GL_Color3ubv = fn void  ( GLubyte *v );
-define GL_Color3ui = fn void  (GLuint red, GLuint green, GLuint blue );
-define GL_Color3uiv = fn void  ( GLuint *v );
-define GL_Color3us = fn void  (GLushort red, GLushort green, GLushort blue );
-define GL_Color3usv = fn void  ( GLushort *v );
-define GL_Color4b = fn void  (GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha );
-define GL_Color4bv = fn void  ( GLbyte *v );
-define GL_Color4d = fn void  (GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha );
-define GL_Color4dv = fn void  ( GLdouble *v );
-define GL_Color4f = fn void  (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
-define GL_Color4fv = fn void  ( GLfloat *v );
-define GL_Color4i = fn void  (GLint red, GLint green, GLint blue, GLint alpha );
-define GL_Color4iv = fn void  ( GLint *v );
-define GL_Color4s = fn void  (GLshort red, GLshort green, GLshort blue, GLshort alpha );
-define GL_Color4sv = fn void  ( GLshort *v );
-define GL_Color4ub = fn void  (GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha );
-define GL_Color4ubv = fn void  ( GLubyte *v );
-define GL_Color4ui = fn void  (GLuint red, GLuint green, GLuint blue, GLuint alpha );
-define GL_Color4uiv = fn void  ( GLuint *v );
-define GL_Color4us = fn void  (GLushort red, GLushort green, GLushort blue, GLushort alpha );
-define GL_Color4usv = fn void  ( GLushort *v );
-define GL_ColorMask = fn void  (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha );
-define GL_ColorMaski = fn void  (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a );
-define GL_ColorMaterial = fn void  (GLenum face, GLenum mode );
-define GL_ColorP3ui = fn void  (GLenum value_type, GLuint color );
-define GL_ColorP3uiv = fn void  (GLenum value_type,  GLuint *color );
-define GL_ColorP4ui = fn void  (GLenum value_type, GLuint color );
-define GL_ColorP4uiv = fn void  (GLenum value_type,  GLuint *color );
-define GL_ColorPointer = fn void  (GLint size, GLenum value_type, GLsizei stride,  void *pointer );
-define GL_CompileShader = fn void  (GLuint shader );
-define GL_CompressedTextureSubImage1D = fn void  (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize,  void *data );
-define GL_CompressedTextureSubImage2D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize,  void *data );
-define GL_CompressedTextureSubImage3D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize,  void *data );
-define GL_CopyBufferSubData = fn void  (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size );
-define GL_CopyImageSubData = fn void  (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth );
-define GL_CopyNamedBufferSubData = fn void  (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size );
-define GL_CopyPixels = fn void  (GLint x, GLint y, GLsizei width, GLsizei height, GLenum value_type );
-define GL_CopyTexImage1D = fn void  (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border );
-define GL_CopyTexImage2D = fn void  (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border );
-define GL_CopyTexSubImage1D = fn void  (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width );
-define GL_CopyTexSubImage2D = fn void  (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_CopyTextureSubImage1D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width );
-define GL_CopyTextureSubImage2D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_CopyTextureSubImage3D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_CreateBuffers = fn void  (GLsizei n, GLuint *buffers );
-define GL_CreateFramebuffers = fn void  (GLsizei n, GLuint *framebuffers );
-define GL_CreateProgram = fn GLuint  ( );
-define GL_CreateProgramPipelines = fn void  (GLsizei n, GLuint *pipelines );
-define GL_CreateQueries = fn void  (GLenum target, GLsizei n, GLuint *ids );
-define GL_CreateRenderbuffers = fn void  (GLsizei n, GLuint *renderbuffers );
-define GL_CreateSamplers = fn void  (GLsizei n, GLuint *samplers );
-define GL_CreateShader = fn GLuint  (GLenum value_type );
-define GL_CreateShaderProgramv = fn GLuint  (GLenum value_type, GLsizei count,  GLchar **strings );
-define GL_CreateTextures = fn void  (GLenum target, GLsizei n, GLuint *textures );
-define GL_CreateTransformFeedbacks = fn void  (GLsizei n, GLuint *ids );
-define GL_CreateVertexArrays = fn void  (GLsizei n, GLuint *arrays );
-define GL_CullFace = fn void  (GLenum mode );
-define GL_DebugMessageCallback = fn void  (GLdebugproc callback,  void *userParam );
-define GL_DebugMessageControl = fn void  (GLenum source, GLenum value_type, GLenum severity, GLsizei count,  GLuint *ids, GLboolean enabled );
-define GL_DebugMessageInsert = fn void  (GLenum source, GLenum value_type, GLuint id, GLenum severity, GLsizei length,  GLchar *buf );
-define GL_DeleteBuffers = fn void  (GLsizei n,  GLuint *buffers );
-define GL_DeleteFramebuffers = fn void  (GLsizei n,  GLuint *framebuffers );
-define GL_DeleteLists = fn void  (GLuint list, GLsizei range );
-define GL_DeleteProgram = fn void  (GLuint program );
-define GL_DeleteProgramPipelines = fn void  (GLsizei n,  GLuint *pipelines );
-define GL_DeleteQueries = fn void  (GLsizei n,  GLuint *ids );
-define GL_DeleteRenderbuffers = fn void  (GLsizei n,  GLuint *renderbuffers );
-define GL_DeleteSamplers = fn void  (GLsizei count,  GLuint *samplers );
-define GL_DeleteShader = fn void  (GLuint shader );
-define GL_DeleteSync = fn void  (GLsync sync );
-define GL_DeleteTextures = fn void  (GLsizei n,  GLuint *textures );
-define GL_DeleteTransformFeedbacks = fn void  (GLsizei n,  GLuint *ids );
-define GL_DeleteVertexArrays = fn void  (GLsizei n,  GLuint *arrays );
-define GL_DepthFunc = fn void  (GLenum func_param );
-define GL_DepthMask = fn void  (GLboolean flag );
-define GL_DepthRange = fn void  (GLdouble n, GLdouble f );
-define GL_DepthRangeArrayv = fn void  (GLuint first, GLsizei count,  GLdouble *v );
-define GL_DepthRangeIndexed = fn void  (GLuint index, GLdouble n, GLdouble f );
-define GL_DepthRangef = fn void  (GLfloat n, GLfloat f );
-define GL_DetachShader = fn void  (GLuint program, GLuint shader );
-define GL_Disable = fn void  (GLenum cap );
-define GL_DisableClientState = fn void  (GLenum array );
-define GL_DisableVertexArrayAttrib = fn void  (GLuint vaobj, GLuint index );
-define GL_DisableVertexAttribArray = fn void  (GLuint index );
-define GL_Disablei = fn void  (GLenum target, GLuint index );
-define GL_DispatchCompute = fn void  (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z );
-define GL_DispatchComputeIndirect = fn void  (GLintptr indirect );
-define GL_DrawArrays = fn void  (GLenum mode, GLint first, GLsizei count );
-define GL_DrawArraysIndirect = fn void  (GLenum mode,  void *indirect );
-define GL_DrawArraysInstanced = fn void  (GLenum mode, GLint first, GLsizei count, GLsizei instancecount );
-define GL_DrawArraysInstancedBaseInstance = fn void  (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance );
-define GL_DrawBuffer = fn void  (GLenum buf );
-define GL_DrawBuffers = fn void  (GLsizei n,  GLenum *bufs );
-define GL_DrawElements = fn void  (GLenum mode, GLsizei count, GLenum value_type,  void *indices );
-define GL_DrawElementsBaseVertex = fn void  (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLint basevertex );
-define GL_DrawElementsIndirect = fn void  (GLenum mode, GLenum value_type,  void *indirect );
-define GL_DrawElementsInstanced = fn void  (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount );
-define GL_DrawElementsInstancedBaseInstance = fn void  (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount, GLuint baseinstance );
-define GL_DrawElementsInstancedBaseVertex = fn void  (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount, GLint basevertex );
-define GL_DrawElementsInstancedBaseVertexBaseInstance = fn void  (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance );
-define GL_DrawPixels = fn void  (GLsizei width, GLsizei height, GLenum format, GLenum value_type,  void *pixels );
-define GL_DrawRangeElementsBaseVertex = fn void  (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum value_type,  void *indices, GLint basevertex );
-define GL_DrawTransformFeedback = fn void  (GLenum mode, GLuint id );
-define GL_DrawTransformFeedbackInstanced = fn void  (GLenum mode, GLuint id, GLsizei instancecount );
-define GL_DrawTransformFeedbackStream = fn void  (GLenum mode, GLuint id, GLuint stream );
-define GL_DrawTransformFeedbackStreamInstanced = fn void  (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount );
-define GL_EdgeFlag = fn void  (GLboolean flag );
-define GL_EdgeFlagPointer = fn void  (GLsizei stride,  void *pointer );
-define GL_EdgeFlagv = fn void  ( GLboolean *flag );
-define GL_Enable = fn void  (GLenum cap );
-define GL_EnableClientState = fn void  (GLenum array );
-define GL_EnableVertexArrayAttrib = fn void  (GLuint vaobj, GLuint index );
-define GL_EnableVertexAttribArray = fn void  (GLuint index );
-define GL_Enablei = fn void  (GLenum target, GLuint index );
-define GL_End = fn void  ( );
-define GL_EndConditionalRender = fn void  ( );
-define GL_EndList = fn void  ( );
-define GL_EndQuery = fn void  (GLenum target );
-define GL_EndQueryIndexed = fn void  (GLenum target, GLuint index );
-define GL_EndTransformFeedback = fn void  ( );
-define GL_EvalCoord1d = fn void  (GLdouble u );
-define GL_EvalCoord1dv = fn void  ( GLdouble *u );
-define GL_EvalCoord1f = fn void  (GLfloat u );
-define GL_EvalCoord1fv = fn void  ( GLfloat *u );
-define GL_EvalCoord2d = fn void  (GLdouble u, GLdouble v );
-define GL_EvalCoord2dv = fn void  ( GLdouble *u );
-define GL_EvalCoord2f = fn void  (GLfloat u, GLfloat v );
-define GL_EvalCoord2fv = fn void  ( GLfloat *u );
-define GL_EvalMesh1 = fn void  (GLenum mode, GLint i1, GLint i2 );
-define GL_EvalMesh2 = fn void  (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2 );
-define GL_EvalPoint1 = fn void  (GLint i );
-define GL_EvalPoint2 = fn void  (GLint i, GLint j );
-define GL_FeedbackBuffer = fn void  (GLsizei size, GLenum value_type, GLfloat *buffer );
-define GL_FenceSync = fn GLsync  (GLenum condition, GLbitfield flags );
-define GL_Finish = fn void  ( );
-define GL_Flush = fn void  ( );
-define GL_FlushMappedBufferRange = fn void  (GLenum target, GLintptr offset, GLsizeiptr length );
-define GL_FlushMappedNamedBufferRange = fn void  (GLuint buffer, GLintptr offset, GLsizeiptr length );
-define GL_FogCoordPointer = fn void  (GLenum value_type, GLsizei stride,  void *pointer );
-define GL_FogCoordd = fn void  (GLdouble coord );
-define GL_FogCoorddv = fn void  ( GLdouble *coord );
-define GL_FogCoordf = fn void  (GLfloat coord );
-define GL_FogCoordfv = fn void  ( GLfloat *coord );
-define GL_Fogf = fn void  (GLenum pname, GLfloat param );
-define GL_Fogfv = fn void  (GLenum pname,  GLfloat *params );
-define GL_Fogi = fn void  (GLenum pname, GLint param );
-define GL_Fogiv = fn void  (GLenum pname,  GLint *params );
-define GL_FramebufferParameteri = fn void  (GLenum target, GLenum pname, GLint param );
-define GL_FramebufferRenderbuffer = fn void  (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer );
-define GL_FramebufferTexture = fn void  (GLenum target, GLenum attachment, GLuint texture, GLint level );
-define GL_FramebufferTexture1D = fn void  (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level );
-define GL_FramebufferTexture2D = fn void  (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level );
-define GL_FramebufferTexture3D = fn void  (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset );
-define GL_FramebufferTextureLayer = fn void  (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer );
-define GL_FrontFace = fn void  (GLenum mode );
-define GL_Frustum = fn void  (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar );
-define GL_GenBuffers = fn void  (GLsizei n, GLuint *buffers );
-define GL_GenFramebuffers = fn void  (GLsizei n, GLuint *framebuffers );
-define GL_GenLists = fn GLuint  (GLsizei range );
-define GL_GenProgramPipelines = fn void  (GLsizei n, GLuint *pipelines );
-define GL_GenQueries = fn void  (GLsizei n, GLuint *ids );
-define GL_GenRenderbuffers = fn void  (GLsizei n, GLuint *renderbuffers );
-define GL_GenSamplers = fn void  (GLsizei count, GLuint *samplers );
-define GL_GenTextures = fn void  (GLsizei n, GLuint *textures );
-define GL_GenTransformFeedbacks = fn void  (GLsizei n, GLuint *ids );
-define GL_GenVertexArrays = fn void  (GLsizei n, GLuint *arrays );
-define GL_GenerateMipmap = fn void  (GLenum target );
-define GL_GenerateTextureMipmap = fn void  (GLuint texture );
-define GL_GetActiveAtomicCounterBufferiv = fn void  (GLuint program, GLuint bufferIndex, GLenum pname, GLint *params );
-define GL_GetActiveAttrib = fn void  (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name );
-define GL_GetActiveSubroutineName = fn void  (GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name );
-define GL_GetActiveSubroutineUniformName = fn void  (GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name );
-define GL_GetActiveSubroutineUniformiv = fn void  (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint *values );
-define GL_GetActiveUniform = fn void  (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name );
-define GL_GetActiveUniformBlockName = fn void  (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName );
-define GL_GetActiveUniformBlockiv = fn void  (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint *params );
-define GL_GetActiveUniformName = fn void  (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformName );
-define GL_GetActiveUniformsiv = fn void  (GLuint program, GLsizei uniformCount,  GLuint *uniformIndices, GLenum pname, GLint *params );
-define GL_GetAttachedShaders = fn void  (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders );
-define GL_GetAttribLocation = fn GLint  (GLuint program,  GLchar *name );
-define GL_GetBooleani_v = fn void  (GLenum target, GLuint index, GLboolean *data );
-define GL_GetBooleanv = fn void  (GLenum pname, GLboolean *data );
-define GL_GetBufferParameteri64v = fn void  (GLenum target, GLenum pname, GLint64 *params );
-define GL_GetBufferParameteriv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetBufferPointerv = fn void  (GLenum target, GLenum pname, void **params );
-define GL_GetBufferSubData = fn void  (GLenum target, GLintptr offset, GLsizeiptr size, void *data );
-define GL_GetClipPlane = fn void  (GLenum plane, GLdouble *equation );
-define GL_GetCompressedTextureImage = fn void  (GLuint texture, GLint level, GLsizei bufSize, void *pixels );
-define GL_GetCompressedTextureSubImage = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void *pixels );
-define GL_GetDebugMessageLog = fn GLuint  (GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog );
-define GL_GetDoublei_v = fn void  (GLenum target, GLuint index, GLdouble *data );
-define GL_GetDoublev = fn void  (GLenum pname, GLdouble *data );
-define GL_GetError = fn GLenum  ( );
-define GL_GetFloati_v = fn void  (GLenum target, GLuint index, GLfloat *data );
-define GL_GetFloatv = fn void  (GLenum pname, GLfloat *data );
-define GL_GetFragDataIndex = fn GLint  (GLuint program,  GLchar *name );
-define GL_GetFragDataLocation = fn GLint  (GLuint program,  GLchar *name );
-define GL_GetFramebufferAttachmentParameteriv = fn void  (GLenum target, GLenum attachment, GLenum pname, GLint *params );
-define GL_GetFramebufferParameteriv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetGraphicsResetStatus = fn GLenum  ( );
-define GL_GetInteger64i_v = fn void  (GLenum target, GLuint index, GLint64 *data );
-define GL_GetInteger64v = fn void  (GLenum pname, GLint64 *data );
-define GL_GetIntegeri_v = fn void  (GLenum target, GLuint index, GLint *data );
-define GL_GetIntegerv = fn void  (GLenum pname, GLint *data );
-define GL_GetInternalformati64v = fn void  (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint64 *params );
-define GL_GetInternalformativ = fn void  (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint *params );
-define GL_GetLightfv = fn void  (GLenum light, GLenum pname, GLfloat *params );
-define GL_GetLightiv = fn void  (GLenum light, GLenum pname, GLint *params );
-define GL_GetMapdv = fn void  (GLenum target, GLenum query, GLdouble *v );
-define GL_GetMapfv = fn void  (GLenum target, GLenum query, GLfloat *v );
-define GL_GetMapiv = fn void  (GLenum target, GLenum query, GLint *v );
-define GL_GetMaterialfv = fn void  (GLenum face, GLenum pname, GLfloat *params );
-define GL_GetMaterialiv = fn void  (GLenum face, GLenum pname, GLint *params );
-define GL_GetMultisamplefv = fn void  (GLenum pname, GLuint index, GLfloat *val );
-define GL_GetNamedBufferParameteri64v = fn void  (GLuint buffer, GLenum pname, GLint64 *params );
-define GL_GetNamedBufferParameteriv = fn void  (GLuint buffer, GLenum pname, GLint *params );
-define GL_GetNamedBufferPointerv = fn void  (GLuint buffer, GLenum pname, void **params );
-define GL_GetNamedBufferSubData = fn void  (GLuint buffer, GLintptr offset, GLsizeiptr size, void *data );
-define GL_GetNamedFramebufferAttachmentParameteriv = fn void  (GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params );
-define GL_GetNamedFramebufferParameteriv = fn void  (GLuint framebuffer, GLenum pname, GLint *param );
-define GL_GetNamedRenderbufferParameteriv = fn void  (GLuint renderbuffer, GLenum pname, GLint *params );
-define GL_GetObjectLabel = fn void  (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label );
-define GL_GetObjectPtrLabel = fn void  ( void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label );
-define GL_GetPixelMapfv = fn void  (GLenum map, GLfloat *values );
-define GL_GetPixelMapuiv = fn void  (GLenum map, GLuint *values );
-define GL_GetPixelMapusv = fn void  (GLenum map, GLushort *values );
-define GL_GetPointerv = fn void  (GLenum pname, void **params );
-define GL_GetPolygonStipple = fn void  (GLubyte *mask );
-define GL_GetProgramBinary = fn void  (GLuint program, GLsizei bufSize, GLsizei *length, GLenum *binaryFormat, void *binary );
-define GL_GetProgramInfoLog = fn void  (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog );
-define GL_GetProgramInterfaceiv = fn void  (GLuint program, GLenum programInterface, GLenum pname, GLint *params );
-define GL_GetProgramPipelineInfoLog = fn void  (GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog );
-define GL_GetProgramPipelineiv = fn void  (GLuint pipeline, GLenum pname, GLint *params );
-define GL_GetProgramResourceIndex = fn GLuint  (GLuint program, GLenum programInterface,  GLchar *name );
-define GL_GetProgramResourceLocation = fn GLint  (GLuint program, GLenum programInterface,  GLchar *name );
-define GL_GetProgramResourceLocationIndex = fn GLint  (GLuint program, GLenum programInterface,  GLchar *name );
-define GL_GetProgramResourceName = fn void  (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name );
-define GL_GetProgramResourceiv = fn void  (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount,  GLenum *props, GLsizei count, GLsizei *length, GLint *params );
-define GL_GetProgramStageiv = fn void  (GLuint program, GLenum shadertype, GLenum pname, GLint *values );
-define GL_GetProgramiv = fn void  (GLuint program, GLenum pname, GLint *params );
-define GL_GetQueryBufferObjecti64v = fn void  (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
-define GL_GetQueryBufferObjectiv = fn void  (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
-define GL_GetQueryBufferObjectui64v = fn void  (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
-define GL_GetQueryBufferObjectuiv = fn void  (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
-define GL_GetQueryIndexediv = fn void  (GLenum target, GLuint index, GLenum pname, GLint *params );
-define GL_GetQueryObjecti64v = fn void  (GLuint id, GLenum pname, GLint64 *params );
-define GL_GetQueryObjectiv = fn void  (GLuint id, GLenum pname, GLint *params );
-define GL_GetQueryObjectui64v = fn void  (GLuint id, GLenum pname, GLuint64 *params );
-define GL_GetQueryObjectuiv = fn void  (GLuint id, GLenum pname, GLuint *params );
-define GL_GetQueryiv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetRenderbufferParameteriv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetSamplerParameterIiv = fn void  (GLuint sampler, GLenum pname, GLint *params );
-define GL_GetSamplerParameterIuiv = fn void  (GLuint sampler, GLenum pname, GLuint *params );
-define GL_GetSamplerParameterfv = fn void  (GLuint sampler, GLenum pname, GLfloat *params );
-define GL_GetSamplerParameteriv = fn void  (GLuint sampler, GLenum pname, GLint *params );
-define GL_GetShaderInfoLog = fn void  (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog );
-define GL_GetShaderPrecisionFormat = fn void  (GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision );
-define GL_GetShaderSource = fn void  (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source );
-define GL_GetShaderiv = fn void  (GLuint shader, GLenum pname, GLint *params );
-define GL_GetString = fn  GLubyte * (GLenum name );
-define GL_GetStringi = fn  GLubyte * (GLenum name, GLuint index );
-define GL_GetSubroutineIndex = fn GLuint  (GLuint program, GLenum shadertype,  GLchar *name );
-define GL_GetSubroutineUniformLocation = fn GLint  (GLuint program, GLenum shadertype,  GLchar *name );
-define GL_GetSynciv = fn void  (GLsync sync, GLenum pname, GLsizei count, GLsizei *length, GLint *values );
-define GL_GetTexEnvfv = fn void  (GLenum target, GLenum pname, GLfloat *params );
-define GL_GetTexEnviv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetTexGendv = fn void  (GLenum coord, GLenum pname, GLdouble *params );
-define GL_GetTexGenfv = fn void  (GLenum coord, GLenum pname, GLfloat *params );
-define GL_GetTexGeniv = fn void  (GLenum coord, GLenum pname, GLint *params );
-define GL_GetTexImage = fn void  (GLenum target, GLint level, GLenum format, GLenum value_type, void *pixels );
-define GL_GetTexLevelParameterfv = fn void  (GLenum target, GLint level, GLenum pname, GLfloat *params );
-define GL_GetTexLevelParameteriv = fn void  (GLenum target, GLint level, GLenum pname, GLint *params );
-define GL_GetTexParameterIiv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetTexParameterIuiv = fn void  (GLenum target, GLenum pname, GLuint *params );
-define GL_GetTexParameterfv = fn void  (GLenum target, GLenum pname, GLfloat *params );
-define GL_GetTexParameteriv = fn void  (GLenum target, GLenum pname, GLint *params );
-define GL_GetTextureImage = fn void  (GLuint texture, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels );
-define GL_GetTextureLevelParameterfv = fn void  (GLuint texture, GLint level, GLenum pname, GLfloat *params );
-define GL_GetTextureLevelParameteriv = fn void  (GLuint texture, GLint level, GLenum pname, GLint *params );
-define GL_GetTextureParameterIiv = fn void  (GLuint texture, GLenum pname, GLint *params );
-define GL_GetTextureParameterIuiv = fn void  (GLuint texture, GLenum pname, GLuint *params );
-define GL_GetTextureParameterfv = fn void  (GLuint texture, GLenum pname, GLfloat *params );
-define GL_GetTextureParameteriv = fn void  (GLuint texture, GLenum pname, GLint *params );
-define GL_GetTextureSubImage = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels );
-define GL_GetTransformFeedbackVarying = fn void  (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *value_type, GLchar *name );
-define GL_GetTransformFeedbacki64_v = fn void  (GLuint xfb, GLenum pname, GLuint index, GLint64 *param );
-define GL_GetTransformFeedbacki_v = fn void  (GLuint xfb, GLenum pname, GLuint index, GLint *param );
-define GL_GetTransformFeedbackiv = fn void  (GLuint xfb, GLenum pname, GLint *param );
-define GL_GetUniformBlockIndex = fn GLuint  (GLuint program,  GLchar *uniformBlockName );
-define GL_GetUniformIndices = fn void  (GLuint program, GLsizei uniformCount,  GLchar **uniformNames, GLuint *uniformIndices );
-define GL_GetUniformLocation = fn GLint  (GLuint program,  GLchar *name );
-define GL_GetUniformSubroutineuiv = fn void  (GLenum shadertype, GLint location, GLuint *params );
-define GL_GetUniformdv = fn void  (GLuint program, GLint location, GLdouble *params );
-define GL_GetUniformfv = fn void  (GLuint program, GLint location, GLfloat *params );
-define GL_GetUniformiv = fn void  (GLuint program, GLint location, GLint *params );
-define GL_GetUniformuiv = fn void  (GLuint program, GLint location, GLuint *params );
-define GL_GetVertexArrayIndexed64iv = fn void  (GLuint vaobj, GLuint index, GLenum pname, GLint64 *param );
-define GL_GetVertexArrayIndexediv = fn void  (GLuint vaobj, GLuint index, GLenum pname, GLint *param );
-define GL_GetVertexArrayiv = fn void  (GLuint vaobj, GLenum pname, GLint *param );
-define GL_GetVertexAttribIiv = fn void  (GLuint index, GLenum pname, GLint *params );
-define GL_GetVertexAttribIuiv = fn void  (GLuint index, GLenum pname, GLuint *params );
-define GL_GetVertexAttribLdv = fn void  (GLuint index, GLenum pname, GLdouble *params );
-define GL_GetVertexAttribPointerv = fn void  (GLuint index, GLenum pname, void **pointer );
-define GL_GetVertexAttribdv = fn void  (GLuint index, GLenum pname, GLdouble *params );
-define GL_GetVertexAttribfv = fn void  (GLuint index, GLenum pname, GLfloat *params );
-define GL_GetVertexAttribiv = fn void  (GLuint index, GLenum pname, GLint *params );
-define GL_GetnColorTable = fn void  (GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *table );
-define GL_GetnCompressedTexImage = fn void  (GLenum target, GLint lod, GLsizei bufSize, void *pixels );
-define GL_GetnConvolutionFilter = fn void  (GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *image );
-define GL_GetnHistogram = fn void  (GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values );
-define GL_GetnMapdv = fn void  (GLenum target, GLenum query, GLsizei bufSize, GLdouble *v );
-define GL_GetnMapfv = fn void  (GLenum target, GLenum query, GLsizei bufSize, GLfloat *v );
-define GL_GetnMapiv = fn void  (GLenum target, GLenum query, GLsizei bufSize, GLint *v );
-define GL_GetnMinmax = fn void  (GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values );
-define GL_GetnPixelMapfv = fn void  (GLenum map, GLsizei bufSize, GLfloat *values );
-define GL_GetnPixelMapuiv = fn void  (GLenum map, GLsizei bufSize, GLuint *values );
-define GL_GetnPixelMapusv = fn void  (GLenum map, GLsizei bufSize, GLushort *values );
-define GL_GetnPolygonStipple = fn void  (GLsizei bufSize, GLubyte *pattern );
-define GL_GetnSeparableFilter = fn void  (GLenum target, GLenum format, GLenum value_type, GLsizei rowBufSize, void *row, GLsizei columnBufSize, void *column, void *span );
-define GL_GetnTexImage = fn void  (GLenum target, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels );
-define GL_GetnUniformdv = fn void  (GLuint program, GLint location, GLsizei bufSize, GLdouble *params );
-define GL_GetnUniformfv = fn void  (GLuint program, GLint location, GLsizei bufSize, GLfloat *params );
-define GL_GetnUniformiv = fn void  (GLuint program, GLint location, GLsizei bufSize, GLint *params );
-define GL_GetnUniformuiv = fn void  (GLuint program, GLint location, GLsizei bufSize, GLuint *params );
-define GL_Hint = fn void  (GLenum target, GLenum mode );
-define GL_IndexMask = fn void  (GLuint mask );
-define GL_IndexPointer = fn void  (GLenum value_type, GLsizei stride,  void *pointer );
-define GL_Indexd = fn void  (GLdouble c );
-define GL_Indexdv = fn void  ( GLdouble *c );
-define GL_Indexf = fn void  (GLfloat c );
-define GL_Indexfv = fn void  ( GLfloat *c );
-define GL_Indexi = fn void  (GLint c );
-define GL_Indexiv = fn void  ( GLint *c );
-define GL_Indexs = fn void  (GLshort c );
-define GL_Indexsv = fn void  ( GLshort *c );
-define GL_Indexub = fn void  (GLubyte c );
-define GL_Indexubv = fn void  ( GLubyte *c );
-define GL_InitNames = fn void  ( );
-define GL_InterleavedArrays = fn void  (GLenum format, GLsizei stride,  void *pointer );
-define GL_InvalidateBufferData = fn void  (GLuint buffer );
-define GL_InvalidateBufferSubData = fn void  (GLuint buffer, GLintptr offset, GLsizeiptr length );
-define GL_InvalidateFramebuffer = fn void  (GLenum target, GLsizei numAttachments,  GLenum *attachments );
-define GL_InvalidateNamedFramebufferData = fn void  (GLuint framebuffer, GLsizei numAttachments,  GLenum *attachments );
-define GL_InvalidateNamedFramebufferSubData = fn void  (GLuint framebuffer, GLsizei numAttachments,  GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_InvalidateSubFramebuffer = fn void  (GLenum target, GLsizei numAttachments,  GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_InvalidateTexImage = fn void  (GLuint texture, GLint level );
-define GL_InvalidateTexSubImage = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth );
-define GL_IsBuffer = fn GLboolean  (GLuint buffer );
-define GL_IsEnabled = fn GLboolean  (GLenum cap );
-define GL_IsEnabledi = fn GLboolean  (GLenum target, GLuint index );
-define GL_IsFramebuffer = fn GLboolean  (GLuint framebuffer );
-define GL_IsList = fn GLboolean  (GLuint list );
-define GL_IsProgram = fn GLboolean  (GLuint program );
-define GL_IsProgramPipeline = fn GLboolean  (GLuint pipeline );
-define GL_IsQuery = fn GLboolean  (GLuint id );
-define GL_IsRenderbuffer = fn GLboolean  (GLuint renderbuffer );
-define GL_IsSampler = fn GLboolean  (GLuint sampler );
-define GL_IsShader = fn GLboolean  (GLuint shader );
-define GL_IsSync = fn GLboolean  (GLsync sync );
-define GL_IsTexture = fn GLboolean  (GLuint texture );
-define GL_IsTransformFeedback = fn GLboolean  (GLuint id );
-define GL_IsVertexArray = fn GLboolean  (GLuint array );
-define GL_LightModelf = fn void  (GLenum pname, GLfloat param );
-define GL_LightModelfv = fn void  (GLenum pname,  GLfloat *params );
-define GL_LightModeli = fn void  (GLenum pname, GLint param );
-define GL_LightModeliv = fn void  (GLenum pname,  GLint *params );
-define GL_Lightf = fn void  (GLenum light, GLenum pname, GLfloat param );
-define GL_Lightfv = fn void  (GLenum light, GLenum pname,  GLfloat *params );
-define GL_Lighti = fn void  (GLenum light, GLenum pname, GLint param );
-define GL_Lightiv = fn void  (GLenum light, GLenum pname,  GLint *params );
-define GL_LineStipple = fn void  (GLint factor, GLushort pattern );
-define GL_LineWidth = fn void  (GLfloat width );
-define GL_LinkProgram = fn void  (GLuint program );
-define GL_ListBase = fn void  (GLuint base );
-define GL_LoadIdentity = fn void  ( );
-define GL_LoadMatrixd = fn void  ( GLdouble *m );
-define GL_LoadMatrixf = fn void  ( GLfloat *m );
-define GL_LoadName = fn void  (GLuint name );
-define GL_LoadTransposeMatrixd = fn void  ( GLdouble *m );
-define GL_LoadTransposeMatrixf = fn void  ( GLfloat *m );
-define GL_LogicOp = fn void  (GLenum opcode );
-define GL_Map1d = fn void  (GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order,  GLdouble *points );
-define GL_Map1f = fn void  (GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order,  GLfloat *points );
-define GL_Map2d = fn void  (GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder,  GLdouble *points );
-define GL_Map2f = fn void  (GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder,  GLfloat *points );
-define GL_MapBuffer = fn void * (GLenum target, GLenum access );
-define GL_MapBufferRange = fn void * (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access );
-define GL_MapGrid1d = fn void  (GLint un, GLdouble u1, GLdouble u2 );
-define GL_MapGrid1f = fn void  (GLint un, GLfloat u1, GLfloat u2 );
-define GL_MapGrid2d = fn void  (GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2 );
-define GL_MapGrid2f = fn void  (GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2 );
-define GL_MapNamedBuffer = fn void * (GLuint buffer, GLenum access );
-define GL_MapNamedBufferRange = fn void * (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access );
-define GL_Materialf = fn void  (GLenum face, GLenum pname, GLfloat param );
-define GL_Materialfv = fn void  (GLenum face, GLenum pname,  GLfloat *params );
-define GL_Materiali = fn void  (GLenum face, GLenum pname, GLint param );
-define GL_Materialiv = fn void  (GLenum face, GLenum pname,  GLint *params );
-define GL_MatrixMode = fn void  (GLenum mode );
-define GL_MemoryBarrier = fn void  (GLbitfield barriers );
-define GL_MemoryBarrierByRegion = fn void  (GLbitfield barriers );
-define GL_MinSampleShading = fn void  (GLfloat value );
-define GL_MultMatrixd = fn void  ( GLdouble *m );
-define GL_MultMatrixf = fn void  ( GLfloat *m );
-define GL_MultTransposeMatrixd = fn void  ( GLdouble *m );
-define GL_MultTransposeMatrixf = fn void  ( GLfloat *m );
-define GL_MultiDrawArraysIndirect = fn void  (GLenum mode,  void *indirect, GLsizei drawcount, GLsizei stride );
-define GL_MultiDrawArraysIndirectCount = fn void  (GLenum mode,  void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride );
-define GL_MultiDrawElementsBaseVertex = fn void  (GLenum mode,  GLsizei *count, GLenum value_type,  void **indices, GLsizei drawcount,  GLint *basevertex );
-define GL_MultiDrawElementsIndirect = fn void  (GLenum mode, GLenum value_type,  void *indirect, GLsizei drawcount, GLsizei stride );
-define GL_MultiDrawElementsIndirectCount = fn void  (GLenum mode, GLenum value_type,  void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride );
-define GL_MultiTexCoord1d = fn void  (GLenum target, GLdouble s );
-define GL_MultiTexCoord1dv = fn void  (GLenum target,  GLdouble *v );
-define GL_MultiTexCoord1f = fn void  (GLenum target, GLfloat s );
-define GL_MultiTexCoord1fv = fn void  (GLenum target,  GLfloat *v );
-define GL_MultiTexCoord1i = fn void  (GLenum target, GLint s );
-define GL_MultiTexCoord1iv = fn void  (GLenum target,  GLint *v );
-define GL_MultiTexCoord1s = fn void  (GLenum target, GLshort s );
-define GL_MultiTexCoord1sv = fn void  (GLenum target,  GLshort *v );
-define GL_MultiTexCoord2d = fn void  (GLenum target, GLdouble s, GLdouble t );
-define GL_MultiTexCoord2dv = fn void  (GLenum target,  GLdouble *v );
-define GL_MultiTexCoord2f = fn void  (GLenum target, GLfloat s, GLfloat t );
-define GL_MultiTexCoord2fv = fn void  (GLenum target,  GLfloat *v );
-define GL_MultiTexCoord2i = fn void  (GLenum target, GLint s, GLint t );
-define GL_MultiTexCoord2iv = fn void  (GLenum target,  GLint *v );
-define GL_MultiTexCoord2s = fn void  (GLenum target, GLshort s, GLshort t );
-define GL_MultiTexCoord2sv = fn void  (GLenum target,  GLshort *v );
-define GL_MultiTexCoord3d = fn void  (GLenum target, GLdouble s, GLdouble t, GLdouble r );
-define GL_MultiTexCoord3dv = fn void  (GLenum target,  GLdouble *v );
-define GL_MultiTexCoord3f = fn void  (GLenum target, GLfloat s, GLfloat t, GLfloat r );
-define GL_MultiTexCoord3fv = fn void  (GLenum target,  GLfloat *v );
-define GL_MultiTexCoord3i = fn void  (GLenum target, GLint s, GLint t, GLint r );
-define GL_MultiTexCoord3iv = fn void  (GLenum target,  GLint *v );
-define GL_MultiTexCoord3s = fn void  (GLenum target, GLshort s, GLshort t, GLshort r );
-define GL_MultiTexCoord3sv = fn void  (GLenum target,  GLshort *v );
-define GL_MultiTexCoord4d = fn void  (GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q );
-define GL_MultiTexCoord4dv = fn void  (GLenum target,  GLdouble *v );
-define GL_MultiTexCoord4f = fn void  (GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q );
-define GL_MultiTexCoord4fv = fn void  (GLenum target,  GLfloat *v );
-define GL_MultiTexCoord4i = fn void  (GLenum target, GLint s, GLint t, GLint r, GLint q );
-define GL_MultiTexCoord4iv = fn void  (GLenum target,  GLint *v );
-define GL_MultiTexCoord4s = fn void  (GLenum target, GLshort s, GLshort t, GLshort r, GLshort q );
-define GL_MultiTexCoord4sv = fn void  (GLenum target,  GLshort *v );
-define GL_MultiTexCoordP1ui = fn void  (GLenum texture, GLenum value_type, GLuint coords );
-define GL_MultiTexCoordP1uiv = fn void  (GLenum texture, GLenum value_type,  GLuint *coords );
-define GL_MultiTexCoordP2ui = fn void  (GLenum texture, GLenum value_type, GLuint coords );
-define GL_MultiTexCoordP2uiv = fn void  (GLenum texture, GLenum value_type,  GLuint *coords );
-define GL_MultiTexCoordP3ui = fn void  (GLenum texture, GLenum value_type, GLuint coords );
-define GL_MultiTexCoordP3uiv = fn void  (GLenum texture, GLenum value_type,  GLuint *coords );
-define GL_MultiTexCoordP4ui = fn void  (GLenum texture, GLenum value_type, GLuint coords );
-define GL_MultiTexCoordP4uiv = fn void  (GLenum texture, GLenum value_type,  GLuint *coords );
-define GL_NamedBufferData = fn void  (GLuint buffer, GLsizeiptr size,  void *data, GLenum usage );
-define GL_NamedBufferStorage = fn void  (GLuint buffer, GLsizeiptr size,  void *data, GLbitfield flags );
-define GL_NamedBufferSubData = fn void  (GLuint buffer, GLintptr offset, GLsizeiptr size,  void *data );
-define GL_NamedFramebufferDrawBuffer = fn void  (GLuint framebuffer, GLenum buf );
-define GL_NamedFramebufferDrawBuffers = fn void  (GLuint framebuffer, GLsizei n,  GLenum *bufs );
-define GL_NamedFramebufferParameteri = fn void  (GLuint framebuffer, GLenum pname, GLint param );
-define GL_NamedFramebufferReadBuffer = fn void  (GLuint framebuffer, GLenum src );
-define GL_NamedFramebufferRenderbuffer = fn void  (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer );
-define GL_NamedFramebufferTexture = fn void  (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level );
-define GL_NamedFramebufferTextureLayer = fn void  (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer );
-define GL_NamedRenderbufferStorage = fn void  (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height );
-define GL_NamedRenderbufferStorageMultisample = fn void  (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height );
-define GL_NewList = fn void  (GLuint list, GLenum mode );
-define GL_Normal3b = fn void  (GLbyte nx, GLbyte ny, GLbyte nz );
-define GL_Normal3bv = fn void  ( GLbyte *v );
-define GL_Normal3d = fn void  (GLdouble nx, GLdouble ny, GLdouble nz );
-define GL_Normal3dv = fn void  ( GLdouble *v );
-define GL_Normal3f = fn void  (GLfloat nx, GLfloat ny, GLfloat nz );
-define GL_Normal3fv = fn void  ( GLfloat *v );
-define GL_Normal3i = fn void  (GLint nx, GLint ny, GLint nz );
-define GL_Normal3iv = fn void  ( GLint *v );
-define GL_Normal3s = fn void  (GLshort nx, GLshort ny, GLshort nz );
-define GL_Normal3sv = fn void  ( GLshort *v );
-define GL_NormalP3ui = fn void  (GLenum value_type, GLuint coords );
-define GL_NormalP3uiv = fn void  (GLenum value_type,  GLuint *coords );
-define GL_NormalPointer = fn void  (GLenum value_type, GLsizei stride,  void *pointer );
-define GL_ObjectLabel = fn void  (GLenum identifier, GLuint name, GLsizei length,  GLchar *label );
-define GL_ObjectPtrLabel = fn void  ( void *ptr, GLsizei length,  GLchar *label );
-define GL_Ortho = fn void  (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar );
-define GL_PassThrough = fn void  (GLfloat token );
-define GL_PatchParameterfv = fn void  (GLenum pname,  GLfloat *values );
-define GL_PatchParameteri = fn void  (GLenum pname, GLint value );
-define GL_PauseTransformFeedback = fn void  ( );
-define GL_PixelMapfv = fn void  (GLenum map, GLsizei mapsize,  GLfloat *values );
-define GL_PixelMapuiv = fn void  (GLenum map, GLsizei mapsize,  GLuint *values );
-define GL_PixelMapusv = fn void  (GLenum map, GLsizei mapsize,  GLushort *values );
-define GL_PixelStoref = fn void  (GLenum pname, GLfloat param );
-define GL_PixelStorei = fn void  (GLenum pname, GLint param );
-define GL_PixelTransferf = fn void  (GLenum pname, GLfloat param );
-define GL_PixelTransferi = fn void  (GLenum pname, GLint param );
-define GL_PixelZoom = fn void  (GLfloat xfactor, GLfloat yfactor );
-define GL_PointSize = fn void  (GLfloat size );
-define GL_PolygonMode = fn void  (GLenum face, GLenum mode );
-define GL_PolygonOffset = fn void  (GLfloat factor, GLfloat units );
-define GL_PolygonOffsetClamp = fn void  (GLfloat factor, GLfloat units, GLfloat clamp );
-define GL_PolygonStipple = fn void  ( GLubyte *mask );
-define GL_PopAttrib = fn void  ( );
-define GL_PopClientAttrib = fn void  ( );
-define GL_PopDebugGroup = fn void  ( );
-define GL_PopMatrix = fn void  ( );
-define GL_PopName = fn void  ( );
-define GL_PrimitiveRestartIndex = fn void  (GLuint index );
-define GL_PrioritizeTextures = fn void  (GLsizei n,  GLuint *textures,  GLfloat *priorities );
-define GL_ProgramBinary = fn void  (GLuint program, GLenum binaryFormat,  void *binary, GLsizei length );
-define GL_ProgramParameteri = fn void  (GLuint program, GLenum pname, GLint value );
-define GL_ProgramUniform1d = fn void  (GLuint program, GLint location, GLdouble v0 );
-define GL_ProgramUniform1dv = fn void  (GLuint program, GLint location, GLsizei count,  GLdouble *value );
-define GL_ProgramUniform1f = fn void  (GLuint program, GLint location, GLfloat v0 );
-define GL_ProgramUniform1fv = fn void  (GLuint program, GLint location, GLsizei count,  GLfloat *value );
-define GL_ProgramUniform1i = fn void  (GLuint program, GLint location, GLint v0 );
-define GL_ProgramUniform1iv = fn void  (GLuint program, GLint location, GLsizei count,  GLint *value );
-define GL_ProgramUniform1ui = fn void  (GLuint program, GLint location, GLuint v0 );
-define GL_ProgramUniform1uiv = fn void  (GLuint program, GLint location, GLsizei count,  GLuint *value );
-define GL_ProgramUniform2d = fn void  (GLuint program, GLint location, GLdouble v0, GLdouble v1 );
-define GL_ProgramUniform2dv = fn void  (GLuint program, GLint location, GLsizei count,  GLdouble *value );
-define GL_ProgramUniform2f = fn void  (GLuint program, GLint location, GLfloat v0, GLfloat v1 );
-define GL_ProgramUniform2fv = fn void  (GLuint program, GLint location, GLsizei count,  GLfloat *value );
-define GL_ProgramUniform2i = fn void  (GLuint program, GLint location, GLint v0, GLint v1 );
-define GL_ProgramUniform2iv = fn void  (GLuint program, GLint location, GLsizei count,  GLint *value );
-define GL_ProgramUniform2ui = fn void  (GLuint program, GLint location, GLuint v0, GLuint v1 );
-define GL_ProgramUniform2uiv = fn void  (GLuint program, GLint location, GLsizei count,  GLuint *value );
-define GL_ProgramUniform3d = fn void  (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2 );
-define GL_ProgramUniform3dv = fn void  (GLuint program, GLint location, GLsizei count,  GLdouble *value );
-define GL_ProgramUniform3f = fn void  (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2 );
-define GL_ProgramUniform3fv = fn void  (GLuint program, GLint location, GLsizei count,  GLfloat *value );
-define GL_ProgramUniform3i = fn void  (GLuint program, GLint location, GLint v0, GLint v1, GLint v2 );
-define GL_ProgramUniform3iv = fn void  (GLuint program, GLint location, GLsizei count,  GLint *value );
-define GL_ProgramUniform3ui = fn void  (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2 );
-define GL_ProgramUniform3uiv = fn void  (GLuint program, GLint location, GLsizei count,  GLuint *value );
-define GL_ProgramUniform4d = fn void  (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3 );
-define GL_ProgramUniform4dv = fn void  (GLuint program, GLint location, GLsizei count,  GLdouble *value );
-define GL_ProgramUniform4f = fn void  (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3 );
-define GL_ProgramUniform4fv = fn void  (GLuint program, GLint location, GLsizei count,  GLfloat *value );
-define GL_ProgramUniform4i = fn void  (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3 );
-define GL_ProgramUniform4iv = fn void  (GLuint program, GLint location, GLsizei count,  GLint *value );
-define GL_ProgramUniform4ui = fn void  (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3 );
-define GL_ProgramUniform4uiv = fn void  (GLuint program, GLint location, GLsizei count,  GLuint *value );
-define GL_ProgramUniformMatrix2dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix2fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix2x3dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix2x3fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix2x4dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix2x4fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix3dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix3fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix3x2dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix3x2fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix3x4dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix3x4fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix4dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix4fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix4x2dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix4x2fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProgramUniformMatrix4x3dv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_ProgramUniformMatrix4x3fv = fn void  (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_ProvokingVertex = fn void  (GLenum mode );
-define GL_PushAttrib = fn void  (GLbitfield mask );
-define GL_PushClientAttrib = fn void  (GLbitfield mask );
-define GL_PushDebugGroup = fn void  (GLenum source, GLuint id, GLsizei length,  GLchar *message );
-define GL_PushMatrix = fn void  ( );
-define GL_PushName = fn void  (GLuint name );
-define GL_QueryCounter = fn void  (GLuint id, GLenum target );
-define GL_RasterPos2d = fn void  (GLdouble x, GLdouble y );
-define GL_RasterPos2dv = fn void  ( GLdouble *v );
-define GL_RasterPos2f = fn void  (GLfloat x, GLfloat y );
-define GL_RasterPos2fv = fn void  ( GLfloat *v );
-define GL_RasterPos2i = fn void  (GLint x, GLint y );
-define GL_RasterPos2iv = fn void  ( GLint *v );
-define GL_RasterPos2s = fn void  (GLshort x, GLshort y );
-define GL_RasterPos2sv = fn void  ( GLshort *v );
-define GL_RasterPos3d = fn void  (GLdouble x, GLdouble y, GLdouble z );
-define GL_RasterPos3dv = fn void  ( GLdouble *v );
-define GL_RasterPos3f = fn void  (GLfloat x, GLfloat y, GLfloat z );
-define GL_RasterPos3fv = fn void  ( GLfloat *v );
-define GL_RasterPos3i = fn void  (GLint x, GLint y, GLint z );
-define GL_RasterPos3iv = fn void  ( GLint *v );
-define GL_RasterPos3s = fn void  (GLshort x, GLshort y, GLshort z );
-define GL_RasterPos3sv = fn void  ( GLshort *v );
-define GL_RasterPos4d = fn void  (GLdouble x, GLdouble y, GLdouble z, GLdouble w );
-define GL_RasterPos4dv = fn void  ( GLdouble *v );
-define GL_RasterPos4f = fn void  (GLfloat x, GLfloat y, GLfloat z, GLfloat w );
-define GL_RasterPos4fv = fn void  ( GLfloat *v );
-define GL_RasterPos4i = fn void  (GLint x, GLint y, GLint z, GLint w );
-define GL_RasterPos4iv = fn void  ( GLint *v );
-define GL_RasterPos4s = fn void  (GLshort x, GLshort y, GLshort z, GLshort w );
-define GL_RasterPos4sv = fn void  ( GLshort *v );
-define GL_ReadBuffer = fn void  (GLenum src );
-define GL_ReadPixels = fn void  (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels );
-define GL_ReadnPixels = fn void  (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, GLsizei bufSize, void *data );
-define GL_Rectd = fn void  (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2 );
-define GL_Rectdv = fn void  ( GLdouble *v1,  GLdouble *v2 );
-define GL_Rectf = fn void  (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2 );
-define GL_Rectfv = fn void  ( GLfloat *v1,  GLfloat *v2 );
-define GL_Recti = fn void  (GLint x1, GLint y1, GLint x2, GLint y2 );
-define GL_Rectiv = fn void  ( GLint *v1,  GLint *v2 );
-define GL_Rects = fn void  (GLshort x1, GLshort y1, GLshort x2, GLshort y2 );
-define GL_Rectsv = fn void  ( GLshort *v1,  GLshort *v2 );
-define GL_ReleaseShaderCompiler = fn void  ( );
-define GL_RenderMode = fn GLint  (GLenum mode );
-define GL_RenderbufferStorage = fn void  (GLenum target, GLenum internalformat, GLsizei width, GLsizei height );
-define GL_RenderbufferStorageMultisample = fn void  (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height );
-define GL_ResumeTransformFeedback = fn void  ( );
-define GL_Rotated = fn void  (GLdouble angle, GLdouble x, GLdouble y, GLdouble z );
-define GL_Rotatef = fn void  (GLfloat angle, GLfloat x, GLfloat y, GLfloat z );
-define GL_SampleMaski = fn void  (GLuint maskNumber, GLbitfield mask );
-define GL_SamplerParameterIiv = fn void  (GLuint sampler, GLenum pname,  GLint *param );
-define GL_SamplerParameterIuiv = fn void  (GLuint sampler, GLenum pname,  GLuint *param );
-define GL_SamplerParameterf = fn void  (GLuint sampler, GLenum pname, GLfloat param );
-define GL_SamplerParameterfv = fn void  (GLuint sampler, GLenum pname,  GLfloat *param );
-define GL_SamplerParameteri = fn void  (GLuint sampler, GLenum pname, GLint param );
-define GL_SamplerParameteriv = fn void  (GLuint sampler, GLenum pname,  GLint *param );
-define GL_Scaled = fn void  (GLdouble x, GLdouble y, GLdouble z );
-define GL_Scalef = fn void  (GLfloat x, GLfloat y, GLfloat z );
-define GL_Scissor = fn void  (GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_ScissorArrayv = fn void  (GLuint first, GLsizei count,  GLint *v );
-define GL_ScissorIndexed = fn void  (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height );
-define GL_ScissorIndexedv = fn void  (GLuint index,  GLint *v );
-define GL_SecondaryColor3b = fn void  (GLbyte red, GLbyte green, GLbyte blue );
-define GL_SecondaryColor3bv = fn void  ( GLbyte *v );
-define GL_SecondaryColor3d = fn void  (GLdouble red, GLdouble green, GLdouble blue );
-define GL_SecondaryColor3dv = fn void  ( GLdouble *v );
-define GL_SecondaryColor3f = fn void  (GLfloat red, GLfloat green, GLfloat blue );
-define GL_SecondaryColor3fv = fn void  ( GLfloat *v );
-define GL_SecondaryColor3i = fn void  (GLint red, GLint green, GLint blue );
-define GL_SecondaryColor3iv = fn void  ( GLint *v );
-define GL_SecondaryColor3s = fn void  (GLshort red, GLshort green, GLshort blue );
-define GL_SecondaryColor3sv = fn void  ( GLshort *v );
-define GL_SecondaryColor3ub = fn void  (GLubyte red, GLubyte green, GLubyte blue );
-define GL_SecondaryColor3ubv = fn void  ( GLubyte *v );
-define GL_SecondaryColor3ui = fn void  (GLuint red, GLuint green, GLuint blue );
-define GL_SecondaryColor3uiv = fn void  ( GLuint *v );
-define GL_SecondaryColor3us = fn void  (GLushort red, GLushort green, GLushort blue );
-define GL_SecondaryColor3usv = fn void  ( GLushort *v );
-define GL_SecondaryColorP3ui = fn void  (GLenum value_type, GLuint color );
-define GL_SecondaryColorP3uiv = fn void  (GLenum value_type,  GLuint *color );
-define GL_SecondaryColorPointer = fn void  (GLint size, GLenum value_type, GLsizei stride,  void *pointer );
-define GL_SelectBuffer = fn void  (GLsizei size, GLuint *buffer );
-define GL_ShadeModel = fn void  (GLenum mode );
-define GL_ShaderBinary = fn void  (GLsizei count,  GLuint *shaders, GLenum binaryFormat,  void *binary, GLsizei length );
-define GL_ShaderSource = fn void  (GLuint shader, GLsizei count,  GLchar **string,  GLint *length );
-define GL_ShaderStorageBlockBinding = fn void  (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding );
-define GL_SpecializeShader = fn void  (GLuint shader,  GLchar *pEntryPoint, GLuint numSpecializationConstants,  GLuint *pConstantIndex,  GLuint *pConstantValue );
-define GL_StencilFunc = fn void  (GLenum func_param, GLint ref, GLuint mask );
-define GL_StencilFuncSeparate = fn void  (GLenum face, GLenum func_param, GLint ref, GLuint mask );
-define GL_StencilMask = fn void  (GLuint mask );
-define GL_StencilMaskSeparate = fn void  (GLenum face, GLuint mask );
-define GL_StencilOp = fn void  (GLenum fail, GLenum zfail, GLenum zpass );
-define GL_StencilOpSeparate = fn void  (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass );
-define GL_TexBuffer = fn void  (GLenum target, GLenum internalformat, GLuint buffer );
-define GL_TexBufferRange = fn void  (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size );
-define GL_TexCoord1d = fn void  (GLdouble s );
-define GL_TexCoord1dv = fn void  ( GLdouble *v );
-define GL_TexCoord1f = fn void  (GLfloat s );
-define GL_TexCoord1fv = fn void  ( GLfloat *v );
-define GL_TexCoord1i = fn void  (GLint s );
-define GL_TexCoord1iv = fn void  ( GLint *v );
-define GL_TexCoord1s = fn void  (GLshort s );
-define GL_TexCoord1sv = fn void  ( GLshort *v );
-define GL_TexCoord2d = fn void  (GLdouble s, GLdouble t );
-define GL_TexCoord2dv = fn void  ( GLdouble *v );
-define GL_TexCoord2f = fn void  (GLfloat s, GLfloat t );
-define GL_TexCoord2fv = fn void  ( GLfloat *v );
-define GL_TexCoord2i = fn void  (GLint s, GLint t );
-define GL_TexCoord2iv = fn void  ( GLint *v );
-define GL_TexCoord2s = fn void  (GLshort s, GLshort t );
-define GL_TexCoord2sv = fn void  ( GLshort *v );
-define GL_TexCoord3d = fn void  (GLdouble s, GLdouble t, GLdouble r );
-define GL_TexCoord3dv = fn void  ( GLdouble *v );
-define GL_TexCoord3f = fn void  (GLfloat s, GLfloat t, GLfloat r );
-define GL_TexCoord3fv = fn void  ( GLfloat *v );
-define GL_TexCoord3i = fn void  (GLint s, GLint t, GLint r );
-define GL_TexCoord3iv = fn void  ( GLint *v );
-define GL_TexCoord3s = fn void  (GLshort s, GLshort t, GLshort r );
-define GL_TexCoord3sv = fn void  ( GLshort *v );
-define GL_TexCoord4d = fn void  (GLdouble s, GLdouble t, GLdouble r, GLdouble q );
-define GL_TexCoord4dv = fn void  ( GLdouble *v );
-define GL_TexCoord4f = fn void  (GLfloat s, GLfloat t, GLfloat r, GLfloat q );
-define GL_TexCoord4fv = fn void  ( GLfloat *v );
-define GL_TexCoord4i = fn void  (GLint s, GLint t, GLint r, GLint q );
-define GL_TexCoord4iv = fn void  ( GLint *v );
-define GL_TexCoord4s = fn void  (GLshort s, GLshort t, GLshort r, GLshort q );
-define GL_TexCoord4sv = fn void  ( GLshort *v );
-define GL_TexCoordP1ui = fn void  (GLenum value_type, GLuint coords );
-define GL_TexCoordP1uiv = fn void  (GLenum value_type,  GLuint *coords );
-define GL_TexCoordP2ui = fn void  (GLenum value_type, GLuint coords );
-define GL_TexCoordP2uiv = fn void  (GLenum value_type,  GLuint *coords );
-define GL_TexCoordP3ui = fn void  (GLenum value_type, GLuint coords );
-define GL_TexCoordP3uiv = fn void  (GLenum value_type,  GLuint *coords );
-define GL_TexCoordP4ui = fn void  (GLenum value_type, GLuint coords );
-define GL_TexCoordP4uiv = fn void  (GLenum value_type,  GLuint *coords );
-define GL_TexCoordPointer = fn void  (GLint size, GLenum value_type, GLsizei stride,  void *pointer );
-define GL_TexEnvf = fn void  (GLenum target, GLenum pname, GLfloat param );
-define GL_TexEnvfv = fn void  (GLenum target, GLenum pname,  GLfloat *params );
-define GL_TexEnvi = fn void  (GLenum target, GLenum pname, GLint param );
-define GL_TexEnviv = fn void  (GLenum target, GLenum pname,  GLint *params );
-define GL_TexGend = fn void  (GLenum coord, GLenum pname, GLdouble param );
-define GL_TexGendv = fn void  (GLenum coord, GLenum pname,  GLdouble *params );
-define GL_TexGenf = fn void  (GLenum coord, GLenum pname, GLfloat param );
-define GL_TexGenfv = fn void  (GLenum coord, GLenum pname,  GLfloat *params );
-define GL_TexGeni = fn void  (GLenum coord, GLenum pname, GLint param );
-define GL_TexGeniv = fn void  (GLenum coord, GLenum pname,  GLint *params );
-define GL_TexImage1D = fn void  (GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum value_type,  void *pixels );
-define GL_TexImage2D = fn void  (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum value_type,  void *pixels );
-define GL_TexImage2DMultisample = fn void  (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations );
-define GL_TexImage3DMultisample = fn void  (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations );
-define GL_TexParameterIiv = fn void  (GLenum target, GLenum pname,  GLint *params );
-define GL_TexParameterIuiv = fn void  (GLenum target, GLenum pname,  GLuint *params );
-define GL_TexParameterf = fn void  (GLenum target, GLenum pname, GLfloat param );
-define GL_TexParameterfv = fn void  (GLenum target, GLenum pname,  GLfloat *params );
-define GL_TexParameteri = fn void  (GLenum target, GLenum pname, GLint param );
-define GL_TexParameteriv = fn void  (GLenum target, GLenum pname,  GLint *params );
-define GL_TexStorage1D = fn void  (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width );
-define GL_TexStorage2D = fn void  (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height );
-define GL_TexStorage2DMultisample = fn void  (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations );
-define GL_TexStorage3D = fn void  (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth );
-define GL_TexStorage3DMultisample = fn void  (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations );
-define GL_TexSubImage1D = fn void  (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type,  void *pixels );
-define GL_TexSubImage2D = fn void  (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type,  void *pixels );
-define GL_TextureBarrier = fn void  ( );
-define GL_TextureBuffer = fn void  (GLuint texture, GLenum internalformat, GLuint buffer );
-define GL_TextureBufferRange = fn void  (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size );
-define GL_TextureParameterIiv = fn void  (GLuint texture, GLenum pname,  GLint *params );
-define GL_TextureParameterIuiv = fn void  (GLuint texture, GLenum pname,  GLuint *params );
-define GL_TextureParameterf = fn void  (GLuint texture, GLenum pname, GLfloat param );
-define GL_TextureParameterfv = fn void  (GLuint texture, GLenum pname,  GLfloat *param );
-define GL_TextureParameteri = fn void  (GLuint texture, GLenum pname, GLint param );
-define GL_TextureParameteriv = fn void  (GLuint texture, GLenum pname,  GLint *param );
-define GL_TextureStorage1D = fn void  (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width );
-define GL_TextureStorage2D = fn void  (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height );
-define GL_TextureStorage2DMultisample = fn void  (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations );
-define GL_TextureStorage3D = fn void  (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth );
-define GL_TextureStorage3DMultisample = fn void  (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations );
-define GL_TextureSubImage1D = fn void  (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type,  void *pixels );
-define GL_TextureSubImage2D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type,  void *pixels );
-define GL_TextureSubImage3D = fn void  (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type,  void *pixels );
-define GL_TextureView = fn void  (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers );
-define GL_TransformFeedbackBufferBase = fn void  (GLuint xfb, GLuint index, GLuint buffer );
-define GL_TransformFeedbackBufferRange = fn void  (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size );
-define GL_TransformFeedbackVaryings = fn void  (GLuint program, GLsizei count,  GLchar **varyings, GLenum bufferMode );
-define GL_Translated = fn void  (GLdouble x, GLdouble y, GLdouble z );
-define GL_Translatef = fn void  (GLfloat x, GLfloat y, GLfloat z );
-define GL_Uniform1d = fn void  (GLint location, GLdouble x );
-define GL_Uniform1dv = fn void  (GLint location, GLsizei count,  GLdouble *value );
-define GL_Uniform1f = fn void  (GLint location, GLfloat v0 );
-define GL_Uniform1fv = fn void  (GLint location, GLsizei count,  GLfloat *value );
-define GL_Uniform1i = fn void  (GLint location, GLint v0 );
-define GL_Uniform1iv = fn void  (GLint location, GLsizei count,  GLint *value );
-define GL_Uniform1ui = fn void  (GLint location, GLuint v0 );
-define GL_Uniform1uiv = fn void  (GLint location, GLsizei count,  GLuint *value );
-define GL_Uniform2d = fn void  (GLint location, GLdouble x, GLdouble y );
-define GL_Uniform2dv = fn void  (GLint location, GLsizei count,  GLdouble *value );
-define GL_Uniform2f = fn void  (GLint location, GLfloat v0, GLfloat v1 );
-define GL_Uniform2fv = fn void  (GLint location, GLsizei count,  GLfloat *value );
-define GL_Uniform2i = fn void  (GLint location, GLint v0, GLint v1 );
-define GL_Uniform2iv = fn void  (GLint location, GLsizei count,  GLint *value );
-define GL_Uniform2ui = fn void  (GLint location, GLuint v0, GLuint v1 );
-define GL_Uniform2uiv = fn void  (GLint location, GLsizei count,  GLuint *value );
-define GL_Uniform3d = fn void  (GLint location, GLdouble x, GLdouble y, GLdouble z );
-define GL_Uniform3dv = fn void  (GLint location, GLsizei count,  GLdouble *value );
-define GL_Uniform3f = fn void  (GLint location, GLfloat v0, GLfloat v1, GLfloat v2 );
-define GL_Uniform3fv = fn void  (GLint location, GLsizei count,  GLfloat *value );
-define GL_Uniform3i = fn void  (GLint location, GLint v0, GLint v1, GLint v2 );
-define GL_Uniform3iv = fn void  (GLint location, GLsizei count,  GLint *value );
-define GL_Uniform3ui = fn void  (GLint location, GLuint v0, GLuint v1, GLuint v2 );
-define GL_Uniform3uiv = fn void  (GLint location, GLsizei count,  GLuint *value );
-define GL_Uniform4d = fn void  (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w );
-define GL_Uniform4dv = fn void  (GLint location, GLsizei count,  GLdouble *value );
-define GL_Uniform4f = fn void  (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3 );
-define GL_Uniform4fv = fn void  (GLint location, GLsizei count,  GLfloat *value );
-define GL_Uniform4i = fn void  (GLint location, GLint v0, GLint v1, GLint v2, GLint v3 );
-define GL_Uniform4iv = fn void  (GLint location, GLsizei count,  GLint *value );
-define GL_Uniform4ui = fn void  (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3 );
-define GL_Uniform4uiv = fn void  (GLint location, GLsizei count,  GLuint *value );
-define GL_UniformBlockBinding = fn void  (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding );
-define GL_UniformMatrix2dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix2fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix2x3dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix2x3fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix2x4dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix2x4fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix3dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix3fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix3x2dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix3x2fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix3x4dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix3x4fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix4dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix4fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix4x2dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix4x2fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformMatrix4x3dv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value );
-define GL_UniformMatrix4x3fv = fn void  (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value );
-define GL_UniformSubroutinesuiv = fn void  (GLenum shadertype, GLsizei count,  GLuint *indices );
-define GL_UnmapBuffer = fn GLboolean  (GLenum target );
-define GL_UnmapNamedBuffer = fn GLboolean  (GLuint buffer );
-define GL_UseProgram = fn void  (GLuint program );
-define GL_UseProgramStages = fn void  (GLuint pipeline, GLbitfield stages, GLuint program );
-define GL_ValidateProgram = fn void  (GLuint program );
-define GL_ValidateProgramPipeline = fn void  (GLuint pipeline );
-define GL_Vertex2d = fn void  (GLdouble x, GLdouble y );
-define GL_Vertex2dv = fn void  ( GLdouble *v );
-define GL_Vertex2f = fn void  (GLfloat x, GLfloat y );
-define GL_Vertex2fv = fn void  ( GLfloat *v );
-define GL_Vertex2i = fn void  (GLint x, GLint y );
-define GL_Vertex2iv = fn void  ( GLint *v );
-define GL_Vertex2s = fn void  (GLshort x, GLshort y );
-define GL_Vertex2sv = fn void  ( GLshort *v );
-define GL_Vertex3d = fn void  (GLdouble x, GLdouble y, GLdouble z );
-define GL_Vertex3dv = fn void  ( GLdouble *v );
-define GL_Vertex3f = fn void  (GLfloat x, GLfloat y, GLfloat z );
-define GL_Vertex3fv = fn void  ( GLfloat *v );
-define GL_Vertex3i = fn void  (GLint x, GLint y, GLint z );
-define GL_Vertex3iv = fn void  ( GLint *v );
-define GL_Vertex3s = fn void  (GLshort x, GLshort y, GLshort z );
-define GL_Vertex3sv = fn void  ( GLshort *v );
-define GL_Vertex4d = fn void  (GLdouble x, GLdouble y, GLdouble z, GLdouble w );
-define GL_Vertex4dv = fn void  ( GLdouble *v );
-define GL_Vertex4f = fn void  (GLfloat x, GLfloat y, GLfloat z, GLfloat w );
-define GL_Vertex4fv = fn void  ( GLfloat *v );
-define GL_Vertex4i = fn void  (GLint x, GLint y, GLint z, GLint w );
-define GL_Vertex4iv = fn void  ( GLint *v );
-define GL_Vertex4s = fn void  (GLshort x, GLshort y, GLshort z, GLshort w );
-define GL_Vertex4sv = fn void  ( GLshort *v );
-define GL_VertexArrayAttribBinding = fn void  (GLuint vaobj, GLuint attribindex, GLuint bindingindex );
-define GL_VertexArrayAttribFormat = fn void  (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset );
-define GL_VertexArrayAttribIFormat = fn void  (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
-define GL_VertexArrayAttribLFormat = fn void  (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
-define GL_VertexArrayBindingDivisor = fn void  (GLuint vaobj, GLuint bindingindex, GLuint divisor );
-define GL_VertexArrayElementBuffer = fn void  (GLuint vaobj, GLuint buffer );
-define GL_VertexArrayVertexBuffer = fn void  (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride );
-define GL_VertexArrayVertexBuffers = fn void  (GLuint vaobj, GLuint first, GLsizei count,  GLuint *buffers,  GLintptr *offsets,  GLsizei *strides );
-define GL_VertexAttrib1d = fn void  (GLuint index, GLdouble x );
-define GL_VertexAttrib1dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttrib1f = fn void  (GLuint index, GLfloat x );
-define GL_VertexAttrib1fv = fn void  (GLuint index,  GLfloat *v );
-define GL_VertexAttrib1s = fn void  (GLuint index, GLshort x );
-define GL_VertexAttrib1sv = fn void  (GLuint index,  GLshort *v );
-define GL_VertexAttrib2d = fn void  (GLuint index, GLdouble x, GLdouble y );
-define GL_VertexAttrib2dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttrib2f = fn void  (GLuint index, GLfloat x, GLfloat y );
-define GL_VertexAttrib2fv = fn void  (GLuint index,  GLfloat *v );
-define GL_VertexAttrib2s = fn void  (GLuint index, GLshort x, GLshort y );
-define GL_VertexAttrib2sv = fn void  (GLuint index,  GLshort *v );
-define GL_VertexAttrib3d = fn void  (GLuint index, GLdouble x, GLdouble y, GLdouble z );
-define GL_VertexAttrib3dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttrib3f = fn void  (GLuint index, GLfloat x, GLfloat y, GLfloat z );
-define GL_VertexAttrib3fv = fn void  (GLuint index,  GLfloat *v );
-define GL_VertexAttrib3s = fn void  (GLuint index, GLshort x, GLshort y, GLshort z );
-define GL_VertexAttrib3sv = fn void  (GLuint index,  GLshort *v );
-define GL_VertexAttrib4Nbv = fn void  (GLuint index,  GLbyte *v );
-define GL_VertexAttrib4Niv = fn void  (GLuint index,  GLint *v );
-define GL_VertexAttrib4Nsv = fn void  (GLuint index,  GLshort *v );
-define GL_VertexAttrib4Nub = fn void  (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w );
-define GL_VertexAttrib4Nubv = fn void  (GLuint index,  GLubyte *v );
-define GL_VertexAttrib4Nuiv = fn void  (GLuint index,  GLuint *v );
-define GL_VertexAttrib4Nusv = fn void  (GLuint index,  GLushort *v );
-define GL_VertexAttrib4bv = fn void  (GLuint index,  GLbyte *v );
-define GL_VertexAttrib4d = fn void  (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w );
-define GL_VertexAttrib4dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttrib4f = fn void  (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w );
-define GL_VertexAttrib4fv = fn void  (GLuint index,  GLfloat *v );
-define GL_VertexAttrib4iv = fn void  (GLuint index,  GLint *v );
-define GL_VertexAttrib4s = fn void  (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w );
-define GL_VertexAttrib4sv = fn void  (GLuint index,  GLshort *v );
-define GL_VertexAttrib4ubv = fn void  (GLuint index,  GLubyte *v );
-define GL_VertexAttrib4uiv = fn void  (GLuint index,  GLuint *v );
-define GL_VertexAttrib4usv = fn void  (GLuint index,  GLushort *v );
-define GL_VertexAttribBinding = fn void  (GLuint attribindex, GLuint bindingindex );
-define GL_VertexAttribDivisor = fn void  (GLuint index, GLuint divisor );
-define GL_VertexAttribFormat = fn void  (GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset );
-define GL_VertexAttribI1i = fn void  (GLuint index, GLint x );
-define GL_VertexAttribI1iv = fn void  (GLuint index,  GLint *v );
-define GL_VertexAttribI1ui = fn void  (GLuint index, GLuint x );
-define GL_VertexAttribI1uiv = fn void  (GLuint index,  GLuint *v );
-define GL_VertexAttribI2i = fn void  (GLuint index, GLint x, GLint y );
-define GL_VertexAttribI2iv = fn void  (GLuint index,  GLint *v );
-define GL_VertexAttribI2ui = fn void  (GLuint index, GLuint x, GLuint y );
-define GL_VertexAttribI2uiv = fn void  (GLuint index,  GLuint *v );
-define GL_VertexAttribI3i = fn void  (GLuint index, GLint x, GLint y, GLint z );
-define GL_VertexAttribI3iv = fn void  (GLuint index,  GLint *v );
-define GL_VertexAttribI3ui = fn void  (GLuint index, GLuint x, GLuint y, GLuint z );
-define GL_VertexAttribI3uiv = fn void  (GLuint index,  GLuint *v );
-define GL_VertexAttribI4bv = fn void  (GLuint index,  GLbyte *v );
-define GL_VertexAttribI4i = fn void  (GLuint index, GLint x, GLint y, GLint z, GLint w );
-define GL_VertexAttribI4iv = fn void  (GLuint index,  GLint *v );
-define GL_VertexAttribI4sv = fn void  (GLuint index,  GLshort *v );
-define GL_VertexAttribI4ubv = fn void  (GLuint index,  GLubyte *v );
-define GL_VertexAttribI4ui = fn void  (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w );
-define GL_VertexAttribI4uiv = fn void  (GLuint index,  GLuint *v );
-define GL_VertexAttribI4usv = fn void  (GLuint index,  GLushort *v );
-define GL_VertexAttribIFormat = fn void  (GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
-define GL_VertexAttribIPointer = fn void  (GLuint index, GLint size, GLenum value_type, GLsizei stride,  void *pointer );
-define GL_VertexAttribL1d = fn void  (GLuint index, GLdouble x );
-define GL_VertexAttribL1dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttribL2d = fn void  (GLuint index, GLdouble x, GLdouble y );
-define GL_VertexAttribL2dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttribL3d = fn void  (GLuint index, GLdouble x, GLdouble y, GLdouble z );
-define GL_VertexAttribL3dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttribL4d = fn void  (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w );
-define GL_VertexAttribL4dv = fn void  (GLuint index,  GLdouble *v );
-define GL_VertexAttribLFormat = fn void  (GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
-define GL_VertexAttribLPointer = fn void  (GLuint index, GLint size, GLenum value_type, GLsizei stride,  void *pointer );
-define GL_VertexAttribP1ui = fn void  (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
-define GL_VertexAttribP1uiv = fn void  (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value );
-define GL_VertexAttribP2ui = fn void  (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
-define GL_VertexAttribP2uiv = fn void  (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value );
-define GL_VertexAttribP3ui = fn void  (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
-define GL_VertexAttribP3uiv = fn void  (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value );
-define GL_VertexAttribP4ui = fn void  (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
-define GL_VertexAttribP4uiv = fn void  (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value );
-define GL_VertexAttribPointer = fn void  (GLuint index, GLint size, GLenum value_type, GLboolean normalized, GLsizei stride,  void *pointer );
-define GL_VertexBindingDivisor = fn void  (GLuint bindingindex, GLuint divisor );
-define GL_VertexP2ui = fn void  (GLenum value_type, GLuint value );
-define GL_VertexP2uiv = fn void  (GLenum value_type,  GLuint *value );
-define GL_VertexP3ui = fn void  (GLenum value_type, GLuint value );
-define GL_VertexP3uiv = fn void  (GLenum value_type,  GLuint *value );
-define GL_VertexP4ui = fn void  (GLenum value_type, GLuint value );
-define GL_VertexP4uiv = fn void  (GLenum value_type,  GLuint *value );
-define GL_VertexPointer = fn void  (GLint size, GLenum value_type, GLsizei stride,  void *pointer );
-define GL_Viewport = fn void  (GLint x, GLint y, GLsizei width, GLsizei height );
-define GL_ViewportArrayv = fn void  (GLuint first, GLsizei count,  GLfloat *v );
-define GL_ViewportIndexedf = fn void  (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h );
-define GL_ViewportIndexedfv = fn void  (GLuint index,  GLfloat *v );
-define GL_WaitSync = fn void  (GLsync sync, GLbitfield flags, GLuint64 timeout );
-define GL_WindowPos2d = fn void  (GLdouble x, GLdouble y );
-define GL_WindowPos2dv = fn void  ( GLdouble *v );
-define GL_WindowPos2f = fn void  (GLfloat x, GLfloat y );
-define GL_WindowPos2fv = fn void  ( GLfloat *v );
-define GL_WindowPos2i = fn void  (GLint x, GLint y );
-define GL_WindowPos2iv = fn void  ( GLint *v );
-define GL_WindowPos2s = fn void  (GLshort x, GLshort y );
-define GL_WindowPos2sv = fn void  ( GLshort *v );
-define GL_WindowPos3d = fn void  (GLdouble x, GLdouble y, GLdouble z );
-define GL_WindowPos3dv = fn void  ( GLdouble *v );
-define GL_WindowPos3f = fn void  (GLfloat x, GLfloat y, GLfloat z );
-define GL_WindowPos3fv = fn void  ( GLfloat *v );
-define GL_WindowPos3i = fn void  (GLint x, GLint y, GLint z );
-define GL_WindowPos3iv = fn void  ( GLint *v );
-define GL_WindowPos3s = fn void  (GLshort x, GLshort y, GLshort z );
-define GL_WindowPos3sv = fn void  ( GLshort *v );
 
-/** 
-* GLFW proc definitions 
-*/ 
+/**
+* Function definitions
+*/
+typedef GL_Accum = fn void (GLenum op, GLfloat value );
+typedef GL_ActiveShaderProgram = fn void (GLuint pipeline, GLuint program );
+typedef GL_AlphaFunc = fn void (GLenum func_param, GLfloat ref );
+typedef GL_AreTexturesResident = fn GLboolean (GLsizei n, GLuint *textures, GLboolean *residences );
+typedef GL_ArrayElement = fn void (GLint i );
+typedef GL_AttachShader = fn void (GLuint program, GLuint shader );
+typedef GL_Begin = fn void (GLenum mode );
+typedef GL_BeginConditionalRender = fn void (GLuint id, GLenum mode );
+typedef GL_BeginQuery = fn void (GLenum target, GLuint id );
+typedef GL_BeginQueryIndexed = fn void (GLenum target, GLuint index, GLuint id );
+typedef GL_BeginTransformFeedback = fn void (GLenum primitiveMode );
+typedef GL_BindAttribLocation = fn void (GLuint program, GLuint index, GLchar *name );
+typedef GL_BindBuffer = fn void (GLenum target, GLuint buffer );
+typedef GL_BindBufferBase = fn void (GLenum target, GLuint index, GLuint buffer );
+typedef GL_BindBufferRange = fn void (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size );
+typedef GL_BindBuffersBase = fn void (GLenum target, GLuint first, GLsizei count, GLuint *buffers );
+typedef GL_BindBuffersRange = fn void (GLenum target, GLuint first, GLsizei count, GLuint *buffers, GLintptr *offsets, GLsizeiptr *sizes );
+typedef GL_BindFragDataLocation = fn void (GLuint program, GLuint color, GLchar *name );
+typedef GL_BindFragDataLocationIndexed = fn void (GLuint program, GLuint colorNumber, GLuint index, GLchar *name );
+typedef GL_BindFramebuffer = fn void (GLenum target, GLuint framebuffer );
+typedef GL_BindImageTexture = fn void (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format );
+typedef GL_BindImageTextures = fn void (GLuint first, GLsizei count, GLuint *textures );
+typedef GL_BindProgramPipeline = fn void (GLuint pipeline );
+typedef GL_BindRenderbuffer = fn void (GLenum target, GLuint renderbuffer );
+typedef GL_BindSampler = fn void (GLuint unit, GLuint sampler );
+typedef GL_BindSamplers = fn void (GLuint first, GLsizei count, GLuint *samplers );
+typedef GL_BindTexture = fn void (GLenum target, GLuint texture );
+typedef GL_BindTextureUnit = fn void (GLuint unit, GLuint texture );
+typedef GL_BindTextures = fn void (GLuint first, GLsizei count, GLuint *textures );
+typedef GL_BindTransformFeedback = fn void (GLenum target, GLuint id );
+typedef GL_BindVertexArray = fn void (GLuint array );
+typedef GL_BindVertexBuffer = fn void (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride );
+typedef GL_BindVertexBuffers = fn void (GLuint first, GLsizei count, GLuint *buffers, GLintptr *offsets, GLsizei *strides );
+typedef GL_Bitmap = fn void (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, GLubyte *bitmap );
+typedef GL_BlendEquationSeparate = fn void (GLenum modeRGB, GLenum modeAlpha );
+typedef GL_BlendEquationSeparatei = fn void (GLuint buf, GLenum modeRGB, GLenum modeAlpha );
+typedef GL_BlendEquationi = fn void (GLuint buf, GLenum mode );
+typedef GL_BlendFunc = fn void (GLenum sfactor, GLenum dfactor );
+typedef GL_BlendFuncSeparatei = fn void (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha );
+typedef GL_BlendFunci = fn void (GLuint buf, GLenum src, GLenum dst );
+typedef GL_BlitFramebuffer = fn void (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter );
+typedef GL_BlitNamedFramebuffer = fn void (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter );
+typedef GL_BufferData = fn void (GLenum target, GLsizeiptr size, void *data, GLenum usage );
+typedef GL_BufferStorage = fn void (GLenum target, GLsizeiptr size, void *data, GLbitfield flags );
+typedef GL_BufferSubData = fn void (GLenum target, GLintptr offset, GLsizeiptr size, void *data );
+typedef GL_CallList = fn void (GLuint list );
+typedef GL_CallLists = fn void (GLsizei n, GLenum value_type, void *lists );
+typedef GL_CheckFramebufferStatus = fn GLenum (GLenum target );
+typedef GL_CheckNamedFramebufferStatus = fn GLenum (GLuint framebuffer, GLenum target );
+typedef GL_ClampColor = fn void (GLenum target, GLenum clamp );
+typedef GL_Clear = fn void (GLbitfield mask );
+typedef GL_ClearAccum = fn void (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
+typedef GL_ClearBufferData = fn void (GLenum target, GLenum internalformat, GLenum format, GLenum value_type, void *data );
+typedef GL_ClearBufferSubData = fn void (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type, void *data );
+typedef GL_ClearBufferfi = fn void (GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil );
+typedef GL_ClearBufferfv = fn void (GLenum buffer, GLint drawbuffer, GLfloat *value );
+typedef GL_ClearBufferiv = fn void (GLenum buffer, GLint drawbuffer, GLint *value );
+typedef GL_ClearBufferuiv = fn void (GLenum buffer, GLint drawbuffer, GLuint *value );
+typedef GL_ClearColor = fn void (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
+typedef GL_ClearDepth = fn void (GLdouble depth );
+typedef GL_ClearDepthf = fn void (GLfloat d );
+typedef GL_ClearIndex = fn void (GLfloat c );
+typedef GL_ClearNamedBufferData = fn void (GLuint buffer, GLenum internalformat, GLenum format, GLenum value_type, void *data );
+typedef GL_ClearNamedBufferSubData = fn void (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type, void *data );
+typedef GL_ClearNamedFramebufferfi = fn void (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil );
+typedef GL_ClearNamedFramebufferfv = fn void (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat *value );
+typedef GL_ClearNamedFramebufferiv = fn void (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLint *value );
+typedef GL_ClearNamedFramebufferuiv = fn void (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLuint *value );
+typedef GL_ClearStencil = fn void (GLint s );
+typedef GL_ClearTexImage = fn void (GLuint texture, GLint level, GLenum format, GLenum value_type, void *data );
+typedef GL_ClearTexSubImage = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, void *data );
+typedef GL_ClientActiveTexture = fn void (GLenum texture );
+typedef GL_ClientWaitSync = fn GLenum (GLsync sync, GLbitfield flags, GLuint64 timeout );
+typedef GL_ClipControl = fn void (GLenum origin, GLenum depth );
+typedef GL_ClipPlane = fn void (GLenum plane, GLdouble *equation );
+typedef GL_Color3b = fn void (GLbyte red, GLbyte green, GLbyte blue );
+typedef GL_Color3bv = fn void ( GLbyte *v );
+typedef GL_Color3d = fn void (GLdouble red, GLdouble green, GLdouble blue );
+typedef GL_Color3dv = fn void ( GLdouble *v );
+typedef GL_Color3f = fn void (GLfloat red, GLfloat green, GLfloat blue );
+typedef GL_Color3fv = fn void ( GLfloat *v );
+typedef GL_Color3i = fn void (GLint red, GLint green, GLint blue );
+typedef GL_Color3iv = fn void ( GLint *v );
+typedef GL_Color3s = fn void (GLshort red, GLshort green, GLshort blue );
+typedef GL_Color3sv = fn void ( GLshort *v );
+typedef GL_Color3ub = fn void (GLubyte red, GLubyte green, GLubyte blue );
+typedef GL_Color3ubv = fn void ( GLubyte *v );
+typedef GL_Color3ui = fn void (GLuint red, GLuint green, GLuint blue );
+typedef GL_Color3uiv = fn void ( GLuint *v );
+typedef GL_Color3us = fn void (GLushort red, GLushort green, GLushort blue );
+typedef GL_Color3usv = fn void ( GLushort *v );
+typedef GL_Color4b = fn void (GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha );
+typedef GL_Color4bv = fn void ( GLbyte *v );
+typedef GL_Color4d = fn void (GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha );
+typedef GL_Color4dv = fn void ( GLdouble *v );
+typedef GL_Color4f = fn void (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha );
+typedef GL_Color4fv = fn void ( GLfloat *v );
+typedef GL_Color4i = fn void (GLint red, GLint green, GLint blue, GLint alpha );
+typedef GL_Color4iv = fn void ( GLint *v );
+typedef GL_Color4s = fn void (GLshort red, GLshort green, GLshort blue, GLshort alpha );
+typedef GL_Color4sv = fn void ( GLshort *v );
+typedef GL_Color4ub = fn void (GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha );
+typedef GL_Color4ubv = fn void ( GLubyte *v );
+typedef GL_Color4ui = fn void (GLuint red, GLuint green, GLuint blue, GLuint alpha );
+typedef GL_Color4uiv = fn void ( GLuint *v );
+typedef GL_Color4us = fn void (GLushort red, GLushort green, GLushort blue, GLushort alpha );
+typedef GL_Color4usv = fn void ( GLushort *v );
+typedef GL_ColorMask = fn void (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha );
+typedef GL_ColorMaski = fn void (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a );
+typedef GL_ColorMaterial = fn void (GLenum face, GLenum mode );
+typedef GL_ColorP3ui = fn void (GLenum value_type, GLuint color );
+typedef GL_ColorP3uiv = fn void (GLenum value_type, GLuint *color );
+typedef GL_ColorP4ui = fn void (GLenum value_type, GLuint color );
+typedef GL_ColorP4uiv = fn void (GLenum value_type, GLuint *color );
+typedef GL_ColorPointer = fn void (GLint size, GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_CompileShader = fn void (GLuint shader );
+typedef GL_CompressedTextureSubImage1D = fn void (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, void *data );
+typedef GL_CompressedTextureSubImage2D = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, void *data );
+typedef GL_CompressedTextureSubImage3D = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, void *data );
+typedef GL_CopyBufferSubData = fn void (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size );
+typedef GL_CopyImageSubData = fn void (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth );
+typedef GL_CopyNamedBufferSubData = fn void (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size );
+typedef GL_CopyPixels = fn void (GLint x, GLint y, GLsizei width, GLsizei height, GLenum value_type );
+typedef GL_CopyTexImage1D = fn void (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border );
+typedef GL_CopyTexImage2D = fn void (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border );
+typedef GL_CopyTexSubImage1D = fn void (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width );
+typedef GL_CopyTexSubImage2D = fn void (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_CopyTextureSubImage1D = fn void (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width );
+typedef GL_CopyTextureSubImage2D = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_CopyTextureSubImage3D = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_CreateBuffers = fn void (GLsizei n, GLuint *buffers );
+typedef GL_CreateFramebuffers = fn void (GLsizei n, GLuint *framebuffers );
+typedef GL_CreateProgram = fn GLuint ( );
+typedef GL_CreateProgramPipelines = fn void (GLsizei n, GLuint *pipelines );
+typedef GL_CreateQueries = fn void (GLenum target, GLsizei n, GLuint *ids );
+typedef GL_CreateRenderbuffers = fn void (GLsizei n, GLuint *renderbuffers );
+typedef GL_CreateSamplers = fn void (GLsizei n, GLuint *samplers );
+typedef GL_CreateShader = fn GLuint (GLenum value_type );
+typedef GL_CreateShaderProgramv = fn GLuint (GLenum value_type, GLsizei count, GLchar **strings );
+typedef GL_CreateTextures = fn void (GLenum target, GLsizei n, GLuint *textures );
+typedef GL_CreateTransformFeedbacks = fn void (GLsizei n, GLuint *ids );
+typedef GL_CreateVertexArrays = fn void (GLsizei n, GLuint *arrays );
+typedef GL_CullFace = fn void (GLenum mode );
+typedef GL_DebugMessageCallback = fn void (GLdebugproc callback, void *userParam );
+typedef GL_DebugMessageControl = fn void (GLenum source, GLenum value_type, GLenum severity, GLsizei count, GLuint *ids, GLboolean enabled );
+typedef GL_DebugMessageInsert = fn void (GLenum source, GLenum value_type, GLuint id, GLenum severity, GLsizei length, GLchar *buf );
+typedef GL_DeleteBuffers = fn void (GLsizei n, GLuint *buffers );
+typedef GL_DeleteFramebuffers = fn void (GLsizei n, GLuint *framebuffers );
+typedef GL_DeleteLists = fn void (GLuint list, GLsizei range );
+typedef GL_DeleteProgram = fn void (GLuint program );
+typedef GL_DeleteProgramPipelines = fn void (GLsizei n, GLuint *pipelines );
+typedef GL_DeleteQueries = fn void (GLsizei n, GLuint *ids );
+typedef GL_DeleteRenderbuffers = fn void (GLsizei n, GLuint *renderbuffers );
+typedef GL_DeleteSamplers = fn void (GLsizei count, GLuint *samplers );
+typedef GL_DeleteShader = fn void (GLuint shader );
+typedef GL_DeleteSync = fn void (GLsync sync );
+typedef GL_DeleteTextures = fn void (GLsizei n, GLuint *textures );
+typedef GL_DeleteTransformFeedbacks = fn void (GLsizei n, GLuint *ids );
+typedef GL_DeleteVertexArrays = fn void (GLsizei n, GLuint *arrays );
+typedef GL_DepthFunc = fn void (GLenum func_param );
+typedef GL_DepthMask = fn void (GLboolean flag );
+typedef GL_DepthRange = fn void (GLdouble n, GLdouble f );
+typedef GL_DepthRangeArrayv = fn void (GLuint first, GLsizei count, GLdouble *v );
+typedef GL_DepthRangeIndexed = fn void (GLuint index, GLdouble n, GLdouble f );
+typedef GL_DepthRangef = fn void (GLfloat n, GLfloat f );
+typedef GL_DetachShader = fn void (GLuint program, GLuint shader );
+typedef GL_Disable = fn void (GLenum cap );
+typedef GL_DisableClientState = fn void (GLenum array );
+typedef GL_DisableVertexArrayAttrib = fn void (GLuint vaobj, GLuint index );
+typedef GL_DisableVertexAttribArray = fn void (GLuint index );
+typedef GL_Disablei = fn void (GLenum target, GLuint index );
+typedef GL_DispatchCompute = fn void (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z );
+typedef GL_DispatchComputeIndirect = fn void (GLintptr indirect );
+typedef GL_DrawArrays = fn void (GLenum mode, GLint first, GLsizei count );
+typedef GL_DrawArraysIndirect = fn void (GLenum mode, void *indirect );
+typedef GL_DrawArraysInstanced = fn void (GLenum mode, GLint first, GLsizei count, GLsizei instancecount );
+typedef GL_DrawArraysInstancedBaseInstance = fn void (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance );
+typedef GL_DrawBuffer = fn void (GLenum buf );
+typedef GL_DrawBuffers = fn void (GLsizei n, GLenum *bufs );
+typedef GL_DrawElements = fn void (GLenum mode, GLsizei count, GLenum value_type, void *indices );
+typedef GL_DrawElementsBaseVertex = fn void (GLenum mode, GLsizei count, GLenum value_type, void *indices, GLint basevertex );
+typedef GL_DrawElementsIndirect = fn void (GLenum mode, GLenum value_type, void *indirect );
+typedef GL_DrawElementsInstanced = fn void (GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount );
+typedef GL_DrawElementsInstancedBaseInstance = fn void (GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount, GLuint baseinstance );
+typedef GL_DrawElementsInstancedBaseVertex = fn void (GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount, GLint basevertex );
+typedef GL_DrawElementsInstancedBaseVertexBaseInstance = fn void (GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance );
+typedef GL_DrawPixels = fn void (GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels );
+typedef GL_DrawRangeElementsBaseVertex = fn void (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum value_type, void *indices, GLint basevertex );
+typedef GL_DrawTransformFeedback = fn void (GLenum mode, GLuint id );
+typedef GL_DrawTransformFeedbackInstanced = fn void (GLenum mode, GLuint id, GLsizei instancecount );
+typedef GL_DrawTransformFeedbackStream = fn void (GLenum mode, GLuint id, GLuint stream );
+typedef GL_DrawTransformFeedbackStreamInstanced = fn void (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount );
+typedef GL_EdgeFlag = fn void (GLboolean flag );
+typedef GL_EdgeFlagPointer = fn void (GLsizei stride, void *pointer );
+typedef GL_EdgeFlagv = fn void ( GLboolean *flag );
+typedef GL_Enable = fn void (GLenum cap );
+typedef GL_EnableClientState = fn void (GLenum array );
+typedef GL_EnableVertexArrayAttrib = fn void (GLuint vaobj, GLuint index );
+typedef GL_EnableVertexAttribArray = fn void (GLuint index );
+typedef GL_Enablei = fn void (GLenum target, GLuint index );
+typedef GL_End = fn void ( );
+typedef GL_EndConditionalRender = fn void ( );
+typedef GL_EndList = fn void ( );
+typedef GL_EndQuery = fn void (GLenum target );
+typedef GL_EndQueryIndexed = fn void (GLenum target, GLuint index );
+typedef GL_EndTransformFeedback = fn void ( );
+typedef GL_EvalCoord1d = fn void (GLdouble u );
+typedef GL_EvalCoord1dv = fn void ( GLdouble *u );
+typedef GL_EvalCoord1f = fn void (GLfloat u );
+typedef GL_EvalCoord1fv = fn void ( GLfloat *u );
+typedef GL_EvalCoord2d = fn void (GLdouble u, GLdouble v );
+typedef GL_EvalCoord2dv = fn void ( GLdouble *u );
+typedef GL_EvalCoord2f = fn void (GLfloat u, GLfloat v );
+typedef GL_EvalCoord2fv = fn void ( GLfloat *u );
+typedef GL_EvalMesh1 = fn void (GLenum mode, GLint i1, GLint i2 );
+typedef GL_EvalMesh2 = fn void (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2 );
+typedef GL_EvalPoint1 = fn void (GLint i );
+typedef GL_EvalPoint2 = fn void (GLint i, GLint j );
+typedef GL_FeedbackBuffer = fn void (GLsizei size, GLenum value_type, GLfloat *buffer );
+typedef GL_FenceSync = fn GLsync (GLenum condition, GLbitfield flags );
+typedef GL_Finish = fn void ( );
+typedef GL_Flush = fn void ( );
+typedef GL_FlushMappedBufferRange = fn void (GLenum target, GLintptr offset, GLsizeiptr length );
+typedef GL_FlushMappedNamedBufferRange = fn void (GLuint buffer, GLintptr offset, GLsizeiptr length );
+typedef GL_FogCoordPointer = fn void (GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_FogCoordd = fn void (GLdouble coord );
+typedef GL_FogCoorddv = fn void ( GLdouble *coord );
+typedef GL_FogCoordf = fn void (GLfloat coord );
+typedef GL_FogCoordfv = fn void ( GLfloat *coord );
+typedef GL_Fogf = fn void (GLenum pname, GLfloat param );
+typedef GL_Fogfv = fn void (GLenum pname, GLfloat *params );
+typedef GL_Fogi = fn void (GLenum pname, GLint param );
+typedef GL_Fogiv = fn void (GLenum pname, GLint *params );
+typedef GL_FramebufferParameteri = fn void (GLenum target, GLenum pname, GLint param );
+typedef GL_FramebufferRenderbuffer = fn void (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer );
+typedef GL_FramebufferTexture = fn void (GLenum target, GLenum attachment, GLuint texture, GLint level );
+typedef GL_FramebufferTexture1D = fn void (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level );
+typedef GL_FramebufferTexture2D = fn void (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level );
+typedef GL_FramebufferTexture3D = fn void (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset );
+typedef GL_FramebufferTextureLayer = fn void (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer );
+typedef GL_FrontFace = fn void (GLenum mode );
+typedef GL_Frustum = fn void (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar );
+typedef GL_GenBuffers = fn void (GLsizei n, GLuint *buffers );
+typedef GL_GenFramebuffers = fn void (GLsizei n, GLuint *framebuffers );
+typedef GL_GenLists = fn GLuint (GLsizei range );
+typedef GL_GenProgramPipelines = fn void (GLsizei n, GLuint *pipelines );
+typedef GL_GenQueries = fn void (GLsizei n, GLuint *ids );
+typedef GL_GenRenderbuffers = fn void (GLsizei n, GLuint *renderbuffers );
+typedef GL_GenSamplers = fn void (GLsizei count, GLuint *samplers );
+typedef GL_GenTextures = fn void (GLsizei n, GLuint *textures );
+typedef GL_GenTransformFeedbacks = fn void (GLsizei n, GLuint *ids );
+typedef GL_GenVertexArrays = fn void (GLsizei n, GLuint *arrays );
+typedef GL_GenerateMipmap = fn void (GLenum target );
+typedef GL_GenerateTextureMipmap = fn void (GLuint texture );
+typedef GL_GetActiveAtomicCounterBufferiv = fn void (GLuint program, GLuint bufferIndex, GLenum pname, GLint *params );
+typedef GL_GetActiveAttrib = fn void (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name );
+typedef GL_GetActiveSubroutineName = fn void (GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name );
+typedef GL_GetActiveSubroutineUniformName = fn void (GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name );
+typedef GL_GetActiveSubroutineUniformiv = fn void (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint *values );
+typedef GL_GetActiveUniform = fn void (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name );
+typedef GL_GetActiveUniformBlockName = fn void (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName );
+typedef GL_GetActiveUniformBlockiv = fn void (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint *params );
+typedef GL_GetActiveUniformName = fn void (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformName );
+typedef GL_GetActiveUniformsiv = fn void (GLuint program, GLsizei uniformCount, GLuint *uniformIndices, GLenum pname, GLint *params );
+typedef GL_GetAttachedShaders = fn void (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders );
+typedef GL_GetAttribLocation = fn GLint (GLuint program, GLchar *name );
+typedef GL_GetBooleani_v = fn void (GLenum target, GLuint index, GLboolean *data );
+typedef GL_GetBooleanv = fn void (GLenum pname, GLboolean *data );
+typedef GL_GetBufferParameteri64v = fn void (GLenum target, GLenum pname, GLint64 *params );
+typedef GL_GetBufferParameteriv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetBufferPointerv = fn void (GLenum target, GLenum pname, void **params );
+typedef GL_GetBufferSubData = fn void (GLenum target, GLintptr offset, GLsizeiptr size, void *data );
+typedef GL_GetClipPlane = fn void (GLenum plane, GLdouble *equation );
+typedef GL_GetCompressedTextureImage = fn void (GLuint texture, GLint level, GLsizei bufSize, void *pixels );
+typedef GL_GetCompressedTextureSubImage = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void *pixels );
+typedef GL_GetDebugMessageLog = fn GLuint (GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog );
+typedef GL_GetDoublei_v = fn void (GLenum target, GLuint index, GLdouble *data );
+typedef GL_GetDoublev = fn void (GLenum pname, GLdouble *data );
+typedef GL_GetError = fn GLenum ( );
+typedef GL_GetFloati_v = fn void (GLenum target, GLuint index, GLfloat *data );
+typedef GL_GetFloatv = fn void (GLenum pname, GLfloat *data );
+typedef GL_GetFragDataIndex = fn GLint (GLuint program, GLchar *name );
+typedef GL_GetFragDataLocation = fn GLint (GLuint program, GLchar *name );
+typedef GL_GetFramebufferAttachmentParameteriv = fn void (GLenum target, GLenum attachment, GLenum pname, GLint *params );
+typedef GL_GetFramebufferParameteriv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetGraphicsResetStatus = fn GLenum ( );
+typedef GL_GetInteger64i_v = fn void (GLenum target, GLuint index, GLint64 *data );
+typedef GL_GetInteger64v = fn void (GLenum pname, GLint64 *data );
+typedef GL_GetIntegeri_v = fn void (GLenum target, GLuint index, GLint *data );
+typedef GL_GetIntegerv = fn void (GLenum pname, GLint *data );
+typedef GL_GetInternalformati64v = fn void (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint64 *params );
+typedef GL_GetInternalformativ = fn void (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint *params );
+typedef GL_GetLightfv = fn void (GLenum light, GLenum pname, GLfloat *params );
+typedef GL_GetLightiv = fn void (GLenum light, GLenum pname, GLint *params );
+typedef GL_GetMapdv = fn void (GLenum target, GLenum query, GLdouble *v );
+typedef GL_GetMapfv = fn void (GLenum target, GLenum query, GLfloat *v );
+typedef GL_GetMapiv = fn void (GLenum target, GLenum query, GLint *v );
+typedef GL_GetMaterialfv = fn void (GLenum face, GLenum pname, GLfloat *params );
+typedef GL_GetMaterialiv = fn void (GLenum face, GLenum pname, GLint *params );
+typedef GL_GetMultisamplefv = fn void (GLenum pname, GLuint index, GLfloat *val );
+typedef GL_GetNamedBufferParameteri64v = fn void (GLuint buffer, GLenum pname, GLint64 *params );
+typedef GL_GetNamedBufferParameteriv = fn void (GLuint buffer, GLenum pname, GLint *params );
+typedef GL_GetNamedBufferPointerv = fn void (GLuint buffer, GLenum pname, void **params );
+typedef GL_GetNamedBufferSubData = fn void (GLuint buffer, GLintptr offset, GLsizeiptr size, void *data );
+typedef GL_GetNamedFramebufferAttachmentParameteriv = fn void (GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params );
+typedef GL_GetNamedFramebufferParameteriv = fn void (GLuint framebuffer, GLenum pname, GLint *param );
+typedef GL_GetNamedRenderbufferParameteriv = fn void (GLuint renderbuffer, GLenum pname, GLint *params );
+typedef GL_GetObjectLabel = fn void (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label );
+typedef GL_GetObjectPtrLabel = fn void ( void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label );
+typedef GL_GetPixelMapfv = fn void (GLenum map, GLfloat *values );
+typedef GL_GetPixelMapuiv = fn void (GLenum map, GLuint *values );
+typedef GL_GetPixelMapusv = fn void (GLenum map, GLushort *values );
+typedef GL_GetPointerv = fn void (GLenum pname, void **params );
+typedef GL_GetPolygonStipple = fn void (GLubyte *mask );
+typedef GL_GetProgramBinary = fn void (GLuint program, GLsizei bufSize, GLsizei *length, GLenum *binaryFormat, void *binary );
+typedef GL_GetProgramInfoLog = fn void (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog );
+typedef GL_GetProgramInterfaceiv = fn void (GLuint program, GLenum programInterface, GLenum pname, GLint *params );
+typedef GL_GetProgramPipelineInfoLog = fn void (GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog );
+typedef GL_GetProgramPipelineiv = fn void (GLuint pipeline, GLenum pname, GLint *params );
+typedef GL_GetProgramResourceIndex = fn GLuint (GLuint program, GLenum programInterface, GLchar *name );
+typedef GL_GetProgramResourceLocation = fn GLint (GLuint program, GLenum programInterface, GLchar *name );
+typedef GL_GetProgramResourceLocationIndex = fn GLint (GLuint program, GLenum programInterface, GLchar *name );
+typedef GL_GetProgramResourceName = fn void (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name );
+typedef GL_GetProgramResourceiv = fn void (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, GLenum *props, GLsizei count, GLsizei *length, GLint *params );
+typedef GL_GetProgramStageiv = fn void (GLuint program, GLenum shadertype, GLenum pname, GLint *values );
+typedef GL_GetProgramiv = fn void (GLuint program, GLenum pname, GLint *params );
+typedef GL_GetQueryBufferObjecti64v = fn void (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
+typedef GL_GetQueryBufferObjectiv = fn void (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
+typedef GL_GetQueryBufferObjectui64v = fn void (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
+typedef GL_GetQueryBufferObjectuiv = fn void (GLuint id, GLuint buffer, GLenum pname, GLintptr offset );
+typedef GL_GetQueryIndexediv = fn void (GLenum target, GLuint index, GLenum pname, GLint *params );
+typedef GL_GetQueryObjecti64v = fn void (GLuint id, GLenum pname, GLint64 *params );
+typedef GL_GetQueryObjectiv = fn void (GLuint id, GLenum pname, GLint *params );
+typedef GL_GetQueryObjectui64v = fn void (GLuint id, GLenum pname, GLuint64 *params );
+typedef GL_GetQueryObjectuiv = fn void (GLuint id, GLenum pname, GLuint *params );
+typedef GL_GetQueryiv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetRenderbufferParameteriv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetSamplerParameterIiv = fn void (GLuint sampler, GLenum pname, GLint *params );
+typedef GL_GetSamplerParameterIuiv = fn void (GLuint sampler, GLenum pname, GLuint *params );
+typedef GL_GetSamplerParameterfv = fn void (GLuint sampler, GLenum pname, GLfloat *params );
+typedef GL_GetSamplerParameteriv = fn void (GLuint sampler, GLenum pname, GLint *params );
+typedef GL_GetShaderInfoLog = fn void (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog );
+typedef GL_GetShaderPrecisionFormat = fn void (GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision );
+typedef GL_GetShaderSource = fn void (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source );
+typedef GL_GetShaderiv = fn void (GLuint shader, GLenum pname, GLint *params );
+typedef GL_GetString = fn GLubyte * (GLenum name );
+typedef GL_GetStringi = fn GLubyte * (GLenum name, GLuint index );
+typedef GL_GetSubroutineIndex = fn GLuint (GLuint program, GLenum shadertype, GLchar *name );
+typedef GL_GetSubroutineUniformLocation = fn GLint (GLuint program, GLenum shadertype, GLchar *name );
+typedef GL_GetSynciv = fn void (GLsync sync, GLenum pname, GLsizei count, GLsizei *length, GLint *values );
+typedef GL_GetTexEnvfv = fn void (GLenum target, GLenum pname, GLfloat *params );
+typedef GL_GetTexEnviv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetTexGendv = fn void (GLenum coord, GLenum pname, GLdouble *params );
+typedef GL_GetTexGenfv = fn void (GLenum coord, GLenum pname, GLfloat *params );
+typedef GL_GetTexGeniv = fn void (GLenum coord, GLenum pname, GLint *params );
+typedef GL_GetTexImage = fn void (GLenum target, GLint level, GLenum format, GLenum value_type, void *pixels );
+typedef GL_GetTexLevelParameterfv = fn void (GLenum target, GLint level, GLenum pname, GLfloat *params );
+typedef GL_GetTexLevelParameteriv = fn void (GLenum target, GLint level, GLenum pname, GLint *params );
+typedef GL_GetTexParameterIiv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetTexParameterIuiv = fn void (GLenum target, GLenum pname, GLuint *params );
+typedef GL_GetTexParameterfv = fn void (GLenum target, GLenum pname, GLfloat *params );
+typedef GL_GetTexParameteriv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_GetTextureImage = fn void (GLuint texture, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels );
+typedef GL_GetTextureLevelParameterfv = fn void (GLuint texture, GLint level, GLenum pname, GLfloat *params );
+typedef GL_GetTextureLevelParameteriv = fn void (GLuint texture, GLint level, GLenum pname, GLint *params );
+typedef GL_GetTextureParameterIiv = fn void (GLuint texture, GLenum pname, GLint *params );
+typedef GL_GetTextureParameterIuiv = fn void (GLuint texture, GLenum pname, GLuint *params );
+typedef GL_GetTextureParameterfv = fn void (GLuint texture, GLenum pname, GLfloat *params );
+typedef GL_GetTextureParameteriv = fn void (GLuint texture, GLenum pname, GLint *params );
+typedef GL_GetTextureSubImage = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels );
+typedef GL_GetTransformFeedbackVarying = fn void (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *value_type, GLchar *name );
+typedef GL_GetTransformFeedbacki64_v = fn void (GLuint xfb, GLenum pname, GLuint index, GLint64 *param );
+typedef GL_GetTransformFeedbacki_v = fn void (GLuint xfb, GLenum pname, GLuint index, GLint *param );
+typedef GL_GetTransformFeedbackiv = fn void (GLuint xfb, GLenum pname, GLint *param );
+typedef GL_GetUniformBlockIndex = fn GLuint (GLuint program, GLchar *uniformBlockName );
+typedef GL_GetUniformIndices = fn void (GLuint program, GLsizei uniformCount, GLchar **uniformNames, GLuint *uniformIndices );
+typedef GL_GetUniformLocation = fn GLint (GLuint program, GLchar *name );
+typedef GL_GetUniformSubroutineuiv = fn void (GLenum shadertype, GLint location, GLuint *params );
+typedef GL_GetUniformdv = fn void (GLuint program, GLint location, GLdouble *params );
+typedef GL_GetUniformfv = fn void (GLuint program, GLint location, GLfloat *params );
+typedef GL_GetUniformiv = fn void (GLuint program, GLint location, GLint *params );
+typedef GL_GetUniformuiv = fn void (GLuint program, GLint location, GLuint *params );
+typedef GL_GetVertexArrayIndexed64iv = fn void (GLuint vaobj, GLuint index, GLenum pname, GLint64 *param );
+typedef GL_GetVertexArrayIndexediv = fn void (GLuint vaobj, GLuint index, GLenum pname, GLint *param );
+typedef GL_GetVertexArrayiv = fn void (GLuint vaobj, GLenum pname, GLint *param );
+typedef GL_GetVertexAttribIiv = fn void (GLuint index, GLenum pname, GLint *params );
+typedef GL_GetVertexAttribIuiv = fn void (GLuint index, GLenum pname, GLuint *params );
+typedef GL_GetVertexAttribLdv = fn void (GLuint index, GLenum pname, GLdouble *params );
+typedef GL_GetVertexAttribPointerv = fn void (GLuint index, GLenum pname, void **pointer );
+typedef GL_GetVertexAttribdv = fn void (GLuint index, GLenum pname, GLdouble *params );
+typedef GL_GetVertexAttribfv = fn void (GLuint index, GLenum pname, GLfloat *params );
+typedef GL_GetVertexAttribiv = fn void (GLuint index, GLenum pname, GLint *params );
+typedef GL_GetnColorTable = fn void (GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *table );
+typedef GL_GetnCompressedTexImage = fn void (GLenum target, GLint lod, GLsizei bufSize, void *pixels );
+typedef GL_GetnConvolutionFilter = fn void (GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *image );
+typedef GL_GetnHistogram = fn void (GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values );
+typedef GL_GetnMapdv = fn void (GLenum target, GLenum query, GLsizei bufSize, GLdouble *v );
+typedef GL_GetnMapfv = fn void (GLenum target, GLenum query, GLsizei bufSize, GLfloat *v );
+typedef GL_GetnMapiv = fn void (GLenum target, GLenum query, GLsizei bufSize, GLint *v );
+typedef GL_GetnMinmax = fn void (GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values );
+typedef GL_GetnPixelMapfv = fn void (GLenum map, GLsizei bufSize, GLfloat *values );
+typedef GL_GetnPixelMapuiv = fn void (GLenum map, GLsizei bufSize, GLuint *values );
+typedef GL_GetnPixelMapusv = fn void (GLenum map, GLsizei bufSize, GLushort *values );
+typedef GL_GetnPolygonStipple = fn void (GLsizei bufSize, GLubyte *pattern );
+typedef GL_GetnSeparableFilter = fn void (GLenum target, GLenum format, GLenum value_type, GLsizei rowBufSize, void *row, GLsizei columnBufSize, void *column, void *span );
+typedef GL_GetnTexImage = fn void (GLenum target, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels );
+typedef GL_GetnUniformdv = fn void (GLuint program, GLint location, GLsizei bufSize, GLdouble *params );
+typedef GL_GetnUniformfv = fn void (GLuint program, GLint location, GLsizei bufSize, GLfloat *params );
+typedef GL_GetnUniformiv = fn void (GLuint program, GLint location, GLsizei bufSize, GLint *params );
+typedef GL_GetnUniformuiv = fn void (GLuint program, GLint location, GLsizei bufSize, GLuint *params );
+typedef GL_Hint = fn void (GLenum target, GLenum mode );
+typedef GL_IndexMask = fn void (GLuint mask );
+typedef GL_IndexPointer = fn void (GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_Indexd = fn void (GLdouble c );
+typedef GL_Indexdv = fn void ( GLdouble *c );
+typedef GL_Indexf = fn void (GLfloat c );
+typedef GL_Indexfv = fn void ( GLfloat *c );
+typedef GL_Indexi = fn void (GLint c );
+typedef GL_Indexiv = fn void ( GLint *c );
+typedef GL_Indexs = fn void (GLshort c );
+typedef GL_Indexsv = fn void ( GLshort *c );
+typedef GL_Indexub = fn void (GLubyte c );
+typedef GL_Indexubv = fn void ( GLubyte *c );
+typedef GL_InitNames = fn void ( );
+typedef GL_InterleavedArrays = fn void (GLenum format, GLsizei stride, void *pointer );
+typedef GL_InvalidateBufferData = fn void (GLuint buffer );
+typedef GL_InvalidateBufferSubData = fn void (GLuint buffer, GLintptr offset, GLsizeiptr length );
+typedef GL_InvalidateFramebuffer = fn void (GLenum target, GLsizei numAttachments, GLenum *attachments );
+typedef GL_InvalidateNamedFramebufferData = fn void (GLuint framebuffer, GLsizei numAttachments, GLenum *attachments );
+typedef GL_InvalidateNamedFramebufferSubData = fn void (GLuint framebuffer, GLsizei numAttachments, GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_InvalidateSubFramebuffer = fn void (GLenum target, GLsizei numAttachments, GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_InvalidateTexImage = fn void (GLuint texture, GLint level );
+typedef GL_InvalidateTexSubImage = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth );
+typedef GL_IsBuffer = fn GLboolean (GLuint buffer );
+typedef GL_IsEnabled = fn GLboolean (GLenum cap );
+typedef GL_IsEnabledi = fn GLboolean (GLenum target, GLuint index );
+typedef GL_IsFramebuffer = fn GLboolean (GLuint framebuffer );
+typedef GL_IsList = fn GLboolean (GLuint list );
+typedef GL_IsProgram = fn GLboolean (GLuint program );
+typedef GL_IsProgramPipeline = fn GLboolean (GLuint pipeline );
+typedef GL_IsQuery = fn GLboolean (GLuint id );
+typedef GL_IsRenderbuffer = fn GLboolean (GLuint renderbuffer );
+typedef GL_IsSampler = fn GLboolean (GLuint sampler );
+typedef GL_IsShader = fn GLboolean (GLuint shader );
+typedef GL_IsSync = fn GLboolean (GLsync sync );
+typedef GL_IsTexture = fn GLboolean (GLuint texture );
+typedef GL_IsTransformFeedback = fn GLboolean (GLuint id );
+typedef GL_IsVertexArray = fn GLboolean (GLuint array );
+typedef GL_LightModelf = fn void (GLenum pname, GLfloat param );
+typedef GL_LightModelfv = fn void (GLenum pname, GLfloat *params );
+typedef GL_LightModeli = fn void (GLenum pname, GLint param );
+typedef GL_LightModeliv = fn void (GLenum pname, GLint *params );
+typedef GL_Lightf = fn void (GLenum light, GLenum pname, GLfloat param );
+typedef GL_Lightfv = fn void (GLenum light, GLenum pname, GLfloat *params );
+typedef GL_Lighti = fn void (GLenum light, GLenum pname, GLint param );
+typedef GL_Lightiv = fn void (GLenum light, GLenum pname, GLint *params );
+typedef GL_LineStipple = fn void (GLint factor, GLushort pattern );
+typedef GL_LineWidth = fn void (GLfloat width );
+typedef GL_LinkProgram = fn void (GLuint program );
+typedef GL_ListBase = fn void (GLuint base );
+typedef GL_LoadIdentity = fn void ( );
+typedef GL_LoadMatrixd = fn void ( GLdouble *m );
+typedef GL_LoadMatrixf = fn void ( GLfloat *m );
+typedef GL_LoadName = fn void (GLuint name );
+typedef GL_LoadTransposeMatrixd = fn void ( GLdouble *m );
+typedef GL_LoadTransposeMatrixf = fn void ( GLfloat *m );
+typedef GL_LogicOp = fn void (GLenum opcode );
+typedef GL_Map1d = fn void (GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, GLdouble *points );
+typedef GL_Map1f = fn void (GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, GLfloat *points );
+typedef GL_Map2d = fn void (GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble *points );
+typedef GL_Map2f = fn void (GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat *points );
+typedef GL_MapBuffer = fn void * (GLenum target, GLenum access );
+typedef GL_MapBufferRange = fn void * (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access );
+typedef GL_MapGrid1d = fn void (GLint un, GLdouble u1, GLdouble u2 );
+typedef GL_MapGrid1f = fn void (GLint un, GLfloat u1, GLfloat u2 );
+typedef GL_MapGrid2d = fn void (GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2 );
+typedef GL_MapGrid2f = fn void (GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2 );
+typedef GL_MapNamedBuffer = fn void * (GLuint buffer, GLenum access );
+typedef GL_MapNamedBufferRange = fn void * (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access );
+typedef GL_Materialf = fn void (GLenum face, GLenum pname, GLfloat param );
+typedef GL_Materialfv = fn void (GLenum face, GLenum pname, GLfloat *params );
+typedef GL_Materiali = fn void (GLenum face, GLenum pname, GLint param );
+typedef GL_Materialiv = fn void (GLenum face, GLenum pname, GLint *params );
+typedef GL_MatrixMode = fn void (GLenum mode );
+typedef GL_MemoryBarrier = fn void (GLbitfield barriers );
+typedef GL_MemoryBarrierByRegion = fn void (GLbitfield barriers );
+typedef GL_MinSampleShading = fn void (GLfloat value );
+typedef GL_MultMatrixd = fn void ( GLdouble *m );
+typedef GL_MultMatrixf = fn void ( GLfloat *m );
+typedef GL_MultTransposeMatrixd = fn void ( GLdouble *m );
+typedef GL_MultTransposeMatrixf = fn void ( GLfloat *m );
+typedef GL_MultiDrawArraysIndirect = fn void (GLenum mode, void *indirect, GLsizei drawcount, GLsizei stride );
+typedef GL_MultiDrawArraysIndirectCount = fn void (GLenum mode, void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride );
+typedef GL_MultiDrawElementsBaseVertex = fn void (GLenum mode, GLsizei *count, GLenum value_type, void **indices, GLsizei drawcount, GLint *basevertex );
+typedef GL_MultiDrawElementsIndirect = fn void (GLenum mode, GLenum value_type, void *indirect, GLsizei drawcount, GLsizei stride );
+typedef GL_MultiDrawElementsIndirectCount = fn void (GLenum mode, GLenum value_type, void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride );
+typedef GL_MultiTexCoord1d = fn void (GLenum target, GLdouble s );
+typedef GL_MultiTexCoord1dv = fn void (GLenum target, GLdouble *v );
+typedef GL_MultiTexCoord1f = fn void (GLenum target, GLfloat s );
+typedef GL_MultiTexCoord1fv = fn void (GLenum target, GLfloat *v );
+typedef GL_MultiTexCoord1i = fn void (GLenum target, GLint s );
+typedef GL_MultiTexCoord1iv = fn void (GLenum target, GLint *v );
+typedef GL_MultiTexCoord1s = fn void (GLenum target, GLshort s );
+typedef GL_MultiTexCoord1sv = fn void (GLenum target, GLshort *v );
+typedef GL_MultiTexCoord2d = fn void (GLenum target, GLdouble s, GLdouble t );
+typedef GL_MultiTexCoord2dv = fn void (GLenum target, GLdouble *v );
+typedef GL_MultiTexCoord2f = fn void (GLenum target, GLfloat s, GLfloat t );
+typedef GL_MultiTexCoord2fv = fn void (GLenum target, GLfloat *v );
+typedef GL_MultiTexCoord2i = fn void (GLenum target, GLint s, GLint t );
+typedef GL_MultiTexCoord2iv = fn void (GLenum target, GLint *v );
+typedef GL_MultiTexCoord2s = fn void (GLenum target, GLshort s, GLshort t );
+typedef GL_MultiTexCoord2sv = fn void (GLenum target, GLshort *v );
+typedef GL_MultiTexCoord3d = fn void (GLenum target, GLdouble s, GLdouble t, GLdouble r );
+typedef GL_MultiTexCoord3dv = fn void (GLenum target, GLdouble *v );
+typedef GL_MultiTexCoord3f = fn void (GLenum target, GLfloat s, GLfloat t, GLfloat r );
+typedef GL_MultiTexCoord3fv = fn void (GLenum target, GLfloat *v );
+typedef GL_MultiTexCoord3i = fn void (GLenum target, GLint s, GLint t, GLint r );
+typedef GL_MultiTexCoord3iv = fn void (GLenum target, GLint *v );
+typedef GL_MultiTexCoord3s = fn void (GLenum target, GLshort s, GLshort t, GLshort r );
+typedef GL_MultiTexCoord3sv = fn void (GLenum target, GLshort *v );
+typedef GL_MultiTexCoord4d = fn void (GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q );
+typedef GL_MultiTexCoord4dv = fn void (GLenum target, GLdouble *v );
+typedef GL_MultiTexCoord4f = fn void (GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q );
+typedef GL_MultiTexCoord4fv = fn void (GLenum target, GLfloat *v );
+typedef GL_MultiTexCoord4i = fn void (GLenum target, GLint s, GLint t, GLint r, GLint q );
+typedef GL_MultiTexCoord4iv = fn void (GLenum target, GLint *v );
+typedef GL_MultiTexCoord4s = fn void (GLenum target, GLshort s, GLshort t, GLshort r, GLshort q );
+typedef GL_MultiTexCoord4sv = fn void (GLenum target, GLshort *v );
+typedef GL_MultiTexCoordP1ui = fn void (GLenum texture, GLenum value_type, GLuint coords );
+typedef GL_MultiTexCoordP1uiv = fn void (GLenum texture, GLenum value_type, GLuint *coords );
+typedef GL_MultiTexCoordP2ui = fn void (GLenum texture, GLenum value_type, GLuint coords );
+typedef GL_MultiTexCoordP2uiv = fn void (GLenum texture, GLenum value_type, GLuint *coords );
+typedef GL_MultiTexCoordP3ui = fn void (GLenum texture, GLenum value_type, GLuint coords );
+typedef GL_MultiTexCoordP3uiv = fn void (GLenum texture, GLenum value_type, GLuint *coords );
+typedef GL_MultiTexCoordP4ui = fn void (GLenum texture, GLenum value_type, GLuint coords );
+typedef GL_MultiTexCoordP4uiv = fn void (GLenum texture, GLenum value_type, GLuint *coords );
+typedef GL_NamedBufferData = fn void (GLuint buffer, GLsizeiptr size, void *data, GLenum usage );
+typedef GL_NamedBufferStorage = fn void (GLuint buffer, GLsizeiptr size, void *data, GLbitfield flags );
+typedef GL_NamedBufferSubData = fn void (GLuint buffer, GLintptr offset, GLsizeiptr size, void *data );
+typedef GL_NamedFramebufferDrawBuffer = fn void (GLuint framebuffer, GLenum buf );
+typedef GL_NamedFramebufferDrawBuffers = fn void (GLuint framebuffer, GLsizei n, GLenum *bufs );
+typedef GL_NamedFramebufferParameteri = fn void (GLuint framebuffer, GLenum pname, GLint param );
+typedef GL_NamedFramebufferReadBuffer = fn void (GLuint framebuffer, GLenum src );
+typedef GL_NamedFramebufferRenderbuffer = fn void (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer );
+typedef GL_NamedFramebufferTexture = fn void (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level );
+typedef GL_NamedFramebufferTextureLayer = fn void (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer );
+typedef GL_NamedRenderbufferStorage = fn void (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height );
+typedef GL_NamedRenderbufferStorageMultisample = fn void (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height );
+typedef GL_NewList = fn void (GLuint list, GLenum mode );
+typedef GL_Normal3b = fn void (GLbyte nx, GLbyte ny, GLbyte nz );
+typedef GL_Normal3bv = fn void ( GLbyte *v );
+typedef GL_Normal3d = fn void (GLdouble nx, GLdouble ny, GLdouble nz );
+typedef GL_Normal3dv = fn void ( GLdouble *v );
+typedef GL_Normal3f = fn void (GLfloat nx, GLfloat ny, GLfloat nz );
+typedef GL_Normal3fv = fn void ( GLfloat *v );
+typedef GL_Normal3i = fn void (GLint nx, GLint ny, GLint nz );
+typedef GL_Normal3iv = fn void ( GLint *v );
+typedef GL_Normal3s = fn void (GLshort nx, GLshort ny, GLshort nz );
+typedef GL_Normal3sv = fn void ( GLshort *v );
+typedef GL_NormalP3ui = fn void (GLenum value_type, GLuint coords );
+typedef GL_NormalP3uiv = fn void (GLenum value_type, GLuint *coords );
+typedef GL_NormalPointer = fn void (GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_ObjectLabel = fn void (GLenum identifier, GLuint name, GLsizei length, GLchar *label );
+typedef GL_ObjectPtrLabel = fn void ( void *ptr, GLsizei length, GLchar *label );
+typedef GL_Ortho = fn void (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar );
+typedef GL_PassThrough = fn void (GLfloat token );
+typedef GL_PatchParameterfv = fn void (GLenum pname, GLfloat *values );
+typedef GL_PatchParameteri = fn void (GLenum pname, GLint value );
+typedef GL_PauseTransformFeedback = fn void ( );
+typedef GL_PixelMapfv = fn void (GLenum map, GLsizei mapsize, GLfloat *values );
+typedef GL_PixelMapuiv = fn void (GLenum map, GLsizei mapsize, GLuint *values );
+typedef GL_PixelMapusv = fn void (GLenum map, GLsizei mapsize, GLushort *values );
+typedef GL_PixelStoref = fn void (GLenum pname, GLfloat param );
+typedef GL_PixelStorei = fn void (GLenum pname, GLint param );
+typedef GL_PixelTransferf = fn void (GLenum pname, GLfloat param );
+typedef GL_PixelTransferi = fn void (GLenum pname, GLint param );
+typedef GL_PixelZoom = fn void (GLfloat xfactor, GLfloat yfactor );
+typedef GL_PointSize = fn void (GLfloat size );
+typedef GL_PolygonMode = fn void (GLenum face, GLenum mode );
+typedef GL_PolygonOffset = fn void (GLfloat factor, GLfloat units );
+typedef GL_PolygonOffsetClamp = fn void (GLfloat factor, GLfloat units, GLfloat clamp );
+typedef GL_PolygonStipple = fn void ( GLubyte *mask );
+typedef GL_PopAttrib = fn void ( );
+typedef GL_PopClientAttrib = fn void ( );
+typedef GL_PopDebugGroup = fn void ( );
+typedef GL_PopMatrix = fn void ( );
+typedef GL_PopName = fn void ( );
+typedef GL_PrimitiveRestartIndex = fn void (GLuint index );
+typedef GL_PrioritizeTextures = fn void (GLsizei n, GLuint *textures, GLfloat *priorities );
+typedef GL_ProgramBinary = fn void (GLuint program, GLenum binaryFormat, void *binary, GLsizei length );
+typedef GL_ProgramParameteri = fn void (GLuint program, GLenum pname, GLint value );
+typedef GL_ProgramUniform1d = fn void (GLuint program, GLint location, GLdouble v0 );
+typedef GL_ProgramUniform1dv = fn void (GLuint program, GLint location, GLsizei count, GLdouble *value );
+typedef GL_ProgramUniform1f = fn void (GLuint program, GLint location, GLfloat v0 );
+typedef GL_ProgramUniform1fv = fn void (GLuint program, GLint location, GLsizei count, GLfloat *value );
+typedef GL_ProgramUniform1i = fn void (GLuint program, GLint location, GLint v0 );
+typedef GL_ProgramUniform1iv = fn void (GLuint program, GLint location, GLsizei count, GLint *value );
+typedef GL_ProgramUniform1ui = fn void (GLuint program, GLint location, GLuint v0 );
+typedef GL_ProgramUniform1uiv = fn void (GLuint program, GLint location, GLsizei count, GLuint *value );
+typedef GL_ProgramUniform2d = fn void (GLuint program, GLint location, GLdouble v0, GLdouble v1 );
+typedef GL_ProgramUniform2dv = fn void (GLuint program, GLint location, GLsizei count, GLdouble *value );
+typedef GL_ProgramUniform2f = fn void (GLuint program, GLint location, GLfloat v0, GLfloat v1 );
+typedef GL_ProgramUniform2fv = fn void (GLuint program, GLint location, GLsizei count, GLfloat *value );
+typedef GL_ProgramUniform2i = fn void (GLuint program, GLint location, GLint v0, GLint v1 );
+typedef GL_ProgramUniform2iv = fn void (GLuint program, GLint location, GLsizei count, GLint *value );
+typedef GL_ProgramUniform2ui = fn void (GLuint program, GLint location, GLuint v0, GLuint v1 );
+typedef GL_ProgramUniform2uiv = fn void (GLuint program, GLint location, GLsizei count, GLuint *value );
+typedef GL_ProgramUniform3d = fn void (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2 );
+typedef GL_ProgramUniform3dv = fn void (GLuint program, GLint location, GLsizei count, GLdouble *value );
+typedef GL_ProgramUniform3f = fn void (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2 );
+typedef GL_ProgramUniform3fv = fn void (GLuint program, GLint location, GLsizei count, GLfloat *value );
+typedef GL_ProgramUniform3i = fn void (GLuint program, GLint location, GLint v0, GLint v1, GLint v2 );
+typedef GL_ProgramUniform3iv = fn void (GLuint program, GLint location, GLsizei count, GLint *value );
+typedef GL_ProgramUniform3ui = fn void (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2 );
+typedef GL_ProgramUniform3uiv = fn void (GLuint program, GLint location, GLsizei count, GLuint *value );
+typedef GL_ProgramUniform4d = fn void (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3 );
+typedef GL_ProgramUniform4dv = fn void (GLuint program, GLint location, GLsizei count, GLdouble *value );
+typedef GL_ProgramUniform4f = fn void (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3 );
+typedef GL_ProgramUniform4fv = fn void (GLuint program, GLint location, GLsizei count, GLfloat *value );
+typedef GL_ProgramUniform4i = fn void (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3 );
+typedef GL_ProgramUniform4iv = fn void (GLuint program, GLint location, GLsizei count, GLint *value );
+typedef GL_ProgramUniform4ui = fn void (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3 );
+typedef GL_ProgramUniform4uiv = fn void (GLuint program, GLint location, GLsizei count, GLuint *value );
+typedef GL_ProgramUniformMatrix2dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix2fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix2x3dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix2x3fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix2x4dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix2x4fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix3dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix3fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix3x2dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix3x2fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix3x4dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix3x4fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix4dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix4fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix4x2dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix4x2fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProgramUniformMatrix4x3dv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_ProgramUniformMatrix4x3fv = fn void (GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_ProvokingVertex = fn void (GLenum mode );
+typedef GL_PushAttrib = fn void (GLbitfield mask );
+typedef GL_PushClientAttrib = fn void (GLbitfield mask );
+typedef GL_PushDebugGroup = fn void (GLenum source, GLuint id, GLsizei length, GLchar *message );
+typedef GL_PushMatrix = fn void ( );
+typedef GL_PushName = fn void (GLuint name );
+typedef GL_QueryCounter = fn void (GLuint id, GLenum target );
+typedef GL_RasterPos2d = fn void (GLdouble x, GLdouble y );
+typedef GL_RasterPos2dv = fn void ( GLdouble *v );
+typedef GL_RasterPos2f = fn void (GLfloat x, GLfloat y );
+typedef GL_RasterPos2fv = fn void ( GLfloat *v );
+typedef GL_RasterPos2i = fn void (GLint x, GLint y );
+typedef GL_RasterPos2iv = fn void ( GLint *v );
+typedef GL_RasterPos2s = fn void (GLshort x, GLshort y );
+typedef GL_RasterPos2sv = fn void ( GLshort *v );
+typedef GL_RasterPos3d = fn void (GLdouble x, GLdouble y, GLdouble z );
+typedef GL_RasterPos3dv = fn void ( GLdouble *v );
+typedef GL_RasterPos3f = fn void (GLfloat x, GLfloat y, GLfloat z );
+typedef GL_RasterPos3fv = fn void ( GLfloat *v );
+typedef GL_RasterPos3i = fn void (GLint x, GLint y, GLint z );
+typedef GL_RasterPos3iv = fn void ( GLint *v );
+typedef GL_RasterPos3s = fn void (GLshort x, GLshort y, GLshort z );
+typedef GL_RasterPos3sv = fn void ( GLshort *v );
+typedef GL_RasterPos4d = fn void (GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+typedef GL_RasterPos4dv = fn void ( GLdouble *v );
+typedef GL_RasterPos4f = fn void (GLfloat x, GLfloat y, GLfloat z, GLfloat w );
+typedef GL_RasterPos4fv = fn void ( GLfloat *v );
+typedef GL_RasterPos4i = fn void (GLint x, GLint y, GLint z, GLint w );
+typedef GL_RasterPos4iv = fn void ( GLint *v );
+typedef GL_RasterPos4s = fn void (GLshort x, GLshort y, GLshort z, GLshort w );
+typedef GL_RasterPos4sv = fn void ( GLshort *v );
+typedef GL_ReadBuffer = fn void (GLenum src );
+typedef GL_ReadPixels = fn void (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels );
+typedef GL_ReadnPixels = fn void (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, GLsizei bufSize, void *data );
+typedef GL_Rectd = fn void (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2 );
+typedef GL_Rectdv = fn void ( GLdouble *v1, GLdouble *v2 );
+typedef GL_Rectf = fn void (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2 );
+typedef GL_Rectfv = fn void ( GLfloat *v1, GLfloat *v2 );
+typedef GL_Recti = fn void (GLint x1, GLint y1, GLint x2, GLint y2 );
+typedef GL_Rectiv = fn void ( GLint *v1, GLint *v2 );
+typedef GL_Rects = fn void (GLshort x1, GLshort y1, GLshort x2, GLshort y2 );
+typedef GL_Rectsv = fn void ( GLshort *v1, GLshort *v2 );
+typedef GL_ReleaseShaderCompiler = fn void ( );
+typedef GL_RenderMode = fn GLint (GLenum mode );
+typedef GL_RenderbufferStorage = fn void (GLenum target, GLenum internalformat, GLsizei width, GLsizei height );
+typedef GL_RenderbufferStorageMultisample = fn void (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height );
+typedef GL_ResumeTransformFeedback = fn void ( );
+typedef GL_Rotated = fn void (GLdouble angle, GLdouble x, GLdouble y, GLdouble z );
+typedef GL_Rotatef = fn void (GLfloat angle, GLfloat x, GLfloat y, GLfloat z );
+typedef GL_SampleMaski = fn void (GLuint maskNumber, GLbitfield mask );
+typedef GL_SamplerParameterIiv = fn void (GLuint sampler, GLenum pname, GLint *param );
+typedef GL_SamplerParameterIuiv = fn void (GLuint sampler, GLenum pname, GLuint *param );
+typedef GL_SamplerParameterf = fn void (GLuint sampler, GLenum pname, GLfloat param );
+typedef GL_SamplerParameterfv = fn void (GLuint sampler, GLenum pname, GLfloat *param );
+typedef GL_SamplerParameteri = fn void (GLuint sampler, GLenum pname, GLint param );
+typedef GL_SamplerParameteriv = fn void (GLuint sampler, GLenum pname, GLint *param );
+typedef GL_Scaled = fn void (GLdouble x, GLdouble y, GLdouble z );
+typedef GL_Scalef = fn void (GLfloat x, GLfloat y, GLfloat z );
+typedef GL_Scissor = fn void (GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_ScissorArrayv = fn void (GLuint first, GLsizei count, GLint *v );
+typedef GL_ScissorIndexed = fn void (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height );
+typedef GL_ScissorIndexedv = fn void (GLuint index, GLint *v );
+typedef GL_SecondaryColor3b = fn void (GLbyte red, GLbyte green, GLbyte blue );
+typedef GL_SecondaryColor3bv = fn void ( GLbyte *v );
+typedef GL_SecondaryColor3d = fn void (GLdouble red, GLdouble green, GLdouble blue );
+typedef GL_SecondaryColor3dv = fn void ( GLdouble *v );
+typedef GL_SecondaryColor3f = fn void (GLfloat red, GLfloat green, GLfloat blue );
+typedef GL_SecondaryColor3fv = fn void ( GLfloat *v );
+typedef GL_SecondaryColor3i = fn void (GLint red, GLint green, GLint blue );
+typedef GL_SecondaryColor3iv = fn void ( GLint *v );
+typedef GL_SecondaryColor3s = fn void (GLshort red, GLshort green, GLshort blue );
+typedef GL_SecondaryColor3sv = fn void ( GLshort *v );
+typedef GL_SecondaryColor3ub = fn void (GLubyte red, GLubyte green, GLubyte blue );
+typedef GL_SecondaryColor3ubv = fn void ( GLubyte *v );
+typedef GL_SecondaryColor3ui = fn void (GLuint red, GLuint green, GLuint blue );
+typedef GL_SecondaryColor3uiv = fn void ( GLuint *v );
+typedef GL_SecondaryColor3us = fn void (GLushort red, GLushort green, GLushort blue );
+typedef GL_SecondaryColor3usv = fn void ( GLushort *v );
+typedef GL_SecondaryColorP3ui = fn void (GLenum value_type, GLuint color );
+typedef GL_SecondaryColorP3uiv = fn void (GLenum value_type, GLuint *color );
+typedef GL_SecondaryColorPointer = fn void (GLint size, GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_SelectBuffer = fn void (GLsizei size, GLuint *buffer );
+typedef GL_ShadeModel = fn void (GLenum mode );
+typedef GL_ShaderBinary = fn void (GLsizei count, GLuint *shaders, GLenum binaryFormat, void *binary, GLsizei length );
+typedef GL_ShaderSource = fn void (GLuint shader, GLsizei count, GLchar **string, GLint *length );
+typedef GL_ShaderStorageBlockBinding = fn void (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding );
+typedef GL_SpecializeShader = fn void (GLuint shader, GLchar *pEntryPoint, GLuint numSpecializationConstants, GLuint *pConstantIndex, GLuint *pConstantValue );
+typedef GL_StencilFunc = fn void (GLenum func_param, GLint ref, GLuint mask );
+typedef GL_StencilFuncSeparate = fn void (GLenum face, GLenum func_param, GLint ref, GLuint mask );
+typedef GL_StencilMask = fn void (GLuint mask );
+typedef GL_StencilMaskSeparate = fn void (GLenum face, GLuint mask );
+typedef GL_StencilOp = fn void (GLenum fail, GLenum zfail, GLenum zpass );
+typedef GL_StencilOpSeparate = fn void (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass );
+typedef GL_TexBuffer = fn void (GLenum target, GLenum internalformat, GLuint buffer );
+typedef GL_TexBufferRange = fn void (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size );
+typedef GL_TexCoord1d = fn void (GLdouble s );
+typedef GL_TexCoord1dv = fn void ( GLdouble *v );
+typedef GL_TexCoord1f = fn void (GLfloat s );
+typedef GL_TexCoord1fv = fn void ( GLfloat *v );
+typedef GL_TexCoord1i = fn void (GLint s );
+typedef GL_TexCoord1iv = fn void ( GLint *v );
+typedef GL_TexCoord1s = fn void (GLshort s );
+typedef GL_TexCoord1sv = fn void ( GLshort *v );
+typedef GL_TexCoord2d = fn void (GLdouble s, GLdouble t );
+typedef GL_TexCoord2dv = fn void ( GLdouble *v );
+typedef GL_TexCoord2f = fn void (GLfloat s, GLfloat t );
+typedef GL_TexCoord2fv = fn void ( GLfloat *v );
+typedef GL_TexCoord2i = fn void (GLint s, GLint t );
+typedef GL_TexCoord2iv = fn void ( GLint *v );
+typedef GL_TexCoord2s = fn void (GLshort s, GLshort t );
+typedef GL_TexCoord2sv = fn void ( GLshort *v );
+typedef GL_TexCoord3d = fn void (GLdouble s, GLdouble t, GLdouble r );
+typedef GL_TexCoord3dv = fn void ( GLdouble *v );
+typedef GL_TexCoord3f = fn void (GLfloat s, GLfloat t, GLfloat r );
+typedef GL_TexCoord3fv = fn void ( GLfloat *v );
+typedef GL_TexCoord3i = fn void (GLint s, GLint t, GLint r );
+typedef GL_TexCoord3iv = fn void ( GLint *v );
+typedef GL_TexCoord3s = fn void (GLshort s, GLshort t, GLshort r );
+typedef GL_TexCoord3sv = fn void ( GLshort *v );
+typedef GL_TexCoord4d = fn void (GLdouble s, GLdouble t, GLdouble r, GLdouble q );
+typedef GL_TexCoord4dv = fn void ( GLdouble *v );
+typedef GL_TexCoord4f = fn void (GLfloat s, GLfloat t, GLfloat r, GLfloat q );
+typedef GL_TexCoord4fv = fn void ( GLfloat *v );
+typedef GL_TexCoord4i = fn void (GLint s, GLint t, GLint r, GLint q );
+typedef GL_TexCoord4iv = fn void ( GLint *v );
+typedef GL_TexCoord4s = fn void (GLshort s, GLshort t, GLshort r, GLshort q );
+typedef GL_TexCoord4sv = fn void ( GLshort *v );
+typedef GL_TexCoordP1ui = fn void (GLenum value_type, GLuint coords );
+typedef GL_TexCoordP1uiv = fn void (GLenum value_type, GLuint *coords );
+typedef GL_TexCoordP2ui = fn void (GLenum value_type, GLuint coords );
+typedef GL_TexCoordP2uiv = fn void (GLenum value_type, GLuint *coords );
+typedef GL_TexCoordP3ui = fn void (GLenum value_type, GLuint coords );
+typedef GL_TexCoordP3uiv = fn void (GLenum value_type, GLuint *coords );
+typedef GL_TexCoordP4ui = fn void (GLenum value_type, GLuint coords );
+typedef GL_TexCoordP4uiv = fn void (GLenum value_type, GLuint *coords );
+typedef GL_TexCoordPointer = fn void (GLint size, GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_TexEnvf = fn void (GLenum target, GLenum pname, GLfloat param );
+typedef GL_TexEnvfv = fn void (GLenum target, GLenum pname, GLfloat *params );
+typedef GL_TexEnvi = fn void (GLenum target, GLenum pname, GLint param );
+typedef GL_TexEnviv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_TexGend = fn void (GLenum coord, GLenum pname, GLdouble param );
+typedef GL_TexGendv = fn void (GLenum coord, GLenum pname, GLdouble *params );
+typedef GL_TexGenf = fn void (GLenum coord, GLenum pname, GLfloat param );
+typedef GL_TexGenfv = fn void (GLenum coord, GLenum pname, GLfloat *params );
+typedef GL_TexGeni = fn void (GLenum coord, GLenum pname, GLint param );
+typedef GL_TexGeniv = fn void (GLenum coord, GLenum pname, GLint *params );
+typedef GL_TexImage1D = fn void (GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TexImage2D = fn void (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TexImage2DMultisample = fn void (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations );
+typedef GL_TexImage3DMultisample = fn void (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations );
+typedef GL_TexParameterIiv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_TexParameterIuiv = fn void (GLenum target, GLenum pname, GLuint *params );
+typedef GL_TexParameterf = fn void (GLenum target, GLenum pname, GLfloat param );
+typedef GL_TexParameterfv = fn void (GLenum target, GLenum pname, GLfloat *params );
+typedef GL_TexParameteri = fn void (GLenum target, GLenum pname, GLint param );
+typedef GL_TexParameteriv = fn void (GLenum target, GLenum pname, GLint *params );
+typedef GL_TexStorage1D = fn void (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width );
+typedef GL_TexStorage2D = fn void (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height );
+typedef GL_TexStorage2DMultisample = fn void (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations );
+typedef GL_TexStorage3D = fn void (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth );
+typedef GL_TexStorage3DMultisample = fn void (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations );
+typedef GL_TexSubImage1D = fn void (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TexSubImage2D = fn void (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TextureBarrier = fn void ( );
+typedef GL_TextureBuffer = fn void (GLuint texture, GLenum internalformat, GLuint buffer );
+typedef GL_TextureBufferRange = fn void (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size );
+typedef GL_TextureParameterIiv = fn void (GLuint texture, GLenum pname, GLint *params );
+typedef GL_TextureParameterIuiv = fn void (GLuint texture, GLenum pname, GLuint *params );
+typedef GL_TextureParameterf = fn void (GLuint texture, GLenum pname, GLfloat param );
+typedef GL_TextureParameterfv = fn void (GLuint texture, GLenum pname, GLfloat *param );
+typedef GL_TextureParameteri = fn void (GLuint texture, GLenum pname, GLint param );
+typedef GL_TextureParameteriv = fn void (GLuint texture, GLenum pname, GLint *param );
+typedef GL_TextureStorage1D = fn void (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width );
+typedef GL_TextureStorage2D = fn void (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height );
+typedef GL_TextureStorage2DMultisample = fn void (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations );
+typedef GL_TextureStorage3D = fn void (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth );
+typedef GL_TextureStorage3DMultisample = fn void (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations );
+typedef GL_TextureSubImage1D = fn void (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TextureSubImage2D = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TextureSubImage3D = fn void (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, void *pixels );
+typedef GL_TextureView = fn void (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers );
+typedef GL_TransformFeedbackBufferBase = fn void (GLuint xfb, GLuint index, GLuint buffer );
+typedef GL_TransformFeedbackBufferRange = fn void (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size );
+typedef GL_TransformFeedbackVaryings = fn void (GLuint program, GLsizei count, GLchar **varyings, GLenum bufferMode );
+typedef GL_Translated = fn void (GLdouble x, GLdouble y, GLdouble z );
+typedef GL_Translatef = fn void (GLfloat x, GLfloat y, GLfloat z );
+typedef GL_Uniform1d = fn void (GLint location, GLdouble x );
+typedef GL_Uniform1dv = fn void (GLint location, GLsizei count, GLdouble *value );
+typedef GL_Uniform1f = fn void (GLint location, GLfloat v0 );
+typedef GL_Uniform1fv = fn void (GLint location, GLsizei count, GLfloat *value );
+typedef GL_Uniform1i = fn void (GLint location, GLint v0 );
+typedef GL_Uniform1iv = fn void (GLint location, GLsizei count, GLint *value );
+typedef GL_Uniform1ui = fn void (GLint location, GLuint v0 );
+typedef GL_Uniform1uiv = fn void (GLint location, GLsizei count, GLuint *value );
+typedef GL_Uniform2d = fn void (GLint location, GLdouble x, GLdouble y );
+typedef GL_Uniform2dv = fn void (GLint location, GLsizei count, GLdouble *value );
+typedef GL_Uniform2f = fn void (GLint location, GLfloat v0, GLfloat v1 );
+typedef GL_Uniform2fv = fn void (GLint location, GLsizei count, GLfloat *value );
+typedef GL_Uniform2i = fn void (GLint location, GLint v0, GLint v1 );
+typedef GL_Uniform2iv = fn void (GLint location, GLsizei count, GLint *value );
+typedef GL_Uniform2ui = fn void (GLint location, GLuint v0, GLuint v1 );
+typedef GL_Uniform2uiv = fn void (GLint location, GLsizei count, GLuint *value );
+typedef GL_Uniform3d = fn void (GLint location, GLdouble x, GLdouble y, GLdouble z );
+typedef GL_Uniform3dv = fn void (GLint location, GLsizei count, GLdouble *value );
+typedef GL_Uniform3f = fn void (GLint location, GLfloat v0, GLfloat v1, GLfloat v2 );
+typedef GL_Uniform3fv = fn void (GLint location, GLsizei count, GLfloat *value );
+typedef GL_Uniform3i = fn void (GLint location, GLint v0, GLint v1, GLint v2 );
+typedef GL_Uniform3iv = fn void (GLint location, GLsizei count, GLint *value );
+typedef GL_Uniform3ui = fn void (GLint location, GLuint v0, GLuint v1, GLuint v2 );
+typedef GL_Uniform3uiv = fn void (GLint location, GLsizei count, GLuint *value );
+typedef GL_Uniform4d = fn void (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+typedef GL_Uniform4dv = fn void (GLint location, GLsizei count, GLdouble *value );
+typedef GL_Uniform4f = fn void (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3 );
+typedef GL_Uniform4fv = fn void (GLint location, GLsizei count, GLfloat *value );
+typedef GL_Uniform4i = fn void (GLint location, GLint v0, GLint v1, GLint v2, GLint v3 );
+typedef GL_Uniform4iv = fn void (GLint location, GLsizei count, GLint *value );
+typedef GL_Uniform4ui = fn void (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3 );
+typedef GL_Uniform4uiv = fn void (GLint location, GLsizei count, GLuint *value );
+typedef GL_UniformBlockBinding = fn void (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding );
+typedef GL_UniformMatrix2dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix2fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix2x3dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix2x3fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix2x4dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix2x4fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix3dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix3fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix3x2dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix3x2fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix3x4dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix3x4fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix4dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix4fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix4x2dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix4x2fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformMatrix4x3dv = fn void (GLint location, GLsizei count, GLboolean transpose, GLdouble *value );
+typedef GL_UniformMatrix4x3fv = fn void (GLint location, GLsizei count, GLboolean transpose, GLfloat *value );
+typedef GL_UniformSubroutinesuiv = fn void (GLenum shadertype, GLsizei count, GLuint *indices );
+typedef GL_UnmapBuffer = fn GLboolean (GLenum target );
+typedef GL_UnmapNamedBuffer = fn GLboolean (GLuint buffer );
+typedef GL_UseProgram = fn void (GLuint program );
+typedef GL_UseProgramStages = fn void (GLuint pipeline, GLbitfield stages, GLuint program );
+typedef GL_ValidateProgram = fn void (GLuint program );
+typedef GL_ValidateProgramPipeline = fn void (GLuint pipeline );
+typedef GL_Vertex2d = fn void (GLdouble x, GLdouble y );
+typedef GL_Vertex2dv = fn void ( GLdouble *v );
+typedef GL_Vertex2f = fn void (GLfloat x, GLfloat y );
+typedef GL_Vertex2fv = fn void ( GLfloat *v );
+typedef GL_Vertex2i = fn void (GLint x, GLint y );
+typedef GL_Vertex2iv = fn void ( GLint *v );
+typedef GL_Vertex2s = fn void (GLshort x, GLshort y );
+typedef GL_Vertex2sv = fn void ( GLshort *v );
+typedef GL_Vertex3d = fn void (GLdouble x, GLdouble y, GLdouble z );
+typedef GL_Vertex3dv = fn void ( GLdouble *v );
+typedef GL_Vertex3f = fn void (GLfloat x, GLfloat y, GLfloat z );
+typedef GL_Vertex3fv = fn void ( GLfloat *v );
+typedef GL_Vertex3i = fn void (GLint x, GLint y, GLint z );
+typedef GL_Vertex3iv = fn void ( GLint *v );
+typedef GL_Vertex3s = fn void (GLshort x, GLshort y, GLshort z );
+typedef GL_Vertex3sv = fn void ( GLshort *v );
+typedef GL_Vertex4d = fn void (GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+typedef GL_Vertex4dv = fn void ( GLdouble *v );
+typedef GL_Vertex4f = fn void (GLfloat x, GLfloat y, GLfloat z, GLfloat w );
+typedef GL_Vertex4fv = fn void ( GLfloat *v );
+typedef GL_Vertex4i = fn void (GLint x, GLint y, GLint z, GLint w );
+typedef GL_Vertex4iv = fn void ( GLint *v );
+typedef GL_Vertex4s = fn void (GLshort x, GLshort y, GLshort z, GLshort w );
+typedef GL_Vertex4sv = fn void ( GLshort *v );
+typedef GL_VertexArrayAttribBinding = fn void (GLuint vaobj, GLuint attribindex, GLuint bindingindex );
+typedef GL_VertexArrayAttribFormat = fn void (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset );
+typedef GL_VertexArrayAttribIFormat = fn void (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
+typedef GL_VertexArrayAttribLFormat = fn void (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
+typedef GL_VertexArrayBindingDivisor = fn void (GLuint vaobj, GLuint bindingindex, GLuint divisor );
+typedef GL_VertexArrayElementBuffer = fn void (GLuint vaobj, GLuint buffer );
+typedef GL_VertexArrayVertexBuffer = fn void (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride );
+typedef GL_VertexArrayVertexBuffers = fn void (GLuint vaobj, GLuint first, GLsizei count, GLuint *buffers, GLintptr *offsets, GLsizei *strides );
+typedef GL_VertexAttrib1d = fn void (GLuint index, GLdouble x );
+typedef GL_VertexAttrib1dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttrib1f = fn void (GLuint index, GLfloat x );
+typedef GL_VertexAttrib1fv = fn void (GLuint index, GLfloat *v );
+typedef GL_VertexAttrib1s = fn void (GLuint index, GLshort x );
+typedef GL_VertexAttrib1sv = fn void (GLuint index, GLshort *v );
+typedef GL_VertexAttrib2d = fn void (GLuint index, GLdouble x, GLdouble y );
+typedef GL_VertexAttrib2dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttrib2f = fn void (GLuint index, GLfloat x, GLfloat y );
+typedef GL_VertexAttrib2fv = fn void (GLuint index, GLfloat *v );
+typedef GL_VertexAttrib2s = fn void (GLuint index, GLshort x, GLshort y );
+typedef GL_VertexAttrib2sv = fn void (GLuint index, GLshort *v );
+typedef GL_VertexAttrib3d = fn void (GLuint index, GLdouble x, GLdouble y, GLdouble z );
+typedef GL_VertexAttrib3dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttrib3f = fn void (GLuint index, GLfloat x, GLfloat y, GLfloat z );
+typedef GL_VertexAttrib3fv = fn void (GLuint index, GLfloat *v );
+typedef GL_VertexAttrib3s = fn void (GLuint index, GLshort x, GLshort y, GLshort z );
+typedef GL_VertexAttrib3sv = fn void (GLuint index, GLshort *v );
+typedef GL_VertexAttrib4Nbv = fn void (GLuint index, GLbyte *v );
+typedef GL_VertexAttrib4Niv = fn void (GLuint index, GLint *v );
+typedef GL_VertexAttrib4Nsv = fn void (GLuint index, GLshort *v );
+typedef GL_VertexAttrib4Nub = fn void (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w );
+typedef GL_VertexAttrib4Nubv = fn void (GLuint index, GLubyte *v );
+typedef GL_VertexAttrib4Nuiv = fn void (GLuint index, GLuint *v );
+typedef GL_VertexAttrib4Nusv = fn void (GLuint index, GLushort *v );
+typedef GL_VertexAttrib4bv = fn void (GLuint index, GLbyte *v );
+typedef GL_VertexAttrib4d = fn void (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+typedef GL_VertexAttrib4dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttrib4f = fn void (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w );
+typedef GL_VertexAttrib4fv = fn void (GLuint index, GLfloat *v );
+typedef GL_VertexAttrib4iv = fn void (GLuint index, GLint *v );
+typedef GL_VertexAttrib4s = fn void (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w );
+typedef GL_VertexAttrib4sv = fn void (GLuint index, GLshort *v );
+typedef GL_VertexAttrib4ubv = fn void (GLuint index, GLubyte *v );
+typedef GL_VertexAttrib4uiv = fn void (GLuint index, GLuint *v );
+typedef GL_VertexAttrib4usv = fn void (GLuint index, GLushort *v );
+typedef GL_VertexAttribBinding = fn void (GLuint attribindex, GLuint bindingindex );
+typedef GL_VertexAttribDivisor = fn void (GLuint index, GLuint divisor );
+typedef GL_VertexAttribFormat = fn void (GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset );
+typedef GL_VertexAttribI1i = fn void (GLuint index, GLint x );
+typedef GL_VertexAttribI1iv = fn void (GLuint index, GLint *v );
+typedef GL_VertexAttribI1ui = fn void (GLuint index, GLuint x );
+typedef GL_VertexAttribI1uiv = fn void (GLuint index, GLuint *v );
+typedef GL_VertexAttribI2i = fn void (GLuint index, GLint x, GLint y );
+typedef GL_VertexAttribI2iv = fn void (GLuint index, GLint *v );
+typedef GL_VertexAttribI2ui = fn void (GLuint index, GLuint x, GLuint y );
+typedef GL_VertexAttribI2uiv = fn void (GLuint index, GLuint *v );
+typedef GL_VertexAttribI3i = fn void (GLuint index, GLint x, GLint y, GLint z );
+typedef GL_VertexAttribI3iv = fn void (GLuint index, GLint *v );
+typedef GL_VertexAttribI3ui = fn void (GLuint index, GLuint x, GLuint y, GLuint z );
+typedef GL_VertexAttribI3uiv = fn void (GLuint index, GLuint *v );
+typedef GL_VertexAttribI4bv = fn void (GLuint index, GLbyte *v );
+typedef GL_VertexAttribI4i = fn void (GLuint index, GLint x, GLint y, GLint z, GLint w );
+typedef GL_VertexAttribI4iv = fn void (GLuint index, GLint *v );
+typedef GL_VertexAttribI4sv = fn void (GLuint index, GLshort *v );
+typedef GL_VertexAttribI4ubv = fn void (GLuint index, GLubyte *v );
+typedef GL_VertexAttribI4ui = fn void (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w );
+typedef GL_VertexAttribI4uiv = fn void (GLuint index, GLuint *v );
+typedef GL_VertexAttribI4usv = fn void (GLuint index, GLushort *v );
+typedef GL_VertexAttribIFormat = fn void (GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
+typedef GL_VertexAttribIPointer = fn void (GLuint index, GLint size, GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_VertexAttribL1d = fn void (GLuint index, GLdouble x );
+typedef GL_VertexAttribL1dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttribL2d = fn void (GLuint index, GLdouble x, GLdouble y );
+typedef GL_VertexAttribL2dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttribL3d = fn void (GLuint index, GLdouble x, GLdouble y, GLdouble z );
+typedef GL_VertexAttribL3dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttribL4d = fn void (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w );
+typedef GL_VertexAttribL4dv = fn void (GLuint index, GLdouble *v );
+typedef GL_VertexAttribLFormat = fn void (GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset );
+typedef GL_VertexAttribLPointer = fn void (GLuint index, GLint size, GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_VertexAttribP1ui = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
+typedef GL_VertexAttribP1uiv = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint *value );
+typedef GL_VertexAttribP2ui = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
+typedef GL_VertexAttribP2uiv = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint *value );
+typedef GL_VertexAttribP3ui = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
+typedef GL_VertexAttribP3uiv = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint *value );
+typedef GL_VertexAttribP4ui = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint value );
+typedef GL_VertexAttribP4uiv = fn void (GLuint index, GLenum value_type, GLboolean normalized, GLuint *value );
+typedef GL_VertexAttribPointer = fn void (GLuint index, GLint size, GLenum value_type, GLboolean normalized, GLsizei stride, void *pointer );
+typedef GL_VertexBindingDivisor = fn void (GLuint bindingindex, GLuint divisor );
+typedef GL_VertexP2ui = fn void (GLenum value_type, GLuint value );
+typedef GL_VertexP2uiv = fn void (GLenum value_type, GLuint *value );
+typedef GL_VertexP3ui = fn void (GLenum value_type, GLuint value );
+typedef GL_VertexP3uiv = fn void (GLenum value_type, GLuint *value );
+typedef GL_VertexP4ui = fn void (GLenum value_type, GLuint value );
+typedef GL_VertexP4uiv = fn void (GLenum value_type, GLuint *value );
+typedef GL_VertexPointer = fn void (GLint size, GLenum value_type, GLsizei stride, void *pointer );
+typedef GL_Viewport = fn void (GLint x, GLint y, GLsizei width, GLsizei height );
+typedef GL_ViewportArrayv = fn void (GLuint first, GLsizei count, GLfloat *v );
+typedef GL_ViewportIndexedf = fn void (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h );
+typedef GL_ViewportIndexedfv = fn void (GLuint index, GLfloat *v );
+typedef GL_WaitSync = fn void (GLsync sync, GLbitfield flags, GLuint64 timeout );
+typedef GL_WindowPos2d = fn void (GLdouble x, GLdouble y );
+typedef GL_WindowPos2dv = fn void ( GLdouble *v );
+typedef GL_WindowPos2f = fn void (GLfloat x, GLfloat y );
+typedef GL_WindowPos2fv = fn void ( GLfloat *v );
+typedef GL_WindowPos2i = fn void (GLint x, GLint y );
+typedef GL_WindowPos2iv = fn void ( GLint *v );
+typedef GL_WindowPos2s = fn void (GLshort x, GLshort y );
+typedef GL_WindowPos2sv = fn void ( GLshort *v );
+typedef GL_WindowPos3d = fn void (GLdouble x, GLdouble y, GLdouble z );
+typedef GL_WindowPos3dv = fn void ( GLdouble *v );
+typedef GL_WindowPos3f = fn void (GLfloat x, GLfloat y, GLfloat z );
+typedef GL_WindowPos3fv = fn void ( GLfloat *v );
+typedef GL_WindowPos3i = fn void (GLint x, GLint y, GLint z );
+typedef GL_WindowPos3iv = fn void ( GLint *v );
+typedef GL_WindowPos3s = fn void (GLshort x, GLshort y, GLshort z );
+typedef GL_WindowPos3sv = fn void ( GLshort *v );
 
-define ProcFN = fn void* (char*);
+/**
+* GLFW proc definitions
+*/
 
-
- 
+typedef ProcFN = fn void* (char*);
 
 
-/** 
-* Bindings 
-*/ 
+
+
+
+/**
+* Bindings
+*/
 struct GL_bindings
 {
-GL_Accum accum;
-GL_ActiveShaderProgram activeShaderProgram;
-GL_AlphaFunc alphaFunc;
-GL_AreTexturesResident areTexturesResident;
-GL_ArrayElement arrayElement;
-GL_AttachShader attachShader;
-GL_Begin begin;
-GL_BeginConditionalRender beginConditionalRender;
-GL_BeginQuery beginQuery;
-GL_BeginQueryIndexed beginQueryIndexed;
-GL_BeginTransformFeedback beginTransformFeedback;
-GL_BindAttribLocation bindAttribLocation;
-GL_BindBuffer bindBuffer;
-GL_BindBufferBase bindBufferBase;
-GL_BindBufferRange bindBufferRange;
-GL_BindBuffersBase bindBuffersBase;
-GL_BindBuffersRange bindBuffersRange;
-GL_BindFragDataLocation bindFragDataLocation;
-GL_BindFragDataLocationIndexed bindFragDataLocationIndexed;
-GL_BindFramebuffer bindFramebuffer;
-GL_BindImageTexture bindImageTexture;
-GL_BindImageTextures bindImageTextures;
-GL_BindProgramPipeline bindProgramPipeline;
-GL_BindRenderbuffer bindRenderbuffer;
-GL_BindSampler bindSampler;
-GL_BindSamplers bindSamplers;
-GL_BindTexture bindTexture;
-GL_BindTextureUnit bindTextureUnit;
-GL_BindTextures bindTextures;
-GL_BindTransformFeedback bindTransformFeedback;
-GL_BindVertexArray bindVertexArray;
-GL_BindVertexBuffer bindVertexBuffer;
-GL_BindVertexBuffers bindVertexBuffers;
-GL_Bitmap bitmap;
-GL_BlendEquationSeparate blendEquationSeparate;
-GL_BlendEquationSeparatei blendEquationSeparatei;
-GL_BlendEquationi blendEquationi;
-GL_BlendFunc blendFunc;
-GL_BlendFuncSeparatei blendFuncSeparatei;
-GL_BlendFunci blendFunci;
-GL_BlitFramebuffer blitFramebuffer;
-GL_BlitNamedFramebuffer blitNamedFramebuffer;
-GL_BufferData bufferData;
-GL_BufferStorage bufferStorage;
-GL_BufferSubData bufferSubData;
-GL_CallList callList;
-GL_CallLists callLists;
-GL_CheckFramebufferStatus checkFramebufferStatus;
-GL_CheckNamedFramebufferStatus checkNamedFramebufferStatus;
-GL_ClampColor clampColor;
-GL_Clear clear;
-GL_ClearAccum clearAccum;
-GL_ClearBufferData clearBufferData;
-GL_ClearBufferSubData clearBufferSubData;
-GL_ClearBufferfi clearBufferfi;
-GL_ClearBufferfv clearBufferfv;
-GL_ClearBufferiv clearBufferiv;
-GL_ClearBufferuiv clearBufferuiv;
-GL_ClearColor clearColor;
-GL_ClearDepth clearDepth;
-GL_ClearDepthf clearDepthf;
-GL_ClearIndex clearIndex;
-GL_ClearNamedBufferData clearNamedBufferData;
-GL_ClearNamedBufferSubData clearNamedBufferSubData;
-GL_ClearNamedFramebufferfi clearNamedFramebufferfi;
-GL_ClearNamedFramebufferfv clearNamedFramebufferfv;
-GL_ClearNamedFramebufferiv clearNamedFramebufferiv;
-GL_ClearNamedFramebufferuiv clearNamedFramebufferuiv;
-GL_ClearStencil clearStencil;
-GL_ClearTexImage clearTexImage;
-GL_ClearTexSubImage clearTexSubImage;
-GL_ClientActiveTexture clientActiveTexture;
-GL_ClientWaitSync clientWaitSync;
-GL_ClipControl clipControl;
-GL_ClipPlane clipPlane;
-GL_Color3b color3b;
-GL_Color3bv color3bv;
-GL_Color3d color3d;
-GL_Color3dv color3dv;
-GL_Color3f color3f;
-GL_Color3fv color3fv;
-GL_Color3i color3i;
-GL_Color3iv color3iv;
-GL_Color3s color3s;
-GL_Color3sv color3sv;
-GL_Color3ub color3ub;
-GL_Color3ubv color3ubv;
-GL_Color3ui color3ui;
-GL_Color3uiv color3uiv;
-GL_Color3us color3us;
-GL_Color3usv color3usv;
-GL_Color4b color4b;
-GL_Color4bv color4bv;
-GL_Color4d color4d;
-GL_Color4dv color4dv;
-GL_Color4f color4f;
-GL_Color4fv color4fv;
-GL_Color4i color4i;
-GL_Color4iv color4iv;
-GL_Color4s color4s;
-GL_Color4sv color4sv;
-GL_Color4ub color4ub;
-GL_Color4ubv color4ubv;
-GL_Color4ui color4ui;
-GL_Color4uiv color4uiv;
-GL_Color4us color4us;
-GL_Color4usv color4usv;
-GL_ColorMask colorMask;
-GL_ColorMaski colorMaski;
-GL_ColorMaterial colorMaterial;
-GL_ColorP3ui colorP3ui;
-GL_ColorP3uiv colorP3uiv;
-GL_ColorP4ui colorP4ui;
-GL_ColorP4uiv colorP4uiv;
-GL_ColorPointer colorPointer;
-GL_CompileShader compileShader;
-GL_CompressedTextureSubImage1D compressedTextureSubImage1D;
-GL_CompressedTextureSubImage2D compressedTextureSubImage2D;
-GL_CompressedTextureSubImage3D compressedTextureSubImage3D;
-GL_CopyBufferSubData copyBufferSubData;
-GL_CopyImageSubData copyImageSubData;
-GL_CopyNamedBufferSubData copyNamedBufferSubData;
-GL_CopyPixels copyPixels;
-GL_CopyTexImage1D copyTexImage1D;
-GL_CopyTexImage2D copyTexImage2D;
-GL_CopyTexSubImage1D copyTexSubImage1D;
-GL_CopyTexSubImage2D copyTexSubImage2D;
-GL_CopyTextureSubImage1D copyTextureSubImage1D;
-GL_CopyTextureSubImage2D copyTextureSubImage2D;
-GL_CopyTextureSubImage3D copyTextureSubImage3D;
-GL_CreateBuffers createBuffers;
-GL_CreateFramebuffers createFramebuffers;
-GL_CreateProgram createProgram;
-GL_CreateProgramPipelines createProgramPipelines;
-GL_CreateQueries createQueries;
-GL_CreateRenderbuffers createRenderbuffers;
-GL_CreateSamplers createSamplers;
-GL_CreateShader createShader;
-GL_CreateShaderProgramv createShaderProgramv;
-GL_CreateTextures createTextures;
-GL_CreateTransformFeedbacks createTransformFeedbacks;
-GL_CreateVertexArrays createVertexArrays;
-GL_CullFace cullFace;
-GL_DebugMessageCallback debugMessageCallback;
-GL_DebugMessageControl debugMessageControl;
-GL_DebugMessageInsert debugMessageInsert;
-GL_DeleteBuffers deleteBuffers;
-GL_DeleteFramebuffers deleteFramebuffers;
-GL_DeleteLists deleteLists;
-GL_DeleteProgram deleteProgram;
-GL_DeleteProgramPipelines deleteProgramPipelines;
-GL_DeleteQueries deleteQueries;
-GL_DeleteRenderbuffers deleteRenderbuffers;
-GL_DeleteSamplers deleteSamplers;
-GL_DeleteShader deleteShader;
-GL_DeleteSync deleteSync;
-GL_DeleteTextures deleteTextures;
-GL_DeleteTransformFeedbacks deleteTransformFeedbacks;
-GL_DeleteVertexArrays deleteVertexArrays;
-GL_DepthFunc depthFunc;
-GL_DepthMask depthMask;
-GL_DepthRange depthRange;
-GL_DepthRangeArrayv depthRangeArrayv;
-GL_DepthRangeIndexed depthRangeIndexed;
-GL_DepthRangef depthRangef;
-GL_DetachShader detachShader;
-GL_Disable disable;
-GL_DisableClientState disableClientState;
-GL_DisableVertexArrayAttrib disableVertexArrayAttrib;
-GL_DisableVertexAttribArray disableVertexAttribArray;
-GL_Disablei disablei;
-GL_DispatchCompute dispatchCompute;
-GL_DispatchComputeIndirect dispatchComputeIndirect;
-GL_DrawArrays drawArrays;
-GL_DrawArraysIndirect drawArraysIndirect;
-GL_DrawArraysInstanced drawArraysInstanced;
-GL_DrawArraysInstancedBaseInstance drawArraysInstancedBaseInstance;
-GL_DrawBuffer drawBuffer;
-GL_DrawBuffers drawBuffers;
-GL_DrawElements drawElements;
-GL_DrawElementsBaseVertex drawElementsBaseVertex;
-GL_DrawElementsIndirect drawElementsIndirect;
-GL_DrawElementsInstanced drawElementsInstanced;
-GL_DrawElementsInstancedBaseInstance drawElementsInstancedBaseInstance;
-GL_DrawElementsInstancedBaseVertex drawElementsInstancedBaseVertex;
-GL_DrawElementsInstancedBaseVertexBaseInstance drawElementsInstancedBaseVertexBaseInstance;
-GL_DrawPixels drawPixels;
-GL_DrawRangeElementsBaseVertex drawRangeElementsBaseVertex;
-GL_DrawTransformFeedback drawTransformFeedback;
-GL_DrawTransformFeedbackInstanced drawTransformFeedbackInstanced;
-GL_DrawTransformFeedbackStream drawTransformFeedbackStream;
-GL_DrawTransformFeedbackStreamInstanced drawTransformFeedbackStreamInstanced;
-GL_EdgeFlag edgeFlag;
-GL_EdgeFlagPointer edgeFlagPointer;
-GL_EdgeFlagv edgeFlagv;
-GL_Enable enable;
-GL_EnableClientState enableClientState;
-GL_EnableVertexArrayAttrib enableVertexArrayAttrib;
-GL_EnableVertexAttribArray enableVertexAttribArray;
-GL_Enablei enablei;
-GL_End end;
-GL_EndConditionalRender endConditionalRender;
-GL_EndList endList;
-GL_EndQuery endQuery;
-GL_EndQueryIndexed endQueryIndexed;
-GL_EndTransformFeedback endTransformFeedback;
-GL_EvalCoord1d evalCoord1d;
-GL_EvalCoord1dv evalCoord1dv;
-GL_EvalCoord1f evalCoord1f;
-GL_EvalCoord1fv evalCoord1fv;
-GL_EvalCoord2d evalCoord2d;
-GL_EvalCoord2dv evalCoord2dv;
-GL_EvalCoord2f evalCoord2f;
-GL_EvalCoord2fv evalCoord2fv;
-GL_EvalMesh1 evalMesh1;
-GL_EvalMesh2 evalMesh2;
-GL_EvalPoint1 evalPoint1;
-GL_EvalPoint2 evalPoint2;
-GL_FeedbackBuffer feedbackBuffer;
-GL_FenceSync fenceSync;
-GL_Finish finish;
-GL_Flush flush;
-GL_FlushMappedBufferRange flushMappedBufferRange;
-GL_FlushMappedNamedBufferRange flushMappedNamedBufferRange;
-GL_FogCoordPointer fogCoordPointer;
-GL_FogCoordd fogCoordd;
-GL_FogCoorddv fogCoorddv;
-GL_FogCoordf fogCoordf;
-GL_FogCoordfv fogCoordfv;
-GL_Fogf fogf;
-GL_Fogfv fogfv;
-GL_Fogi fogi;
-GL_Fogiv fogiv;
-GL_FramebufferParameteri framebufferParameteri;
-GL_FramebufferRenderbuffer framebufferRenderbuffer;
-GL_FramebufferTexture framebufferTexture;
-GL_FramebufferTexture1D framebufferTexture1D;
-GL_FramebufferTexture2D framebufferTexture2D;
-GL_FramebufferTexture3D framebufferTexture3D;
-GL_FramebufferTextureLayer framebufferTextureLayer;
-GL_FrontFace frontFace;
-GL_Frustum frustum;
-GL_GenBuffers genBuffers;
-GL_GenFramebuffers genFramebuffers;
-GL_GenLists genLists;
-GL_GenProgramPipelines genProgramPipelines;
-GL_GenQueries genQueries;
-GL_GenRenderbuffers genRenderbuffers;
-GL_GenSamplers genSamplers;
-GL_GenTextures genTextures;
-GL_GenTransformFeedbacks genTransformFeedbacks;
-GL_GenVertexArrays genVertexArrays;
-GL_GenerateMipmap generateMipmap;
-GL_GenerateTextureMipmap generateTextureMipmap;
-GL_GetActiveAtomicCounterBufferiv getActiveAtomicCounterBufferiv;
-GL_GetActiveAttrib getActiveAttrib;
-GL_GetActiveSubroutineName getActiveSubroutineName;
-GL_GetActiveSubroutineUniformName getActiveSubroutineUniformName;
-GL_GetActiveSubroutineUniformiv getActiveSubroutineUniformiv;
-GL_GetActiveUniform getActiveUniform;
-GL_GetActiveUniformBlockName getActiveUniformBlockName;
-GL_GetActiveUniformBlockiv getActiveUniformBlockiv;
-GL_GetActiveUniformName getActiveUniformName;
-GL_GetActiveUniformsiv getActiveUniformsiv;
-GL_GetAttachedShaders getAttachedShaders;
-GL_GetAttribLocation getAttribLocation;
-GL_GetBooleani_v getBooleani_v;
-GL_GetBooleanv getBooleanv;
-GL_GetBufferParameteri64v getBufferParameteri64v;
-GL_GetBufferParameteriv getBufferParameteriv;
-GL_GetBufferPointerv getBufferPointerv;
-GL_GetBufferSubData getBufferSubData;
-GL_GetClipPlane getClipPlane;
-GL_GetCompressedTextureImage getCompressedTextureImage;
-GL_GetCompressedTextureSubImage getCompressedTextureSubImage;
-GL_GetDebugMessageLog getDebugMessageLog;
-GL_GetDoublei_v getDoublei_v;
-GL_GetDoublev getDoublev;
-GL_GetError getError;
-GL_GetFloati_v getFloati_v;
-GL_GetFloatv getFloatv;
-GL_GetFragDataIndex getFragDataIndex;
-GL_GetFragDataLocation getFragDataLocation;
-GL_GetFramebufferAttachmentParameteriv getFramebufferAttachmentParameteriv;
-GL_GetFramebufferParameteriv getFramebufferParameteriv;
-GL_GetGraphicsResetStatus getGraphicsResetStatus;
-GL_GetInteger64i_v getInteger64i_v;
-GL_GetInteger64v getInteger64v;
-GL_GetIntegeri_v getIntegeri_v;
-GL_GetIntegerv getIntegerv;
-GL_GetInternalformati64v getInternalformati64v;
-GL_GetInternalformativ getInternalformativ;
-GL_GetLightfv getLightfv;
-GL_GetLightiv getLightiv;
-GL_GetMapdv getMapdv;
-GL_GetMapfv getMapfv;
-GL_GetMapiv getMapiv;
-GL_GetMaterialfv getMaterialfv;
-GL_GetMaterialiv getMaterialiv;
-GL_GetMultisamplefv getMultisamplefv;
-GL_GetNamedBufferParameteri64v getNamedBufferParameteri64v;
-GL_GetNamedBufferParameteriv getNamedBufferParameteriv;
-GL_GetNamedBufferPointerv getNamedBufferPointerv;
-GL_GetNamedBufferSubData getNamedBufferSubData;
-GL_GetNamedFramebufferAttachmentParameteriv getNamedFramebufferAttachmentParameteriv;
-GL_GetNamedFramebufferParameteriv getNamedFramebufferParameteriv;
-GL_GetNamedRenderbufferParameteriv getNamedRenderbufferParameteriv;
-GL_GetObjectLabel getObjectLabel;
-GL_GetObjectPtrLabel getObjectPtrLabel;
-GL_GetPixelMapfv getPixelMapfv;
-GL_GetPixelMapuiv getPixelMapuiv;
-GL_GetPixelMapusv getPixelMapusv;
-GL_GetPointerv getPointerv;
-GL_GetPolygonStipple getPolygonStipple;
-GL_GetProgramBinary getProgramBinary;
-GL_GetProgramInfoLog getProgramInfoLog;
-GL_GetProgramInterfaceiv getProgramInterfaceiv;
-GL_GetProgramPipelineInfoLog getProgramPipelineInfoLog;
-GL_GetProgramPipelineiv getProgramPipelineiv;
-GL_GetProgramResourceIndex getProgramResourceIndex;
-GL_GetProgramResourceLocation getProgramResourceLocation;
-GL_GetProgramResourceLocationIndex getProgramResourceLocationIndex;
-GL_GetProgramResourceName getProgramResourceName;
-GL_GetProgramResourceiv getProgramResourceiv;
-GL_GetProgramStageiv getProgramStageiv;
-GL_GetProgramiv getProgramiv;
-GL_GetQueryBufferObjecti64v getQueryBufferObjecti64v;
-GL_GetQueryBufferObjectiv getQueryBufferObjectiv;
-GL_GetQueryBufferObjectui64v getQueryBufferObjectui64v;
-GL_GetQueryBufferObjectuiv getQueryBufferObjectuiv;
-GL_GetQueryIndexediv getQueryIndexediv;
-GL_GetQueryObjecti64v getQueryObjecti64v;
-GL_GetQueryObjectiv getQueryObjectiv;
-GL_GetQueryObjectui64v getQueryObjectui64v;
-GL_GetQueryObjectuiv getQueryObjectuiv;
-GL_GetQueryiv getQueryiv;
-GL_GetRenderbufferParameteriv getRenderbufferParameteriv;
-GL_GetSamplerParameterIiv getSamplerParameterIiv;
-GL_GetSamplerParameterIuiv getSamplerParameterIuiv;
-GL_GetSamplerParameterfv getSamplerParameterfv;
-GL_GetSamplerParameteriv getSamplerParameteriv;
-GL_GetShaderInfoLog getShaderInfoLog;
-GL_GetShaderPrecisionFormat getShaderPrecisionFormat;
-GL_GetShaderSource getShaderSource;
-GL_GetShaderiv getShaderiv;
-GL_GetString getString;
-GL_GetStringi getStringi;
-GL_GetSubroutineIndex getSubroutineIndex;
-GL_GetSubroutineUniformLocation getSubroutineUniformLocation;
-GL_GetSynciv getSynciv;
-GL_GetTexEnvfv getTexEnvfv;
-GL_GetTexEnviv getTexEnviv;
-GL_GetTexGendv getTexGendv;
-GL_GetTexGenfv getTexGenfv;
-GL_GetTexGeniv getTexGeniv;
-GL_GetTexImage getTexImage;
-GL_GetTexLevelParameterfv getTexLevelParameterfv;
-GL_GetTexLevelParameteriv getTexLevelParameteriv;
-GL_GetTexParameterIiv getTexParameterIiv;
-GL_GetTexParameterIuiv getTexParameterIuiv;
-GL_GetTexParameterfv getTexParameterfv;
-GL_GetTexParameteriv getTexParameteriv;
-GL_GetTextureImage getTextureImage;
-GL_GetTextureLevelParameterfv getTextureLevelParameterfv;
-GL_GetTextureLevelParameteriv getTextureLevelParameteriv;
-GL_GetTextureParameterIiv getTextureParameterIiv;
-GL_GetTextureParameterIuiv getTextureParameterIuiv;
-GL_GetTextureParameterfv getTextureParameterfv;
-GL_GetTextureParameteriv getTextureParameteriv;
-GL_GetTextureSubImage getTextureSubImage;
-GL_GetTransformFeedbackVarying getTransformFeedbackVarying;
-GL_GetTransformFeedbacki64_v getTransformFeedbacki64_v;
-GL_GetTransformFeedbacki_v getTransformFeedbacki_v;
-GL_GetTransformFeedbackiv getTransformFeedbackiv;
-GL_GetUniformBlockIndex getUniformBlockIndex;
-GL_GetUniformIndices getUniformIndices;
-GL_GetUniformLocation getUniformLocation;
-GL_GetUniformSubroutineuiv getUniformSubroutineuiv;
-GL_GetUniformdv getUniformdv;
-GL_GetUniformfv getUniformfv;
-GL_GetUniformiv getUniformiv;
-GL_GetUniformuiv getUniformuiv;
-GL_GetVertexArrayIndexed64iv getVertexArrayIndexed64iv;
-GL_GetVertexArrayIndexediv getVertexArrayIndexediv;
-GL_GetVertexArrayiv getVertexArrayiv;
-GL_GetVertexAttribIiv getVertexAttribIiv;
-GL_GetVertexAttribIuiv getVertexAttribIuiv;
-GL_GetVertexAttribLdv getVertexAttribLdv;
-GL_GetVertexAttribPointerv getVertexAttribPointerv;
-GL_GetVertexAttribdv getVertexAttribdv;
-GL_GetVertexAttribfv getVertexAttribfv;
-GL_GetVertexAttribiv getVertexAttribiv;
-GL_GetnColorTable getnColorTable;
-GL_GetnCompressedTexImage getnCompressedTexImage;
-GL_GetnConvolutionFilter getnConvolutionFilter;
-GL_GetnHistogram getnHistogram;
-GL_GetnMapdv getnMapdv;
-GL_GetnMapfv getnMapfv;
-GL_GetnMapiv getnMapiv;
-GL_GetnMinmax getnMinmax;
-GL_GetnPixelMapfv getnPixelMapfv;
-GL_GetnPixelMapuiv getnPixelMapuiv;
-GL_GetnPixelMapusv getnPixelMapusv;
-GL_GetnPolygonStipple getnPolygonStipple;
-GL_GetnSeparableFilter getnSeparableFilter;
-GL_GetnTexImage getnTexImage;
-GL_GetnUniformdv getnUniformdv;
-GL_GetnUniformfv getnUniformfv;
-GL_GetnUniformiv getnUniformiv;
-GL_GetnUniformuiv getnUniformuiv;
-GL_Hint hint;
-GL_IndexMask indexMask;
-GL_IndexPointer indexPointer;
-GL_Indexd indexd;
-GL_Indexdv indexdv;
-GL_Indexf indexf;
-GL_Indexfv indexfv;
-GL_Indexi indexi;
-GL_Indexiv indexiv;
-GL_Indexs indexs;
-GL_Indexsv indexsv;
-GL_Indexub indexub;
-GL_Indexubv indexubv;
-GL_InitNames initNames;
-GL_InterleavedArrays interleavedArrays;
-GL_InvalidateBufferData invalidateBufferData;
-GL_InvalidateBufferSubData invalidateBufferSubData;
-GL_InvalidateFramebuffer invalidateFramebuffer;
-GL_InvalidateNamedFramebufferData invalidateNamedFramebufferData;
-GL_InvalidateNamedFramebufferSubData invalidateNamedFramebufferSubData;
-GL_InvalidateSubFramebuffer invalidateSubFramebuffer;
-GL_InvalidateTexImage invalidateTexImage;
-GL_InvalidateTexSubImage invalidateTexSubImage;
-GL_IsBuffer isBuffer;
-GL_IsEnabled isEnabled;
-GL_IsEnabledi isEnabledi;
-GL_IsFramebuffer isFramebuffer;
-GL_IsList isList;
-GL_IsProgram isProgram;
-GL_IsProgramPipeline isProgramPipeline;
-GL_IsQuery isQuery;
-GL_IsRenderbuffer isRenderbuffer;
-GL_IsSampler isSampler;
-GL_IsShader isShader;
-GL_IsSync isSync;
-GL_IsTexture isTexture;
-GL_IsTransformFeedback isTransformFeedback;
-GL_IsVertexArray isVertexArray;
-GL_LightModelf lightModelf;
-GL_LightModelfv lightModelfv;
-GL_LightModeli lightModeli;
-GL_LightModeliv lightModeliv;
-GL_Lightf lightf;
-GL_Lightfv lightfv;
-GL_Lighti lighti;
-GL_Lightiv lightiv;
-GL_LineStipple lineStipple;
-GL_LineWidth lineWidth;
-GL_LinkProgram linkProgram;
-GL_ListBase listBase;
-GL_LoadIdentity loadIdentity;
-GL_LoadMatrixd loadMatrixd;
-GL_LoadMatrixf loadMatrixf;
-GL_LoadName loadName;
-GL_LoadTransposeMatrixd loadTransposeMatrixd;
-GL_LoadTransposeMatrixf loadTransposeMatrixf;
-GL_LogicOp logicOp;
-GL_Map1d map1d;
-GL_Map1f map1f;
-GL_Map2d map2d;
-GL_Map2f map2f;
-GL_MapBuffer mapBuffer;
-GL_MapBufferRange mapBufferRange;
-GL_MapGrid1d mapGrid1d;
-GL_MapGrid1f mapGrid1f;
-GL_MapGrid2d mapGrid2d;
-GL_MapGrid2f mapGrid2f;
-GL_MapNamedBuffer mapNamedBuffer;
-GL_MapNamedBufferRange mapNamedBufferRange;
-GL_Materialf materialf;
-GL_Materialfv materialfv;
-GL_Materiali materiali;
-GL_Materialiv materialiv;
-GL_MatrixMode matrixMode;
-GL_MemoryBarrier memoryBarrier;
-GL_MemoryBarrierByRegion memoryBarrierByRegion;
-GL_MinSampleShading minSampleShading;
-GL_MultMatrixd multMatrixd;
-GL_MultMatrixf multMatrixf;
-GL_MultTransposeMatrixd multTransposeMatrixd;
-GL_MultTransposeMatrixf multTransposeMatrixf;
-GL_MultiDrawArraysIndirect multiDrawArraysIndirect;
-GL_MultiDrawArraysIndirectCount multiDrawArraysIndirectCount;
-GL_MultiDrawElementsBaseVertex multiDrawElementsBaseVertex;
-GL_MultiDrawElementsIndirect multiDrawElementsIndirect;
-GL_MultiDrawElementsIndirectCount multiDrawElementsIndirectCount;
-GL_MultiTexCoord1d multiTexCoord1d;
-GL_MultiTexCoord1dv multiTexCoord1dv;
-GL_MultiTexCoord1f multiTexCoord1f;
-GL_MultiTexCoord1fv multiTexCoord1fv;
-GL_MultiTexCoord1i multiTexCoord1i;
-GL_MultiTexCoord1iv multiTexCoord1iv;
-GL_MultiTexCoord1s multiTexCoord1s;
-GL_MultiTexCoord1sv multiTexCoord1sv;
-GL_MultiTexCoord2d multiTexCoord2d;
-GL_MultiTexCoord2dv multiTexCoord2dv;
-GL_MultiTexCoord2f multiTexCoord2f;
-GL_MultiTexCoord2fv multiTexCoord2fv;
-GL_MultiTexCoord2i multiTexCoord2i;
-GL_MultiTexCoord2iv multiTexCoord2iv;
-GL_MultiTexCoord2s multiTexCoord2s;
-GL_MultiTexCoord2sv multiTexCoord2sv;
-GL_MultiTexCoord3d multiTexCoord3d;
-GL_MultiTexCoord3dv multiTexCoord3dv;
-GL_MultiTexCoord3f multiTexCoord3f;
-GL_MultiTexCoord3fv multiTexCoord3fv;
-GL_MultiTexCoord3i multiTexCoord3i;
-GL_MultiTexCoord3iv multiTexCoord3iv;
-GL_MultiTexCoord3s multiTexCoord3s;
-GL_MultiTexCoord3sv multiTexCoord3sv;
-GL_MultiTexCoord4d multiTexCoord4d;
-GL_MultiTexCoord4dv multiTexCoord4dv;
-GL_MultiTexCoord4f multiTexCoord4f;
-GL_MultiTexCoord4fv multiTexCoord4fv;
-GL_MultiTexCoord4i multiTexCoord4i;
-GL_MultiTexCoord4iv multiTexCoord4iv;
-GL_MultiTexCoord4s multiTexCoord4s;
-GL_MultiTexCoord4sv multiTexCoord4sv;
-GL_MultiTexCoordP1ui multiTexCoordP1ui;
-GL_MultiTexCoordP1uiv multiTexCoordP1uiv;
-GL_MultiTexCoordP2ui multiTexCoordP2ui;
-GL_MultiTexCoordP2uiv multiTexCoordP2uiv;
-GL_MultiTexCoordP3ui multiTexCoordP3ui;
-GL_MultiTexCoordP3uiv multiTexCoordP3uiv;
-GL_MultiTexCoordP4ui multiTexCoordP4ui;
-GL_MultiTexCoordP4uiv multiTexCoordP4uiv;
-GL_NamedBufferData namedBufferData;
-GL_NamedBufferStorage namedBufferStorage;
-GL_NamedBufferSubData namedBufferSubData;
-GL_NamedFramebufferDrawBuffer namedFramebufferDrawBuffer;
-GL_NamedFramebufferDrawBuffers namedFramebufferDrawBuffers;
-GL_NamedFramebufferParameteri namedFramebufferParameteri;
-GL_NamedFramebufferReadBuffer namedFramebufferReadBuffer;
-GL_NamedFramebufferRenderbuffer namedFramebufferRenderbuffer;
-GL_NamedFramebufferTexture namedFramebufferTexture;
-GL_NamedFramebufferTextureLayer namedFramebufferTextureLayer;
-GL_NamedRenderbufferStorage namedRenderbufferStorage;
-GL_NamedRenderbufferStorageMultisample namedRenderbufferStorageMultisample;
-GL_NewList newList;
-GL_Normal3b normal3b;
-GL_Normal3bv normal3bv;
-GL_Normal3d normal3d;
-GL_Normal3dv normal3dv;
-GL_Normal3f normal3f;
-GL_Normal3fv normal3fv;
-GL_Normal3i normal3i;
-GL_Normal3iv normal3iv;
-GL_Normal3s normal3s;
-GL_Normal3sv normal3sv;
-GL_NormalP3ui normalP3ui;
-GL_NormalP3uiv normalP3uiv;
-GL_NormalPointer normalPointer;
-GL_ObjectLabel objectLabel;
-GL_ObjectPtrLabel objectPtrLabel;
-GL_Ortho ortho;
-GL_PassThrough passThrough;
-GL_PatchParameterfv patchParameterfv;
-GL_PatchParameteri patchParameteri;
-GL_PauseTransformFeedback pauseTransformFeedback;
-GL_PixelMapfv pixelMapfv;
-GL_PixelMapuiv pixelMapuiv;
-GL_PixelMapusv pixelMapusv;
-GL_PixelStoref pixelStoref;
-GL_PixelStorei pixelStorei;
-GL_PixelTransferf pixelTransferf;
-GL_PixelTransferi pixelTransferi;
-GL_PixelZoom pixelZoom;
-GL_PointSize pointSize;
-GL_PolygonMode polygonMode;
-GL_PolygonOffset polygonOffset;
-GL_PolygonOffsetClamp polygonOffsetClamp;
-GL_PolygonStipple polygonStipple;
-GL_PopAttrib popAttrib;
-GL_PopClientAttrib popClientAttrib;
-GL_PopDebugGroup popDebugGroup;
-GL_PopMatrix popMatrix;
-GL_PopName popName;
-GL_PrimitiveRestartIndex primitiveRestartIndex;
-GL_PrioritizeTextures prioritizeTextures;
-GL_ProgramBinary programBinary;
-GL_ProgramParameteri programParameteri;
-GL_ProgramUniform1d programUniform1d;
-GL_ProgramUniform1dv programUniform1dv;
-GL_ProgramUniform1f programUniform1f;
-GL_ProgramUniform1fv programUniform1fv;
-GL_ProgramUniform1i programUniform1i;
-GL_ProgramUniform1iv programUniform1iv;
-GL_ProgramUniform1ui programUniform1ui;
-GL_ProgramUniform1uiv programUniform1uiv;
-GL_ProgramUniform2d programUniform2d;
-GL_ProgramUniform2dv programUniform2dv;
-GL_ProgramUniform2f programUniform2f;
-GL_ProgramUniform2fv programUniform2fv;
-GL_ProgramUniform2i programUniform2i;
-GL_ProgramUniform2iv programUniform2iv;
-GL_ProgramUniform2ui programUniform2ui;
-GL_ProgramUniform2uiv programUniform2uiv;
-GL_ProgramUniform3d programUniform3d;
-GL_ProgramUniform3dv programUniform3dv;
-GL_ProgramUniform3f programUniform3f;
-GL_ProgramUniform3fv programUniform3fv;
-GL_ProgramUniform3i programUniform3i;
-GL_ProgramUniform3iv programUniform3iv;
-GL_ProgramUniform3ui programUniform3ui;
-GL_ProgramUniform3uiv programUniform3uiv;
-GL_ProgramUniform4d programUniform4d;
-GL_ProgramUniform4dv programUniform4dv;
-GL_ProgramUniform4f programUniform4f;
-GL_ProgramUniform4fv programUniform4fv;
-GL_ProgramUniform4i programUniform4i;
-GL_ProgramUniform4iv programUniform4iv;
-GL_ProgramUniform4ui programUniform4ui;
-GL_ProgramUniform4uiv programUniform4uiv;
-GL_ProgramUniformMatrix2dv programUniformMatrix2dv;
-GL_ProgramUniformMatrix2fv programUniformMatrix2fv;
-GL_ProgramUniformMatrix2x3dv programUniformMatrix2x3dv;
-GL_ProgramUniformMatrix2x3fv programUniformMatrix2x3fv;
-GL_ProgramUniformMatrix2x4dv programUniformMatrix2x4dv;
-GL_ProgramUniformMatrix2x4fv programUniformMatrix2x4fv;
-GL_ProgramUniformMatrix3dv programUniformMatrix3dv;
-GL_ProgramUniformMatrix3fv programUniformMatrix3fv;
-GL_ProgramUniformMatrix3x2dv programUniformMatrix3x2dv;
-GL_ProgramUniformMatrix3x2fv programUniformMatrix3x2fv;
-GL_ProgramUniformMatrix3x4dv programUniformMatrix3x4dv;
-GL_ProgramUniformMatrix3x4fv programUniformMatrix3x4fv;
-GL_ProgramUniformMatrix4dv programUniformMatrix4dv;
-GL_ProgramUniformMatrix4fv programUniformMatrix4fv;
-GL_ProgramUniformMatrix4x2dv programUniformMatrix4x2dv;
-GL_ProgramUniformMatrix4x2fv programUniformMatrix4x2fv;
-GL_ProgramUniformMatrix4x3dv programUniformMatrix4x3dv;
-GL_ProgramUniformMatrix4x3fv programUniformMatrix4x3fv;
-GL_ProvokingVertex provokingVertex;
-GL_PushAttrib pushAttrib;
-GL_PushClientAttrib pushClientAttrib;
-GL_PushDebugGroup pushDebugGroup;
-GL_PushMatrix pushMatrix;
-GL_PushName pushName;
-GL_QueryCounter queryCounter;
-GL_RasterPos2d rasterPos2d;
-GL_RasterPos2dv rasterPos2dv;
-GL_RasterPos2f rasterPos2f;
-GL_RasterPos2fv rasterPos2fv;
-GL_RasterPos2i rasterPos2i;
-GL_RasterPos2iv rasterPos2iv;
-GL_RasterPos2s rasterPos2s;
-GL_RasterPos2sv rasterPos2sv;
-GL_RasterPos3d rasterPos3d;
-GL_RasterPos3dv rasterPos3dv;
-GL_RasterPos3f rasterPos3f;
-GL_RasterPos3fv rasterPos3fv;
-GL_RasterPos3i rasterPos3i;
-GL_RasterPos3iv rasterPos3iv;
-GL_RasterPos3s rasterPos3s;
-GL_RasterPos3sv rasterPos3sv;
-GL_RasterPos4d rasterPos4d;
-GL_RasterPos4dv rasterPos4dv;
-GL_RasterPos4f rasterPos4f;
-GL_RasterPos4fv rasterPos4fv;
-GL_RasterPos4i rasterPos4i;
-GL_RasterPos4iv rasterPos4iv;
-GL_RasterPos4s rasterPos4s;
-GL_RasterPos4sv rasterPos4sv;
-GL_ReadBuffer readBuffer;
-GL_ReadPixels readPixels;
-GL_ReadnPixels readnPixels;
-GL_Rectd rectd;
-GL_Rectdv rectdv;
-GL_Rectf rectf;
-GL_Rectfv rectfv;
-GL_Recti recti;
-GL_Rectiv rectiv;
-GL_Rects rects;
-GL_Rectsv rectsv;
-GL_ReleaseShaderCompiler releaseShaderCompiler;
-GL_RenderMode renderMode;
-GL_RenderbufferStorage renderbufferStorage;
-GL_RenderbufferStorageMultisample renderbufferStorageMultisample;
-GL_ResumeTransformFeedback resumeTransformFeedback;
-GL_Rotated rotated;
-GL_Rotatef rotatef;
-GL_SampleMaski sampleMaski;
-GL_SamplerParameterIiv samplerParameterIiv;
-GL_SamplerParameterIuiv samplerParameterIuiv;
-GL_SamplerParameterf samplerParameterf;
-GL_SamplerParameterfv samplerParameterfv;
-GL_SamplerParameteri samplerParameteri;
-GL_SamplerParameteriv samplerParameteriv;
-GL_Scaled scaled;
-GL_Scalef scalef;
-GL_Scissor scissor;
-GL_ScissorArrayv scissorArrayv;
-GL_ScissorIndexed scissorIndexed;
-GL_ScissorIndexedv scissorIndexedv;
-GL_SecondaryColor3b secondaryColor3b;
-GL_SecondaryColor3bv secondaryColor3bv;
-GL_SecondaryColor3d secondaryColor3d;
-GL_SecondaryColor3dv secondaryColor3dv;
-GL_SecondaryColor3f secondaryColor3f;
-GL_SecondaryColor3fv secondaryColor3fv;
-GL_SecondaryColor3i secondaryColor3i;
-GL_SecondaryColor3iv secondaryColor3iv;
-GL_SecondaryColor3s secondaryColor3s;
-GL_SecondaryColor3sv secondaryColor3sv;
-GL_SecondaryColor3ub secondaryColor3ub;
-GL_SecondaryColor3ubv secondaryColor3ubv;
-GL_SecondaryColor3ui secondaryColor3ui;
-GL_SecondaryColor3uiv secondaryColor3uiv;
-GL_SecondaryColor3us secondaryColor3us;
-GL_SecondaryColor3usv secondaryColor3usv;
-GL_SecondaryColorP3ui secondaryColorP3ui;
-GL_SecondaryColorP3uiv secondaryColorP3uiv;
-GL_SecondaryColorPointer secondaryColorPointer;
-GL_SelectBuffer selectBuffer;
-GL_ShadeModel shadeModel;
-GL_ShaderBinary shaderBinary;
-GL_ShaderSource shaderSource;
-GL_ShaderStorageBlockBinding shaderStorageBlockBinding;
-GL_SpecializeShader specializeShader;
-GL_StencilFunc stencilFunc;
-GL_StencilFuncSeparate stencilFuncSeparate;
-GL_StencilMask stencilMask;
-GL_StencilMaskSeparate stencilMaskSeparate;
-GL_StencilOp stencilOp;
-GL_StencilOpSeparate stencilOpSeparate;
-GL_TexBuffer texBuffer;
-GL_TexBufferRange texBufferRange;
-GL_TexCoord1d texCoord1d;
-GL_TexCoord1dv texCoord1dv;
-GL_TexCoord1f texCoord1f;
-GL_TexCoord1fv texCoord1fv;
-GL_TexCoord1i texCoord1i;
-GL_TexCoord1iv texCoord1iv;
-GL_TexCoord1s texCoord1s;
-GL_TexCoord1sv texCoord1sv;
-GL_TexCoord2d texCoord2d;
-GL_TexCoord2dv texCoord2dv;
-GL_TexCoord2f texCoord2f;
-GL_TexCoord2fv texCoord2fv;
-GL_TexCoord2i texCoord2i;
-GL_TexCoord2iv texCoord2iv;
-GL_TexCoord2s texCoord2s;
-GL_TexCoord2sv texCoord2sv;
-GL_TexCoord3d texCoord3d;
-GL_TexCoord3dv texCoord3dv;
-GL_TexCoord3f texCoord3f;
-GL_TexCoord3fv texCoord3fv;
-GL_TexCoord3i texCoord3i;
-GL_TexCoord3iv texCoord3iv;
-GL_TexCoord3s texCoord3s;
-GL_TexCoord3sv texCoord3sv;
-GL_TexCoord4d texCoord4d;
-GL_TexCoord4dv texCoord4dv;
-GL_TexCoord4f texCoord4f;
-GL_TexCoord4fv texCoord4fv;
-GL_TexCoord4i texCoord4i;
-GL_TexCoord4iv texCoord4iv;
-GL_TexCoord4s texCoord4s;
-GL_TexCoord4sv texCoord4sv;
-GL_TexCoordP1ui texCoordP1ui;
-GL_TexCoordP1uiv texCoordP1uiv;
-GL_TexCoordP2ui texCoordP2ui;
-GL_TexCoordP2uiv texCoordP2uiv;
-GL_TexCoordP3ui texCoordP3ui;
-GL_TexCoordP3uiv texCoordP3uiv;
-GL_TexCoordP4ui texCoordP4ui;
-GL_TexCoordP4uiv texCoordP4uiv;
-GL_TexCoordPointer texCoordPointer;
-GL_TexEnvf texEnvf;
-GL_TexEnvfv texEnvfv;
-GL_TexEnvi texEnvi;
-GL_TexEnviv texEnviv;
-GL_TexGend texGend;
-GL_TexGendv texGendv;
-GL_TexGenf texGenf;
-GL_TexGenfv texGenfv;
-GL_TexGeni texGeni;
-GL_TexGeniv texGeniv;
-GL_TexImage1D texImage1D;
-GL_TexImage2D texImage2D;
-GL_TexImage2DMultisample texImage2DMultisample;
-GL_TexImage3DMultisample texImage3DMultisample;
-GL_TexParameterIiv texParameterIiv;
-GL_TexParameterIuiv texParameterIuiv;
-GL_TexParameterf texParameterf;
-GL_TexParameterfv texParameterfv;
-GL_TexParameteri texParameteri;
-GL_TexParameteriv texParameteriv;
-GL_TexStorage1D texStorage1D;
-GL_TexStorage2D texStorage2D;
-GL_TexStorage2DMultisample texStorage2DMultisample;
-GL_TexStorage3D texStorage3D;
-GL_TexStorage3DMultisample texStorage3DMultisample;
-GL_TexSubImage1D texSubImage1D;
-GL_TexSubImage2D texSubImage2D;
-GL_TextureBarrier textureBarrier;
-GL_TextureBuffer textureBuffer;
-GL_TextureBufferRange textureBufferRange;
-GL_TextureParameterIiv textureParameterIiv;
-GL_TextureParameterIuiv textureParameterIuiv;
-GL_TextureParameterf textureParameterf;
-GL_TextureParameterfv textureParameterfv;
-GL_TextureParameteri textureParameteri;
-GL_TextureParameteriv textureParameteriv;
-GL_TextureStorage1D textureStorage1D;
-GL_TextureStorage2D textureStorage2D;
-GL_TextureStorage2DMultisample textureStorage2DMultisample;
-GL_TextureStorage3D textureStorage3D;
-GL_TextureStorage3DMultisample textureStorage3DMultisample;
-GL_TextureSubImage1D textureSubImage1D;
-GL_TextureSubImage2D textureSubImage2D;
-GL_TextureSubImage3D textureSubImage3D;
-GL_TextureView textureView;
-GL_TransformFeedbackBufferBase transformFeedbackBufferBase;
-GL_TransformFeedbackBufferRange transformFeedbackBufferRange;
-GL_TransformFeedbackVaryings transformFeedbackVaryings;
-GL_Translated translated;
-GL_Translatef translatef;
-GL_Uniform1d uniform1d;
-GL_Uniform1dv uniform1dv;
-GL_Uniform1f uniform1f;
-GL_Uniform1fv uniform1fv;
-GL_Uniform1i uniform1i;
-GL_Uniform1iv uniform1iv;
-GL_Uniform1ui uniform1ui;
-GL_Uniform1uiv uniform1uiv;
-GL_Uniform2d uniform2d;
-GL_Uniform2dv uniform2dv;
-GL_Uniform2f uniform2f;
-GL_Uniform2fv uniform2fv;
-GL_Uniform2i uniform2i;
-GL_Uniform2iv uniform2iv;
-GL_Uniform2ui uniform2ui;
-GL_Uniform2uiv uniform2uiv;
-GL_Uniform3d uniform3d;
-GL_Uniform3dv uniform3dv;
-GL_Uniform3f uniform3f;
-GL_Uniform3fv uniform3fv;
-GL_Uniform3i uniform3i;
-GL_Uniform3iv uniform3iv;
-GL_Uniform3ui uniform3ui;
-GL_Uniform3uiv uniform3uiv;
-GL_Uniform4d uniform4d;
-GL_Uniform4dv uniform4dv;
-GL_Uniform4f uniform4f;
-GL_Uniform4fv uniform4fv;
-GL_Uniform4i uniform4i;
-GL_Uniform4iv uniform4iv;
-GL_Uniform4ui uniform4ui;
-GL_Uniform4uiv uniform4uiv;
-GL_UniformBlockBinding uniformBlockBinding;
-GL_UniformMatrix2dv uniformMatrix2dv;
-GL_UniformMatrix2fv uniformMatrix2fv;
-GL_UniformMatrix2x3dv uniformMatrix2x3dv;
-GL_UniformMatrix2x3fv uniformMatrix2x3fv;
-GL_UniformMatrix2x4dv uniformMatrix2x4dv;
-GL_UniformMatrix2x4fv uniformMatrix2x4fv;
-GL_UniformMatrix3dv uniformMatrix3dv;
-GL_UniformMatrix3fv uniformMatrix3fv;
-GL_UniformMatrix3x2dv uniformMatrix3x2dv;
-GL_UniformMatrix3x2fv uniformMatrix3x2fv;
-GL_UniformMatrix3x4dv uniformMatrix3x4dv;
-GL_UniformMatrix3x4fv uniformMatrix3x4fv;
-GL_UniformMatrix4dv uniformMatrix4dv;
-GL_UniformMatrix4fv uniformMatrix4fv;
-GL_UniformMatrix4x2dv uniformMatrix4x2dv;
-GL_UniformMatrix4x2fv uniformMatrix4x2fv;
-GL_UniformMatrix4x3dv uniformMatrix4x3dv;
-GL_UniformMatrix4x3fv uniformMatrix4x3fv;
-GL_UniformSubroutinesuiv uniformSubroutinesuiv;
-GL_UnmapBuffer unmapBuffer;
-GL_UnmapNamedBuffer unmapNamedBuffer;
-GL_UseProgram useProgram;
-GL_UseProgramStages useProgramStages;
-GL_ValidateProgram validateProgram;
-GL_ValidateProgramPipeline validateProgramPipeline;
-GL_Vertex2d vertex2d;
-GL_Vertex2dv vertex2dv;
-GL_Vertex2f vertex2f;
-GL_Vertex2fv vertex2fv;
-GL_Vertex2i vertex2i;
-GL_Vertex2iv vertex2iv;
-GL_Vertex2s vertex2s;
-GL_Vertex2sv vertex2sv;
-GL_Vertex3d vertex3d;
-GL_Vertex3dv vertex3dv;
-GL_Vertex3f vertex3f;
-GL_Vertex3fv vertex3fv;
-GL_Vertex3i vertex3i;
-GL_Vertex3iv vertex3iv;
-GL_Vertex3s vertex3s;
-GL_Vertex3sv vertex3sv;
-GL_Vertex4d vertex4d;
-GL_Vertex4dv vertex4dv;
-GL_Vertex4f vertex4f;
-GL_Vertex4fv vertex4fv;
-GL_Vertex4i vertex4i;
-GL_Vertex4iv vertex4iv;
-GL_Vertex4s vertex4s;
-GL_Vertex4sv vertex4sv;
-GL_VertexArrayAttribBinding vertexArrayAttribBinding;
-GL_VertexArrayAttribFormat vertexArrayAttribFormat;
-GL_VertexArrayAttribIFormat vertexArrayAttribIFormat;
-GL_VertexArrayAttribLFormat vertexArrayAttribLFormat;
-GL_VertexArrayBindingDivisor vertexArrayBindingDivisor;
-GL_VertexArrayElementBuffer vertexArrayElementBuffer;
-GL_VertexArrayVertexBuffer vertexArrayVertexBuffer;
-GL_VertexArrayVertexBuffers vertexArrayVertexBuffers;
-GL_VertexAttrib1d vertexAttrib1d;
-GL_VertexAttrib1dv vertexAttrib1dv;
-GL_VertexAttrib1f vertexAttrib1f;
-GL_VertexAttrib1fv vertexAttrib1fv;
-GL_VertexAttrib1s vertexAttrib1s;
-GL_VertexAttrib1sv vertexAttrib1sv;
-GL_VertexAttrib2d vertexAttrib2d;
-GL_VertexAttrib2dv vertexAttrib2dv;
-GL_VertexAttrib2f vertexAttrib2f;
-GL_VertexAttrib2fv vertexAttrib2fv;
-GL_VertexAttrib2s vertexAttrib2s;
-GL_VertexAttrib2sv vertexAttrib2sv;
-GL_VertexAttrib3d vertexAttrib3d;
-GL_VertexAttrib3dv vertexAttrib3dv;
-GL_VertexAttrib3f vertexAttrib3f;
-GL_VertexAttrib3fv vertexAttrib3fv;
-GL_VertexAttrib3s vertexAttrib3s;
-GL_VertexAttrib3sv vertexAttrib3sv;
-GL_VertexAttrib4Nbv vertexAttrib4Nbv;
-GL_VertexAttrib4Niv vertexAttrib4Niv;
-GL_VertexAttrib4Nsv vertexAttrib4Nsv;
-GL_VertexAttrib4Nub vertexAttrib4Nub;
-GL_VertexAttrib4Nubv vertexAttrib4Nubv;
-GL_VertexAttrib4Nuiv vertexAttrib4Nuiv;
-GL_VertexAttrib4Nusv vertexAttrib4Nusv;
-GL_VertexAttrib4bv vertexAttrib4bv;
-GL_VertexAttrib4d vertexAttrib4d;
-GL_VertexAttrib4dv vertexAttrib4dv;
-GL_VertexAttrib4f vertexAttrib4f;
-GL_VertexAttrib4fv vertexAttrib4fv;
-GL_VertexAttrib4iv vertexAttrib4iv;
-GL_VertexAttrib4s vertexAttrib4s;
-GL_VertexAttrib4sv vertexAttrib4sv;
-GL_VertexAttrib4ubv vertexAttrib4ubv;
-GL_VertexAttrib4uiv vertexAttrib4uiv;
-GL_VertexAttrib4usv vertexAttrib4usv;
-GL_VertexAttribBinding vertexAttribBinding;
-GL_VertexAttribDivisor vertexAttribDivisor;
-GL_VertexAttribFormat vertexAttribFormat;
-GL_VertexAttribI1i vertexAttribI1i;
-GL_VertexAttribI1iv vertexAttribI1iv;
-GL_VertexAttribI1ui vertexAttribI1ui;
-GL_VertexAttribI1uiv vertexAttribI1uiv;
-GL_VertexAttribI2i vertexAttribI2i;
-GL_VertexAttribI2iv vertexAttribI2iv;
-GL_VertexAttribI2ui vertexAttribI2ui;
-GL_VertexAttribI2uiv vertexAttribI2uiv;
-GL_VertexAttribI3i vertexAttribI3i;
-GL_VertexAttribI3iv vertexAttribI3iv;
-GL_VertexAttribI3ui vertexAttribI3ui;
-GL_VertexAttribI3uiv vertexAttribI3uiv;
-GL_VertexAttribI4bv vertexAttribI4bv;
-GL_VertexAttribI4i vertexAttribI4i;
-GL_VertexAttribI4iv vertexAttribI4iv;
-GL_VertexAttribI4sv vertexAttribI4sv;
-GL_VertexAttribI4ubv vertexAttribI4ubv;
-GL_VertexAttribI4ui vertexAttribI4ui;
-GL_VertexAttribI4uiv vertexAttribI4uiv;
-GL_VertexAttribI4usv vertexAttribI4usv;
-GL_VertexAttribIFormat vertexAttribIFormat;
-GL_VertexAttribIPointer vertexAttribIPointer;
-GL_VertexAttribL1d vertexAttribL1d;
-GL_VertexAttribL1dv vertexAttribL1dv;
-GL_VertexAttribL2d vertexAttribL2d;
-GL_VertexAttribL2dv vertexAttribL2dv;
-GL_VertexAttribL3d vertexAttribL3d;
-GL_VertexAttribL3dv vertexAttribL3dv;
-GL_VertexAttribL4d vertexAttribL4d;
-GL_VertexAttribL4dv vertexAttribL4dv;
-GL_VertexAttribLFormat vertexAttribLFormat;
-GL_VertexAttribLPointer vertexAttribLPointer;
-GL_VertexAttribP1ui vertexAttribP1ui;
-GL_VertexAttribP1uiv vertexAttribP1uiv;
-GL_VertexAttribP2ui vertexAttribP2ui;
-GL_VertexAttribP2uiv vertexAttribP2uiv;
-GL_VertexAttribP3ui vertexAttribP3ui;
-GL_VertexAttribP3uiv vertexAttribP3uiv;
-GL_VertexAttribP4ui vertexAttribP4ui;
-GL_VertexAttribP4uiv vertexAttribP4uiv;
-GL_VertexAttribPointer vertexAttribPointer;
-GL_VertexBindingDivisor vertexBindingDivisor;
-GL_VertexP2ui vertexP2ui;
-GL_VertexP2uiv vertexP2uiv;
-GL_VertexP3ui vertexP3ui;
-GL_VertexP3uiv vertexP3uiv;
-GL_VertexP4ui vertexP4ui;
-GL_VertexP4uiv vertexP4uiv;
-GL_VertexPointer vertexPointer;
-GL_Viewport viewport;
-GL_ViewportArrayv viewportArrayv;
-GL_ViewportIndexedf viewportIndexedf;
-GL_ViewportIndexedfv viewportIndexedfv;
-GL_WaitSync waitSync;
-GL_WindowPos2d windowPos2d;
-GL_WindowPos2dv windowPos2dv;
-GL_WindowPos2f windowPos2f;
-GL_WindowPos2fv windowPos2fv;
-GL_WindowPos2i windowPos2i;
-GL_WindowPos2iv windowPos2iv;
-GL_WindowPos2s windowPos2s;
-GL_WindowPos2sv windowPos2sv;
-GL_WindowPos3d windowPos3d;
-GL_WindowPos3dv windowPos3dv;
-GL_WindowPos3f windowPos3f;
-GL_WindowPos3fv windowPos3fv;
-GL_WindowPos3i windowPos3i;
-GL_WindowPos3iv windowPos3iv;
-GL_WindowPos3s windowPos3s;
-GL_WindowPos3sv windowPos3sv;
+	GL_Accum accum;
+	GL_ActiveShaderProgram activeShaderProgram;
+	GL_AlphaFunc alphaFunc;
+	GL_AreTexturesResident areTexturesResident;
+	GL_ArrayElement arrayElement;
+	GL_AttachShader attachShader;
+	GL_Begin begin;
+	GL_BeginConditionalRender beginConditionalRender;
+	GL_BeginQuery beginQuery;
+	GL_BeginQueryIndexed beginQueryIndexed;
+	GL_BeginTransformFeedback beginTransformFeedback;
+	GL_BindAttribLocation bindAttribLocation;
+	GL_BindBuffer bindBuffer;
+	GL_BindBufferBase bindBufferBase;
+	GL_BindBufferRange bindBufferRange;
+	GL_BindBuffersBase bindBuffersBase;
+	GL_BindBuffersRange bindBuffersRange;
+	GL_BindFragDataLocation bindFragDataLocation;
+	GL_BindFragDataLocationIndexed bindFragDataLocationIndexed;
+	GL_BindFramebuffer bindFramebuffer;
+	GL_BindImageTexture bindImageTexture;
+	GL_BindImageTextures bindImageTextures;
+	GL_BindProgramPipeline bindProgramPipeline;
+	GL_BindRenderbuffer bindRenderbuffer;
+	GL_BindSampler bindSampler;
+	GL_BindSamplers bindSamplers;
+	GL_BindTexture bindTexture;
+	GL_BindTextureUnit bindTextureUnit;
+	GL_BindTextures bindTextures;
+	GL_BindTransformFeedback bindTransformFeedback;
+	GL_BindVertexArray bindVertexArray;
+	GL_BindVertexBuffer bindVertexBuffer;
+	GL_BindVertexBuffers bindVertexBuffers;
+	GL_Bitmap bitmap;
+	GL_BlendEquationSeparate blendEquationSeparate;
+	GL_BlendEquationSeparatei blendEquationSeparatei;
+	GL_BlendEquationi blendEquationi;
+	GL_BlendFunc blendFunc;
+	GL_BlendFuncSeparatei blendFuncSeparatei;
+	GL_BlendFunci blendFunci;
+	GL_BlitFramebuffer blitFramebuffer;
+	GL_BlitNamedFramebuffer blitNamedFramebuffer;
+	GL_BufferData bufferData;
+	GL_BufferStorage bufferStorage;
+	GL_BufferSubData bufferSubData;
+	GL_CallList callList;
+	GL_CallLists callLists;
+	GL_CheckFramebufferStatus checkFramebufferStatus;
+	GL_CheckNamedFramebufferStatus checkNamedFramebufferStatus;
+	GL_ClampColor clampColor;
+	GL_Clear clear;
+	GL_ClearAccum clearAccum;
+	GL_ClearBufferData clearBufferData;
+	GL_ClearBufferSubData clearBufferSubData;
+	GL_ClearBufferfi clearBufferfi;
+	GL_ClearBufferfv clearBufferfv;
+	GL_ClearBufferiv clearBufferiv;
+	GL_ClearBufferuiv clearBufferuiv;
+	GL_ClearColor clearColor;
+	GL_ClearDepth clearDepth;
+	GL_ClearDepthf clearDepthf;
+	GL_ClearIndex clearIndex;
+	GL_ClearNamedBufferData clearNamedBufferData;
+	GL_ClearNamedBufferSubData clearNamedBufferSubData;
+	GL_ClearNamedFramebufferfi clearNamedFramebufferfi;
+	GL_ClearNamedFramebufferfv clearNamedFramebufferfv;
+	GL_ClearNamedFramebufferiv clearNamedFramebufferiv;
+	GL_ClearNamedFramebufferuiv clearNamedFramebufferuiv;
+	GL_ClearStencil clearStencil;
+	GL_ClearTexImage clearTexImage;
+	GL_ClearTexSubImage clearTexSubImage;
+	GL_ClientActiveTexture clientActiveTexture;
+	GL_ClientWaitSync clientWaitSync;
+	GL_ClipControl clipControl;
+	GL_ClipPlane clipPlane;
+	GL_Color3b color3b;
+	GL_Color3bv color3bv;
+	GL_Color3d color3d;
+	GL_Color3dv color3dv;
+	GL_Color3f color3f;
+	GL_Color3fv color3fv;
+	GL_Color3i color3i;
+	GL_Color3iv color3iv;
+	GL_Color3s color3s;
+	GL_Color3sv color3sv;
+	GL_Color3ub color3ub;
+	GL_Color3ubv color3ubv;
+	GL_Color3ui color3ui;
+	GL_Color3uiv color3uiv;
+	GL_Color3us color3us;
+	GL_Color3usv color3usv;
+	GL_Color4b color4b;
+	GL_Color4bv color4bv;
+	GL_Color4d color4d;
+	GL_Color4dv color4dv;
+	GL_Color4f color4f;
+	GL_Color4fv color4fv;
+	GL_Color4i color4i;
+	GL_Color4iv color4iv;
+	GL_Color4s color4s;
+	GL_Color4sv color4sv;
+	GL_Color4ub color4ub;
+	GL_Color4ubv color4ubv;
+	GL_Color4ui color4ui;
+	GL_Color4uiv color4uiv;
+	GL_Color4us color4us;
+	GL_Color4usv color4usv;
+	GL_ColorMask colorMask;
+	GL_ColorMaski colorMaski;
+	GL_ColorMaterial colorMaterial;
+	GL_ColorP3ui colorP3ui;
+	GL_ColorP3uiv colorP3uiv;
+	GL_ColorP4ui colorP4ui;
+	GL_ColorP4uiv colorP4uiv;
+	GL_ColorPointer colorPointer;
+	GL_CompileShader compileShader;
+	GL_CompressedTextureSubImage1D compressedTextureSubImage1D;
+	GL_CompressedTextureSubImage2D compressedTextureSubImage2D;
+	GL_CompressedTextureSubImage3D compressedTextureSubImage3D;
+	GL_CopyBufferSubData copyBufferSubData;
+	GL_CopyImageSubData copyImageSubData;
+	GL_CopyNamedBufferSubData copyNamedBufferSubData;
+	GL_CopyPixels copyPixels;
+	GL_CopyTexImage1D copyTexImage1D;
+	GL_CopyTexImage2D copyTexImage2D;
+	GL_CopyTexSubImage1D copyTexSubImage1D;
+	GL_CopyTexSubImage2D copyTexSubImage2D;
+	GL_CopyTextureSubImage1D copyTextureSubImage1D;
+	GL_CopyTextureSubImage2D copyTextureSubImage2D;
+	GL_CopyTextureSubImage3D copyTextureSubImage3D;
+	GL_CreateBuffers createBuffers;
+	GL_CreateFramebuffers createFramebuffers;
+	GL_CreateProgram createProgram;
+	GL_CreateProgramPipelines createProgramPipelines;
+	GL_CreateQueries createQueries;
+	GL_CreateRenderbuffers createRenderbuffers;
+	GL_CreateSamplers createSamplers;
+	GL_CreateShader createShader;
+	GL_CreateShaderProgramv createShaderProgramv;
+	GL_CreateTextures createTextures;
+	GL_CreateTransformFeedbacks createTransformFeedbacks;
+	GL_CreateVertexArrays createVertexArrays;
+	GL_CullFace cullFace;
+	GL_DebugMessageCallback debugMessageCallback;
+	GL_DebugMessageControl debugMessageControl;
+	GL_DebugMessageInsert debugMessageInsert;
+	GL_DeleteBuffers deleteBuffers;
+	GL_DeleteFramebuffers deleteFramebuffers;
+	GL_DeleteLists deleteLists;
+	GL_DeleteProgram deleteProgram;
+	GL_DeleteProgramPipelines deleteProgramPipelines;
+	GL_DeleteQueries deleteQueries;
+	GL_DeleteRenderbuffers deleteRenderbuffers;
+	GL_DeleteSamplers deleteSamplers;
+	GL_DeleteShader deleteShader;
+	GL_DeleteSync deleteSync;
+	GL_DeleteTextures deleteTextures;
+	GL_DeleteTransformFeedbacks deleteTransformFeedbacks;
+	GL_DeleteVertexArrays deleteVertexArrays;
+	GL_DepthFunc depthFunc;
+	GL_DepthMask depthMask;
+	GL_DepthRange depthRange;
+	GL_DepthRangeArrayv depthRangeArrayv;
+	GL_DepthRangeIndexed depthRangeIndexed;
+	GL_DepthRangef depthRangef;
+	GL_DetachShader detachShader;
+	GL_Disable disable;
+	GL_DisableClientState disableClientState;
+	GL_DisableVertexArrayAttrib disableVertexArrayAttrib;
+	GL_DisableVertexAttribArray disableVertexAttribArray;
+	GL_Disablei disablei;
+	GL_DispatchCompute dispatchCompute;
+	GL_DispatchComputeIndirect dispatchComputeIndirect;
+	GL_DrawArrays drawArrays;
+	GL_DrawArraysIndirect drawArraysIndirect;
+	GL_DrawArraysInstanced drawArraysInstanced;
+	GL_DrawArraysInstancedBaseInstance drawArraysInstancedBaseInstance;
+	GL_DrawBuffer drawBuffer;
+	GL_DrawBuffers drawBuffers;
+	GL_DrawElements drawElements;
+	GL_DrawElementsBaseVertex drawElementsBaseVertex;
+	GL_DrawElementsIndirect drawElementsIndirect;
+	GL_DrawElementsInstanced drawElementsInstanced;
+	GL_DrawElementsInstancedBaseInstance drawElementsInstancedBaseInstance;
+	GL_DrawElementsInstancedBaseVertex drawElementsInstancedBaseVertex;
+	GL_DrawElementsInstancedBaseVertexBaseInstance drawElementsInstancedBaseVertexBaseInstance;
+	GL_DrawPixels drawPixels;
+	GL_DrawRangeElementsBaseVertex drawRangeElementsBaseVertex;
+	GL_DrawTransformFeedback drawTransformFeedback;
+	GL_DrawTransformFeedbackInstanced drawTransformFeedbackInstanced;
+	GL_DrawTransformFeedbackStream drawTransformFeedbackStream;
+	GL_DrawTransformFeedbackStreamInstanced drawTransformFeedbackStreamInstanced;
+	GL_EdgeFlag edgeFlag;
+	GL_EdgeFlagPointer edgeFlagPointer;
+	GL_EdgeFlagv edgeFlagv;
+	GL_Enable enable;
+	GL_EnableClientState enableClientState;
+	GL_EnableVertexArrayAttrib enableVertexArrayAttrib;
+	GL_EnableVertexAttribArray enableVertexAttribArray;
+	GL_Enablei enablei;
+	GL_End end;
+	GL_EndConditionalRender endConditionalRender;
+	GL_EndList endList;
+	GL_EndQuery endQuery;
+	GL_EndQueryIndexed endQueryIndexed;
+	GL_EndTransformFeedback endTransformFeedback;
+	GL_EvalCoord1d evalCoord1d;
+	GL_EvalCoord1dv evalCoord1dv;
+	GL_EvalCoord1f evalCoord1f;
+	GL_EvalCoord1fv evalCoord1fv;
+	GL_EvalCoord2d evalCoord2d;
+	GL_EvalCoord2dv evalCoord2dv;
+	GL_EvalCoord2f evalCoord2f;
+	GL_EvalCoord2fv evalCoord2fv;
+	GL_EvalMesh1 evalMesh1;
+	GL_EvalMesh2 evalMesh2;
+	GL_EvalPoint1 evalPoint1;
+	GL_EvalPoint2 evalPoint2;
+	GL_FeedbackBuffer feedbackBuffer;
+	GL_FenceSync fenceSync;
+	GL_Finish finish;
+	GL_Flush flush;
+	GL_FlushMappedBufferRange flushMappedBufferRange;
+	GL_FlushMappedNamedBufferRange flushMappedNamedBufferRange;
+	GL_FogCoordPointer fogCoordPointer;
+	GL_FogCoordd fogCoordd;
+	GL_FogCoorddv fogCoorddv;
+	GL_FogCoordf fogCoordf;
+	GL_FogCoordfv fogCoordfv;
+	GL_Fogf fogf;
+	GL_Fogfv fogfv;
+	GL_Fogi fogi;
+	GL_Fogiv fogiv;
+	GL_FramebufferParameteri framebufferParameteri;
+	GL_FramebufferRenderbuffer framebufferRenderbuffer;
+	GL_FramebufferTexture framebufferTexture;
+	GL_FramebufferTexture1D framebufferTexture1D;
+	GL_FramebufferTexture2D framebufferTexture2D;
+	GL_FramebufferTexture3D framebufferTexture3D;
+	GL_FramebufferTextureLayer framebufferTextureLayer;
+	GL_FrontFace frontFace;
+	GL_Frustum frustum;
+	GL_GenBuffers genBuffers;
+	GL_GenFramebuffers genFramebuffers;
+	GL_GenLists genLists;
+	GL_GenProgramPipelines genProgramPipelines;
+	GL_GenQueries genQueries;
+	GL_GenRenderbuffers genRenderbuffers;
+	GL_GenSamplers genSamplers;
+	GL_GenTextures genTextures;
+	GL_GenTransformFeedbacks genTransformFeedbacks;
+	GL_GenVertexArrays genVertexArrays;
+	GL_GenerateMipmap generateMipmap;
+	GL_GenerateTextureMipmap generateTextureMipmap;
+	GL_GetActiveAtomicCounterBufferiv getActiveAtomicCounterBufferiv;
+	GL_GetActiveAttrib getActiveAttrib;
+	GL_GetActiveSubroutineName getActiveSubroutineName;
+	GL_GetActiveSubroutineUniformName getActiveSubroutineUniformName;
+	GL_GetActiveSubroutineUniformiv getActiveSubroutineUniformiv;
+	GL_GetActiveUniform getActiveUniform;
+	GL_GetActiveUniformBlockName getActiveUniformBlockName;
+	GL_GetActiveUniformBlockiv getActiveUniformBlockiv;
+	GL_GetActiveUniformName getActiveUniformName;
+	GL_GetActiveUniformsiv getActiveUniformsiv;
+	GL_GetAttachedShaders getAttachedShaders;
+	GL_GetAttribLocation getAttribLocation;
+	GL_GetBooleani_v getBooleani_v;
+	GL_GetBooleanv getBooleanv;
+	GL_GetBufferParameteri64v getBufferParameteri64v;
+	GL_GetBufferParameteriv getBufferParameteriv;
+	GL_GetBufferPointerv getBufferPointerv;
+	GL_GetBufferSubData getBufferSubData;
+	GL_GetClipPlane getClipPlane;
+	GL_GetCompressedTextureImage getCompressedTextureImage;
+	GL_GetCompressedTextureSubImage getCompressedTextureSubImage;
+	GL_GetDebugMessageLog getDebugMessageLog;
+	GL_GetDoublei_v getDoublei_v;
+	GL_GetDoublev getDoublev;
+	GL_GetError getError;
+	GL_GetFloati_v getFloati_v;
+	GL_GetFloatv getFloatv;
+	GL_GetFragDataIndex getFragDataIndex;
+	GL_GetFragDataLocation getFragDataLocation;
+	GL_GetFramebufferAttachmentParameteriv getFramebufferAttachmentParameteriv;
+	GL_GetFramebufferParameteriv getFramebufferParameteriv;
+	GL_GetGraphicsResetStatus getGraphicsResetStatus;
+	GL_GetInteger64i_v getInteger64i_v;
+	GL_GetInteger64v getInteger64v;
+	GL_GetIntegeri_v getIntegeri_v;
+	GL_GetIntegerv getIntegerv;
+	GL_GetInternalformati64v getInternalformati64v;
+	GL_GetInternalformativ getInternalformativ;
+	GL_GetLightfv getLightfv;
+	GL_GetLightiv getLightiv;
+	GL_GetMapdv getMapdv;
+	GL_GetMapfv getMapfv;
+	GL_GetMapiv getMapiv;
+	GL_GetMaterialfv getMaterialfv;
+	GL_GetMaterialiv getMaterialiv;
+	GL_GetMultisamplefv getMultisamplefv;
+	GL_GetNamedBufferParameteri64v getNamedBufferParameteri64v;
+	GL_GetNamedBufferParameteriv getNamedBufferParameteriv;
+	GL_GetNamedBufferPointerv getNamedBufferPointerv;
+	GL_GetNamedBufferSubData getNamedBufferSubData;
+	GL_GetNamedFramebufferAttachmentParameteriv getNamedFramebufferAttachmentParameteriv;
+	GL_GetNamedFramebufferParameteriv getNamedFramebufferParameteriv;
+	GL_GetNamedRenderbufferParameteriv getNamedRenderbufferParameteriv;
+	GL_GetObjectLabel getObjectLabel;
+	GL_GetObjectPtrLabel getObjectPtrLabel;
+	GL_GetPixelMapfv getPixelMapfv;
+	GL_GetPixelMapuiv getPixelMapuiv;
+	GL_GetPixelMapusv getPixelMapusv;
+	GL_GetPointerv getPointerv;
+	GL_GetPolygonStipple getPolygonStipple;
+	GL_GetProgramBinary getProgramBinary;
+	GL_GetProgramInfoLog getProgramInfoLog;
+	GL_GetProgramInterfaceiv getProgramInterfaceiv;
+	GL_GetProgramPipelineInfoLog getProgramPipelineInfoLog;
+	GL_GetProgramPipelineiv getProgramPipelineiv;
+	GL_GetProgramResourceIndex getProgramResourceIndex;
+	GL_GetProgramResourceLocation getProgramResourceLocation;
+	GL_GetProgramResourceLocationIndex getProgramResourceLocationIndex;
+	GL_GetProgramResourceName getProgramResourceName;
+	GL_GetProgramResourceiv getProgramResourceiv;
+	GL_GetProgramStageiv getProgramStageiv;
+	GL_GetProgramiv getProgramiv;
+	GL_GetQueryBufferObjecti64v getQueryBufferObjecti64v;
+	GL_GetQueryBufferObjectiv getQueryBufferObjectiv;
+	GL_GetQueryBufferObjectui64v getQueryBufferObjectui64v;
+	GL_GetQueryBufferObjectuiv getQueryBufferObjectuiv;
+	GL_GetQueryIndexediv getQueryIndexediv;
+	GL_GetQueryObjecti64v getQueryObjecti64v;
+	GL_GetQueryObjectiv getQueryObjectiv;
+	GL_GetQueryObjectui64v getQueryObjectui64v;
+	GL_GetQueryObjectuiv getQueryObjectuiv;
+	GL_GetQueryiv getQueryiv;
+	GL_GetRenderbufferParameteriv getRenderbufferParameteriv;
+	GL_GetSamplerParameterIiv getSamplerParameterIiv;
+	GL_GetSamplerParameterIuiv getSamplerParameterIuiv;
+	GL_GetSamplerParameterfv getSamplerParameterfv;
+	GL_GetSamplerParameteriv getSamplerParameteriv;
+	GL_GetShaderInfoLog getShaderInfoLog;
+	GL_GetShaderPrecisionFormat getShaderPrecisionFormat;
+	GL_GetShaderSource getShaderSource;
+	GL_GetShaderiv getShaderiv;
+	GL_GetString getString;
+	GL_GetStringi getStringi;
+	GL_GetSubroutineIndex getSubroutineIndex;
+	GL_GetSubroutineUniformLocation getSubroutineUniformLocation;
+	GL_GetSynciv getSynciv;
+	GL_GetTexEnvfv getTexEnvfv;
+	GL_GetTexEnviv getTexEnviv;
+	GL_GetTexGendv getTexGendv;
+	GL_GetTexGenfv getTexGenfv;
+	GL_GetTexGeniv getTexGeniv;
+	GL_GetTexImage getTexImage;
+	GL_GetTexLevelParameterfv getTexLevelParameterfv;
+	GL_GetTexLevelParameteriv getTexLevelParameteriv;
+	GL_GetTexParameterIiv getTexParameterIiv;
+	GL_GetTexParameterIuiv getTexParameterIuiv;
+	GL_GetTexParameterfv getTexParameterfv;
+	GL_GetTexParameteriv getTexParameteriv;
+	GL_GetTextureImage getTextureImage;
+	GL_GetTextureLevelParameterfv getTextureLevelParameterfv;
+	GL_GetTextureLevelParameteriv getTextureLevelParameteriv;
+	GL_GetTextureParameterIiv getTextureParameterIiv;
+	GL_GetTextureParameterIuiv getTextureParameterIuiv;
+	GL_GetTextureParameterfv getTextureParameterfv;
+	GL_GetTextureParameteriv getTextureParameteriv;
+	GL_GetTextureSubImage getTextureSubImage;
+	GL_GetTransformFeedbackVarying getTransformFeedbackVarying;
+	GL_GetTransformFeedbacki64_v getTransformFeedbacki64_v;
+	GL_GetTransformFeedbacki_v getTransformFeedbacki_v;
+	GL_GetTransformFeedbackiv getTransformFeedbackiv;
+	GL_GetUniformBlockIndex getUniformBlockIndex;
+	GL_GetUniformIndices getUniformIndices;
+	GL_GetUniformLocation getUniformLocation;
+	GL_GetUniformSubroutineuiv getUniformSubroutineuiv;
+	GL_GetUniformdv getUniformdv;
+	GL_GetUniformfv getUniformfv;
+	GL_GetUniformiv getUniformiv;
+	GL_GetUniformuiv getUniformuiv;
+	GL_GetVertexArrayIndexed64iv getVertexArrayIndexed64iv;
+	GL_GetVertexArrayIndexediv getVertexArrayIndexediv;
+	GL_GetVertexArrayiv getVertexArrayiv;
+	GL_GetVertexAttribIiv getVertexAttribIiv;
+	GL_GetVertexAttribIuiv getVertexAttribIuiv;
+	GL_GetVertexAttribLdv getVertexAttribLdv;
+	GL_GetVertexAttribPointerv getVertexAttribPointerv;
+	GL_GetVertexAttribdv getVertexAttribdv;
+	GL_GetVertexAttribfv getVertexAttribfv;
+	GL_GetVertexAttribiv getVertexAttribiv;
+	GL_GetnColorTable getnColorTable;
+	GL_GetnCompressedTexImage getnCompressedTexImage;
+	GL_GetnConvolutionFilter getnConvolutionFilter;
+	GL_GetnHistogram getnHistogram;
+	GL_GetnMapdv getnMapdv;
+	GL_GetnMapfv getnMapfv;
+	GL_GetnMapiv getnMapiv;
+	GL_GetnMinmax getnMinmax;
+	GL_GetnPixelMapfv getnPixelMapfv;
+	GL_GetnPixelMapuiv getnPixelMapuiv;
+	GL_GetnPixelMapusv getnPixelMapusv;
+	GL_GetnPolygonStipple getnPolygonStipple;
+	GL_GetnSeparableFilter getnSeparableFilter;
+	GL_GetnTexImage getnTexImage;
+	GL_GetnUniformdv getnUniformdv;
+	GL_GetnUniformfv getnUniformfv;
+	GL_GetnUniformiv getnUniformiv;
+	GL_GetnUniformuiv getnUniformuiv;
+	GL_Hint hint;
+	GL_IndexMask indexMask;
+	GL_IndexPointer indexPointer;
+	GL_Indexd indexd;
+	GL_Indexdv indexdv;
+	GL_Indexf indexf;
+	GL_Indexfv indexfv;
+	GL_Indexi indexi;
+	GL_Indexiv indexiv;
+	GL_Indexs indexs;
+	GL_Indexsv indexsv;
+	GL_Indexub indexub;
+	GL_Indexubv indexubv;
+	GL_InitNames initNames;
+	GL_InterleavedArrays interleavedArrays;
+	GL_InvalidateBufferData invalidateBufferData;
+	GL_InvalidateBufferSubData invalidateBufferSubData;
+	GL_InvalidateFramebuffer invalidateFramebuffer;
+	GL_InvalidateNamedFramebufferData invalidateNamedFramebufferData;
+	GL_InvalidateNamedFramebufferSubData invalidateNamedFramebufferSubData;
+	GL_InvalidateSubFramebuffer invalidateSubFramebuffer;
+	GL_InvalidateTexImage invalidateTexImage;
+	GL_InvalidateTexSubImage invalidateTexSubImage;
+	GL_IsBuffer isBuffer;
+	GL_IsEnabled isEnabled;
+	GL_IsEnabledi isEnabledi;
+	GL_IsFramebuffer isFramebuffer;
+	GL_IsList isList;
+	GL_IsProgram isProgram;
+	GL_IsProgramPipeline isProgramPipeline;
+	GL_IsQuery isQuery;
+	GL_IsRenderbuffer isRenderbuffer;
+	GL_IsSampler isSampler;
+	GL_IsShader isShader;
+	GL_IsSync isSync;
+	GL_IsTexture isTexture;
+	GL_IsTransformFeedback isTransformFeedback;
+	GL_IsVertexArray isVertexArray;
+	GL_LightModelf lightModelf;
+	GL_LightModelfv lightModelfv;
+	GL_LightModeli lightModeli;
+	GL_LightModeliv lightModeliv;
+	GL_Lightf lightf;
+	GL_Lightfv lightfv;
+	GL_Lighti lighti;
+	GL_Lightiv lightiv;
+	GL_LineStipple lineStipple;
+	GL_LineWidth lineWidth;
+	GL_LinkProgram linkProgram;
+	GL_ListBase listBase;
+	GL_LoadIdentity loadIdentity;
+	GL_LoadMatrixd loadMatrixd;
+	GL_LoadMatrixf loadMatrixf;
+	GL_LoadName loadName;
+	GL_LoadTransposeMatrixd loadTransposeMatrixd;
+	GL_LoadTransposeMatrixf loadTransposeMatrixf;
+	GL_LogicOp logicOp;
+	GL_Map1d map1d;
+	GL_Map1f map1f;
+	GL_Map2d map2d;
+	GL_Map2f map2f;
+	GL_MapBuffer mapBuffer;
+	GL_MapBufferRange mapBufferRange;
+	GL_MapGrid1d mapGrid1d;
+	GL_MapGrid1f mapGrid1f;
+	GL_MapGrid2d mapGrid2d;
+	GL_MapGrid2f mapGrid2f;
+	GL_MapNamedBuffer mapNamedBuffer;
+	GL_MapNamedBufferRange mapNamedBufferRange;
+	GL_Materialf materialf;
+	GL_Materialfv materialfv;
+	GL_Materiali materiali;
+	GL_Materialiv materialiv;
+	GL_MatrixMode matrixMode;
+	GL_MemoryBarrier memoryBarrier;
+	GL_MemoryBarrierByRegion memoryBarrierByRegion;
+	GL_MinSampleShading minSampleShading;
+	GL_MultMatrixd multMatrixd;
+	GL_MultMatrixf multMatrixf;
+	GL_MultTransposeMatrixd multTransposeMatrixd;
+	GL_MultTransposeMatrixf multTransposeMatrixf;
+	GL_MultiDrawArraysIndirect multiDrawArraysIndirect;
+	GL_MultiDrawArraysIndirectCount multiDrawArraysIndirectCount;
+	GL_MultiDrawElementsBaseVertex multiDrawElementsBaseVertex;
+	GL_MultiDrawElementsIndirect multiDrawElementsIndirect;
+	GL_MultiDrawElementsIndirectCount multiDrawElementsIndirectCount;
+	GL_MultiTexCoord1d multiTexCoord1d;
+	GL_MultiTexCoord1dv multiTexCoord1dv;
+	GL_MultiTexCoord1f multiTexCoord1f;
+	GL_MultiTexCoord1fv multiTexCoord1fv;
+	GL_MultiTexCoord1i multiTexCoord1i;
+	GL_MultiTexCoord1iv multiTexCoord1iv;
+	GL_MultiTexCoord1s multiTexCoord1s;
+	GL_MultiTexCoord1sv multiTexCoord1sv;
+	GL_MultiTexCoord2d multiTexCoord2d;
+	GL_MultiTexCoord2dv multiTexCoord2dv;
+	GL_MultiTexCoord2f multiTexCoord2f;
+	GL_MultiTexCoord2fv multiTexCoord2fv;
+	GL_MultiTexCoord2i multiTexCoord2i;
+	GL_MultiTexCoord2iv multiTexCoord2iv;
+	GL_MultiTexCoord2s multiTexCoord2s;
+	GL_MultiTexCoord2sv multiTexCoord2sv;
+	GL_MultiTexCoord3d multiTexCoord3d;
+	GL_MultiTexCoord3dv multiTexCoord3dv;
+	GL_MultiTexCoord3f multiTexCoord3f;
+	GL_MultiTexCoord3fv multiTexCoord3fv;
+	GL_MultiTexCoord3i multiTexCoord3i;
+	GL_MultiTexCoord3iv multiTexCoord3iv;
+	GL_MultiTexCoord3s multiTexCoord3s;
+	GL_MultiTexCoord3sv multiTexCoord3sv;
+	GL_MultiTexCoord4d multiTexCoord4d;
+	GL_MultiTexCoord4dv multiTexCoord4dv;
+	GL_MultiTexCoord4f multiTexCoord4f;
+	GL_MultiTexCoord4fv multiTexCoord4fv;
+	GL_MultiTexCoord4i multiTexCoord4i;
+	GL_MultiTexCoord4iv multiTexCoord4iv;
+	GL_MultiTexCoord4s multiTexCoord4s;
+	GL_MultiTexCoord4sv multiTexCoord4sv;
+	GL_MultiTexCoordP1ui multiTexCoordP1ui;
+	GL_MultiTexCoordP1uiv multiTexCoordP1uiv;
+	GL_MultiTexCoordP2ui multiTexCoordP2ui;
+	GL_MultiTexCoordP2uiv multiTexCoordP2uiv;
+	GL_MultiTexCoordP3ui multiTexCoordP3ui;
+	GL_MultiTexCoordP3uiv multiTexCoordP3uiv;
+	GL_MultiTexCoordP4ui multiTexCoordP4ui;
+	GL_MultiTexCoordP4uiv multiTexCoordP4uiv;
+	GL_NamedBufferData namedBufferData;
+	GL_NamedBufferStorage namedBufferStorage;
+	GL_NamedBufferSubData namedBufferSubData;
+	GL_NamedFramebufferDrawBuffer namedFramebufferDrawBuffer;
+	GL_NamedFramebufferDrawBuffers namedFramebufferDrawBuffers;
+	GL_NamedFramebufferParameteri namedFramebufferParameteri;
+	GL_NamedFramebufferReadBuffer namedFramebufferReadBuffer;
+	GL_NamedFramebufferRenderbuffer namedFramebufferRenderbuffer;
+	GL_NamedFramebufferTexture namedFramebufferTexture;
+	GL_NamedFramebufferTextureLayer namedFramebufferTextureLayer;
+	GL_NamedRenderbufferStorage namedRenderbufferStorage;
+	GL_NamedRenderbufferStorageMultisample namedRenderbufferStorageMultisample;
+	GL_NewList newList;
+	GL_Normal3b normal3b;
+	GL_Normal3bv normal3bv;
+	GL_Normal3d normal3d;
+	GL_Normal3dv normal3dv;
+	GL_Normal3f normal3f;
+	GL_Normal3fv normal3fv;
+	GL_Normal3i normal3i;
+	GL_Normal3iv normal3iv;
+	GL_Normal3s normal3s;
+	GL_Normal3sv normal3sv;
+	GL_NormalP3ui normalP3ui;
+	GL_NormalP3uiv normalP3uiv;
+	GL_NormalPointer normalPointer;
+	GL_ObjectLabel objectLabel;
+	GL_ObjectPtrLabel objectPtrLabel;
+	GL_Ortho ortho;
+	GL_PassThrough passThrough;
+	GL_PatchParameterfv patchParameterfv;
+	GL_PatchParameteri patchParameteri;
+	GL_PauseTransformFeedback pauseTransformFeedback;
+	GL_PixelMapfv pixelMapfv;
+	GL_PixelMapuiv pixelMapuiv;
+	GL_PixelMapusv pixelMapusv;
+	GL_PixelStoref pixelStoref;
+	GL_PixelStorei pixelStorei;
+	GL_PixelTransferf pixelTransferf;
+	GL_PixelTransferi pixelTransferi;
+	GL_PixelZoom pixelZoom;
+	GL_PointSize pointSize;
+	GL_PolygonMode polygonMode;
+	GL_PolygonOffset polygonOffset;
+	GL_PolygonOffsetClamp polygonOffsetClamp;
+	GL_PolygonStipple polygonStipple;
+	GL_PopAttrib popAttrib;
+	GL_PopClientAttrib popClientAttrib;
+	GL_PopDebugGroup popDebugGroup;
+	GL_PopMatrix popMatrix;
+	GL_PopName popName;
+	GL_PrimitiveRestartIndex primitiveRestartIndex;
+	GL_PrioritizeTextures prioritizeTextures;
+	GL_ProgramBinary programBinary;
+	GL_ProgramParameteri programParameteri;
+	GL_ProgramUniform1d programUniform1d;
+	GL_ProgramUniform1dv programUniform1dv;
+	GL_ProgramUniform1f programUniform1f;
+	GL_ProgramUniform1fv programUniform1fv;
+	GL_ProgramUniform1i programUniform1i;
+	GL_ProgramUniform1iv programUniform1iv;
+	GL_ProgramUniform1ui programUniform1ui;
+	GL_ProgramUniform1uiv programUniform1uiv;
+	GL_ProgramUniform2d programUniform2d;
+	GL_ProgramUniform2dv programUniform2dv;
+	GL_ProgramUniform2f programUniform2f;
+	GL_ProgramUniform2fv programUniform2fv;
+	GL_ProgramUniform2i programUniform2i;
+	GL_ProgramUniform2iv programUniform2iv;
+	GL_ProgramUniform2ui programUniform2ui;
+	GL_ProgramUniform2uiv programUniform2uiv;
+	GL_ProgramUniform3d programUniform3d;
+	GL_ProgramUniform3dv programUniform3dv;
+	GL_ProgramUniform3f programUniform3f;
+	GL_ProgramUniform3fv programUniform3fv;
+	GL_ProgramUniform3i programUniform3i;
+	GL_ProgramUniform3iv programUniform3iv;
+	GL_ProgramUniform3ui programUniform3ui;
+	GL_ProgramUniform3uiv programUniform3uiv;
+	GL_ProgramUniform4d programUniform4d;
+	GL_ProgramUniform4dv programUniform4dv;
+	GL_ProgramUniform4f programUniform4f;
+	GL_ProgramUniform4fv programUniform4fv;
+	GL_ProgramUniform4i programUniform4i;
+	GL_ProgramUniform4iv programUniform4iv;
+	GL_ProgramUniform4ui programUniform4ui;
+	GL_ProgramUniform4uiv programUniform4uiv;
+	GL_ProgramUniformMatrix2dv programUniformMatrix2dv;
+	GL_ProgramUniformMatrix2fv programUniformMatrix2fv;
+	GL_ProgramUniformMatrix2x3dv programUniformMatrix2x3dv;
+	GL_ProgramUniformMatrix2x3fv programUniformMatrix2x3fv;
+	GL_ProgramUniformMatrix2x4dv programUniformMatrix2x4dv;
+	GL_ProgramUniformMatrix2x4fv programUniformMatrix2x4fv;
+	GL_ProgramUniformMatrix3dv programUniformMatrix3dv;
+	GL_ProgramUniformMatrix3fv programUniformMatrix3fv;
+	GL_ProgramUniformMatrix3x2dv programUniformMatrix3x2dv;
+	GL_ProgramUniformMatrix3x2fv programUniformMatrix3x2fv;
+	GL_ProgramUniformMatrix3x4dv programUniformMatrix3x4dv;
+	GL_ProgramUniformMatrix3x4fv programUniformMatrix3x4fv;
+	GL_ProgramUniformMatrix4dv programUniformMatrix4dv;
+	GL_ProgramUniformMatrix4fv programUniformMatrix4fv;
+	GL_ProgramUniformMatrix4x2dv programUniformMatrix4x2dv;
+	GL_ProgramUniformMatrix4x2fv programUniformMatrix4x2fv;
+	GL_ProgramUniformMatrix4x3dv programUniformMatrix4x3dv;
+	GL_ProgramUniformMatrix4x3fv programUniformMatrix4x3fv;
+	GL_ProvokingVertex provokingVertex;
+	GL_PushAttrib pushAttrib;
+	GL_PushClientAttrib pushClientAttrib;
+	GL_PushDebugGroup pushDebugGroup;
+	GL_PushMatrix pushMatrix;
+	GL_PushName pushName;
+	GL_QueryCounter queryCounter;
+	GL_RasterPos2d rasterPos2d;
+	GL_RasterPos2dv rasterPos2dv;
+	GL_RasterPos2f rasterPos2f;
+	GL_RasterPos2fv rasterPos2fv;
+	GL_RasterPos2i rasterPos2i;
+	GL_RasterPos2iv rasterPos2iv;
+	GL_RasterPos2s rasterPos2s;
+	GL_RasterPos2sv rasterPos2sv;
+	GL_RasterPos3d rasterPos3d;
+	GL_RasterPos3dv rasterPos3dv;
+	GL_RasterPos3f rasterPos3f;
+	GL_RasterPos3fv rasterPos3fv;
+	GL_RasterPos3i rasterPos3i;
+	GL_RasterPos3iv rasterPos3iv;
+	GL_RasterPos3s rasterPos3s;
+	GL_RasterPos3sv rasterPos3sv;
+	GL_RasterPos4d rasterPos4d;
+	GL_RasterPos4dv rasterPos4dv;
+	GL_RasterPos4f rasterPos4f;
+	GL_RasterPos4fv rasterPos4fv;
+	GL_RasterPos4i rasterPos4i;
+	GL_RasterPos4iv rasterPos4iv;
+	GL_RasterPos4s rasterPos4s;
+	GL_RasterPos4sv rasterPos4sv;
+	GL_ReadBuffer readBuffer;
+	GL_ReadPixels readPixels;
+	GL_ReadnPixels readnPixels;
+	GL_Rectd rectd;
+	GL_Rectdv rectdv;
+	GL_Rectf rectf;
+	GL_Rectfv rectfv;
+	GL_Recti recti;
+	GL_Rectiv rectiv;
+	GL_Rects rects;
+	GL_Rectsv rectsv;
+	GL_ReleaseShaderCompiler releaseShaderCompiler;
+	GL_RenderMode renderMode;
+	GL_RenderbufferStorage renderbufferStorage;
+	GL_RenderbufferStorageMultisample renderbufferStorageMultisample;
+	GL_ResumeTransformFeedback resumeTransformFeedback;
+	GL_Rotated rotated;
+	GL_Rotatef rotatef;
+	GL_SampleMaski sampleMaski;
+	GL_SamplerParameterIiv samplerParameterIiv;
+	GL_SamplerParameterIuiv samplerParameterIuiv;
+	GL_SamplerParameterf samplerParameterf;
+	GL_SamplerParameterfv samplerParameterfv;
+	GL_SamplerParameteri samplerParameteri;
+	GL_SamplerParameteriv samplerParameteriv;
+	GL_Scaled scaled;
+	GL_Scalef scalef;
+	GL_Scissor scissor;
+	GL_ScissorArrayv scissorArrayv;
+	GL_ScissorIndexed scissorIndexed;
+	GL_ScissorIndexedv scissorIndexedv;
+	GL_SecondaryColor3b secondaryColor3b;
+	GL_SecondaryColor3bv secondaryColor3bv;
+	GL_SecondaryColor3d secondaryColor3d;
+	GL_SecondaryColor3dv secondaryColor3dv;
+	GL_SecondaryColor3f secondaryColor3f;
+	GL_SecondaryColor3fv secondaryColor3fv;
+	GL_SecondaryColor3i secondaryColor3i;
+	GL_SecondaryColor3iv secondaryColor3iv;
+	GL_SecondaryColor3s secondaryColor3s;
+	GL_SecondaryColor3sv secondaryColor3sv;
+	GL_SecondaryColor3ub secondaryColor3ub;
+	GL_SecondaryColor3ubv secondaryColor3ubv;
+	GL_SecondaryColor3ui secondaryColor3ui;
+	GL_SecondaryColor3uiv secondaryColor3uiv;
+	GL_SecondaryColor3us secondaryColor3us;
+	GL_SecondaryColor3usv secondaryColor3usv;
+	GL_SecondaryColorP3ui secondaryColorP3ui;
+	GL_SecondaryColorP3uiv secondaryColorP3uiv;
+	GL_SecondaryColorPointer secondaryColorPointer;
+	GL_SelectBuffer selectBuffer;
+	GL_ShadeModel shadeModel;
+	GL_ShaderBinary shaderBinary;
+	GL_ShaderSource shaderSource;
+	GL_ShaderStorageBlockBinding shaderStorageBlockBinding;
+	GL_SpecializeShader specializeShader;
+	GL_StencilFunc stencilFunc;
+	GL_StencilFuncSeparate stencilFuncSeparate;
+	GL_StencilMask stencilMask;
+	GL_StencilMaskSeparate stencilMaskSeparate;
+	GL_StencilOp stencilOp;
+	GL_StencilOpSeparate stencilOpSeparate;
+	GL_TexBuffer texBuffer;
+	GL_TexBufferRange texBufferRange;
+	GL_TexCoord1d texCoord1d;
+	GL_TexCoord1dv texCoord1dv;
+	GL_TexCoord1f texCoord1f;
+	GL_TexCoord1fv texCoord1fv;
+	GL_TexCoord1i texCoord1i;
+	GL_TexCoord1iv texCoord1iv;
+	GL_TexCoord1s texCoord1s;
+	GL_TexCoord1sv texCoord1sv;
+	GL_TexCoord2d texCoord2d;
+	GL_TexCoord2dv texCoord2dv;
+	GL_TexCoord2f texCoord2f;
+	GL_TexCoord2fv texCoord2fv;
+	GL_TexCoord2i texCoord2i;
+	GL_TexCoord2iv texCoord2iv;
+	GL_TexCoord2s texCoord2s;
+	GL_TexCoord2sv texCoord2sv;
+	GL_TexCoord3d texCoord3d;
+	GL_TexCoord3dv texCoord3dv;
+	GL_TexCoord3f texCoord3f;
+	GL_TexCoord3fv texCoord3fv;
+	GL_TexCoord3i texCoord3i;
+	GL_TexCoord3iv texCoord3iv;
+	GL_TexCoord3s texCoord3s;
+	GL_TexCoord3sv texCoord3sv;
+	GL_TexCoord4d texCoord4d;
+	GL_TexCoord4dv texCoord4dv;
+	GL_TexCoord4f texCoord4f;
+	GL_TexCoord4fv texCoord4fv;
+	GL_TexCoord4i texCoord4i;
+	GL_TexCoord4iv texCoord4iv;
+	GL_TexCoord4s texCoord4s;
+	GL_TexCoord4sv texCoord4sv;
+	GL_TexCoordP1ui texCoordP1ui;
+	GL_TexCoordP1uiv texCoordP1uiv;
+	GL_TexCoordP2ui texCoordP2ui;
+	GL_TexCoordP2uiv texCoordP2uiv;
+	GL_TexCoordP3ui texCoordP3ui;
+	GL_TexCoordP3uiv texCoordP3uiv;
+	GL_TexCoordP4ui texCoordP4ui;
+	GL_TexCoordP4uiv texCoordP4uiv;
+	GL_TexCoordPointer texCoordPointer;
+	GL_TexEnvf texEnvf;
+	GL_TexEnvfv texEnvfv;
+	GL_TexEnvi texEnvi;
+	GL_TexEnviv texEnviv;
+	GL_TexGend texGend;
+	GL_TexGendv texGendv;
+	GL_TexGenf texGenf;
+	GL_TexGenfv texGenfv;
+	GL_TexGeni texGeni;
+	GL_TexGeniv texGeniv;
+	GL_TexImage1D texImage1D;
+	GL_TexImage2D texImage2D;
+	GL_TexImage2DMultisample texImage2DMultisample;
+	GL_TexImage3DMultisample texImage3DMultisample;
+	GL_TexParameterIiv texParameterIiv;
+	GL_TexParameterIuiv texParameterIuiv;
+	GL_TexParameterf texParameterf;
+	GL_TexParameterfv texParameterfv;
+	GL_TexParameteri texParameteri;
+	GL_TexParameteriv texParameteriv;
+	GL_TexStorage1D texStorage1D;
+	GL_TexStorage2D texStorage2D;
+	GL_TexStorage2DMultisample texStorage2DMultisample;
+	GL_TexStorage3D texStorage3D;
+	GL_TexStorage3DMultisample texStorage3DMultisample;
+	GL_TexSubImage1D texSubImage1D;
+	GL_TexSubImage2D texSubImage2D;
+	GL_TextureBarrier textureBarrier;
+	GL_TextureBuffer textureBuffer;
+	GL_TextureBufferRange textureBufferRange;
+	GL_TextureParameterIiv textureParameterIiv;
+	GL_TextureParameterIuiv textureParameterIuiv;
+	GL_TextureParameterf textureParameterf;
+	GL_TextureParameterfv textureParameterfv;
+	GL_TextureParameteri textureParameteri;
+	GL_TextureParameteriv textureParameteriv;
+	GL_TextureStorage1D textureStorage1D;
+	GL_TextureStorage2D textureStorage2D;
+	GL_TextureStorage2DMultisample textureStorage2DMultisample;
+	GL_TextureStorage3D textureStorage3D;
+	GL_TextureStorage3DMultisample textureStorage3DMultisample;
+	GL_TextureSubImage1D textureSubImage1D;
+	GL_TextureSubImage2D textureSubImage2D;
+	GL_TextureSubImage3D textureSubImage3D;
+	GL_TextureView textureView;
+	GL_TransformFeedbackBufferBase transformFeedbackBufferBase;
+	GL_TransformFeedbackBufferRange transformFeedbackBufferRange;
+	GL_TransformFeedbackVaryings transformFeedbackVaryings;
+	GL_Translated translated;
+	GL_Translatef translatef;
+	GL_Uniform1d uniform1d;
+	GL_Uniform1dv uniform1dv;
+	GL_Uniform1f uniform1f;
+	GL_Uniform1fv uniform1fv;
+	GL_Uniform1i uniform1i;
+	GL_Uniform1iv uniform1iv;
+	GL_Uniform1ui uniform1ui;
+	GL_Uniform1uiv uniform1uiv;
+	GL_Uniform2d uniform2d;
+	GL_Uniform2dv uniform2dv;
+	GL_Uniform2f uniform2f;
+	GL_Uniform2fv uniform2fv;
+	GL_Uniform2i uniform2i;
+	GL_Uniform2iv uniform2iv;
+	GL_Uniform2ui uniform2ui;
+	GL_Uniform2uiv uniform2uiv;
+	GL_Uniform3d uniform3d;
+	GL_Uniform3dv uniform3dv;
+	GL_Uniform3f uniform3f;
+	GL_Uniform3fv uniform3fv;
+	GL_Uniform3i uniform3i;
+	GL_Uniform3iv uniform3iv;
+	GL_Uniform3ui uniform3ui;
+	GL_Uniform3uiv uniform3uiv;
+	GL_Uniform4d uniform4d;
+	GL_Uniform4dv uniform4dv;
+	GL_Uniform4f uniform4f;
+	GL_Uniform4fv uniform4fv;
+	GL_Uniform4i uniform4i;
+	GL_Uniform4iv uniform4iv;
+	GL_Uniform4ui uniform4ui;
+	GL_Uniform4uiv uniform4uiv;
+	GL_UniformBlockBinding uniformBlockBinding;
+	GL_UniformMatrix2dv uniformMatrix2dv;
+	GL_UniformMatrix2fv uniformMatrix2fv;
+	GL_UniformMatrix2x3dv uniformMatrix2x3dv;
+	GL_UniformMatrix2x3fv uniformMatrix2x3fv;
+	GL_UniformMatrix2x4dv uniformMatrix2x4dv;
+	GL_UniformMatrix2x4fv uniformMatrix2x4fv;
+	GL_UniformMatrix3dv uniformMatrix3dv;
+	GL_UniformMatrix3fv uniformMatrix3fv;
+	GL_UniformMatrix3x2dv uniformMatrix3x2dv;
+	GL_UniformMatrix3x2fv uniformMatrix3x2fv;
+	GL_UniformMatrix3x4dv uniformMatrix3x4dv;
+	GL_UniformMatrix3x4fv uniformMatrix3x4fv;
+	GL_UniformMatrix4dv uniformMatrix4dv;
+	GL_UniformMatrix4fv uniformMatrix4fv;
+	GL_UniformMatrix4x2dv uniformMatrix4x2dv;
+	GL_UniformMatrix4x2fv uniformMatrix4x2fv;
+	GL_UniformMatrix4x3dv uniformMatrix4x3dv;
+	GL_UniformMatrix4x3fv uniformMatrix4x3fv;
+	GL_UniformSubroutinesuiv uniformSubroutinesuiv;
+	GL_UnmapBuffer unmapBuffer;
+	GL_UnmapNamedBuffer unmapNamedBuffer;
+	GL_UseProgram useProgram;
+	GL_UseProgramStages useProgramStages;
+	GL_ValidateProgram validateProgram;
+	GL_ValidateProgramPipeline validateProgramPipeline;
+	GL_Vertex2d vertex2d;
+	GL_Vertex2dv vertex2dv;
+	GL_Vertex2f vertex2f;
+	GL_Vertex2fv vertex2fv;
+	GL_Vertex2i vertex2i;
+	GL_Vertex2iv vertex2iv;
+	GL_Vertex2s vertex2s;
+	GL_Vertex2sv vertex2sv;
+	GL_Vertex3d vertex3d;
+	GL_Vertex3dv vertex3dv;
+	GL_Vertex3f vertex3f;
+	GL_Vertex3fv vertex3fv;
+	GL_Vertex3i vertex3i;
+	GL_Vertex3iv vertex3iv;
+	GL_Vertex3s vertex3s;
+	GL_Vertex3sv vertex3sv;
+	GL_Vertex4d vertex4d;
+	GL_Vertex4dv vertex4dv;
+	GL_Vertex4f vertex4f;
+	GL_Vertex4fv vertex4fv;
+	GL_Vertex4i vertex4i;
+	GL_Vertex4iv vertex4iv;
+	GL_Vertex4s vertex4s;
+	GL_Vertex4sv vertex4sv;
+	GL_VertexArrayAttribBinding vertexArrayAttribBinding;
+	GL_VertexArrayAttribFormat vertexArrayAttribFormat;
+	GL_VertexArrayAttribIFormat vertexArrayAttribIFormat;
+	GL_VertexArrayAttribLFormat vertexArrayAttribLFormat;
+	GL_VertexArrayBindingDivisor vertexArrayBindingDivisor;
+	GL_VertexArrayElementBuffer vertexArrayElementBuffer;
+	GL_VertexArrayVertexBuffer vertexArrayVertexBuffer;
+	GL_VertexArrayVertexBuffers vertexArrayVertexBuffers;
+	GL_VertexAttrib1d vertexAttrib1d;
+	GL_VertexAttrib1dv vertexAttrib1dv;
+	GL_VertexAttrib1f vertexAttrib1f;
+	GL_VertexAttrib1fv vertexAttrib1fv;
+	GL_VertexAttrib1s vertexAttrib1s;
+	GL_VertexAttrib1sv vertexAttrib1sv;
+	GL_VertexAttrib2d vertexAttrib2d;
+	GL_VertexAttrib2dv vertexAttrib2dv;
+	GL_VertexAttrib2f vertexAttrib2f;
+	GL_VertexAttrib2fv vertexAttrib2fv;
+	GL_VertexAttrib2s vertexAttrib2s;
+	GL_VertexAttrib2sv vertexAttrib2sv;
+	GL_VertexAttrib3d vertexAttrib3d;
+	GL_VertexAttrib3dv vertexAttrib3dv;
+	GL_VertexAttrib3f vertexAttrib3f;
+	GL_VertexAttrib3fv vertexAttrib3fv;
+	GL_VertexAttrib3s vertexAttrib3s;
+	GL_VertexAttrib3sv vertexAttrib3sv;
+	GL_VertexAttrib4Nbv vertexAttrib4Nbv;
+	GL_VertexAttrib4Niv vertexAttrib4Niv;
+	GL_VertexAttrib4Nsv vertexAttrib4Nsv;
+	GL_VertexAttrib4Nub vertexAttrib4Nub;
+	GL_VertexAttrib4Nubv vertexAttrib4Nubv;
+	GL_VertexAttrib4Nuiv vertexAttrib4Nuiv;
+	GL_VertexAttrib4Nusv vertexAttrib4Nusv;
+	GL_VertexAttrib4bv vertexAttrib4bv;
+	GL_VertexAttrib4d vertexAttrib4d;
+	GL_VertexAttrib4dv vertexAttrib4dv;
+	GL_VertexAttrib4f vertexAttrib4f;
+	GL_VertexAttrib4fv vertexAttrib4fv;
+	GL_VertexAttrib4iv vertexAttrib4iv;
+	GL_VertexAttrib4s vertexAttrib4s;
+	GL_VertexAttrib4sv vertexAttrib4sv;
+	GL_VertexAttrib4ubv vertexAttrib4ubv;
+	GL_VertexAttrib4uiv vertexAttrib4uiv;
+	GL_VertexAttrib4usv vertexAttrib4usv;
+	GL_VertexAttribBinding vertexAttribBinding;
+	GL_VertexAttribDivisor vertexAttribDivisor;
+	GL_VertexAttribFormat vertexAttribFormat;
+	GL_VertexAttribI1i vertexAttribI1i;
+	GL_VertexAttribI1iv vertexAttribI1iv;
+	GL_VertexAttribI1ui vertexAttribI1ui;
+	GL_VertexAttribI1uiv vertexAttribI1uiv;
+	GL_VertexAttribI2i vertexAttribI2i;
+	GL_VertexAttribI2iv vertexAttribI2iv;
+	GL_VertexAttribI2ui vertexAttribI2ui;
+	GL_VertexAttribI2uiv vertexAttribI2uiv;
+	GL_VertexAttribI3i vertexAttribI3i;
+	GL_VertexAttribI3iv vertexAttribI3iv;
+	GL_VertexAttribI3ui vertexAttribI3ui;
+	GL_VertexAttribI3uiv vertexAttribI3uiv;
+	GL_VertexAttribI4bv vertexAttribI4bv;
+	GL_VertexAttribI4i vertexAttribI4i;
+	GL_VertexAttribI4iv vertexAttribI4iv;
+	GL_VertexAttribI4sv vertexAttribI4sv;
+	GL_VertexAttribI4ubv vertexAttribI4ubv;
+	GL_VertexAttribI4ui vertexAttribI4ui;
+	GL_VertexAttribI4uiv vertexAttribI4uiv;
+	GL_VertexAttribI4usv vertexAttribI4usv;
+	GL_VertexAttribIFormat vertexAttribIFormat;
+	GL_VertexAttribIPointer vertexAttribIPointer;
+	GL_VertexAttribL1d vertexAttribL1d;
+	GL_VertexAttribL1dv vertexAttribL1dv;
+	GL_VertexAttribL2d vertexAttribL2d;
+	GL_VertexAttribL2dv vertexAttribL2dv;
+	GL_VertexAttribL3d vertexAttribL3d;
+	GL_VertexAttribL3dv vertexAttribL3dv;
+	GL_VertexAttribL4d vertexAttribL4d;
+	GL_VertexAttribL4dv vertexAttribL4dv;
+	GL_VertexAttribLFormat vertexAttribLFormat;
+	GL_VertexAttribLPointer vertexAttribLPointer;
+	GL_VertexAttribP1ui vertexAttribP1ui;
+	GL_VertexAttribP1uiv vertexAttribP1uiv;
+	GL_VertexAttribP2ui vertexAttribP2ui;
+	GL_VertexAttribP2uiv vertexAttribP2uiv;
+	GL_VertexAttribP3ui vertexAttribP3ui;
+	GL_VertexAttribP3uiv vertexAttribP3uiv;
+	GL_VertexAttribP4ui vertexAttribP4ui;
+	GL_VertexAttribP4uiv vertexAttribP4uiv;
+	GL_VertexAttribPointer vertexAttribPointer;
+	GL_VertexBindingDivisor vertexBindingDivisor;
+	GL_VertexP2ui vertexP2ui;
+	GL_VertexP2uiv vertexP2uiv;
+	GL_VertexP3ui vertexP3ui;
+	GL_VertexP3uiv vertexP3uiv;
+	GL_VertexP4ui vertexP4ui;
+	GL_VertexP4uiv vertexP4uiv;
+	GL_VertexPointer vertexPointer;
+	GL_Viewport viewport;
+	GL_ViewportArrayv viewportArrayv;
+	GL_ViewportIndexedf viewportIndexedf;
+	GL_ViewportIndexedfv viewportIndexedfv;
+	GL_WaitSync waitSync;
+	GL_WindowPos2d windowPos2d;
+	GL_WindowPos2dv windowPos2dv;
+	GL_WindowPos2f windowPos2f;
+	GL_WindowPos2fv windowPos2fv;
+	GL_WindowPos2i windowPos2i;
+	GL_WindowPos2iv windowPos2iv;
+	GL_WindowPos2s windowPos2s;
+	GL_WindowPos2sv windowPos2sv;
+	GL_WindowPos3d windowPos3d;
+	GL_WindowPos3dv windowPos3dv;
+	GL_WindowPos3f windowPos3f;
+	GL_WindowPos3fv windowPos3fv;
+	GL_WindowPos3i windowPos3i;
+	GL_WindowPos3iv windowPos3iv;
+	GL_WindowPos3s windowPos3s;
+	GL_WindowPos3sv windowPos3sv;
 }
 
-/** 
-* Bindings memory 
-*/ 
+/**
+ * Bindings memory
+ */
 
 GL_bindings bindings;
- 
-fn void init(ProcFN procAddress) {
-bindings.accum = (GL_Accum)procAddress("glAccum");  
-bindings.activeShaderProgram = (GL_ActiveShaderProgram)procAddress("glActiveShaderProgram");  
-bindings.alphaFunc = (GL_AlphaFunc)procAddress("glAlphaFunc");  
-bindings.areTexturesResident = (GL_AreTexturesResident)procAddress("glAreTexturesResident");  
-bindings.arrayElement = (GL_ArrayElement)procAddress("glArrayElement");  
-bindings.attachShader = (GL_AttachShader)procAddress("glAttachShader");  
-bindings.begin = (GL_Begin)procAddress("glBegin");  
-bindings.beginConditionalRender = (GL_BeginConditionalRender)procAddress("glBeginConditionalRender");  
-bindings.beginQuery = (GL_BeginQuery)procAddress("glBeginQuery");  
-bindings.beginQueryIndexed = (GL_BeginQueryIndexed)procAddress("glBeginQueryIndexed");  
-bindings.beginTransformFeedback = (GL_BeginTransformFeedback)procAddress("glBeginTransformFeedback");  
-bindings.bindAttribLocation = (GL_BindAttribLocation)procAddress("glBindAttribLocation");  
-bindings.bindBuffer = (GL_BindBuffer)procAddress("glBindBuffer");  
-bindings.bindBufferBase = (GL_BindBufferBase)procAddress("glBindBufferBase");  
-bindings.bindBufferRange = (GL_BindBufferRange)procAddress("glBindBufferRange");  
-bindings.bindBuffersBase = (GL_BindBuffersBase)procAddress("glBindBuffersBase");  
-bindings.bindBuffersRange = (GL_BindBuffersRange)procAddress("glBindBuffersRange");  
-bindings.bindFragDataLocation = (GL_BindFragDataLocation)procAddress("glBindFragDataLocation");  
-bindings.bindFragDataLocationIndexed = (GL_BindFragDataLocationIndexed)procAddress("glBindFragDataLocationIndexed");  
-bindings.bindFramebuffer = (GL_BindFramebuffer)procAddress("glBindFramebuffer");  
-bindings.bindImageTexture = (GL_BindImageTexture)procAddress("glBindImageTexture");  
-bindings.bindImageTextures = (GL_BindImageTextures)procAddress("glBindImageTextures");  
-bindings.bindProgramPipeline = (GL_BindProgramPipeline)procAddress("glBindProgramPipeline");  
-bindings.bindRenderbuffer = (GL_BindRenderbuffer)procAddress("glBindRenderbuffer");  
-bindings.bindSampler = (GL_BindSampler)procAddress("glBindSampler");  
-bindings.bindSamplers = (GL_BindSamplers)procAddress("glBindSamplers");  
-bindings.bindTexture = (GL_BindTexture)procAddress("glBindTexture");  
-bindings.bindTextureUnit = (GL_BindTextureUnit)procAddress("glBindTextureUnit");  
-bindings.bindTextures = (GL_BindTextures)procAddress("glBindTextures");  
-bindings.bindTransformFeedback = (GL_BindTransformFeedback)procAddress("glBindTransformFeedback");  
-bindings.bindVertexArray = (GL_BindVertexArray)procAddress("glBindVertexArray");  
-bindings.bindVertexBuffer = (GL_BindVertexBuffer)procAddress("glBindVertexBuffer");  
-bindings.bindVertexBuffers = (GL_BindVertexBuffers)procAddress("glBindVertexBuffers");  
-bindings.bitmap = (GL_Bitmap)procAddress("glBitmap");  
-bindings.blendEquationSeparate = (GL_BlendEquationSeparate)procAddress("glBlendEquationSeparate");  
-bindings.blendEquationSeparatei = (GL_BlendEquationSeparatei)procAddress("glBlendEquationSeparatei");  
-bindings.blendEquationi = (GL_BlendEquationi)procAddress("glBlendEquationi");  
-bindings.blendFunc = (GL_BlendFunc)procAddress("glBlendFunc");  
-bindings.blendFuncSeparatei = (GL_BlendFuncSeparatei)procAddress("glBlendFuncSeparatei");  
-bindings.blendFunci = (GL_BlendFunci)procAddress("glBlendFunci");  
-bindings.blitFramebuffer = (GL_BlitFramebuffer)procAddress("glBlitFramebuffer");  
-bindings.blitNamedFramebuffer = (GL_BlitNamedFramebuffer)procAddress("glBlitNamedFramebuffer");  
-bindings.bufferData = (GL_BufferData)procAddress("glBufferData");  
-bindings.bufferStorage = (GL_BufferStorage)procAddress("glBufferStorage");  
-bindings.bufferSubData = (GL_BufferSubData)procAddress("glBufferSubData");  
-bindings.callList = (GL_CallList)procAddress("glCallList");  
-bindings.callLists = (GL_CallLists)procAddress("glCallLists");  
-bindings.checkFramebufferStatus = (GL_CheckFramebufferStatus)procAddress("glCheckFramebufferStatus");  
-bindings.checkNamedFramebufferStatus = (GL_CheckNamedFramebufferStatus)procAddress("glCheckNamedFramebufferStatus");  
-bindings.clampColor = (GL_ClampColor)procAddress("glClampColor");  
-bindings.clear = (GL_Clear)procAddress("glClear");  
-bindings.clearAccum = (GL_ClearAccum)procAddress("glClearAccum");  
-bindings.clearBufferData = (GL_ClearBufferData)procAddress("glClearBufferData");  
-bindings.clearBufferSubData = (GL_ClearBufferSubData)procAddress("glClearBufferSubData");  
-bindings.clearBufferfi = (GL_ClearBufferfi)procAddress("glClearBufferfi");  
-bindings.clearBufferfv = (GL_ClearBufferfv)procAddress("glClearBufferfv");  
-bindings.clearBufferiv = (GL_ClearBufferiv)procAddress("glClearBufferiv");  
-bindings.clearBufferuiv = (GL_ClearBufferuiv)procAddress("glClearBufferuiv");  
-bindings.clearColor = (GL_ClearColor)procAddress("glClearColor");  
-bindings.clearDepth = (GL_ClearDepth)procAddress("glClearDepth");  
-bindings.clearDepthf = (GL_ClearDepthf)procAddress("glClearDepthf");  
-bindings.clearIndex = (GL_ClearIndex)procAddress("glClearIndex");  
-bindings.clearNamedBufferData = (GL_ClearNamedBufferData)procAddress("glClearNamedBufferData");  
-bindings.clearNamedBufferSubData = (GL_ClearNamedBufferSubData)procAddress("glClearNamedBufferSubData");  
-bindings.clearNamedFramebufferfi = (GL_ClearNamedFramebufferfi)procAddress("glClearNamedFramebufferfi");  
-bindings.clearNamedFramebufferfv = (GL_ClearNamedFramebufferfv)procAddress("glClearNamedFramebufferfv");  
-bindings.clearNamedFramebufferiv = (GL_ClearNamedFramebufferiv)procAddress("glClearNamedFramebufferiv");  
-bindings.clearNamedFramebufferuiv = (GL_ClearNamedFramebufferuiv)procAddress("glClearNamedFramebufferuiv");  
-bindings.clearStencil = (GL_ClearStencil)procAddress("glClearStencil");  
-bindings.clearTexImage = (GL_ClearTexImage)procAddress("glClearTexImage");  
-bindings.clearTexSubImage = (GL_ClearTexSubImage)procAddress("glClearTexSubImage");  
-bindings.clientActiveTexture = (GL_ClientActiveTexture)procAddress("glClientActiveTexture");  
-bindings.clientWaitSync = (GL_ClientWaitSync)procAddress("glClientWaitSync");  
-bindings.clipControl = (GL_ClipControl)procAddress("glClipControl");  
-bindings.clipPlane = (GL_ClipPlane)procAddress("glClipPlane");  
-bindings.color3b = (GL_Color3b)procAddress("glColor3b");  
-bindings.color3bv = (GL_Color3bv)procAddress("glColor3bv");  
-bindings.color3d = (GL_Color3d)procAddress("glColor3d");  
-bindings.color3dv = (GL_Color3dv)procAddress("glColor3dv");  
-bindings.color3f = (GL_Color3f)procAddress("glColor3f");  
-bindings.color3fv = (GL_Color3fv)procAddress("glColor3fv");  
-bindings.color3i = (GL_Color3i)procAddress("glColor3i");  
-bindings.color3iv = (GL_Color3iv)procAddress("glColor3iv");  
-bindings.color3s = (GL_Color3s)procAddress("glColor3s");  
-bindings.color3sv = (GL_Color3sv)procAddress("glColor3sv");  
-bindings.color3ub = (GL_Color3ub)procAddress("glColor3ub");  
-bindings.color3ubv = (GL_Color3ubv)procAddress("glColor3ubv");  
-bindings.color3ui = (GL_Color3ui)procAddress("glColor3ui");  
-bindings.color3uiv = (GL_Color3uiv)procAddress("glColor3uiv");  
-bindings.color3us = (GL_Color3us)procAddress("glColor3us");  
-bindings.color3usv = (GL_Color3usv)procAddress("glColor3usv");  
-bindings.color4b = (GL_Color4b)procAddress("glColor4b");  
-bindings.color4bv = (GL_Color4bv)procAddress("glColor4bv");  
-bindings.color4d = (GL_Color4d)procAddress("glColor4d");  
-bindings.color4dv = (GL_Color4dv)procAddress("glColor4dv");  
-bindings.color4f = (GL_Color4f)procAddress("glColor4f");  
-bindings.color4fv = (GL_Color4fv)procAddress("glColor4fv");  
-bindings.color4i = (GL_Color4i)procAddress("glColor4i");  
-bindings.color4iv = (GL_Color4iv)procAddress("glColor4iv");  
-bindings.color4s = (GL_Color4s)procAddress("glColor4s");  
-bindings.color4sv = (GL_Color4sv)procAddress("glColor4sv");  
-bindings.color4ub = (GL_Color4ub)procAddress("glColor4ub");  
-bindings.color4ubv = (GL_Color4ubv)procAddress("glColor4ubv");  
-bindings.color4ui = (GL_Color4ui)procAddress("glColor4ui");  
-bindings.color4uiv = (GL_Color4uiv)procAddress("glColor4uiv");  
-bindings.color4us = (GL_Color4us)procAddress("glColor4us");  
-bindings.color4usv = (GL_Color4usv)procAddress("glColor4usv");  
-bindings.colorMask = (GL_ColorMask)procAddress("glColorMask");  
-bindings.colorMaski = (GL_ColorMaski)procAddress("glColorMaski");  
-bindings.colorMaterial = (GL_ColorMaterial)procAddress("glColorMaterial");  
-bindings.colorP3ui = (GL_ColorP3ui)procAddress("glColorP3ui");  
-bindings.colorP3uiv = (GL_ColorP3uiv)procAddress("glColorP3uiv");  
-bindings.colorP4ui = (GL_ColorP4ui)procAddress("glColorP4ui");  
-bindings.colorP4uiv = (GL_ColorP4uiv)procAddress("glColorP4uiv");  
-bindings.colorPointer = (GL_ColorPointer)procAddress("glColorPointer");  
-bindings.compileShader = (GL_CompileShader)procAddress("glCompileShader");  
-bindings.compressedTextureSubImage1D = (GL_CompressedTextureSubImage1D)procAddress("glCompressedTextureSubImage1D");  
-bindings.compressedTextureSubImage2D = (GL_CompressedTextureSubImage2D)procAddress("glCompressedTextureSubImage2D");  
-bindings.compressedTextureSubImage3D = (GL_CompressedTextureSubImage3D)procAddress("glCompressedTextureSubImage3D");  
-bindings.copyBufferSubData = (GL_CopyBufferSubData)procAddress("glCopyBufferSubData");  
-bindings.copyImageSubData = (GL_CopyImageSubData)procAddress("glCopyImageSubData");  
-bindings.copyNamedBufferSubData = (GL_CopyNamedBufferSubData)procAddress("glCopyNamedBufferSubData");  
-bindings.copyPixels = (GL_CopyPixels)procAddress("glCopyPixels");  
-bindings.copyTexImage1D = (GL_CopyTexImage1D)procAddress("glCopyTexImage1D");  
-bindings.copyTexImage2D = (GL_CopyTexImage2D)procAddress("glCopyTexImage2D");  
-bindings.copyTexSubImage1D = (GL_CopyTexSubImage1D)procAddress("glCopyTexSubImage1D");  
-bindings.copyTexSubImage2D = (GL_CopyTexSubImage2D)procAddress("glCopyTexSubImage2D");  
-bindings.copyTextureSubImage1D = (GL_CopyTextureSubImage1D)procAddress("glCopyTextureSubImage1D");  
-bindings.copyTextureSubImage2D = (GL_CopyTextureSubImage2D)procAddress("glCopyTextureSubImage2D");  
-bindings.copyTextureSubImage3D = (GL_CopyTextureSubImage3D)procAddress("glCopyTextureSubImage3D");  
-bindings.createBuffers = (GL_CreateBuffers)procAddress("glCreateBuffers");  
-bindings.createFramebuffers = (GL_CreateFramebuffers)procAddress("glCreateFramebuffers");  
-bindings.createProgram = (GL_CreateProgram)procAddress("glCreateProgram");  
-bindings.createProgramPipelines = (GL_CreateProgramPipelines)procAddress("glCreateProgramPipelines");  
-bindings.createQueries = (GL_CreateQueries)procAddress("glCreateQueries");  
-bindings.createRenderbuffers = (GL_CreateRenderbuffers)procAddress("glCreateRenderbuffers");  
-bindings.createSamplers = (GL_CreateSamplers)procAddress("glCreateSamplers");  
-bindings.createShader = (GL_CreateShader)procAddress("glCreateShader");  
-bindings.createShaderProgramv = (GL_CreateShaderProgramv)procAddress("glCreateShaderProgramv");  
-bindings.createTextures = (GL_CreateTextures)procAddress("glCreateTextures");  
-bindings.createTransformFeedbacks = (GL_CreateTransformFeedbacks)procAddress("glCreateTransformFeedbacks");  
-bindings.createVertexArrays = (GL_CreateVertexArrays)procAddress("glCreateVertexArrays");  
-bindings.cullFace = (GL_CullFace)procAddress("glCullFace");  
-bindings.debugMessageCallback = (GL_DebugMessageCallback)procAddress("glDebugMessageCallback");  
-bindings.debugMessageControl = (GL_DebugMessageControl)procAddress("glDebugMessageControl");  
-bindings.debugMessageInsert = (GL_DebugMessageInsert)procAddress("glDebugMessageInsert");  
-bindings.deleteBuffers = (GL_DeleteBuffers)procAddress("glDeleteBuffers");  
-bindings.deleteFramebuffers = (GL_DeleteFramebuffers)procAddress("glDeleteFramebuffers");  
-bindings.deleteLists = (GL_DeleteLists)procAddress("glDeleteLists");  
-bindings.deleteProgram = (GL_DeleteProgram)procAddress("glDeleteProgram");  
-bindings.deleteProgramPipelines = (GL_DeleteProgramPipelines)procAddress("glDeleteProgramPipelines");  
-bindings.deleteQueries = (GL_DeleteQueries)procAddress("glDeleteQueries");  
-bindings.deleteRenderbuffers = (GL_DeleteRenderbuffers)procAddress("glDeleteRenderbuffers");  
-bindings.deleteSamplers = (GL_DeleteSamplers)procAddress("glDeleteSamplers");  
-bindings.deleteShader = (GL_DeleteShader)procAddress("glDeleteShader");  
-bindings.deleteSync = (GL_DeleteSync)procAddress("glDeleteSync");  
-bindings.deleteTextures = (GL_DeleteTextures)procAddress("glDeleteTextures");  
-bindings.deleteTransformFeedbacks = (GL_DeleteTransformFeedbacks)procAddress("glDeleteTransformFeedbacks");  
-bindings.deleteVertexArrays = (GL_DeleteVertexArrays)procAddress("glDeleteVertexArrays");  
-bindings.depthFunc = (GL_DepthFunc)procAddress("glDepthFunc");  
-bindings.depthMask = (GL_DepthMask)procAddress("glDepthMask");  
-bindings.depthRange = (GL_DepthRange)procAddress("glDepthRange");  
-bindings.depthRangeArrayv = (GL_DepthRangeArrayv)procAddress("glDepthRangeArrayv");  
-bindings.depthRangeIndexed = (GL_DepthRangeIndexed)procAddress("glDepthRangeIndexed");  
-bindings.depthRangef = (GL_DepthRangef)procAddress("glDepthRangef");  
-bindings.detachShader = (GL_DetachShader)procAddress("glDetachShader");  
-bindings.disable = (GL_Disable)procAddress("glDisable");  
-bindings.disableClientState = (GL_DisableClientState)procAddress("glDisableClientState");  
-bindings.disableVertexArrayAttrib = (GL_DisableVertexArrayAttrib)procAddress("glDisableVertexArrayAttrib");  
-bindings.disableVertexAttribArray = (GL_DisableVertexAttribArray)procAddress("glDisableVertexAttribArray");  
-bindings.disablei = (GL_Disablei)procAddress("glDisablei");  
-bindings.dispatchCompute = (GL_DispatchCompute)procAddress("glDispatchCompute");  
-bindings.dispatchComputeIndirect = (GL_DispatchComputeIndirect)procAddress("glDispatchComputeIndirect");  
-bindings.drawArrays = (GL_DrawArrays)procAddress("glDrawArrays");  
-bindings.drawArraysIndirect = (GL_DrawArraysIndirect)procAddress("glDrawArraysIndirect");  
-bindings.drawArraysInstanced = (GL_DrawArraysInstanced)procAddress("glDrawArraysInstanced");  
-bindings.drawArraysInstancedBaseInstance = (GL_DrawArraysInstancedBaseInstance)procAddress("glDrawArraysInstancedBaseInstance");  
-bindings.drawBuffer = (GL_DrawBuffer)procAddress("glDrawBuffer");  
-bindings.drawBuffers = (GL_DrawBuffers)procAddress("glDrawBuffers");  
-bindings.drawElements = (GL_DrawElements)procAddress("glDrawElements");  
-bindings.drawElementsBaseVertex = (GL_DrawElementsBaseVertex)procAddress("glDrawElementsBaseVertex");  
-bindings.drawElementsIndirect = (GL_DrawElementsIndirect)procAddress("glDrawElementsIndirect");  
-bindings.drawElementsInstanced = (GL_DrawElementsInstanced)procAddress("glDrawElementsInstanced");  
-bindings.drawElementsInstancedBaseInstance = (GL_DrawElementsInstancedBaseInstance)procAddress("glDrawElementsInstancedBaseInstance");  
-bindings.drawElementsInstancedBaseVertex = (GL_DrawElementsInstancedBaseVertex)procAddress("glDrawElementsInstancedBaseVertex");  
-bindings.drawElementsInstancedBaseVertexBaseInstance = (GL_DrawElementsInstancedBaseVertexBaseInstance)procAddress("glDrawElementsInstancedBaseVertexBaseInstance");  
-bindings.drawPixels = (GL_DrawPixels)procAddress("glDrawPixels");  
-bindings.drawRangeElementsBaseVertex = (GL_DrawRangeElementsBaseVertex)procAddress("glDrawRangeElementsBaseVertex");  
-bindings.drawTransformFeedback = (GL_DrawTransformFeedback)procAddress("glDrawTransformFeedback");  
-bindings.drawTransformFeedbackInstanced = (GL_DrawTransformFeedbackInstanced)procAddress("glDrawTransformFeedbackInstanced");  
-bindings.drawTransformFeedbackStream = (GL_DrawTransformFeedbackStream)procAddress("glDrawTransformFeedbackStream");  
-bindings.drawTransformFeedbackStreamInstanced = (GL_DrawTransformFeedbackStreamInstanced)procAddress("glDrawTransformFeedbackStreamInstanced");  
-bindings.edgeFlag = (GL_EdgeFlag)procAddress("glEdgeFlag");  
-bindings.edgeFlagPointer = (GL_EdgeFlagPointer)procAddress("glEdgeFlagPointer");  
-bindings.edgeFlagv = (GL_EdgeFlagv)procAddress("glEdgeFlagv");  
-bindings.enable = (GL_Enable)procAddress("glEnable");  
-bindings.enableClientState = (GL_EnableClientState)procAddress("glEnableClientState");  
-bindings.enableVertexArrayAttrib = (GL_EnableVertexArrayAttrib)procAddress("glEnableVertexArrayAttrib");  
-bindings.enableVertexAttribArray = (GL_EnableVertexAttribArray)procAddress("glEnableVertexAttribArray");  
-bindings.enablei = (GL_Enablei)procAddress("glEnablei");  
-bindings.end = (GL_End)procAddress("glEnd");  
-bindings.endConditionalRender = (GL_EndConditionalRender)procAddress("glEndConditionalRender");  
-bindings.endList = (GL_EndList)procAddress("glEndList");  
-bindings.endQuery = (GL_EndQuery)procAddress("glEndQuery");  
-bindings.endQueryIndexed = (GL_EndQueryIndexed)procAddress("glEndQueryIndexed");  
-bindings.endTransformFeedback = (GL_EndTransformFeedback)procAddress("glEndTransformFeedback");  
-bindings.evalCoord1d = (GL_EvalCoord1d)procAddress("glEvalCoord1d");  
-bindings.evalCoord1dv = (GL_EvalCoord1dv)procAddress("glEvalCoord1dv");  
-bindings.evalCoord1f = (GL_EvalCoord1f)procAddress("glEvalCoord1f");  
-bindings.evalCoord1fv = (GL_EvalCoord1fv)procAddress("glEvalCoord1fv");  
-bindings.evalCoord2d = (GL_EvalCoord2d)procAddress("glEvalCoord2d");  
-bindings.evalCoord2dv = (GL_EvalCoord2dv)procAddress("glEvalCoord2dv");  
-bindings.evalCoord2f = (GL_EvalCoord2f)procAddress("glEvalCoord2f");  
-bindings.evalCoord2fv = (GL_EvalCoord2fv)procAddress("glEvalCoord2fv");  
-bindings.evalMesh1 = (GL_EvalMesh1)procAddress("glEvalMesh1");  
-bindings.evalMesh2 = (GL_EvalMesh2)procAddress("glEvalMesh2");  
-bindings.evalPoint1 = (GL_EvalPoint1)procAddress("glEvalPoint1");  
-bindings.evalPoint2 = (GL_EvalPoint2)procAddress("glEvalPoint2");  
-bindings.feedbackBuffer = (GL_FeedbackBuffer)procAddress("glFeedbackBuffer");  
-bindings.fenceSync = (GL_FenceSync)procAddress("glFenceSync");  
-bindings.finish = (GL_Finish)procAddress("glFinish");  
-bindings.flush = (GL_Flush)procAddress("glFlush");  
-bindings.flushMappedBufferRange = (GL_FlushMappedBufferRange)procAddress("glFlushMappedBufferRange");  
-bindings.flushMappedNamedBufferRange = (GL_FlushMappedNamedBufferRange)procAddress("glFlushMappedNamedBufferRange");  
-bindings.fogCoordPointer = (GL_FogCoordPointer)procAddress("glFogCoordPointer");  
-bindings.fogCoordd = (GL_FogCoordd)procAddress("glFogCoordd");  
-bindings.fogCoorddv = (GL_FogCoorddv)procAddress("glFogCoorddv");  
-bindings.fogCoordf = (GL_FogCoordf)procAddress("glFogCoordf");  
-bindings.fogCoordfv = (GL_FogCoordfv)procAddress("glFogCoordfv");  
-bindings.fogf = (GL_Fogf)procAddress("glFogf");  
-bindings.fogfv = (GL_Fogfv)procAddress("glFogfv");  
-bindings.fogi = (GL_Fogi)procAddress("glFogi");  
-bindings.fogiv = (GL_Fogiv)procAddress("glFogiv");  
-bindings.framebufferParameteri = (GL_FramebufferParameteri)procAddress("glFramebufferParameteri");  
-bindings.framebufferRenderbuffer = (GL_FramebufferRenderbuffer)procAddress("glFramebufferRenderbuffer");  
-bindings.framebufferTexture = (GL_FramebufferTexture)procAddress("glFramebufferTexture");  
-bindings.framebufferTexture1D = (GL_FramebufferTexture1D)procAddress("glFramebufferTexture1D");  
-bindings.framebufferTexture2D = (GL_FramebufferTexture2D)procAddress("glFramebufferTexture2D");  
-bindings.framebufferTexture3D = (GL_FramebufferTexture3D)procAddress("glFramebufferTexture3D");  
-bindings.framebufferTextureLayer = (GL_FramebufferTextureLayer)procAddress("glFramebufferTextureLayer");  
-bindings.frontFace = (GL_FrontFace)procAddress("glFrontFace");  
-bindings.frustum = (GL_Frustum)procAddress("glFrustum");  
-bindings.genBuffers = (GL_GenBuffers)procAddress("glGenBuffers");  
-bindings.genFramebuffers = (GL_GenFramebuffers)procAddress("glGenFramebuffers");  
-bindings.genLists = (GL_GenLists)procAddress("glGenLists");  
-bindings.genProgramPipelines = (GL_GenProgramPipelines)procAddress("glGenProgramPipelines");  
-bindings.genQueries = (GL_GenQueries)procAddress("glGenQueries");  
-bindings.genRenderbuffers = (GL_GenRenderbuffers)procAddress("glGenRenderbuffers");  
-bindings.genSamplers = (GL_GenSamplers)procAddress("glGenSamplers");  
-bindings.genTextures = (GL_GenTextures)procAddress("glGenTextures");  
-bindings.genTransformFeedbacks = (GL_GenTransformFeedbacks)procAddress("glGenTransformFeedbacks");  
-bindings.genVertexArrays = (GL_GenVertexArrays)procAddress("glGenVertexArrays");  
-bindings.generateMipmap = (GL_GenerateMipmap)procAddress("glGenerateMipmap");  
-bindings.generateTextureMipmap = (GL_GenerateTextureMipmap)procAddress("glGenerateTextureMipmap");  
-bindings.getActiveAtomicCounterBufferiv = (GL_GetActiveAtomicCounterBufferiv)procAddress("glGetActiveAtomicCounterBufferiv");  
-bindings.getActiveAttrib = (GL_GetActiveAttrib)procAddress("glGetActiveAttrib");  
-bindings.getActiveSubroutineName = (GL_GetActiveSubroutineName)procAddress("glGetActiveSubroutineName");  
-bindings.getActiveSubroutineUniformName = (GL_GetActiveSubroutineUniformName)procAddress("glGetActiveSubroutineUniformName");  
-bindings.getActiveSubroutineUniformiv = (GL_GetActiveSubroutineUniformiv)procAddress("glGetActiveSubroutineUniformiv");  
-bindings.getActiveUniform = (GL_GetActiveUniform)procAddress("glGetActiveUniform");  
-bindings.getActiveUniformBlockName = (GL_GetActiveUniformBlockName)procAddress("glGetActiveUniformBlockName");  
-bindings.getActiveUniformBlockiv = (GL_GetActiveUniformBlockiv)procAddress("glGetActiveUniformBlockiv");  
-bindings.getActiveUniformName = (GL_GetActiveUniformName)procAddress("glGetActiveUniformName");  
-bindings.getActiveUniformsiv = (GL_GetActiveUniformsiv)procAddress("glGetActiveUniformsiv");  
-bindings.getAttachedShaders = (GL_GetAttachedShaders)procAddress("glGetAttachedShaders");  
-bindings.getAttribLocation = (GL_GetAttribLocation)procAddress("glGetAttribLocation");  
-bindings.getBooleani_v = (GL_GetBooleani_v)procAddress("glGetBooleani_v");  
-bindings.getBooleanv = (GL_GetBooleanv)procAddress("glGetBooleanv");  
-bindings.getBufferParameteri64v = (GL_GetBufferParameteri64v)procAddress("glGetBufferParameteri64v");  
-bindings.getBufferParameteriv = (GL_GetBufferParameteriv)procAddress("glGetBufferParameteriv");  
-bindings.getBufferPointerv = (GL_GetBufferPointerv)procAddress("glGetBufferPointerv");  
-bindings.getBufferSubData = (GL_GetBufferSubData)procAddress("glGetBufferSubData");  
-bindings.getClipPlane = (GL_GetClipPlane)procAddress("glGetClipPlane");  
-bindings.getCompressedTextureImage = (GL_GetCompressedTextureImage)procAddress("glGetCompressedTextureImage");  
-bindings.getCompressedTextureSubImage = (GL_GetCompressedTextureSubImage)procAddress("glGetCompressedTextureSubImage");  
-bindings.getDebugMessageLog = (GL_GetDebugMessageLog)procAddress("glGetDebugMessageLog");  
-bindings.getDoublei_v = (GL_GetDoublei_v)procAddress("glGetDoublei_v");  
-bindings.getDoublev = (GL_GetDoublev)procAddress("glGetDoublev");  
-bindings.getError = (GL_GetError)procAddress("glGetError");  
-bindings.getFloati_v = (GL_GetFloati_v)procAddress("glGetFloati_v");  
-bindings.getFloatv = (GL_GetFloatv)procAddress("glGetFloatv");  
-bindings.getFragDataIndex = (GL_GetFragDataIndex)procAddress("glGetFragDataIndex");  
-bindings.getFragDataLocation = (GL_GetFragDataLocation)procAddress("glGetFragDataLocation");  
-bindings.getFramebufferAttachmentParameteriv = (GL_GetFramebufferAttachmentParameteriv)procAddress("glGetFramebufferAttachmentParameteriv");  
-bindings.getFramebufferParameteriv = (GL_GetFramebufferParameteriv)procAddress("glGetFramebufferParameteriv");  
-bindings.getGraphicsResetStatus = (GL_GetGraphicsResetStatus)procAddress("glGetGraphicsResetStatus");  
-bindings.getInteger64i_v = (GL_GetInteger64i_v)procAddress("glGetInteger64i_v");  
-bindings.getInteger64v = (GL_GetInteger64v)procAddress("glGetInteger64v");  
-bindings.getIntegeri_v = (GL_GetIntegeri_v)procAddress("glGetIntegeri_v");  
-bindings.getIntegerv = (GL_GetIntegerv)procAddress("glGetIntegerv");  
-bindings.getInternalformati64v = (GL_GetInternalformati64v)procAddress("glGetInternalformati64v");  
-bindings.getInternalformativ = (GL_GetInternalformativ)procAddress("glGetInternalformativ");  
-bindings.getLightfv = (GL_GetLightfv)procAddress("glGetLightfv");  
-bindings.getLightiv = (GL_GetLightiv)procAddress("glGetLightiv");  
-bindings.getMapdv = (GL_GetMapdv)procAddress("glGetMapdv");  
-bindings.getMapfv = (GL_GetMapfv)procAddress("glGetMapfv");  
-bindings.getMapiv = (GL_GetMapiv)procAddress("glGetMapiv");  
-bindings.getMaterialfv = (GL_GetMaterialfv)procAddress("glGetMaterialfv");  
-bindings.getMaterialiv = (GL_GetMaterialiv)procAddress("glGetMaterialiv");  
-bindings.getMultisamplefv = (GL_GetMultisamplefv)procAddress("glGetMultisamplefv");  
-bindings.getNamedBufferParameteri64v = (GL_GetNamedBufferParameteri64v)procAddress("glGetNamedBufferParameteri64v");  
-bindings.getNamedBufferParameteriv = (GL_GetNamedBufferParameteriv)procAddress("glGetNamedBufferParameteriv");  
-bindings.getNamedBufferPointerv = (GL_GetNamedBufferPointerv)procAddress("glGetNamedBufferPointerv");  
-bindings.getNamedBufferSubData = (GL_GetNamedBufferSubData)procAddress("glGetNamedBufferSubData");  
-bindings.getNamedFramebufferAttachmentParameteriv = (GL_GetNamedFramebufferAttachmentParameteriv)procAddress("glGetNamedFramebufferAttachmentParameteriv");  
-bindings.getNamedFramebufferParameteriv = (GL_GetNamedFramebufferParameteriv)procAddress("glGetNamedFramebufferParameteriv");  
-bindings.getNamedRenderbufferParameteriv = (GL_GetNamedRenderbufferParameteriv)procAddress("glGetNamedRenderbufferParameteriv");  
-bindings.getObjectLabel = (GL_GetObjectLabel)procAddress("glGetObjectLabel");  
-bindings.getObjectPtrLabel = (GL_GetObjectPtrLabel)procAddress("glGetObjectPtrLabel");  
-bindings.getPixelMapfv = (GL_GetPixelMapfv)procAddress("glGetPixelMapfv");  
-bindings.getPixelMapuiv = (GL_GetPixelMapuiv)procAddress("glGetPixelMapuiv");  
-bindings.getPixelMapusv = (GL_GetPixelMapusv)procAddress("glGetPixelMapusv");  
-bindings.getPointerv = (GL_GetPointerv)procAddress("glGetPointerv");  
-bindings.getPolygonStipple = (GL_GetPolygonStipple)procAddress("glGetPolygonStipple");  
-bindings.getProgramBinary = (GL_GetProgramBinary)procAddress("glGetProgramBinary");  
-bindings.getProgramInfoLog = (GL_GetProgramInfoLog)procAddress("glGetProgramInfoLog");  
-bindings.getProgramInterfaceiv = (GL_GetProgramInterfaceiv)procAddress("glGetProgramInterfaceiv");  
-bindings.getProgramPipelineInfoLog = (GL_GetProgramPipelineInfoLog)procAddress("glGetProgramPipelineInfoLog");  
-bindings.getProgramPipelineiv = (GL_GetProgramPipelineiv)procAddress("glGetProgramPipelineiv");  
-bindings.getProgramResourceIndex = (GL_GetProgramResourceIndex)procAddress("glGetProgramResourceIndex");  
-bindings.getProgramResourceLocation = (GL_GetProgramResourceLocation)procAddress("glGetProgramResourceLocation");  
-bindings.getProgramResourceLocationIndex = (GL_GetProgramResourceLocationIndex)procAddress("glGetProgramResourceLocationIndex");  
-bindings.getProgramResourceName = (GL_GetProgramResourceName)procAddress("glGetProgramResourceName");  
-bindings.getProgramResourceiv = (GL_GetProgramResourceiv)procAddress("glGetProgramResourceiv");  
-bindings.getProgramStageiv = (GL_GetProgramStageiv)procAddress("glGetProgramStageiv");  
-bindings.getProgramiv = (GL_GetProgramiv)procAddress("glGetProgramiv");  
-bindings.getQueryBufferObjecti64v = (GL_GetQueryBufferObjecti64v)procAddress("glGetQueryBufferObjecti64v");  
-bindings.getQueryBufferObjectiv = (GL_GetQueryBufferObjectiv)procAddress("glGetQueryBufferObjectiv");  
-bindings.getQueryBufferObjectui64v = (GL_GetQueryBufferObjectui64v)procAddress("glGetQueryBufferObjectui64v");  
-bindings.getQueryBufferObjectuiv = (GL_GetQueryBufferObjectuiv)procAddress("glGetQueryBufferObjectuiv");  
-bindings.getQueryIndexediv = (GL_GetQueryIndexediv)procAddress("glGetQueryIndexediv");  
-bindings.getQueryObjecti64v = (GL_GetQueryObjecti64v)procAddress("glGetQueryObjecti64v");  
-bindings.getQueryObjectiv = (GL_GetQueryObjectiv)procAddress("glGetQueryObjectiv");  
-bindings.getQueryObjectui64v = (GL_GetQueryObjectui64v)procAddress("glGetQueryObjectui64v");  
-bindings.getQueryObjectuiv = (GL_GetQueryObjectuiv)procAddress("glGetQueryObjectuiv");  
-bindings.getQueryiv = (GL_GetQueryiv)procAddress("glGetQueryiv");  
-bindings.getRenderbufferParameteriv = (GL_GetRenderbufferParameteriv)procAddress("glGetRenderbufferParameteriv");  
-bindings.getSamplerParameterIiv = (GL_GetSamplerParameterIiv)procAddress("glGetSamplerParameterIiv");  
-bindings.getSamplerParameterIuiv = (GL_GetSamplerParameterIuiv)procAddress("glGetSamplerParameterIuiv");  
-bindings.getSamplerParameterfv = (GL_GetSamplerParameterfv)procAddress("glGetSamplerParameterfv");  
-bindings.getSamplerParameteriv = (GL_GetSamplerParameteriv)procAddress("glGetSamplerParameteriv");  
-bindings.getShaderInfoLog = (GL_GetShaderInfoLog)procAddress("glGetShaderInfoLog");  
-bindings.getShaderPrecisionFormat = (GL_GetShaderPrecisionFormat)procAddress("glGetShaderPrecisionFormat");  
-bindings.getShaderSource = (GL_GetShaderSource)procAddress("glGetShaderSource");  
-bindings.getShaderiv = (GL_GetShaderiv)procAddress("glGetShaderiv");  
-bindings.getString = (GL_GetString)procAddress("glGetString");  
-bindings.getStringi = (GL_GetStringi)procAddress("glGetStringi");  
-bindings.getSubroutineIndex = (GL_GetSubroutineIndex)procAddress("glGetSubroutineIndex");  
-bindings.getSubroutineUniformLocation = (GL_GetSubroutineUniformLocation)procAddress("glGetSubroutineUniformLocation");  
-bindings.getSynciv = (GL_GetSynciv)procAddress("glGetSynciv");  
-bindings.getTexEnvfv = (GL_GetTexEnvfv)procAddress("glGetTexEnvfv");  
-bindings.getTexEnviv = (GL_GetTexEnviv)procAddress("glGetTexEnviv");  
-bindings.getTexGendv = (GL_GetTexGendv)procAddress("glGetTexGendv");  
-bindings.getTexGenfv = (GL_GetTexGenfv)procAddress("glGetTexGenfv");  
-bindings.getTexGeniv = (GL_GetTexGeniv)procAddress("glGetTexGeniv");  
-bindings.getTexImage = (GL_GetTexImage)procAddress("glGetTexImage");  
-bindings.getTexLevelParameterfv = (GL_GetTexLevelParameterfv)procAddress("glGetTexLevelParameterfv");  
-bindings.getTexLevelParameteriv = (GL_GetTexLevelParameteriv)procAddress("glGetTexLevelParameteriv");  
-bindings.getTexParameterIiv = (GL_GetTexParameterIiv)procAddress("glGetTexParameterIiv");  
-bindings.getTexParameterIuiv = (GL_GetTexParameterIuiv)procAddress("glGetTexParameterIuiv");  
-bindings.getTexParameterfv = (GL_GetTexParameterfv)procAddress("glGetTexParameterfv");  
-bindings.getTexParameteriv = (GL_GetTexParameteriv)procAddress("glGetTexParameteriv");  
-bindings.getTextureImage = (GL_GetTextureImage)procAddress("glGetTextureImage");  
-bindings.getTextureLevelParameterfv = (GL_GetTextureLevelParameterfv)procAddress("glGetTextureLevelParameterfv");  
-bindings.getTextureLevelParameteriv = (GL_GetTextureLevelParameteriv)procAddress("glGetTextureLevelParameteriv");  
-bindings.getTextureParameterIiv = (GL_GetTextureParameterIiv)procAddress("glGetTextureParameterIiv");  
-bindings.getTextureParameterIuiv = (GL_GetTextureParameterIuiv)procAddress("glGetTextureParameterIuiv");  
-bindings.getTextureParameterfv = (GL_GetTextureParameterfv)procAddress("glGetTextureParameterfv");  
-bindings.getTextureParameteriv = (GL_GetTextureParameteriv)procAddress("glGetTextureParameteriv");  
-bindings.getTextureSubImage = (GL_GetTextureSubImage)procAddress("glGetTextureSubImage");  
-bindings.getTransformFeedbackVarying = (GL_GetTransformFeedbackVarying)procAddress("glGetTransformFeedbackVarying");  
-bindings.getTransformFeedbacki64_v = (GL_GetTransformFeedbacki64_v)procAddress("glGetTransformFeedbacki64_v");  
-bindings.getTransformFeedbacki_v = (GL_GetTransformFeedbacki_v)procAddress("glGetTransformFeedbacki_v");  
-bindings.getTransformFeedbackiv = (GL_GetTransformFeedbackiv)procAddress("glGetTransformFeedbackiv");  
-bindings.getUniformBlockIndex = (GL_GetUniformBlockIndex)procAddress("glGetUniformBlockIndex");  
-bindings.getUniformIndices = (GL_GetUniformIndices)procAddress("glGetUniformIndices");  
-bindings.getUniformLocation = (GL_GetUniformLocation)procAddress("glGetUniformLocation");  
-bindings.getUniformSubroutineuiv = (GL_GetUniformSubroutineuiv)procAddress("glGetUniformSubroutineuiv");  
-bindings.getUniformdv = (GL_GetUniformdv)procAddress("glGetUniformdv");  
-bindings.getUniformfv = (GL_GetUniformfv)procAddress("glGetUniformfv");  
-bindings.getUniformiv = (GL_GetUniformiv)procAddress("glGetUniformiv");  
-bindings.getUniformuiv = (GL_GetUniformuiv)procAddress("glGetUniformuiv");  
-bindings.getVertexArrayIndexed64iv = (GL_GetVertexArrayIndexed64iv)procAddress("glGetVertexArrayIndexed64iv");  
-bindings.getVertexArrayIndexediv = (GL_GetVertexArrayIndexediv)procAddress("glGetVertexArrayIndexediv");  
-bindings.getVertexArrayiv = (GL_GetVertexArrayiv)procAddress("glGetVertexArrayiv");  
-bindings.getVertexAttribIiv = (GL_GetVertexAttribIiv)procAddress("glGetVertexAttribIiv");  
-bindings.getVertexAttribIuiv = (GL_GetVertexAttribIuiv)procAddress("glGetVertexAttribIuiv");  
-bindings.getVertexAttribLdv = (GL_GetVertexAttribLdv)procAddress("glGetVertexAttribLdv");  
-bindings.getVertexAttribPointerv = (GL_GetVertexAttribPointerv)procAddress("glGetVertexAttribPointerv");  
-bindings.getVertexAttribdv = (GL_GetVertexAttribdv)procAddress("glGetVertexAttribdv");  
-bindings.getVertexAttribfv = (GL_GetVertexAttribfv)procAddress("glGetVertexAttribfv");  
-bindings.getVertexAttribiv = (GL_GetVertexAttribiv)procAddress("glGetVertexAttribiv");  
-bindings.getnColorTable = (GL_GetnColorTable)procAddress("glGetnColorTable");  
-bindings.getnCompressedTexImage = (GL_GetnCompressedTexImage)procAddress("glGetnCompressedTexImage");  
-bindings.getnConvolutionFilter = (GL_GetnConvolutionFilter)procAddress("glGetnConvolutionFilter");  
-bindings.getnHistogram = (GL_GetnHistogram)procAddress("glGetnHistogram");  
-bindings.getnMapdv = (GL_GetnMapdv)procAddress("glGetnMapdv");  
-bindings.getnMapfv = (GL_GetnMapfv)procAddress("glGetnMapfv");  
-bindings.getnMapiv = (GL_GetnMapiv)procAddress("glGetnMapiv");  
-bindings.getnMinmax = (GL_GetnMinmax)procAddress("glGetnMinmax");  
-bindings.getnPixelMapfv = (GL_GetnPixelMapfv)procAddress("glGetnPixelMapfv");  
-bindings.getnPixelMapuiv = (GL_GetnPixelMapuiv)procAddress("glGetnPixelMapuiv");  
-bindings.getnPixelMapusv = (GL_GetnPixelMapusv)procAddress("glGetnPixelMapusv");  
-bindings.getnPolygonStipple = (GL_GetnPolygonStipple)procAddress("glGetnPolygonStipple");  
-bindings.getnSeparableFilter = (GL_GetnSeparableFilter)procAddress("glGetnSeparableFilter");  
-bindings.getnTexImage = (GL_GetnTexImage)procAddress("glGetnTexImage");  
-bindings.getnUniformdv = (GL_GetnUniformdv)procAddress("glGetnUniformdv");  
-bindings.getnUniformfv = (GL_GetnUniformfv)procAddress("glGetnUniformfv");  
-bindings.getnUniformiv = (GL_GetnUniformiv)procAddress("glGetnUniformiv");  
-bindings.getnUniformuiv = (GL_GetnUniformuiv)procAddress("glGetnUniformuiv");  
-bindings.hint = (GL_Hint)procAddress("glHint");  
-bindings.indexMask = (GL_IndexMask)procAddress("glIndexMask");  
-bindings.indexPointer = (GL_IndexPointer)procAddress("glIndexPointer");  
-bindings.indexd = (GL_Indexd)procAddress("glIndexd");  
-bindings.indexdv = (GL_Indexdv)procAddress("glIndexdv");  
-bindings.indexf = (GL_Indexf)procAddress("glIndexf");  
-bindings.indexfv = (GL_Indexfv)procAddress("glIndexfv");  
-bindings.indexi = (GL_Indexi)procAddress("glIndexi");  
-bindings.indexiv = (GL_Indexiv)procAddress("glIndexiv");  
-bindings.indexs = (GL_Indexs)procAddress("glIndexs");  
-bindings.indexsv = (GL_Indexsv)procAddress("glIndexsv");  
-bindings.indexub = (GL_Indexub)procAddress("glIndexub");  
-bindings.indexubv = (GL_Indexubv)procAddress("glIndexubv");  
-bindings.initNames = (GL_InitNames)procAddress("glInitNames");  
-bindings.interleavedArrays = (GL_InterleavedArrays)procAddress("glInterleavedArrays");  
-bindings.invalidateBufferData = (GL_InvalidateBufferData)procAddress("glInvalidateBufferData");  
-bindings.invalidateBufferSubData = (GL_InvalidateBufferSubData)procAddress("glInvalidateBufferSubData");  
-bindings.invalidateFramebuffer = (GL_InvalidateFramebuffer)procAddress("glInvalidateFramebuffer");  
-bindings.invalidateNamedFramebufferData = (GL_InvalidateNamedFramebufferData)procAddress("glInvalidateNamedFramebufferData");  
-bindings.invalidateNamedFramebufferSubData = (GL_InvalidateNamedFramebufferSubData)procAddress("glInvalidateNamedFramebufferSubData");  
-bindings.invalidateSubFramebuffer = (GL_InvalidateSubFramebuffer)procAddress("glInvalidateSubFramebuffer");  
-bindings.invalidateTexImage = (GL_InvalidateTexImage)procAddress("glInvalidateTexImage");  
-bindings.invalidateTexSubImage = (GL_InvalidateTexSubImage)procAddress("glInvalidateTexSubImage");  
-bindings.isBuffer = (GL_IsBuffer)procAddress("glIsBuffer");  
-bindings.isEnabled = (GL_IsEnabled)procAddress("glIsEnabled");  
-bindings.isEnabledi = (GL_IsEnabledi)procAddress("glIsEnabledi");  
-bindings.isFramebuffer = (GL_IsFramebuffer)procAddress("glIsFramebuffer");  
-bindings.isList = (GL_IsList)procAddress("glIsList");  
-bindings.isProgram = (GL_IsProgram)procAddress("glIsProgram");  
-bindings.isProgramPipeline = (GL_IsProgramPipeline)procAddress("glIsProgramPipeline");  
-bindings.isQuery = (GL_IsQuery)procAddress("glIsQuery");  
-bindings.isRenderbuffer = (GL_IsRenderbuffer)procAddress("glIsRenderbuffer");  
-bindings.isSampler = (GL_IsSampler)procAddress("glIsSampler");  
-bindings.isShader = (GL_IsShader)procAddress("glIsShader");  
-bindings.isSync = (GL_IsSync)procAddress("glIsSync");  
-bindings.isTexture = (GL_IsTexture)procAddress("glIsTexture");  
-bindings.isTransformFeedback = (GL_IsTransformFeedback)procAddress("glIsTransformFeedback");  
-bindings.isVertexArray = (GL_IsVertexArray)procAddress("glIsVertexArray");  
-bindings.lightModelf = (GL_LightModelf)procAddress("glLightModelf");  
-bindings.lightModelfv = (GL_LightModelfv)procAddress("glLightModelfv");  
-bindings.lightModeli = (GL_LightModeli)procAddress("glLightModeli");  
-bindings.lightModeliv = (GL_LightModeliv)procAddress("glLightModeliv");  
-bindings.lightf = (GL_Lightf)procAddress("glLightf");  
-bindings.lightfv = (GL_Lightfv)procAddress("glLightfv");  
-bindings.lighti = (GL_Lighti)procAddress("glLighti");  
-bindings.lightiv = (GL_Lightiv)procAddress("glLightiv");  
-bindings.lineStipple = (GL_LineStipple)procAddress("glLineStipple");  
-bindings.lineWidth = (GL_LineWidth)procAddress("glLineWidth");  
-bindings.linkProgram = (GL_LinkProgram)procAddress("glLinkProgram");  
-bindings.listBase = (GL_ListBase)procAddress("glListBase");  
-bindings.loadIdentity = (GL_LoadIdentity)procAddress("glLoadIdentity");  
-bindings.loadMatrixd = (GL_LoadMatrixd)procAddress("glLoadMatrixd");  
-bindings.loadMatrixf = (GL_LoadMatrixf)procAddress("glLoadMatrixf");  
-bindings.loadName = (GL_LoadName)procAddress("glLoadName");  
-bindings.loadTransposeMatrixd = (GL_LoadTransposeMatrixd)procAddress("glLoadTransposeMatrixd");  
-bindings.loadTransposeMatrixf = (GL_LoadTransposeMatrixf)procAddress("glLoadTransposeMatrixf");  
-bindings.logicOp = (GL_LogicOp)procAddress("glLogicOp");  
-bindings.map1d = (GL_Map1d)procAddress("glMap1d");  
-bindings.map1f = (GL_Map1f)procAddress("glMap1f");  
-bindings.map2d = (GL_Map2d)procAddress("glMap2d");  
-bindings.map2f = (GL_Map2f)procAddress("glMap2f");  
-bindings.mapBuffer = (GL_MapBuffer)procAddress("glMapBuffer");  
-bindings.mapBufferRange = (GL_MapBufferRange)procAddress("glMapBufferRange");  
-bindings.mapGrid1d = (GL_MapGrid1d)procAddress("glMapGrid1d");  
-bindings.mapGrid1f = (GL_MapGrid1f)procAddress("glMapGrid1f");  
-bindings.mapGrid2d = (GL_MapGrid2d)procAddress("glMapGrid2d");  
-bindings.mapGrid2f = (GL_MapGrid2f)procAddress("glMapGrid2f");  
-bindings.mapNamedBuffer = (GL_MapNamedBuffer)procAddress("glMapNamedBuffer");  
-bindings.mapNamedBufferRange = (GL_MapNamedBufferRange)procAddress("glMapNamedBufferRange");  
-bindings.materialf = (GL_Materialf)procAddress("glMaterialf");  
-bindings.materialfv = (GL_Materialfv)procAddress("glMaterialfv");  
-bindings.materiali = (GL_Materiali)procAddress("glMateriali");  
-bindings.materialiv = (GL_Materialiv)procAddress("glMaterialiv");  
-bindings.matrixMode = (GL_MatrixMode)procAddress("glMatrixMode");  
-bindings.memoryBarrier = (GL_MemoryBarrier)procAddress("glMemoryBarrier");  
-bindings.memoryBarrierByRegion = (GL_MemoryBarrierByRegion)procAddress("glMemoryBarrierByRegion");  
-bindings.minSampleShading = (GL_MinSampleShading)procAddress("glMinSampleShading");  
-bindings.multMatrixd = (GL_MultMatrixd)procAddress("glMultMatrixd");  
-bindings.multMatrixf = (GL_MultMatrixf)procAddress("glMultMatrixf");  
-bindings.multTransposeMatrixd = (GL_MultTransposeMatrixd)procAddress("glMultTransposeMatrixd");  
-bindings.multTransposeMatrixf = (GL_MultTransposeMatrixf)procAddress("glMultTransposeMatrixf");  
-bindings.multiDrawArraysIndirect = (GL_MultiDrawArraysIndirect)procAddress("glMultiDrawArraysIndirect");  
-bindings.multiDrawArraysIndirectCount = (GL_MultiDrawArraysIndirectCount)procAddress("glMultiDrawArraysIndirectCount");  
-bindings.multiDrawElementsBaseVertex = (GL_MultiDrawElementsBaseVertex)procAddress("glMultiDrawElementsBaseVertex");  
-bindings.multiDrawElementsIndirect = (GL_MultiDrawElementsIndirect)procAddress("glMultiDrawElementsIndirect");  
-bindings.multiDrawElementsIndirectCount = (GL_MultiDrawElementsIndirectCount)procAddress("glMultiDrawElementsIndirectCount");  
-bindings.multiTexCoord1d = (GL_MultiTexCoord1d)procAddress("glMultiTexCoord1d");  
-bindings.multiTexCoord1dv = (GL_MultiTexCoord1dv)procAddress("glMultiTexCoord1dv");  
-bindings.multiTexCoord1f = (GL_MultiTexCoord1f)procAddress("glMultiTexCoord1f");  
-bindings.multiTexCoord1fv = (GL_MultiTexCoord1fv)procAddress("glMultiTexCoord1fv");  
-bindings.multiTexCoord1i = (GL_MultiTexCoord1i)procAddress("glMultiTexCoord1i");  
-bindings.multiTexCoord1iv = (GL_MultiTexCoord1iv)procAddress("glMultiTexCoord1iv");  
-bindings.multiTexCoord1s = (GL_MultiTexCoord1s)procAddress("glMultiTexCoord1s");  
-bindings.multiTexCoord1sv = (GL_MultiTexCoord1sv)procAddress("glMultiTexCoord1sv");  
-bindings.multiTexCoord2d = (GL_MultiTexCoord2d)procAddress("glMultiTexCoord2d");  
-bindings.multiTexCoord2dv = (GL_MultiTexCoord2dv)procAddress("glMultiTexCoord2dv");  
-bindings.multiTexCoord2f = (GL_MultiTexCoord2f)procAddress("glMultiTexCoord2f");  
-bindings.multiTexCoord2fv = (GL_MultiTexCoord2fv)procAddress("glMultiTexCoord2fv");  
-bindings.multiTexCoord2i = (GL_MultiTexCoord2i)procAddress("glMultiTexCoord2i");  
-bindings.multiTexCoord2iv = (GL_MultiTexCoord2iv)procAddress("glMultiTexCoord2iv");  
-bindings.multiTexCoord2s = (GL_MultiTexCoord2s)procAddress("glMultiTexCoord2s");  
-bindings.multiTexCoord2sv = (GL_MultiTexCoord2sv)procAddress("glMultiTexCoord2sv");  
-bindings.multiTexCoord3d = (GL_MultiTexCoord3d)procAddress("glMultiTexCoord3d");  
-bindings.multiTexCoord3dv = (GL_MultiTexCoord3dv)procAddress("glMultiTexCoord3dv");  
-bindings.multiTexCoord3f = (GL_MultiTexCoord3f)procAddress("glMultiTexCoord3f");  
-bindings.multiTexCoord3fv = (GL_MultiTexCoord3fv)procAddress("glMultiTexCoord3fv");  
-bindings.multiTexCoord3i = (GL_MultiTexCoord3i)procAddress("glMultiTexCoord3i");  
-bindings.multiTexCoord3iv = (GL_MultiTexCoord3iv)procAddress("glMultiTexCoord3iv");  
-bindings.multiTexCoord3s = (GL_MultiTexCoord3s)procAddress("glMultiTexCoord3s");  
-bindings.multiTexCoord3sv = (GL_MultiTexCoord3sv)procAddress("glMultiTexCoord3sv");  
-bindings.multiTexCoord4d = (GL_MultiTexCoord4d)procAddress("glMultiTexCoord4d");  
-bindings.multiTexCoord4dv = (GL_MultiTexCoord4dv)procAddress("glMultiTexCoord4dv");  
-bindings.multiTexCoord4f = (GL_MultiTexCoord4f)procAddress("glMultiTexCoord4f");  
-bindings.multiTexCoord4fv = (GL_MultiTexCoord4fv)procAddress("glMultiTexCoord4fv");  
-bindings.multiTexCoord4i = (GL_MultiTexCoord4i)procAddress("glMultiTexCoord4i");  
-bindings.multiTexCoord4iv = (GL_MultiTexCoord4iv)procAddress("glMultiTexCoord4iv");  
-bindings.multiTexCoord4s = (GL_MultiTexCoord4s)procAddress("glMultiTexCoord4s");  
-bindings.multiTexCoord4sv = (GL_MultiTexCoord4sv)procAddress("glMultiTexCoord4sv");  
-bindings.multiTexCoordP1ui = (GL_MultiTexCoordP1ui)procAddress("glMultiTexCoordP1ui");  
-bindings.multiTexCoordP1uiv = (GL_MultiTexCoordP1uiv)procAddress("glMultiTexCoordP1uiv");  
-bindings.multiTexCoordP2ui = (GL_MultiTexCoordP2ui)procAddress("glMultiTexCoordP2ui");  
-bindings.multiTexCoordP2uiv = (GL_MultiTexCoordP2uiv)procAddress("glMultiTexCoordP2uiv");  
-bindings.multiTexCoordP3ui = (GL_MultiTexCoordP3ui)procAddress("glMultiTexCoordP3ui");  
-bindings.multiTexCoordP3uiv = (GL_MultiTexCoordP3uiv)procAddress("glMultiTexCoordP3uiv");  
-bindings.multiTexCoordP4ui = (GL_MultiTexCoordP4ui)procAddress("glMultiTexCoordP4ui");  
-bindings.multiTexCoordP4uiv = (GL_MultiTexCoordP4uiv)procAddress("glMultiTexCoordP4uiv");  
-bindings.namedBufferData = (GL_NamedBufferData)procAddress("glNamedBufferData");  
-bindings.namedBufferStorage = (GL_NamedBufferStorage)procAddress("glNamedBufferStorage");  
-bindings.namedBufferSubData = (GL_NamedBufferSubData)procAddress("glNamedBufferSubData");  
-bindings.namedFramebufferDrawBuffer = (GL_NamedFramebufferDrawBuffer)procAddress("glNamedFramebufferDrawBuffer");  
-bindings.namedFramebufferDrawBuffers = (GL_NamedFramebufferDrawBuffers)procAddress("glNamedFramebufferDrawBuffers");  
-bindings.namedFramebufferParameteri = (GL_NamedFramebufferParameteri)procAddress("glNamedFramebufferParameteri");  
-bindings.namedFramebufferReadBuffer = (GL_NamedFramebufferReadBuffer)procAddress("glNamedFramebufferReadBuffer");  
-bindings.namedFramebufferRenderbuffer = (GL_NamedFramebufferRenderbuffer)procAddress("glNamedFramebufferRenderbuffer");  
-bindings.namedFramebufferTexture = (GL_NamedFramebufferTexture)procAddress("glNamedFramebufferTexture");  
-bindings.namedFramebufferTextureLayer = (GL_NamedFramebufferTextureLayer)procAddress("glNamedFramebufferTextureLayer");  
-bindings.namedRenderbufferStorage = (GL_NamedRenderbufferStorage)procAddress("glNamedRenderbufferStorage");  
-bindings.namedRenderbufferStorageMultisample = (GL_NamedRenderbufferStorageMultisample)procAddress("glNamedRenderbufferStorageMultisample");  
-bindings.newList = (GL_NewList)procAddress("glNewList");  
-bindings.normal3b = (GL_Normal3b)procAddress("glNormal3b");  
-bindings.normal3bv = (GL_Normal3bv)procAddress("glNormal3bv");  
-bindings.normal3d = (GL_Normal3d)procAddress("glNormal3d");  
-bindings.normal3dv = (GL_Normal3dv)procAddress("glNormal3dv");  
-bindings.normal3f = (GL_Normal3f)procAddress("glNormal3f");  
-bindings.normal3fv = (GL_Normal3fv)procAddress("glNormal3fv");  
-bindings.normal3i = (GL_Normal3i)procAddress("glNormal3i");  
-bindings.normal3iv = (GL_Normal3iv)procAddress("glNormal3iv");  
-bindings.normal3s = (GL_Normal3s)procAddress("glNormal3s");  
-bindings.normal3sv = (GL_Normal3sv)procAddress("glNormal3sv");  
-bindings.normalP3ui = (GL_NormalP3ui)procAddress("glNormalP3ui");  
-bindings.normalP3uiv = (GL_NormalP3uiv)procAddress("glNormalP3uiv");  
-bindings.normalPointer = (GL_NormalPointer)procAddress("glNormalPointer");  
-bindings.objectLabel = (GL_ObjectLabel)procAddress("glObjectLabel");  
-bindings.objectPtrLabel = (GL_ObjectPtrLabel)procAddress("glObjectPtrLabel");  
-bindings.ortho = (GL_Ortho)procAddress("glOrtho");  
-bindings.passThrough = (GL_PassThrough)procAddress("glPassThrough");  
-bindings.patchParameterfv = (GL_PatchParameterfv)procAddress("glPatchParameterfv");  
-bindings.patchParameteri = (GL_PatchParameteri)procAddress("glPatchParameteri");  
-bindings.pauseTransformFeedback = (GL_PauseTransformFeedback)procAddress("glPauseTransformFeedback");  
-bindings.pixelMapfv = (GL_PixelMapfv)procAddress("glPixelMapfv");  
-bindings.pixelMapuiv = (GL_PixelMapuiv)procAddress("glPixelMapuiv");  
-bindings.pixelMapusv = (GL_PixelMapusv)procAddress("glPixelMapusv");  
-bindings.pixelStoref = (GL_PixelStoref)procAddress("glPixelStoref");  
-bindings.pixelStorei = (GL_PixelStorei)procAddress("glPixelStorei");  
-bindings.pixelTransferf = (GL_PixelTransferf)procAddress("glPixelTransferf");  
-bindings.pixelTransferi = (GL_PixelTransferi)procAddress("glPixelTransferi");  
-bindings.pixelZoom = (GL_PixelZoom)procAddress("glPixelZoom");  
-bindings.pointSize = (GL_PointSize)procAddress("glPointSize");  
-bindings.polygonMode = (GL_PolygonMode)procAddress("glPolygonMode");  
-bindings.polygonOffset = (GL_PolygonOffset)procAddress("glPolygonOffset");  
-bindings.polygonOffsetClamp = (GL_PolygonOffsetClamp)procAddress("glPolygonOffsetClamp");  
-bindings.polygonStipple = (GL_PolygonStipple)procAddress("glPolygonStipple");  
-bindings.popAttrib = (GL_PopAttrib)procAddress("glPopAttrib");  
-bindings.popClientAttrib = (GL_PopClientAttrib)procAddress("glPopClientAttrib");  
-bindings.popDebugGroup = (GL_PopDebugGroup)procAddress("glPopDebugGroup");  
-bindings.popMatrix = (GL_PopMatrix)procAddress("glPopMatrix");  
-bindings.popName = (GL_PopName)procAddress("glPopName");  
-bindings.primitiveRestartIndex = (GL_PrimitiveRestartIndex)procAddress("glPrimitiveRestartIndex");  
-bindings.prioritizeTextures = (GL_PrioritizeTextures)procAddress("glPrioritizeTextures");  
-bindings.programBinary = (GL_ProgramBinary)procAddress("glProgramBinary");  
-bindings.programParameteri = (GL_ProgramParameteri)procAddress("glProgramParameteri");  
-bindings.programUniform1d = (GL_ProgramUniform1d)procAddress("glProgramUniform1d");  
-bindings.programUniform1dv = (GL_ProgramUniform1dv)procAddress("glProgramUniform1dv");  
-bindings.programUniform1f = (GL_ProgramUniform1f)procAddress("glProgramUniform1f");  
-bindings.programUniform1fv = (GL_ProgramUniform1fv)procAddress("glProgramUniform1fv");  
-bindings.programUniform1i = (GL_ProgramUniform1i)procAddress("glProgramUniform1i");  
-bindings.programUniform1iv = (GL_ProgramUniform1iv)procAddress("glProgramUniform1iv");  
-bindings.programUniform1ui = (GL_ProgramUniform1ui)procAddress("glProgramUniform1ui");  
-bindings.programUniform1uiv = (GL_ProgramUniform1uiv)procAddress("glProgramUniform1uiv");  
-bindings.programUniform2d = (GL_ProgramUniform2d)procAddress("glProgramUniform2d");  
-bindings.programUniform2dv = (GL_ProgramUniform2dv)procAddress("glProgramUniform2dv");  
-bindings.programUniform2f = (GL_ProgramUniform2f)procAddress("glProgramUniform2f");  
-bindings.programUniform2fv = (GL_ProgramUniform2fv)procAddress("glProgramUniform2fv");  
-bindings.programUniform2i = (GL_ProgramUniform2i)procAddress("glProgramUniform2i");  
-bindings.programUniform2iv = (GL_ProgramUniform2iv)procAddress("glProgramUniform2iv");  
-bindings.programUniform2ui = (GL_ProgramUniform2ui)procAddress("glProgramUniform2ui");  
-bindings.programUniform2uiv = (GL_ProgramUniform2uiv)procAddress("glProgramUniform2uiv");  
-bindings.programUniform3d = (GL_ProgramUniform3d)procAddress("glProgramUniform3d");  
-bindings.programUniform3dv = (GL_ProgramUniform3dv)procAddress("glProgramUniform3dv");  
-bindings.programUniform3f = (GL_ProgramUniform3f)procAddress("glProgramUniform3f");  
-bindings.programUniform3fv = (GL_ProgramUniform3fv)procAddress("glProgramUniform3fv");  
-bindings.programUniform3i = (GL_ProgramUniform3i)procAddress("glProgramUniform3i");  
-bindings.programUniform3iv = (GL_ProgramUniform3iv)procAddress("glProgramUniform3iv");  
-bindings.programUniform3ui = (GL_ProgramUniform3ui)procAddress("glProgramUniform3ui");  
-bindings.programUniform3uiv = (GL_ProgramUniform3uiv)procAddress("glProgramUniform3uiv");  
-bindings.programUniform4d = (GL_ProgramUniform4d)procAddress("glProgramUniform4d");  
-bindings.programUniform4dv = (GL_ProgramUniform4dv)procAddress("glProgramUniform4dv");  
-bindings.programUniform4f = (GL_ProgramUniform4f)procAddress("glProgramUniform4f");  
-bindings.programUniform4fv = (GL_ProgramUniform4fv)procAddress("glProgramUniform4fv");  
-bindings.programUniform4i = (GL_ProgramUniform4i)procAddress("glProgramUniform4i");  
-bindings.programUniform4iv = (GL_ProgramUniform4iv)procAddress("glProgramUniform4iv");  
-bindings.programUniform4ui = (GL_ProgramUniform4ui)procAddress("glProgramUniform4ui");  
-bindings.programUniform4uiv = (GL_ProgramUniform4uiv)procAddress("glProgramUniform4uiv");  
-bindings.programUniformMatrix2dv = (GL_ProgramUniformMatrix2dv)procAddress("glProgramUniformMatrix2dv");  
-bindings.programUniformMatrix2fv = (GL_ProgramUniformMatrix2fv)procAddress("glProgramUniformMatrix2fv");  
-bindings.programUniformMatrix2x3dv = (GL_ProgramUniformMatrix2x3dv)procAddress("glProgramUniformMatrix2x3dv");  
-bindings.programUniformMatrix2x3fv = (GL_ProgramUniformMatrix2x3fv)procAddress("glProgramUniformMatrix2x3fv");  
-bindings.programUniformMatrix2x4dv = (GL_ProgramUniformMatrix2x4dv)procAddress("glProgramUniformMatrix2x4dv");  
-bindings.programUniformMatrix2x4fv = (GL_ProgramUniformMatrix2x4fv)procAddress("glProgramUniformMatrix2x4fv");  
-bindings.programUniformMatrix3dv = (GL_ProgramUniformMatrix3dv)procAddress("glProgramUniformMatrix3dv");  
-bindings.programUniformMatrix3fv = (GL_ProgramUniformMatrix3fv)procAddress("glProgramUniformMatrix3fv");  
-bindings.programUniformMatrix3x2dv = (GL_ProgramUniformMatrix3x2dv)procAddress("glProgramUniformMatrix3x2dv");  
-bindings.programUniformMatrix3x2fv = (GL_ProgramUniformMatrix3x2fv)procAddress("glProgramUniformMatrix3x2fv");  
-bindings.programUniformMatrix3x4dv = (GL_ProgramUniformMatrix3x4dv)procAddress("glProgramUniformMatrix3x4dv");  
-bindings.programUniformMatrix3x4fv = (GL_ProgramUniformMatrix3x4fv)procAddress("glProgramUniformMatrix3x4fv");  
-bindings.programUniformMatrix4dv = (GL_ProgramUniformMatrix4dv)procAddress("glProgramUniformMatrix4dv");  
-bindings.programUniformMatrix4fv = (GL_ProgramUniformMatrix4fv)procAddress("glProgramUniformMatrix4fv");  
-bindings.programUniformMatrix4x2dv = (GL_ProgramUniformMatrix4x2dv)procAddress("glProgramUniformMatrix4x2dv");  
-bindings.programUniformMatrix4x2fv = (GL_ProgramUniformMatrix4x2fv)procAddress("glProgramUniformMatrix4x2fv");  
-bindings.programUniformMatrix4x3dv = (GL_ProgramUniformMatrix4x3dv)procAddress("glProgramUniformMatrix4x3dv");  
-bindings.programUniformMatrix4x3fv = (GL_ProgramUniformMatrix4x3fv)procAddress("glProgramUniformMatrix4x3fv");  
-bindings.provokingVertex = (GL_ProvokingVertex)procAddress("glProvokingVertex");  
-bindings.pushAttrib = (GL_PushAttrib)procAddress("glPushAttrib");  
-bindings.pushClientAttrib = (GL_PushClientAttrib)procAddress("glPushClientAttrib");  
-bindings.pushDebugGroup = (GL_PushDebugGroup)procAddress("glPushDebugGroup");  
-bindings.pushMatrix = (GL_PushMatrix)procAddress("glPushMatrix");  
-bindings.pushName = (GL_PushName)procAddress("glPushName");  
-bindings.queryCounter = (GL_QueryCounter)procAddress("glQueryCounter");  
-bindings.rasterPos2d = (GL_RasterPos2d)procAddress("glRasterPos2d");  
-bindings.rasterPos2dv = (GL_RasterPos2dv)procAddress("glRasterPos2dv");  
-bindings.rasterPos2f = (GL_RasterPos2f)procAddress("glRasterPos2f");  
-bindings.rasterPos2fv = (GL_RasterPos2fv)procAddress("glRasterPos2fv");  
-bindings.rasterPos2i = (GL_RasterPos2i)procAddress("glRasterPos2i");  
-bindings.rasterPos2iv = (GL_RasterPos2iv)procAddress("glRasterPos2iv");  
-bindings.rasterPos2s = (GL_RasterPos2s)procAddress("glRasterPos2s");  
-bindings.rasterPos2sv = (GL_RasterPos2sv)procAddress("glRasterPos2sv");  
-bindings.rasterPos3d = (GL_RasterPos3d)procAddress("glRasterPos3d");  
-bindings.rasterPos3dv = (GL_RasterPos3dv)procAddress("glRasterPos3dv");  
-bindings.rasterPos3f = (GL_RasterPos3f)procAddress("glRasterPos3f");  
-bindings.rasterPos3fv = (GL_RasterPos3fv)procAddress("glRasterPos3fv");  
-bindings.rasterPos3i = (GL_RasterPos3i)procAddress("glRasterPos3i");  
-bindings.rasterPos3iv = (GL_RasterPos3iv)procAddress("glRasterPos3iv");  
-bindings.rasterPos3s = (GL_RasterPos3s)procAddress("glRasterPos3s");  
-bindings.rasterPos3sv = (GL_RasterPos3sv)procAddress("glRasterPos3sv");  
-bindings.rasterPos4d = (GL_RasterPos4d)procAddress("glRasterPos4d");  
-bindings.rasterPos4dv = (GL_RasterPos4dv)procAddress("glRasterPos4dv");  
-bindings.rasterPos4f = (GL_RasterPos4f)procAddress("glRasterPos4f");  
-bindings.rasterPos4fv = (GL_RasterPos4fv)procAddress("glRasterPos4fv");  
-bindings.rasterPos4i = (GL_RasterPos4i)procAddress("glRasterPos4i");  
-bindings.rasterPos4iv = (GL_RasterPos4iv)procAddress("glRasterPos4iv");  
-bindings.rasterPos4s = (GL_RasterPos4s)procAddress("glRasterPos4s");  
-bindings.rasterPos4sv = (GL_RasterPos4sv)procAddress("glRasterPos4sv");  
-bindings.readBuffer = (GL_ReadBuffer)procAddress("glReadBuffer");  
-bindings.readPixels = (GL_ReadPixels)procAddress("glReadPixels");  
-bindings.readnPixels = (GL_ReadnPixels)procAddress("glReadnPixels");  
-bindings.rectd = (GL_Rectd)procAddress("glRectd");  
-bindings.rectdv = (GL_Rectdv)procAddress("glRectdv");  
-bindings.rectf = (GL_Rectf)procAddress("glRectf");  
-bindings.rectfv = (GL_Rectfv)procAddress("glRectfv");  
-bindings.recti = (GL_Recti)procAddress("glRecti");  
-bindings.rectiv = (GL_Rectiv)procAddress("glRectiv");  
-bindings.rects = (GL_Rects)procAddress("glRects");  
-bindings.rectsv = (GL_Rectsv)procAddress("glRectsv");  
-bindings.releaseShaderCompiler = (GL_ReleaseShaderCompiler)procAddress("glReleaseShaderCompiler");  
-bindings.renderMode = (GL_RenderMode)procAddress("glRenderMode");  
-bindings.renderbufferStorage = (GL_RenderbufferStorage)procAddress("glRenderbufferStorage");  
-bindings.renderbufferStorageMultisample = (GL_RenderbufferStorageMultisample)procAddress("glRenderbufferStorageMultisample");  
-bindings.resumeTransformFeedback = (GL_ResumeTransformFeedback)procAddress("glResumeTransformFeedback");  
-bindings.rotated = (GL_Rotated)procAddress("glRotated");  
-bindings.rotatef = (GL_Rotatef)procAddress("glRotatef");  
-bindings.sampleMaski = (GL_SampleMaski)procAddress("glSampleMaski");  
-bindings.samplerParameterIiv = (GL_SamplerParameterIiv)procAddress("glSamplerParameterIiv");  
-bindings.samplerParameterIuiv = (GL_SamplerParameterIuiv)procAddress("glSamplerParameterIuiv");  
-bindings.samplerParameterf = (GL_SamplerParameterf)procAddress("glSamplerParameterf");  
-bindings.samplerParameterfv = (GL_SamplerParameterfv)procAddress("glSamplerParameterfv");  
-bindings.samplerParameteri = (GL_SamplerParameteri)procAddress("glSamplerParameteri");  
-bindings.samplerParameteriv = (GL_SamplerParameteriv)procAddress("glSamplerParameteriv");  
-bindings.scaled = (GL_Scaled)procAddress("glScaled");  
-bindings.scalef = (GL_Scalef)procAddress("glScalef");  
-bindings.scissor = (GL_Scissor)procAddress("glScissor");  
-bindings.scissorArrayv = (GL_ScissorArrayv)procAddress("glScissorArrayv");  
-bindings.scissorIndexed = (GL_ScissorIndexed)procAddress("glScissorIndexed");  
-bindings.scissorIndexedv = (GL_ScissorIndexedv)procAddress("glScissorIndexedv");  
-bindings.secondaryColor3b = (GL_SecondaryColor3b)procAddress("glSecondaryColor3b");  
-bindings.secondaryColor3bv = (GL_SecondaryColor3bv)procAddress("glSecondaryColor3bv");  
-bindings.secondaryColor3d = (GL_SecondaryColor3d)procAddress("glSecondaryColor3d");  
-bindings.secondaryColor3dv = (GL_SecondaryColor3dv)procAddress("glSecondaryColor3dv");  
-bindings.secondaryColor3f = (GL_SecondaryColor3f)procAddress("glSecondaryColor3f");  
-bindings.secondaryColor3fv = (GL_SecondaryColor3fv)procAddress("glSecondaryColor3fv");  
-bindings.secondaryColor3i = (GL_SecondaryColor3i)procAddress("glSecondaryColor3i");  
-bindings.secondaryColor3iv = (GL_SecondaryColor3iv)procAddress("glSecondaryColor3iv");  
-bindings.secondaryColor3s = (GL_SecondaryColor3s)procAddress("glSecondaryColor3s");  
-bindings.secondaryColor3sv = (GL_SecondaryColor3sv)procAddress("glSecondaryColor3sv");  
-bindings.secondaryColor3ub = (GL_SecondaryColor3ub)procAddress("glSecondaryColor3ub");  
-bindings.secondaryColor3ubv = (GL_SecondaryColor3ubv)procAddress("glSecondaryColor3ubv");  
-bindings.secondaryColor3ui = (GL_SecondaryColor3ui)procAddress("glSecondaryColor3ui");  
-bindings.secondaryColor3uiv = (GL_SecondaryColor3uiv)procAddress("glSecondaryColor3uiv");  
-bindings.secondaryColor3us = (GL_SecondaryColor3us)procAddress("glSecondaryColor3us");  
-bindings.secondaryColor3usv = (GL_SecondaryColor3usv)procAddress("glSecondaryColor3usv");  
-bindings.secondaryColorP3ui = (GL_SecondaryColorP3ui)procAddress("glSecondaryColorP3ui");  
-bindings.secondaryColorP3uiv = (GL_SecondaryColorP3uiv)procAddress("glSecondaryColorP3uiv");  
-bindings.secondaryColorPointer = (GL_SecondaryColorPointer)procAddress("glSecondaryColorPointer");  
-bindings.selectBuffer = (GL_SelectBuffer)procAddress("glSelectBuffer");  
-bindings.shadeModel = (GL_ShadeModel)procAddress("glShadeModel");  
-bindings.shaderBinary = (GL_ShaderBinary)procAddress("glShaderBinary");  
-bindings.shaderSource = (GL_ShaderSource)procAddress("glShaderSource");  
-bindings.shaderStorageBlockBinding = (GL_ShaderStorageBlockBinding)procAddress("glShaderStorageBlockBinding");  
-bindings.specializeShader = (GL_SpecializeShader)procAddress("glSpecializeShader");  
-bindings.stencilFunc = (GL_StencilFunc)procAddress("glStencilFunc");  
-bindings.stencilFuncSeparate = (GL_StencilFuncSeparate)procAddress("glStencilFuncSeparate");  
-bindings.stencilMask = (GL_StencilMask)procAddress("glStencilMask");  
-bindings.stencilMaskSeparate = (GL_StencilMaskSeparate)procAddress("glStencilMaskSeparate");  
-bindings.stencilOp = (GL_StencilOp)procAddress("glStencilOp");  
-bindings.stencilOpSeparate = (GL_StencilOpSeparate)procAddress("glStencilOpSeparate");  
-bindings.texBuffer = (GL_TexBuffer)procAddress("glTexBuffer");  
-bindings.texBufferRange = (GL_TexBufferRange)procAddress("glTexBufferRange");  
-bindings.texCoord1d = (GL_TexCoord1d)procAddress("glTexCoord1d");  
-bindings.texCoord1dv = (GL_TexCoord1dv)procAddress("glTexCoord1dv");  
-bindings.texCoord1f = (GL_TexCoord1f)procAddress("glTexCoord1f");  
-bindings.texCoord1fv = (GL_TexCoord1fv)procAddress("glTexCoord1fv");  
-bindings.texCoord1i = (GL_TexCoord1i)procAddress("glTexCoord1i");  
-bindings.texCoord1iv = (GL_TexCoord1iv)procAddress("glTexCoord1iv");  
-bindings.texCoord1s = (GL_TexCoord1s)procAddress("glTexCoord1s");  
-bindings.texCoord1sv = (GL_TexCoord1sv)procAddress("glTexCoord1sv");  
-bindings.texCoord2d = (GL_TexCoord2d)procAddress("glTexCoord2d");  
-bindings.texCoord2dv = (GL_TexCoord2dv)procAddress("glTexCoord2dv");  
-bindings.texCoord2f = (GL_TexCoord2f)procAddress("glTexCoord2f");  
-bindings.texCoord2fv = (GL_TexCoord2fv)procAddress("glTexCoord2fv");  
-bindings.texCoord2i = (GL_TexCoord2i)procAddress("glTexCoord2i");  
-bindings.texCoord2iv = (GL_TexCoord2iv)procAddress("glTexCoord2iv");  
-bindings.texCoord2s = (GL_TexCoord2s)procAddress("glTexCoord2s");  
-bindings.texCoord2sv = (GL_TexCoord2sv)procAddress("glTexCoord2sv");  
-bindings.texCoord3d = (GL_TexCoord3d)procAddress("glTexCoord3d");  
-bindings.texCoord3dv = (GL_TexCoord3dv)procAddress("glTexCoord3dv");  
-bindings.texCoord3f = (GL_TexCoord3f)procAddress("glTexCoord3f");  
-bindings.texCoord3fv = (GL_TexCoord3fv)procAddress("glTexCoord3fv");  
-bindings.texCoord3i = (GL_TexCoord3i)procAddress("glTexCoord3i");  
-bindings.texCoord3iv = (GL_TexCoord3iv)procAddress("glTexCoord3iv");  
-bindings.texCoord3s = (GL_TexCoord3s)procAddress("glTexCoord3s");  
-bindings.texCoord3sv = (GL_TexCoord3sv)procAddress("glTexCoord3sv");  
-bindings.texCoord4d = (GL_TexCoord4d)procAddress("glTexCoord4d");  
-bindings.texCoord4dv = (GL_TexCoord4dv)procAddress("glTexCoord4dv");  
-bindings.texCoord4f = (GL_TexCoord4f)procAddress("glTexCoord4f");  
-bindings.texCoord4fv = (GL_TexCoord4fv)procAddress("glTexCoord4fv");  
-bindings.texCoord4i = (GL_TexCoord4i)procAddress("glTexCoord4i");  
-bindings.texCoord4iv = (GL_TexCoord4iv)procAddress("glTexCoord4iv");  
-bindings.texCoord4s = (GL_TexCoord4s)procAddress("glTexCoord4s");  
-bindings.texCoord4sv = (GL_TexCoord4sv)procAddress("glTexCoord4sv");  
-bindings.texCoordP1ui = (GL_TexCoordP1ui)procAddress("glTexCoordP1ui");  
-bindings.texCoordP1uiv = (GL_TexCoordP1uiv)procAddress("glTexCoordP1uiv");  
-bindings.texCoordP2ui = (GL_TexCoordP2ui)procAddress("glTexCoordP2ui");  
-bindings.texCoordP2uiv = (GL_TexCoordP2uiv)procAddress("glTexCoordP2uiv");  
-bindings.texCoordP3ui = (GL_TexCoordP3ui)procAddress("glTexCoordP3ui");  
-bindings.texCoordP3uiv = (GL_TexCoordP3uiv)procAddress("glTexCoordP3uiv");  
-bindings.texCoordP4ui = (GL_TexCoordP4ui)procAddress("glTexCoordP4ui");  
-bindings.texCoordP4uiv = (GL_TexCoordP4uiv)procAddress("glTexCoordP4uiv");  
-bindings.texCoordPointer = (GL_TexCoordPointer)procAddress("glTexCoordPointer");  
-bindings.texEnvf = (GL_TexEnvf)procAddress("glTexEnvf");  
-bindings.texEnvfv = (GL_TexEnvfv)procAddress("glTexEnvfv");  
-bindings.texEnvi = (GL_TexEnvi)procAddress("glTexEnvi");  
-bindings.texEnviv = (GL_TexEnviv)procAddress("glTexEnviv");  
-bindings.texGend = (GL_TexGend)procAddress("glTexGend");  
-bindings.texGendv = (GL_TexGendv)procAddress("glTexGendv");  
-bindings.texGenf = (GL_TexGenf)procAddress("glTexGenf");  
-bindings.texGenfv = (GL_TexGenfv)procAddress("glTexGenfv");  
-bindings.texGeni = (GL_TexGeni)procAddress("glTexGeni");  
-bindings.texGeniv = (GL_TexGeniv)procAddress("glTexGeniv");  
-bindings.texImage1D = (GL_TexImage1D)procAddress("glTexImage1D");  
-bindings.texImage2D = (GL_TexImage2D)procAddress("glTexImage2D");  
-bindings.texImage2DMultisample = (GL_TexImage2DMultisample)procAddress("glTexImage2DMultisample");  
-bindings.texImage3DMultisample = (GL_TexImage3DMultisample)procAddress("glTexImage3DMultisample");  
-bindings.texParameterIiv = (GL_TexParameterIiv)procAddress("glTexParameterIiv");  
-bindings.texParameterIuiv = (GL_TexParameterIuiv)procAddress("glTexParameterIuiv");  
-bindings.texParameterf = (GL_TexParameterf)procAddress("glTexParameterf");  
-bindings.texParameterfv = (GL_TexParameterfv)procAddress("glTexParameterfv");  
-bindings.texParameteri = (GL_TexParameteri)procAddress("glTexParameteri");  
-bindings.texParameteriv = (GL_TexParameteriv)procAddress("glTexParameteriv");  
-bindings.texStorage1D = (GL_TexStorage1D)procAddress("glTexStorage1D");  
-bindings.texStorage2D = (GL_TexStorage2D)procAddress("glTexStorage2D");  
-bindings.texStorage2DMultisample = (GL_TexStorage2DMultisample)procAddress("glTexStorage2DMultisample");  
-bindings.texStorage3D = (GL_TexStorage3D)procAddress("glTexStorage3D");  
-bindings.texStorage3DMultisample = (GL_TexStorage3DMultisample)procAddress("glTexStorage3DMultisample");  
-bindings.texSubImage1D = (GL_TexSubImage1D)procAddress("glTexSubImage1D");  
-bindings.texSubImage2D = (GL_TexSubImage2D)procAddress("glTexSubImage2D");  
-bindings.textureBarrier = (GL_TextureBarrier)procAddress("glTextureBarrier");  
-bindings.textureBuffer = (GL_TextureBuffer)procAddress("glTextureBuffer");  
-bindings.textureBufferRange = (GL_TextureBufferRange)procAddress("glTextureBufferRange");  
-bindings.textureParameterIiv = (GL_TextureParameterIiv)procAddress("glTextureParameterIiv");  
-bindings.textureParameterIuiv = (GL_TextureParameterIuiv)procAddress("glTextureParameterIuiv");  
-bindings.textureParameterf = (GL_TextureParameterf)procAddress("glTextureParameterf");  
-bindings.textureParameterfv = (GL_TextureParameterfv)procAddress("glTextureParameterfv");  
-bindings.textureParameteri = (GL_TextureParameteri)procAddress("glTextureParameteri");  
-bindings.textureParameteriv = (GL_TextureParameteriv)procAddress("glTextureParameteriv");  
-bindings.textureStorage1D = (GL_TextureStorage1D)procAddress("glTextureStorage1D");  
-bindings.textureStorage2D = (GL_TextureStorage2D)procAddress("glTextureStorage2D");  
-bindings.textureStorage2DMultisample = (GL_TextureStorage2DMultisample)procAddress("glTextureStorage2DMultisample");  
-bindings.textureStorage3D = (GL_TextureStorage3D)procAddress("glTextureStorage3D");  
-bindings.textureStorage3DMultisample = (GL_TextureStorage3DMultisample)procAddress("glTextureStorage3DMultisample");  
-bindings.textureSubImage1D = (GL_TextureSubImage1D)procAddress("glTextureSubImage1D");  
-bindings.textureSubImage2D = (GL_TextureSubImage2D)procAddress("glTextureSubImage2D");  
-bindings.textureSubImage3D = (GL_TextureSubImage3D)procAddress("glTextureSubImage3D");  
-bindings.textureView = (GL_TextureView)procAddress("glTextureView");  
-bindings.transformFeedbackBufferBase = (GL_TransformFeedbackBufferBase)procAddress("glTransformFeedbackBufferBase");  
-bindings.transformFeedbackBufferRange = (GL_TransformFeedbackBufferRange)procAddress("glTransformFeedbackBufferRange");  
-bindings.transformFeedbackVaryings = (GL_TransformFeedbackVaryings)procAddress("glTransformFeedbackVaryings");  
-bindings.translated = (GL_Translated)procAddress("glTranslated");  
-bindings.translatef = (GL_Translatef)procAddress("glTranslatef");  
-bindings.uniform1d = (GL_Uniform1d)procAddress("glUniform1d");  
-bindings.uniform1dv = (GL_Uniform1dv)procAddress("glUniform1dv");  
-bindings.uniform1f = (GL_Uniform1f)procAddress("glUniform1f");  
-bindings.uniform1fv = (GL_Uniform1fv)procAddress("glUniform1fv");  
-bindings.uniform1i = (GL_Uniform1i)procAddress("glUniform1i");  
-bindings.uniform1iv = (GL_Uniform1iv)procAddress("glUniform1iv");  
-bindings.uniform1ui = (GL_Uniform1ui)procAddress("glUniform1ui");  
-bindings.uniform1uiv = (GL_Uniform1uiv)procAddress("glUniform1uiv");  
-bindings.uniform2d = (GL_Uniform2d)procAddress("glUniform2d");  
-bindings.uniform2dv = (GL_Uniform2dv)procAddress("glUniform2dv");  
-bindings.uniform2f = (GL_Uniform2f)procAddress("glUniform2f");  
-bindings.uniform2fv = (GL_Uniform2fv)procAddress("glUniform2fv");  
-bindings.uniform2i = (GL_Uniform2i)procAddress("glUniform2i");  
-bindings.uniform2iv = (GL_Uniform2iv)procAddress("glUniform2iv");  
-bindings.uniform2ui = (GL_Uniform2ui)procAddress("glUniform2ui");  
-bindings.uniform2uiv = (GL_Uniform2uiv)procAddress("glUniform2uiv");  
-bindings.uniform3d = (GL_Uniform3d)procAddress("glUniform3d");  
-bindings.uniform3dv = (GL_Uniform3dv)procAddress("glUniform3dv");  
-bindings.uniform3f = (GL_Uniform3f)procAddress("glUniform3f");  
-bindings.uniform3fv = (GL_Uniform3fv)procAddress("glUniform3fv");  
-bindings.uniform3i = (GL_Uniform3i)procAddress("glUniform3i");  
-bindings.uniform3iv = (GL_Uniform3iv)procAddress("glUniform3iv");  
-bindings.uniform3ui = (GL_Uniform3ui)procAddress("glUniform3ui");  
-bindings.uniform3uiv = (GL_Uniform3uiv)procAddress("glUniform3uiv");  
-bindings.uniform4d = (GL_Uniform4d)procAddress("glUniform4d");  
-bindings.uniform4dv = (GL_Uniform4dv)procAddress("glUniform4dv");  
-bindings.uniform4f = (GL_Uniform4f)procAddress("glUniform4f");  
-bindings.uniform4fv = (GL_Uniform4fv)procAddress("glUniform4fv");  
-bindings.uniform4i = (GL_Uniform4i)procAddress("glUniform4i");  
-bindings.uniform4iv = (GL_Uniform4iv)procAddress("glUniform4iv");  
-bindings.uniform4ui = (GL_Uniform4ui)procAddress("glUniform4ui");  
-bindings.uniform4uiv = (GL_Uniform4uiv)procAddress("glUniform4uiv");  
-bindings.uniformBlockBinding = (GL_UniformBlockBinding)procAddress("glUniformBlockBinding");  
-bindings.uniformMatrix2dv = (GL_UniformMatrix2dv)procAddress("glUniformMatrix2dv");  
-bindings.uniformMatrix2fv = (GL_UniformMatrix2fv)procAddress("glUniformMatrix2fv");  
-bindings.uniformMatrix2x3dv = (GL_UniformMatrix2x3dv)procAddress("glUniformMatrix2x3dv");  
-bindings.uniformMatrix2x3fv = (GL_UniformMatrix2x3fv)procAddress("glUniformMatrix2x3fv");  
-bindings.uniformMatrix2x4dv = (GL_UniformMatrix2x4dv)procAddress("glUniformMatrix2x4dv");  
-bindings.uniformMatrix2x4fv = (GL_UniformMatrix2x4fv)procAddress("glUniformMatrix2x4fv");  
-bindings.uniformMatrix3dv = (GL_UniformMatrix3dv)procAddress("glUniformMatrix3dv");  
-bindings.uniformMatrix3fv = (GL_UniformMatrix3fv)procAddress("glUniformMatrix3fv");  
-bindings.uniformMatrix3x2dv = (GL_UniformMatrix3x2dv)procAddress("glUniformMatrix3x2dv");  
-bindings.uniformMatrix3x2fv = (GL_UniformMatrix3x2fv)procAddress("glUniformMatrix3x2fv");  
-bindings.uniformMatrix3x4dv = (GL_UniformMatrix3x4dv)procAddress("glUniformMatrix3x4dv");  
-bindings.uniformMatrix3x4fv = (GL_UniformMatrix3x4fv)procAddress("glUniformMatrix3x4fv");  
-bindings.uniformMatrix4dv = (GL_UniformMatrix4dv)procAddress("glUniformMatrix4dv");  
-bindings.uniformMatrix4fv = (GL_UniformMatrix4fv)procAddress("glUniformMatrix4fv");  
-bindings.uniformMatrix4x2dv = (GL_UniformMatrix4x2dv)procAddress("glUniformMatrix4x2dv");  
-bindings.uniformMatrix4x2fv = (GL_UniformMatrix4x2fv)procAddress("glUniformMatrix4x2fv");  
-bindings.uniformMatrix4x3dv = (GL_UniformMatrix4x3dv)procAddress("glUniformMatrix4x3dv");  
-bindings.uniformMatrix4x3fv = (GL_UniformMatrix4x3fv)procAddress("glUniformMatrix4x3fv");  
-bindings.uniformSubroutinesuiv = (GL_UniformSubroutinesuiv)procAddress("glUniformSubroutinesuiv");  
-bindings.unmapBuffer = (GL_UnmapBuffer)procAddress("glUnmapBuffer");  
-bindings.unmapNamedBuffer = (GL_UnmapNamedBuffer)procAddress("glUnmapNamedBuffer");  
-bindings.useProgram = (GL_UseProgram)procAddress("glUseProgram");  
-bindings.useProgramStages = (GL_UseProgramStages)procAddress("glUseProgramStages");  
-bindings.validateProgram = (GL_ValidateProgram)procAddress("glValidateProgram");  
-bindings.validateProgramPipeline = (GL_ValidateProgramPipeline)procAddress("glValidateProgramPipeline");  
-bindings.vertex2d = (GL_Vertex2d)procAddress("glVertex2d");  
-bindings.vertex2dv = (GL_Vertex2dv)procAddress("glVertex2dv");  
-bindings.vertex2f = (GL_Vertex2f)procAddress("glVertex2f");  
-bindings.vertex2fv = (GL_Vertex2fv)procAddress("glVertex2fv");  
-bindings.vertex2i = (GL_Vertex2i)procAddress("glVertex2i");  
-bindings.vertex2iv = (GL_Vertex2iv)procAddress("glVertex2iv");  
-bindings.vertex2s = (GL_Vertex2s)procAddress("glVertex2s");  
-bindings.vertex2sv = (GL_Vertex2sv)procAddress("glVertex2sv");  
-bindings.vertex3d = (GL_Vertex3d)procAddress("glVertex3d");  
-bindings.vertex3dv = (GL_Vertex3dv)procAddress("glVertex3dv");  
-bindings.vertex3f = (GL_Vertex3f)procAddress("glVertex3f");  
-bindings.vertex3fv = (GL_Vertex3fv)procAddress("glVertex3fv");  
-bindings.vertex3i = (GL_Vertex3i)procAddress("glVertex3i");  
-bindings.vertex3iv = (GL_Vertex3iv)procAddress("glVertex3iv");  
-bindings.vertex3s = (GL_Vertex3s)procAddress("glVertex3s");  
-bindings.vertex3sv = (GL_Vertex3sv)procAddress("glVertex3sv");  
-bindings.vertex4d = (GL_Vertex4d)procAddress("glVertex4d");  
-bindings.vertex4dv = (GL_Vertex4dv)procAddress("glVertex4dv");  
-bindings.vertex4f = (GL_Vertex4f)procAddress("glVertex4f");  
-bindings.vertex4fv = (GL_Vertex4fv)procAddress("glVertex4fv");  
-bindings.vertex4i = (GL_Vertex4i)procAddress("glVertex4i");  
-bindings.vertex4iv = (GL_Vertex4iv)procAddress("glVertex4iv");  
-bindings.vertex4s = (GL_Vertex4s)procAddress("glVertex4s");  
-bindings.vertex4sv = (GL_Vertex4sv)procAddress("glVertex4sv");  
-bindings.vertexArrayAttribBinding = (GL_VertexArrayAttribBinding)procAddress("glVertexArrayAttribBinding");  
-bindings.vertexArrayAttribFormat = (GL_VertexArrayAttribFormat)procAddress("glVertexArrayAttribFormat");  
-bindings.vertexArrayAttribIFormat = (GL_VertexArrayAttribIFormat)procAddress("glVertexArrayAttribIFormat");  
-bindings.vertexArrayAttribLFormat = (GL_VertexArrayAttribLFormat)procAddress("glVertexArrayAttribLFormat");  
-bindings.vertexArrayBindingDivisor = (GL_VertexArrayBindingDivisor)procAddress("glVertexArrayBindingDivisor");  
-bindings.vertexArrayElementBuffer = (GL_VertexArrayElementBuffer)procAddress("glVertexArrayElementBuffer");  
-bindings.vertexArrayVertexBuffer = (GL_VertexArrayVertexBuffer)procAddress("glVertexArrayVertexBuffer");  
-bindings.vertexArrayVertexBuffers = (GL_VertexArrayVertexBuffers)procAddress("glVertexArrayVertexBuffers");  
-bindings.vertexAttrib1d = (GL_VertexAttrib1d)procAddress("glVertexAttrib1d");  
-bindings.vertexAttrib1dv = (GL_VertexAttrib1dv)procAddress("glVertexAttrib1dv");  
-bindings.vertexAttrib1f = (GL_VertexAttrib1f)procAddress("glVertexAttrib1f");  
-bindings.vertexAttrib1fv = (GL_VertexAttrib1fv)procAddress("glVertexAttrib1fv");  
-bindings.vertexAttrib1s = (GL_VertexAttrib1s)procAddress("glVertexAttrib1s");  
-bindings.vertexAttrib1sv = (GL_VertexAttrib1sv)procAddress("glVertexAttrib1sv");  
-bindings.vertexAttrib2d = (GL_VertexAttrib2d)procAddress("glVertexAttrib2d");  
-bindings.vertexAttrib2dv = (GL_VertexAttrib2dv)procAddress("glVertexAttrib2dv");  
-bindings.vertexAttrib2f = (GL_VertexAttrib2f)procAddress("glVertexAttrib2f");  
-bindings.vertexAttrib2fv = (GL_VertexAttrib2fv)procAddress("glVertexAttrib2fv");  
-bindings.vertexAttrib2s = (GL_VertexAttrib2s)procAddress("glVertexAttrib2s");  
-bindings.vertexAttrib2sv = (GL_VertexAttrib2sv)procAddress("glVertexAttrib2sv");  
-bindings.vertexAttrib3d = (GL_VertexAttrib3d)procAddress("glVertexAttrib3d");  
-bindings.vertexAttrib3dv = (GL_VertexAttrib3dv)procAddress("glVertexAttrib3dv");  
-bindings.vertexAttrib3f = (GL_VertexAttrib3f)procAddress("glVertexAttrib3f");  
-bindings.vertexAttrib3fv = (GL_VertexAttrib3fv)procAddress("glVertexAttrib3fv");  
-bindings.vertexAttrib3s = (GL_VertexAttrib3s)procAddress("glVertexAttrib3s");  
-bindings.vertexAttrib3sv = (GL_VertexAttrib3sv)procAddress("glVertexAttrib3sv");  
-bindings.vertexAttrib4Nbv = (GL_VertexAttrib4Nbv)procAddress("glVertexAttrib4Nbv");  
-bindings.vertexAttrib4Niv = (GL_VertexAttrib4Niv)procAddress("glVertexAttrib4Niv");  
-bindings.vertexAttrib4Nsv = (GL_VertexAttrib4Nsv)procAddress("glVertexAttrib4Nsv");  
-bindings.vertexAttrib4Nub = (GL_VertexAttrib4Nub)procAddress("glVertexAttrib4Nub");  
-bindings.vertexAttrib4Nubv = (GL_VertexAttrib4Nubv)procAddress("glVertexAttrib4Nubv");  
-bindings.vertexAttrib4Nuiv = (GL_VertexAttrib4Nuiv)procAddress("glVertexAttrib4Nuiv");  
-bindings.vertexAttrib4Nusv = (GL_VertexAttrib4Nusv)procAddress("glVertexAttrib4Nusv");  
-bindings.vertexAttrib4bv = (GL_VertexAttrib4bv)procAddress("glVertexAttrib4bv");  
-bindings.vertexAttrib4d = (GL_VertexAttrib4d)procAddress("glVertexAttrib4d");  
-bindings.vertexAttrib4dv = (GL_VertexAttrib4dv)procAddress("glVertexAttrib4dv");  
-bindings.vertexAttrib4f = (GL_VertexAttrib4f)procAddress("glVertexAttrib4f");  
-bindings.vertexAttrib4fv = (GL_VertexAttrib4fv)procAddress("glVertexAttrib4fv");  
-bindings.vertexAttrib4iv = (GL_VertexAttrib4iv)procAddress("glVertexAttrib4iv");  
-bindings.vertexAttrib4s = (GL_VertexAttrib4s)procAddress("glVertexAttrib4s");  
-bindings.vertexAttrib4sv = (GL_VertexAttrib4sv)procAddress("glVertexAttrib4sv");  
-bindings.vertexAttrib4ubv = (GL_VertexAttrib4ubv)procAddress("glVertexAttrib4ubv");  
-bindings.vertexAttrib4uiv = (GL_VertexAttrib4uiv)procAddress("glVertexAttrib4uiv");  
-bindings.vertexAttrib4usv = (GL_VertexAttrib4usv)procAddress("glVertexAttrib4usv");  
-bindings.vertexAttribBinding = (GL_VertexAttribBinding)procAddress("glVertexAttribBinding");  
-bindings.vertexAttribDivisor = (GL_VertexAttribDivisor)procAddress("glVertexAttribDivisor");  
-bindings.vertexAttribFormat = (GL_VertexAttribFormat)procAddress("glVertexAttribFormat");  
-bindings.vertexAttribI1i = (GL_VertexAttribI1i)procAddress("glVertexAttribI1i");  
-bindings.vertexAttribI1iv = (GL_VertexAttribI1iv)procAddress("glVertexAttribI1iv");  
-bindings.vertexAttribI1ui = (GL_VertexAttribI1ui)procAddress("glVertexAttribI1ui");  
-bindings.vertexAttribI1uiv = (GL_VertexAttribI1uiv)procAddress("glVertexAttribI1uiv");  
-bindings.vertexAttribI2i = (GL_VertexAttribI2i)procAddress("glVertexAttribI2i");  
-bindings.vertexAttribI2iv = (GL_VertexAttribI2iv)procAddress("glVertexAttribI2iv");  
-bindings.vertexAttribI2ui = (GL_VertexAttribI2ui)procAddress("glVertexAttribI2ui");  
-bindings.vertexAttribI2uiv = (GL_VertexAttribI2uiv)procAddress("glVertexAttribI2uiv");  
-bindings.vertexAttribI3i = (GL_VertexAttribI3i)procAddress("glVertexAttribI3i");  
-bindings.vertexAttribI3iv = (GL_VertexAttribI3iv)procAddress("glVertexAttribI3iv");  
-bindings.vertexAttribI3ui = (GL_VertexAttribI3ui)procAddress("glVertexAttribI3ui");  
-bindings.vertexAttribI3uiv = (GL_VertexAttribI3uiv)procAddress("glVertexAttribI3uiv");  
-bindings.vertexAttribI4bv = (GL_VertexAttribI4bv)procAddress("glVertexAttribI4bv");  
-bindings.vertexAttribI4i = (GL_VertexAttribI4i)procAddress("glVertexAttribI4i");  
-bindings.vertexAttribI4iv = (GL_VertexAttribI4iv)procAddress("glVertexAttribI4iv");  
-bindings.vertexAttribI4sv = (GL_VertexAttribI4sv)procAddress("glVertexAttribI4sv");  
-bindings.vertexAttribI4ubv = (GL_VertexAttribI4ubv)procAddress("glVertexAttribI4ubv");  
-bindings.vertexAttribI4ui = (GL_VertexAttribI4ui)procAddress("glVertexAttribI4ui");  
-bindings.vertexAttribI4uiv = (GL_VertexAttribI4uiv)procAddress("glVertexAttribI4uiv");  
-bindings.vertexAttribI4usv = (GL_VertexAttribI4usv)procAddress("glVertexAttribI4usv");  
-bindings.vertexAttribIFormat = (GL_VertexAttribIFormat)procAddress("glVertexAttribIFormat");  
-bindings.vertexAttribIPointer = (GL_VertexAttribIPointer)procAddress("glVertexAttribIPointer");  
-bindings.vertexAttribL1d = (GL_VertexAttribL1d)procAddress("glVertexAttribL1d");  
-bindings.vertexAttribL1dv = (GL_VertexAttribL1dv)procAddress("glVertexAttribL1dv");  
-bindings.vertexAttribL2d = (GL_VertexAttribL2d)procAddress("glVertexAttribL2d");  
-bindings.vertexAttribL2dv = (GL_VertexAttribL2dv)procAddress("glVertexAttribL2dv");  
-bindings.vertexAttribL3d = (GL_VertexAttribL3d)procAddress("glVertexAttribL3d");  
-bindings.vertexAttribL3dv = (GL_VertexAttribL3dv)procAddress("glVertexAttribL3dv");  
-bindings.vertexAttribL4d = (GL_VertexAttribL4d)procAddress("glVertexAttribL4d");  
-bindings.vertexAttribL4dv = (GL_VertexAttribL4dv)procAddress("glVertexAttribL4dv");  
-bindings.vertexAttribLFormat = (GL_VertexAttribLFormat)procAddress("glVertexAttribLFormat");  
-bindings.vertexAttribLPointer = (GL_VertexAttribLPointer)procAddress("glVertexAttribLPointer");  
-bindings.vertexAttribP1ui = (GL_VertexAttribP1ui)procAddress("glVertexAttribP1ui");  
-bindings.vertexAttribP1uiv = (GL_VertexAttribP1uiv)procAddress("glVertexAttribP1uiv");  
-bindings.vertexAttribP2ui = (GL_VertexAttribP2ui)procAddress("glVertexAttribP2ui");  
-bindings.vertexAttribP2uiv = (GL_VertexAttribP2uiv)procAddress("glVertexAttribP2uiv");  
-bindings.vertexAttribP3ui = (GL_VertexAttribP3ui)procAddress("glVertexAttribP3ui");  
-bindings.vertexAttribP3uiv = (GL_VertexAttribP3uiv)procAddress("glVertexAttribP3uiv");  
-bindings.vertexAttribP4ui = (GL_VertexAttribP4ui)procAddress("glVertexAttribP4ui");  
-bindings.vertexAttribP4uiv = (GL_VertexAttribP4uiv)procAddress("glVertexAttribP4uiv");  
-bindings.vertexAttribPointer = (GL_VertexAttribPointer)procAddress("glVertexAttribPointer");  
-bindings.vertexBindingDivisor = (GL_VertexBindingDivisor)procAddress("glVertexBindingDivisor");  
-bindings.vertexP2ui = (GL_VertexP2ui)procAddress("glVertexP2ui");  
-bindings.vertexP2uiv = (GL_VertexP2uiv)procAddress("glVertexP2uiv");  
-bindings.vertexP3ui = (GL_VertexP3ui)procAddress("glVertexP3ui");  
-bindings.vertexP3uiv = (GL_VertexP3uiv)procAddress("glVertexP3uiv");  
-bindings.vertexP4ui = (GL_VertexP4ui)procAddress("glVertexP4ui");  
-bindings.vertexP4uiv = (GL_VertexP4uiv)procAddress("glVertexP4uiv");  
-bindings.vertexPointer = (GL_VertexPointer)procAddress("glVertexPointer");  
-bindings.viewport = (GL_Viewport)procAddress("glViewport");  
-bindings.viewportArrayv = (GL_ViewportArrayv)procAddress("glViewportArrayv");  
-bindings.viewportIndexedf = (GL_ViewportIndexedf)procAddress("glViewportIndexedf");  
-bindings.viewportIndexedfv = (GL_ViewportIndexedfv)procAddress("glViewportIndexedfv");  
-bindings.waitSync = (GL_WaitSync)procAddress("glWaitSync");  
-bindings.windowPos2d = (GL_WindowPos2d)procAddress("glWindowPos2d");  
-bindings.windowPos2dv = (GL_WindowPos2dv)procAddress("glWindowPos2dv");  
-bindings.windowPos2f = (GL_WindowPos2f)procAddress("glWindowPos2f");  
-bindings.windowPos2fv = (GL_WindowPos2fv)procAddress("glWindowPos2fv");  
-bindings.windowPos2i = (GL_WindowPos2i)procAddress("glWindowPos2i");  
-bindings.windowPos2iv = (GL_WindowPos2iv)procAddress("glWindowPos2iv");  
-bindings.windowPos2s = (GL_WindowPos2s)procAddress("glWindowPos2s");  
-bindings.windowPos2sv = (GL_WindowPos2sv)procAddress("glWindowPos2sv");  
-bindings.windowPos3d = (GL_WindowPos3d)procAddress("glWindowPos3d");  
-bindings.windowPos3dv = (GL_WindowPos3dv)procAddress("glWindowPos3dv");  
-bindings.windowPos3f = (GL_WindowPos3f)procAddress("glWindowPos3f");  
-bindings.windowPos3fv = (GL_WindowPos3fv)procAddress("glWindowPos3fv");  
-bindings.windowPos3i = (GL_WindowPos3i)procAddress("glWindowPos3i");  
-bindings.windowPos3iv = (GL_WindowPos3iv)procAddress("glWindowPos3iv");  
-bindings.windowPos3s = (GL_WindowPos3s)procAddress("glWindowPos3s");  
-bindings.windowPos3sv = (GL_WindowPos3sv)procAddress("glWindowPos3sv");
-} 
 
- 
-fn void  accum (GLenum op, GLfloat value) { return bindings.accum(op,value); }
-fn void  activeShaderProgram (GLuint pipeline, GLuint program) { return bindings.activeShaderProgram(pipeline,program); }
-fn void  alphaFunc (GLenum func_param, GLfloat ref) { return bindings.alphaFunc(func_param,ref); }
-fn GLboolean  areTexturesResident (GLsizei n,  GLuint *textures, GLboolean *residences) { return bindings.areTexturesResident(n,textures,residences); }
-fn void  arrayElement (GLint i) { return bindings.arrayElement(i); }
-fn void  attachShader (GLuint program, GLuint shader) { return bindings.attachShader(program,shader); }
-fn void  begin (GLenum mode) { return bindings.begin(mode); }
-fn void  beginConditionalRender (GLuint id, GLenum mode) { return bindings.beginConditionalRender(id,mode); }
-fn void  beginQuery (GLenum target, GLuint id) { return bindings.beginQuery(target,id); }
-fn void  beginQueryIndexed (GLenum target, GLuint index, GLuint id) { return bindings.beginQueryIndexed(target,index,id); }
-fn void  beginTransformFeedback (GLenum primitiveMode) { return bindings.beginTransformFeedback(primitiveMode); }
-fn void  bindAttribLocation (GLuint program, GLuint index,  GLchar *name) { return bindings.bindAttribLocation(program,index,name); }
-fn void  bindBuffer (GLenum target, GLuint buffer) { return bindings.bindBuffer(target,buffer); }
-fn void  bindBufferBase (GLenum target, GLuint index, GLuint buffer) { return bindings.bindBufferBase(target,index,buffer); }
-fn void  bindBufferRange (GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size) { return bindings.bindBufferRange(target,index,buffer,offset,size); }
-fn void  bindBuffersBase (GLenum target, GLuint first, GLsizei count,  GLuint *buffers) { return bindings.bindBuffersBase(target,first,count,buffers); }
-fn void  bindBuffersRange (GLenum target, GLuint first, GLsizei count,  GLuint *buffers,  GLintptr *offsets,  GLsizeiptr *sizes) { return bindings.bindBuffersRange(target,first,count,buffers,offsets,sizes); }
-fn void  bindFragDataLocation (GLuint program, GLuint color,  GLchar *name) { return bindings.bindFragDataLocation(program,color,name); }
-fn void  bindFragDataLocationIndexed (GLuint program, GLuint colorNumber, GLuint index,  GLchar *name) { return bindings.bindFragDataLocationIndexed(program,colorNumber,index,name); }
-fn void  bindFramebuffer (GLenum target, GLuint framebuffer) { return bindings.bindFramebuffer(target,framebuffer); }
-fn void  bindImageTexture (GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format) { return bindings.bindImageTexture(unit,texture,level,layered,layer,access,format); }
-fn void  bindImageTextures (GLuint first, GLsizei count,  GLuint *textures) { return bindings.bindImageTextures(first,count,textures); }
-fn void  bindProgramPipeline (GLuint pipeline) { return bindings.bindProgramPipeline(pipeline); }
-fn void  bindRenderbuffer (GLenum target, GLuint renderbuffer) { return bindings.bindRenderbuffer(target,renderbuffer); }
-fn void  bindSampler (GLuint unit, GLuint sampler) { return bindings.bindSampler(unit,sampler); }
-fn void  bindSamplers (GLuint first, GLsizei count,  GLuint *samplers) { return bindings.bindSamplers(first,count,samplers); }
-fn void  bindTexture (GLenum target, GLuint texture) { return bindings.bindTexture(target,texture); }
-fn void  bindTextureUnit (GLuint unit, GLuint texture) { return bindings.bindTextureUnit(unit,texture); }
-fn void  bindTextures (GLuint first, GLsizei count,  GLuint *textures) { return bindings.bindTextures(first,count,textures); }
-fn void  bindTransformFeedback (GLenum target, GLuint id) { return bindings.bindTransformFeedback(target,id); }
-fn void  bindVertexArray (GLuint array) { return bindings.bindVertexArray(array); }
-fn void  bindVertexBuffer (GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride) { return bindings.bindVertexBuffer(bindingindex,buffer,offset,stride); }
-fn void  bindVertexBuffers (GLuint first, GLsizei count,  GLuint *buffers,  GLintptr *offsets,  GLsizei *strides) { return bindings.bindVertexBuffers(first,count,buffers,offsets,strides); }
-fn void  bitmap (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove,  GLubyte *bitmap) { return bindings.bitmap(width,height,xorig,yorig,xmove,ymove,bitmap); }
-fn void  blendEquationSeparate (GLenum modeRGB, GLenum modeAlpha) { return bindings.blendEquationSeparate(modeRGB,modeAlpha); }
-fn void  blendEquationSeparatei (GLuint buf, GLenum modeRGB, GLenum modeAlpha) { return bindings.blendEquationSeparatei(buf,modeRGB,modeAlpha); }
-fn void  blendEquationi (GLuint buf, GLenum mode) { return bindings.blendEquationi(buf,mode); }
-fn void  blendFunc (GLenum sfactor, GLenum dfactor) { return bindings.blendFunc(sfactor,dfactor); }
-fn void  blendFuncSeparatei (GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha) { return bindings.blendFuncSeparatei(buf,srcRGB,dstRGB,srcAlpha,dstAlpha); }
-fn void  blendFunci (GLuint buf, GLenum src, GLenum dst) { return bindings.blendFunci(buf,src,dst); }
-fn void  blitFramebuffer (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter) { return bindings.blitFramebuffer(srcX0,srcY0,srcX1,srcY1,dstX0,dstY0,dstX1,dstY1,mask,filter); }
-fn void  blitNamedFramebuffer (GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter) { return bindings.blitNamedFramebuffer(readFramebuffer,drawFramebuffer,srcX0,srcY0,srcX1,srcY1,dstX0,dstY0,dstX1,dstY1,mask,filter); }
-fn void  bufferData (GLenum target, GLsizeiptr size,  void *data, GLenum usage) { return bindings.bufferData(target,size,data,usage); }
-fn void  bufferStorage (GLenum target, GLsizeiptr size,  void *data, GLbitfield flags) { return bindings.bufferStorage(target,size,data,flags); }
-fn void  bufferSubData (GLenum target, GLintptr offset, GLsizeiptr size,  void *data) { return bindings.bufferSubData(target,offset,size,data); }
-fn void  callList (GLuint list) { return bindings.callList(list); }
-fn void  callLists (GLsizei n, GLenum value_type,  void *lists) { return bindings.callLists(n,value_type,lists); }
-fn GLenum  checkFramebufferStatus (GLenum target) { return bindings.checkFramebufferStatus(target); }
-fn GLenum  checkNamedFramebufferStatus (GLuint framebuffer, GLenum target) { return bindings.checkNamedFramebufferStatus(framebuffer,target); }
-fn void  clampColor (GLenum target, GLenum clamp) { return bindings.clampColor(target,clamp); }
-fn void  clear (GLbitfield mask) { return bindings.clear(mask); }
-fn void  clearAccum (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) { return bindings.clearAccum(red,green,blue,alpha); }
-fn void  clearBufferData (GLenum target, GLenum internalformat, GLenum format, GLenum value_type,  void *data) { return bindings.clearBufferData(target,internalformat,format,value_type,data); }
-fn void  clearBufferSubData (GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type,  void *data) { return bindings.clearBufferSubData(target,internalformat,offset,size,format,value_type,data); }
-fn void  clearBufferfi (GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil) { return bindings.clearBufferfi(buffer,drawbuffer,depth,stencil); }
-fn void  clearBufferfv (GLenum buffer, GLint drawbuffer,  GLfloat *value) { return bindings.clearBufferfv(buffer,drawbuffer,value); }
-fn void  clearBufferiv (GLenum buffer, GLint drawbuffer,  GLint *value) { return bindings.clearBufferiv(buffer,drawbuffer,value); }
-fn void  clearBufferuiv (GLenum buffer, GLint drawbuffer,  GLuint *value) { return bindings.clearBufferuiv(buffer,drawbuffer,value); }
-fn void  clearColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) { return bindings.clearColor(red,green,blue,alpha); }
-fn void  clearDepth (GLdouble depth) { return bindings.clearDepth(depth); }
-fn void  clearDepthf (GLfloat d) { return bindings.clearDepthf(d); }
-fn void  clearIndex (GLfloat c) { return bindings.clearIndex(c); }
-fn void  clearNamedBufferData (GLuint buffer, GLenum internalformat, GLenum format, GLenum value_type,  void *data) { return bindings.clearNamedBufferData(buffer,internalformat,format,value_type,data); }
-fn void  clearNamedBufferSubData (GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type,  void *data) { return bindings.clearNamedBufferSubData(buffer,internalformat,offset,size,format,value_type,data); }
-fn void  clearNamedFramebufferfi (GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil) { return bindings.clearNamedFramebufferfi(framebuffer,buffer,drawbuffer,depth,stencil); }
-fn void  clearNamedFramebufferfv (GLuint framebuffer, GLenum buffer, GLint drawbuffer,  GLfloat *value) { return bindings.clearNamedFramebufferfv(framebuffer,buffer,drawbuffer,value); }
-fn void  clearNamedFramebufferiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer,  GLint *value) { return bindings.clearNamedFramebufferiv(framebuffer,buffer,drawbuffer,value); }
-fn void  clearNamedFramebufferuiv (GLuint framebuffer, GLenum buffer, GLint drawbuffer,  GLuint *value) { return bindings.clearNamedFramebufferuiv(framebuffer,buffer,drawbuffer,value); }
-fn void  clearStencil (GLint s) { return bindings.clearStencil(s); }
-fn void  clearTexImage (GLuint texture, GLint level, GLenum format, GLenum value_type,  void *data) { return bindings.clearTexImage(texture,level,format,value_type,data); }
-fn void  clearTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type,  void *data) { return bindings.clearTexSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,value_type,data); }
-fn void  clientActiveTexture (GLenum texture) { return bindings.clientActiveTexture(texture); }
-fn GLenum  clientWaitSync (GLsync sync, GLbitfield flags, GLuint64 timeout) { return bindings.clientWaitSync(sync,flags,timeout); }
-fn void  clipControl (GLenum origin, GLenum depth) { return bindings.clipControl(origin,depth); }
-fn void  clipPlane (GLenum plane,  GLdouble *equation) { return bindings.clipPlane(plane,equation); }
-fn void  color3b (GLbyte red, GLbyte green, GLbyte blue) { return bindings.color3b(red,green,blue); }
-fn void  color3bv ( GLbyte *v) { return bindings.color3bv(v); }
-fn void  color3d (GLdouble red, GLdouble green, GLdouble blue) { return bindings.color3d(red,green,blue); }
-fn void  color3dv ( GLdouble *v) { return bindings.color3dv(v); }
-fn void  color3f (GLfloat red, GLfloat green, GLfloat blue) { return bindings.color3f(red,green,blue); }
-fn void  color3fv ( GLfloat *v) { return bindings.color3fv(v); }
-fn void  color3i (GLint red, GLint green, GLint blue) { return bindings.color3i(red,green,blue); }
-fn void  color3iv ( GLint *v) { return bindings.color3iv(v); }
-fn void  color3s (GLshort red, GLshort green, GLshort blue) { return bindings.color3s(red,green,blue); }
-fn void  color3sv ( GLshort *v) { return bindings.color3sv(v); }
-fn void  color3ub (GLubyte red, GLubyte green, GLubyte blue) { return bindings.color3ub(red,green,blue); }
-fn void  color3ubv ( GLubyte *v) { return bindings.color3ubv(v); }
-fn void  color3ui (GLuint red, GLuint green, GLuint blue) { return bindings.color3ui(red,green,blue); }
-fn void  color3uiv ( GLuint *v) { return bindings.color3uiv(v); }
-fn void  color3us (GLushort red, GLushort green, GLushort blue) { return bindings.color3us(red,green,blue); }
-fn void  color3usv ( GLushort *v) { return bindings.color3usv(v); }
-fn void  color4b (GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha) { return bindings.color4b(red,green,blue,alpha); }
-fn void  color4bv ( GLbyte *v) { return bindings.color4bv(v); }
-fn void  color4d (GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha) { return bindings.color4d(red,green,blue,alpha); }
-fn void  color4dv ( GLdouble *v) { return bindings.color4dv(v); }
-fn void  color4f (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) { return bindings.color4f(red,green,blue,alpha); }
-fn void  color4fv ( GLfloat *v) { return bindings.color4fv(v); }
-fn void  color4i (GLint red, GLint green, GLint blue, GLint alpha) { return bindings.color4i(red,green,blue,alpha); }
-fn void  color4iv ( GLint *v) { return bindings.color4iv(v); }
-fn void  color4s (GLshort red, GLshort green, GLshort blue, GLshort alpha) { return bindings.color4s(red,green,blue,alpha); }
-fn void  color4sv ( GLshort *v) { return bindings.color4sv(v); }
-fn void  color4ub (GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha) { return bindings.color4ub(red,green,blue,alpha); }
-fn void  color4ubv ( GLubyte *v) { return bindings.color4ubv(v); }
-fn void  color4ui (GLuint red, GLuint green, GLuint blue, GLuint alpha) { return bindings.color4ui(red,green,blue,alpha); }
-fn void  color4uiv ( GLuint *v) { return bindings.color4uiv(v); }
-fn void  color4us (GLushort red, GLushort green, GLushort blue, GLushort alpha) { return bindings.color4us(red,green,blue,alpha); }
-fn void  color4usv ( GLushort *v) { return bindings.color4usv(v); }
-fn void  colorMask (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) { return bindings.colorMask(red,green,blue,alpha); }
-fn void  colorMaski (GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a) { return bindings.colorMaski(index,r,g,b,a); }
-fn void  colorMaterial (GLenum face, GLenum mode) { return bindings.colorMaterial(face,mode); }
-fn void  colorP3ui (GLenum value_type, GLuint color) { return bindings.colorP3ui(value_type,color); }
-fn void  colorP3uiv (GLenum value_type,  GLuint *color) { return bindings.colorP3uiv(value_type,color); }
-fn void  colorP4ui (GLenum value_type, GLuint color) { return bindings.colorP4ui(value_type,color); }
-fn void  colorP4uiv (GLenum value_type,  GLuint *color) { return bindings.colorP4uiv(value_type,color); }
-fn void  colorPointer (GLint size, GLenum value_type, GLsizei stride,  void *pointer) { return bindings.colorPointer(size,value_type,stride,pointer); }
-fn void  compileShader (GLuint shader) { return bindings.compileShader(shader); }
-fn void  compressedTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize,  void *data) { return bindings.compressedTextureSubImage1D(texture,level,xoffset,width,format,imageSize,data); }
-fn void  compressedTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize,  void *data) { return bindings.compressedTextureSubImage2D(texture,level,xoffset,yoffset,width,height,format,imageSize,data); }
-fn void  compressedTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize,  void *data) { return bindings.compressedTextureSubImage3D(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,imageSize,data); }
-fn void  copyBufferSubData (GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) { return bindings.copyBufferSubData(readTarget,writeTarget,readOffset,writeOffset,size); }
-fn void  copyImageSubData (GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth) { return bindings.copyImageSubData(srcName,srcTarget,srcLevel,srcX,srcY,srcZ,dstName,dstTarget,dstLevel,dstX,dstY,dstZ,srcWidth,srcHeight,srcDepth); }
-fn void  copyNamedBufferSubData (GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) { return bindings.copyNamedBufferSubData(readBuffer,writeBuffer,readOffset,writeOffset,size); }
-fn void  copyPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum value_type) { return bindings.copyPixels(x,y,width,height,value_type); }
-fn void  copyTexImage1D (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border) { return bindings.copyTexImage1D(target,level,internalformat,x,y,width,border); }
-fn void  copyTexImage2D (GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border) { return bindings.copyTexImage2D(target,level,internalformat,x,y,width,height,border); }
-fn void  copyTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) { return bindings.copyTexSubImage1D(target,level,xoffset,x,y,width); }
-fn void  copyTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.copyTexSubImage2D(target,level,xoffset,yoffset,x,y,width,height); }
-fn void  copyTextureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) { return bindings.copyTextureSubImage1D(texture,level,xoffset,x,y,width); }
-fn void  copyTextureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.copyTextureSubImage2D(texture,level,xoffset,yoffset,x,y,width,height); }
-fn void  copyTextureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.copyTextureSubImage3D(texture,level,xoffset,yoffset,zoffset,x,y,width,height); }
-fn void  createBuffers (GLsizei n, GLuint *buffers) { return bindings.createBuffers(n,buffers); }
-fn void  createFramebuffers (GLsizei n, GLuint *framebuffers) { return bindings.createFramebuffers(n,framebuffers); }
-fn GLuint  createProgram () { return bindings.createProgram(); }
-fn void  createProgramPipelines (GLsizei n, GLuint *pipelines) { return bindings.createProgramPipelines(n,pipelines); }
-fn void  createQueries (GLenum target, GLsizei n, GLuint *ids) { return bindings.createQueries(target,n,ids); }
-fn void  createRenderbuffers (GLsizei n, GLuint *renderbuffers) { return bindings.createRenderbuffers(n,renderbuffers); }
-fn void  createSamplers (GLsizei n, GLuint *samplers) { return bindings.createSamplers(n,samplers); }
-fn GLuint  createShader (GLenum value_type) { return bindings.createShader(value_type); }
-fn GLuint  createShaderProgramv (GLenum value_type, GLsizei count,  GLchar **strings) { return bindings.createShaderProgramv(value_type,count,strings); }
-fn void  createTextures (GLenum target, GLsizei n, GLuint *textures) { return bindings.createTextures(target,n,textures); }
-fn void  createTransformFeedbacks (GLsizei n, GLuint *ids) { return bindings.createTransformFeedbacks(n,ids); }
-fn void  createVertexArrays (GLsizei n, GLuint *arrays) { return bindings.createVertexArrays(n,arrays); }
-fn void  cullFace (GLenum mode) { return bindings.cullFace(mode); }
-fn void  debugMessageCallback (GLdebugproc callback,  void *userParam) { return bindings.debugMessageCallback(callback,userParam); }
-fn void  debugMessageControl (GLenum source, GLenum value_type, GLenum severity, GLsizei count,  GLuint *ids, GLboolean enabled) { return bindings.debugMessageControl(source,value_type,severity,count,ids,enabled); }
-fn void  debugMessageInsert (GLenum source, GLenum value_type, GLuint id, GLenum severity, GLsizei length,  GLchar *buf) { return bindings.debugMessageInsert(source,value_type,id,severity,length,buf); }
-fn void  deleteBuffers (GLsizei n,  GLuint *buffers) { return bindings.deleteBuffers(n,buffers); }
-fn void  deleteFramebuffers (GLsizei n,  GLuint *framebuffers) { return bindings.deleteFramebuffers(n,framebuffers); }
-fn void  deleteLists (GLuint list, GLsizei range) { return bindings.deleteLists(list,range); }
-fn void  deleteProgram (GLuint program) { return bindings.deleteProgram(program); }
-fn void  deleteProgramPipelines (GLsizei n,  GLuint *pipelines) { return bindings.deleteProgramPipelines(n,pipelines); }
-fn void  deleteQueries (GLsizei n,  GLuint *ids) { return bindings.deleteQueries(n,ids); }
-fn void  deleteRenderbuffers (GLsizei n,  GLuint *renderbuffers) { return bindings.deleteRenderbuffers(n,renderbuffers); }
-fn void  deleteSamplers (GLsizei count,  GLuint *samplers) { return bindings.deleteSamplers(count,samplers); }
-fn void  deleteShader (GLuint shader) { return bindings.deleteShader(shader); }
-fn void  deleteSync (GLsync sync) { return bindings.deleteSync(sync); }
-fn void  deleteTextures (GLsizei n,  GLuint *textures) { return bindings.deleteTextures(n,textures); }
-fn void  deleteTransformFeedbacks (GLsizei n,  GLuint *ids) { return bindings.deleteTransformFeedbacks(n,ids); }
-fn void  deleteVertexArrays (GLsizei n,  GLuint *arrays) { return bindings.deleteVertexArrays(n,arrays); }
-fn void  depthFunc (GLenum func_param) { return bindings.depthFunc(func_param); }
-fn void  depthMask (GLboolean flag) { return bindings.depthMask(flag); }
-fn void  depthRange (GLdouble n, GLdouble f) { return bindings.depthRange(n,f); }
-fn void  depthRangeArrayv (GLuint first, GLsizei count,  GLdouble *v) { return bindings.depthRangeArrayv(first,count,v); }
-fn void  depthRangeIndexed (GLuint index, GLdouble n, GLdouble f) { return bindings.depthRangeIndexed(index,n,f); }
-fn void  depthRangef (GLfloat n, GLfloat f) { return bindings.depthRangef(n,f); }
-fn void  detachShader (GLuint program, GLuint shader) { return bindings.detachShader(program,shader); }
-fn void  disable (GLenum cap) { return bindings.disable(cap); }
-fn void  disableClientState (GLenum array) { return bindings.disableClientState(array); }
-fn void  disableVertexArrayAttrib (GLuint vaobj, GLuint index) { return bindings.disableVertexArrayAttrib(vaobj,index); }
-fn void  disableVertexAttribArray (GLuint index) { return bindings.disableVertexAttribArray(index); }
-fn void  disablei (GLenum target, GLuint index) { return bindings.disablei(target,index); }
-fn void  dispatchCompute (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z) { return bindings.dispatchCompute(num_groups_x,num_groups_y,num_groups_z); }
-fn void  dispatchComputeIndirect (GLintptr indirect) { return bindings.dispatchComputeIndirect(indirect); }
-fn void  drawArrays (GLenum mode, GLint first, GLsizei count) { return bindings.drawArrays(mode,first,count); }
-fn void  drawArraysIndirect (GLenum mode,  void *indirect) { return bindings.drawArraysIndirect(mode,indirect); }
-fn void  drawArraysInstanced (GLenum mode, GLint first, GLsizei count, GLsizei instancecount) { return bindings.drawArraysInstanced(mode,first,count,instancecount); }
-fn void  drawArraysInstancedBaseInstance (GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance) { return bindings.drawArraysInstancedBaseInstance(mode,first,count,instancecount,baseinstance); }
-fn void  drawBuffer (GLenum buf) { return bindings.drawBuffer(buf); }
-fn void  drawBuffers (GLsizei n,  GLenum *bufs) { return bindings.drawBuffers(n,bufs); }
-fn void  drawElements (GLenum mode, GLsizei count, GLenum value_type,  void *indices) { return bindings.drawElements(mode,count,value_type,indices); }
-fn void  drawElementsBaseVertex (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLint basevertex) { return bindings.drawElementsBaseVertex(mode,count,value_type,indices,basevertex); }
-fn void  drawElementsIndirect (GLenum mode, GLenum value_type,  void *indirect) { return bindings.drawElementsIndirect(mode,value_type,indirect); }
-fn void  drawElementsInstanced (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount) { return bindings.drawElementsInstanced(mode,count,value_type,indices,instancecount); }
-fn void  drawElementsInstancedBaseInstance (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount, GLuint baseinstance) { return bindings.drawElementsInstancedBaseInstance(mode,count,value_type,indices,instancecount,baseinstance); }
-fn void  drawElementsInstancedBaseVertex (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount, GLint basevertex) { return bindings.drawElementsInstancedBaseVertex(mode,count,value_type,indices,instancecount,basevertex); }
-fn void  drawElementsInstancedBaseVertexBaseInstance (GLenum mode, GLsizei count, GLenum value_type,  void *indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance) { return bindings.drawElementsInstancedBaseVertexBaseInstance(mode,count,value_type,indices,instancecount,basevertex,baseinstance); }
-fn void  drawPixels (GLsizei width, GLsizei height, GLenum format, GLenum value_type,  void *pixels) { return bindings.drawPixels(width,height,format,value_type,pixels); }
-fn void  drawRangeElementsBaseVertex (GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum value_type,  void *indices, GLint basevertex) { return bindings.drawRangeElementsBaseVertex(mode,start,end,count,value_type,indices,basevertex); }
-fn void  drawTransformFeedback (GLenum mode, GLuint id) { return bindings.drawTransformFeedback(mode,id); }
-fn void  drawTransformFeedbackInstanced (GLenum mode, GLuint id, GLsizei instancecount) { return bindings.drawTransformFeedbackInstanced(mode,id,instancecount); }
-fn void  drawTransformFeedbackStream (GLenum mode, GLuint id, GLuint stream) { return bindings.drawTransformFeedbackStream(mode,id,stream); }
-fn void  drawTransformFeedbackStreamInstanced (GLenum mode, GLuint id, GLuint stream, GLsizei instancecount) { return bindings.drawTransformFeedbackStreamInstanced(mode,id,stream,instancecount); }
-fn void  edgeFlag (GLboolean flag) { return bindings.edgeFlag(flag); }
-fn void  edgeFlagPointer (GLsizei stride,  void *pointer) { return bindings.edgeFlagPointer(stride,pointer); }
-fn void  edgeFlagv ( GLboolean *flag) { return bindings.edgeFlagv(flag); }
-fn void  enable (GLenum cap) { return bindings.enable(cap); }
-fn void  enableClientState (GLenum array) { return bindings.enableClientState(array); }
-fn void  enableVertexArrayAttrib (GLuint vaobj, GLuint index) { return bindings.enableVertexArrayAttrib(vaobj,index); }
-fn void  enableVertexAttribArray (GLuint index) { return bindings.enableVertexAttribArray(index); }
-fn void  enablei (GLenum target, GLuint index) { return bindings.enablei(target,index); }
-fn void  end () { return bindings.end(); }
-fn void  endConditionalRender () { return bindings.endConditionalRender(); }
-fn void  endList () { return bindings.endList(); }
-fn void  endQuery (GLenum target) { return bindings.endQuery(target); }
-fn void  endQueryIndexed (GLenum target, GLuint index) { return bindings.endQueryIndexed(target,index); }
-fn void  endTransformFeedback () { return bindings.endTransformFeedback(); }
-fn void  evalCoord1d (GLdouble u) { return bindings.evalCoord1d(u); }
-fn void  evalCoord1dv ( GLdouble *u) { return bindings.evalCoord1dv(u); }
-fn void  evalCoord1f (GLfloat u) { return bindings.evalCoord1f(u); }
-fn void  evalCoord1fv ( GLfloat *u) { return bindings.evalCoord1fv(u); }
-fn void  evalCoord2d (GLdouble u, GLdouble v) { return bindings.evalCoord2d(u,v); }
-fn void  evalCoord2dv ( GLdouble *u) { return bindings.evalCoord2dv(u); }
-fn void  evalCoord2f (GLfloat u, GLfloat v) { return bindings.evalCoord2f(u,v); }
-fn void  evalCoord2fv ( GLfloat *u) { return bindings.evalCoord2fv(u); }
-fn void  evalMesh1 (GLenum mode, GLint i1, GLint i2) { return bindings.evalMesh1(mode,i1,i2); }
-fn void  evalMesh2 (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2) { return bindings.evalMesh2(mode,i1,i2,j1,j2); }
-fn void  evalPoint1 (GLint i) { return bindings.evalPoint1(i); }
-fn void  evalPoint2 (GLint i, GLint j) { return bindings.evalPoint2(i,j); }
-fn void  feedbackBuffer (GLsizei size, GLenum value_type, GLfloat *buffer) { return bindings.feedbackBuffer(size,value_type,buffer); }
-fn GLsync  fenceSync (GLenum condition, GLbitfield flags) { return bindings.fenceSync(condition,flags); }
-fn void  finish () { return bindings.finish(); }
-fn void  flush () { return bindings.flush(); }
-fn void  flushMappedBufferRange (GLenum target, GLintptr offset, GLsizeiptr length) { return bindings.flushMappedBufferRange(target,offset,length); }
-fn void  flushMappedNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length) { return bindings.flushMappedNamedBufferRange(buffer,offset,length); }
-fn void  fogCoordPointer (GLenum value_type, GLsizei stride,  void *pointer) { return bindings.fogCoordPointer(value_type,stride,pointer); }
-fn void  fogCoordd (GLdouble coord) { return bindings.fogCoordd(coord); }
-fn void  fogCoorddv ( GLdouble *coord) { return bindings.fogCoorddv(coord); }
-fn void  fogCoordf (GLfloat coord) { return bindings.fogCoordf(coord); }
-fn void  fogCoordfv ( GLfloat *coord) { return bindings.fogCoordfv(coord); }
-fn void  fogf (GLenum pname, GLfloat param) { return bindings.fogf(pname,param); }
-fn void  fogfv (GLenum pname,  GLfloat *params) { return bindings.fogfv(pname,params); }
-fn void  fogi (GLenum pname, GLint param) { return bindings.fogi(pname,param); }
-fn void  fogiv (GLenum pname,  GLint *params) { return bindings.fogiv(pname,params); }
-fn void  framebufferParameteri (GLenum target, GLenum pname, GLint param) { return bindings.framebufferParameteri(target,pname,param); }
-fn void  framebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer) { return bindings.framebufferRenderbuffer(target,attachment,renderbuffertarget,renderbuffer); }
-fn void  framebufferTexture (GLenum target, GLenum attachment, GLuint texture, GLint level) { return bindings.framebufferTexture(target,attachment,texture,level); }
-fn void  framebufferTexture1D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) { return bindings.framebufferTexture1D(target,attachment,textarget,texture,level); }
-fn void  framebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) { return bindings.framebufferTexture2D(target,attachment,textarget,texture,level); }
-fn void  framebufferTexture3D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset) { return bindings.framebufferTexture3D(target,attachment,textarget,texture,level,zoffset); }
-fn void  framebufferTextureLayer (GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer) { return bindings.framebufferTextureLayer(target,attachment,texture,level,layer); }
-fn void  frontFace (GLenum mode) { return bindings.frontFace(mode); }
-fn void  frustum (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar) { return bindings.frustum(left,right,bottom,top,zNear,zFar); }
-fn void  genBuffers (GLsizei n, GLuint *buffers) { return bindings.genBuffers(n,buffers); }
-fn void  genFramebuffers (GLsizei n, GLuint *framebuffers) { return bindings.genFramebuffers(n,framebuffers); }
-fn GLuint  genLists (GLsizei range) { return bindings.genLists(range); }
-fn void  genProgramPipelines (GLsizei n, GLuint *pipelines) { return bindings.genProgramPipelines(n,pipelines); }
-fn void  genQueries (GLsizei n, GLuint *ids) { return bindings.genQueries(n,ids); }
-fn void  genRenderbuffers (GLsizei n, GLuint *renderbuffers) { return bindings.genRenderbuffers(n,renderbuffers); }
-fn void  genSamplers (GLsizei count, GLuint *samplers) { return bindings.genSamplers(count,samplers); }
-fn void  genTextures (GLsizei n, GLuint *textures) { return bindings.genTextures(n,textures); }
-fn void  genTransformFeedbacks (GLsizei n, GLuint *ids) { return bindings.genTransformFeedbacks(n,ids); }
-fn void  genVertexArrays (GLsizei n, GLuint *arrays) { return bindings.genVertexArrays(n,arrays); }
-fn void  generateMipmap (GLenum target) { return bindings.generateMipmap(target); }
-fn void  generateTextureMipmap (GLuint texture) { return bindings.generateTextureMipmap(texture); }
-fn void  getActiveAtomicCounterBufferiv (GLuint program, GLuint bufferIndex, GLenum pname, GLint *params) { return bindings.getActiveAtomicCounterBufferiv(program,bufferIndex,pname,params); }
-fn void  getActiveAttrib (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name) { return bindings.getActiveAttrib(program,index,bufSize,length,size,value_type,name); }
-fn void  getActiveSubroutineName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name) { return bindings.getActiveSubroutineName(program,shadertype,index,bufSize,length,name); }
-fn void  getActiveSubroutineUniformName (GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name) { return bindings.getActiveSubroutineUniformName(program,shadertype,index,bufSize,length,name); }
-fn void  getActiveSubroutineUniformiv (GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint *values) { return bindings.getActiveSubroutineUniformiv(program,shadertype,index,pname,values); }
-fn void  getActiveUniform (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name) { return bindings.getActiveUniform(program,index,bufSize,length,size,value_type,name); }
-fn void  getActiveUniformBlockName (GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName) { return bindings.getActiveUniformBlockName(program,uniformBlockIndex,bufSize,length,uniformBlockName); }
-fn void  getActiveUniformBlockiv (GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint *params) { return bindings.getActiveUniformBlockiv(program,uniformBlockIndex,pname,params); }
-fn void  getActiveUniformName (GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformName) { return bindings.getActiveUniformName(program,uniformIndex,bufSize,length,uniformName); }
-fn void  getActiveUniformsiv (GLuint program, GLsizei uniformCount,  GLuint *uniformIndices, GLenum pname, GLint *params) { return bindings.getActiveUniformsiv(program,uniformCount,uniformIndices,pname,params); }
-fn void  getAttachedShaders (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders) { return bindings.getAttachedShaders(program,maxCount,count,shaders); }
-fn GLint  getAttribLocation (GLuint program,  GLchar *name) { return bindings.getAttribLocation(program,name); }
-fn void  getBooleani_v (GLenum target, GLuint index, GLboolean *data) { return bindings.getBooleani_v(target,index,data); }
-fn void  getBooleanv (GLenum pname, GLboolean *data) { return bindings.getBooleanv(pname,data); }
-fn void  getBufferParameteri64v (GLenum target, GLenum pname, GLint64 *params) { return bindings.getBufferParameteri64v(target,pname,params); }
-fn void  getBufferParameteriv (GLenum target, GLenum pname, GLint *params) { return bindings.getBufferParameteriv(target,pname,params); }
-fn void  getBufferPointerv (GLenum target, GLenum pname, void **params) { return bindings.getBufferPointerv(target,pname,params); }
-fn void  getBufferSubData (GLenum target, GLintptr offset, GLsizeiptr size, void *data) { return bindings.getBufferSubData(target,offset,size,data); }
-fn void  getClipPlane (GLenum plane, GLdouble *equation) { return bindings.getClipPlane(plane,equation); }
-fn void  getCompressedTextureImage (GLuint texture, GLint level, GLsizei bufSize, void *pixels) { return bindings.getCompressedTextureImage(texture,level,bufSize,pixels); }
-fn void  getCompressedTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void *pixels) { return bindings.getCompressedTextureSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth,bufSize,pixels); }
-fn GLuint  getDebugMessageLog (GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog) { return bindings.getDebugMessageLog(count,bufSize,sources,types,ids,severities,lengths,messageLog); }
-fn void  getDoublei_v (GLenum target, GLuint index, GLdouble *data) { return bindings.getDoublei_v(target,index,data); }
-fn void  getDoublev (GLenum pname, GLdouble *data) { return bindings.getDoublev(pname,data); }
-fn GLenum  getError () { return bindings.getError(); }
-fn void  getFloati_v (GLenum target, GLuint index, GLfloat *data) { return bindings.getFloati_v(target,index,data); }
-fn void  getFloatv (GLenum pname, GLfloat *data) { return bindings.getFloatv(pname,data); }
-fn GLint  getFragDataIndex (GLuint program,  GLchar *name) { return bindings.getFragDataIndex(program,name); }
-fn GLint  getFragDataLocation (GLuint program,  GLchar *name) { return bindings.getFragDataLocation(program,name); }
-fn void  getFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint *params) { return bindings.getFramebufferAttachmentParameteriv(target,attachment,pname,params); }
-fn void  getFramebufferParameteriv (GLenum target, GLenum pname, GLint *params) { return bindings.getFramebufferParameteriv(target,pname,params); }
-fn GLenum  getGraphicsResetStatus () { return bindings.getGraphicsResetStatus(); }
-fn void  getInteger64i_v (GLenum target, GLuint index, GLint64 *data) { return bindings.getInteger64i_v(target,index,data); }
-fn void  getInteger64v (GLenum pname, GLint64 *data) { return bindings.getInteger64v(pname,data); }
-fn void  getIntegeri_v (GLenum target, GLuint index, GLint *data) { return bindings.getIntegeri_v(target,index,data); }
-fn void  getIntegerv (GLenum pname, GLint *data) { return bindings.getIntegerv(pname,data); }
-fn void  getInternalformati64v (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint64 *params) { return bindings.getInternalformati64v(target,internalformat,pname,count,params); }
-fn void  getInternalformativ (GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint *params) { return bindings.getInternalformativ(target,internalformat,pname,count,params); }
-fn void  getLightfv (GLenum light, GLenum pname, GLfloat *params) { return bindings.getLightfv(light,pname,params); }
-fn void  getLightiv (GLenum light, GLenum pname, GLint *params) { return bindings.getLightiv(light,pname,params); }
-fn void  getMapdv (GLenum target, GLenum query, GLdouble *v) { return bindings.getMapdv(target,query,v); }
-fn void  getMapfv (GLenum target, GLenum query, GLfloat *v) { return bindings.getMapfv(target,query,v); }
-fn void  getMapiv (GLenum target, GLenum query, GLint *v) { return bindings.getMapiv(target,query,v); }
-fn void  getMaterialfv (GLenum face, GLenum pname, GLfloat *params) { return bindings.getMaterialfv(face,pname,params); }
-fn void  getMaterialiv (GLenum face, GLenum pname, GLint *params) { return bindings.getMaterialiv(face,pname,params); }
-fn void  getMultisamplefv (GLenum pname, GLuint index, GLfloat *val) { return bindings.getMultisamplefv(pname,index,val); }
-fn void  getNamedBufferParameteri64v (GLuint buffer, GLenum pname, GLint64 *params) { return bindings.getNamedBufferParameteri64v(buffer,pname,params); }
-fn void  getNamedBufferParameteriv (GLuint buffer, GLenum pname, GLint *params) { return bindings.getNamedBufferParameteriv(buffer,pname,params); }
-fn void  getNamedBufferPointerv (GLuint buffer, GLenum pname, void **params) { return bindings.getNamedBufferPointerv(buffer,pname,params); }
-fn void  getNamedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size, void *data) { return bindings.getNamedBufferSubData(buffer,offset,size,data); }
-fn void  getNamedFramebufferAttachmentParameteriv (GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params) { return bindings.getNamedFramebufferAttachmentParameteriv(framebuffer,attachment,pname,params); }
-fn void  getNamedFramebufferParameteriv (GLuint framebuffer, GLenum pname, GLint *param) { return bindings.getNamedFramebufferParameteriv(framebuffer,pname,param); }
-fn void  getNamedRenderbufferParameteriv (GLuint renderbuffer, GLenum pname, GLint *params) { return bindings.getNamedRenderbufferParameteriv(renderbuffer,pname,params); }
-fn void  getObjectLabel (GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label) { return bindings.getObjectLabel(identifier,name,bufSize,length,label); }
-fn void  getObjectPtrLabel ( void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label) { return bindings.getObjectPtrLabel(ptr,bufSize,length,label); }
-fn void  getPixelMapfv (GLenum map, GLfloat *values) { return bindings.getPixelMapfv(map,values); }
-fn void  getPixelMapuiv (GLenum map, GLuint *values) { return bindings.getPixelMapuiv(map,values); }
-fn void  getPixelMapusv (GLenum map, GLushort *values) { return bindings.getPixelMapusv(map,values); }
-fn void  getPointerv (GLenum pname, void **params) { return bindings.getPointerv(pname,params); }
-fn void  getPolygonStipple (GLubyte *mask) { return bindings.getPolygonStipple(mask); }
-fn void  getProgramBinary (GLuint program, GLsizei bufSize, GLsizei *length, GLenum *binaryFormat, void *binary) { return bindings.getProgramBinary(program,bufSize,length,binaryFormat,binary); }
-fn void  getProgramInfoLog (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog) { return bindings.getProgramInfoLog(program,bufSize,length,infoLog); }
-fn void  getProgramInterfaceiv (GLuint program, GLenum programInterface, GLenum pname, GLint *params) { return bindings.getProgramInterfaceiv(program,programInterface,pname,params); }
-fn void  getProgramPipelineInfoLog (GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog) { return bindings.getProgramPipelineInfoLog(pipeline,bufSize,length,infoLog); }
-fn void  getProgramPipelineiv (GLuint pipeline, GLenum pname, GLint *params) { return bindings.getProgramPipelineiv(pipeline,pname,params); }
-fn GLuint  getProgramResourceIndex (GLuint program, GLenum programInterface,  GLchar *name) { return bindings.getProgramResourceIndex(program,programInterface,name); }
-fn GLint  getProgramResourceLocation (GLuint program, GLenum programInterface,  GLchar *name) { return bindings.getProgramResourceLocation(program,programInterface,name); }
-fn GLint  getProgramResourceLocationIndex (GLuint program, GLenum programInterface,  GLchar *name) { return bindings.getProgramResourceLocationIndex(program,programInterface,name); }
-fn void  getProgramResourceName (GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name) { return bindings.getProgramResourceName(program,programInterface,index,bufSize,length,name); }
-fn void  getProgramResourceiv (GLuint program, GLenum programInterface, GLuint index, GLsizei propCount,  GLenum *props, GLsizei count, GLsizei *length, GLint *params) { return bindings.getProgramResourceiv(program,programInterface,index,propCount,props,count,length,params); }
-fn void  getProgramStageiv (GLuint program, GLenum shadertype, GLenum pname, GLint *values) { return bindings.getProgramStageiv(program,shadertype,pname,values); }
-fn void  getProgramiv (GLuint program, GLenum pname, GLint *params) { return bindings.getProgramiv(program,pname,params); }
-fn void  getQueryBufferObjecti64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset) { return bindings.getQueryBufferObjecti64v(id,buffer,pname,offset); }
-fn void  getQueryBufferObjectiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset) { return bindings.getQueryBufferObjectiv(id,buffer,pname,offset); }
-fn void  getQueryBufferObjectui64v (GLuint id, GLuint buffer, GLenum pname, GLintptr offset) { return bindings.getQueryBufferObjectui64v(id,buffer,pname,offset); }
-fn void  getQueryBufferObjectuiv (GLuint id, GLuint buffer, GLenum pname, GLintptr offset) { return bindings.getQueryBufferObjectuiv(id,buffer,pname,offset); }
-fn void  getQueryIndexediv (GLenum target, GLuint index, GLenum pname, GLint *params) { return bindings.getQueryIndexediv(target,index,pname,params); }
-fn void  getQueryObjecti64v (GLuint id, GLenum pname, GLint64 *params) { return bindings.getQueryObjecti64v(id,pname,params); }
-fn void  getQueryObjectiv (GLuint id, GLenum pname, GLint *params) { return bindings.getQueryObjectiv(id,pname,params); }
-fn void  getQueryObjectui64v (GLuint id, GLenum pname, GLuint64 *params) { return bindings.getQueryObjectui64v(id,pname,params); }
-fn void  getQueryObjectuiv (GLuint id, GLenum pname, GLuint *params) { return bindings.getQueryObjectuiv(id,pname,params); }
-fn void  getQueryiv (GLenum target, GLenum pname, GLint *params) { return bindings.getQueryiv(target,pname,params); }
-fn void  getRenderbufferParameteriv (GLenum target, GLenum pname, GLint *params) { return bindings.getRenderbufferParameteriv(target,pname,params); }
-fn void  getSamplerParameterIiv (GLuint sampler, GLenum pname, GLint *params) { return bindings.getSamplerParameterIiv(sampler,pname,params); }
-fn void  getSamplerParameterIuiv (GLuint sampler, GLenum pname, GLuint *params) { return bindings.getSamplerParameterIuiv(sampler,pname,params); }
-fn void  getSamplerParameterfv (GLuint sampler, GLenum pname, GLfloat *params) { return bindings.getSamplerParameterfv(sampler,pname,params); }
-fn void  getSamplerParameteriv (GLuint sampler, GLenum pname, GLint *params) { return bindings.getSamplerParameteriv(sampler,pname,params); }
-fn void  getShaderInfoLog (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog) { return bindings.getShaderInfoLog(shader,bufSize,length,infoLog); }
-fn void  getShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision) { return bindings.getShaderPrecisionFormat(shadertype,precisiontype,range,precision); }
-fn void  getShaderSource (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source) { return bindings.getShaderSource(shader,bufSize,length,source); }
-fn void  getShaderiv (GLuint shader, GLenum pname, GLint *params) { return bindings.getShaderiv(shader,pname,params); }
-fn  GLubyte * getString (GLenum name) { return bindings.getString(name); }
-fn  GLubyte * getStringi (GLenum name, GLuint index) { return bindings.getStringi(name,index); }
-fn GLuint  getSubroutineIndex (GLuint program, GLenum shadertype,  GLchar *name) { return bindings.getSubroutineIndex(program,shadertype,name); }
-fn GLint  getSubroutineUniformLocation (GLuint program, GLenum shadertype,  GLchar *name) { return bindings.getSubroutineUniformLocation(program,shadertype,name); }
-fn void  getSynciv (GLsync sync, GLenum pname, GLsizei count, GLsizei *length, GLint *values) { return bindings.getSynciv(sync,pname,count,length,values); }
-fn void  getTexEnvfv (GLenum target, GLenum pname, GLfloat *params) { return bindings.getTexEnvfv(target,pname,params); }
-fn void  getTexEnviv (GLenum target, GLenum pname, GLint *params) { return bindings.getTexEnviv(target,pname,params); }
-fn void  getTexGendv (GLenum coord, GLenum pname, GLdouble *params) { return bindings.getTexGendv(coord,pname,params); }
-fn void  getTexGenfv (GLenum coord, GLenum pname, GLfloat *params) { return bindings.getTexGenfv(coord,pname,params); }
-fn void  getTexGeniv (GLenum coord, GLenum pname, GLint *params) { return bindings.getTexGeniv(coord,pname,params); }
-fn void  getTexImage (GLenum target, GLint level, GLenum format, GLenum value_type, void *pixels) { return bindings.getTexImage(target,level,format,value_type,pixels); }
-fn void  getTexLevelParameterfv (GLenum target, GLint level, GLenum pname, GLfloat *params) { return bindings.getTexLevelParameterfv(target,level,pname,params); }
-fn void  getTexLevelParameteriv (GLenum target, GLint level, GLenum pname, GLint *params) { return bindings.getTexLevelParameteriv(target,level,pname,params); }
-fn void  getTexParameterIiv (GLenum target, GLenum pname, GLint *params) { return bindings.getTexParameterIiv(target,pname,params); }
-fn void  getTexParameterIuiv (GLenum target, GLenum pname, GLuint *params) { return bindings.getTexParameterIuiv(target,pname,params); }
-fn void  getTexParameterfv (GLenum target, GLenum pname, GLfloat *params) { return bindings.getTexParameterfv(target,pname,params); }
-fn void  getTexParameteriv (GLenum target, GLenum pname, GLint *params) { return bindings.getTexParameteriv(target,pname,params); }
-fn void  getTextureImage (GLuint texture, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels) { return bindings.getTextureImage(texture,level,format,value_type,bufSize,pixels); }
-fn void  getTextureLevelParameterfv (GLuint texture, GLint level, GLenum pname, GLfloat *params) { return bindings.getTextureLevelParameterfv(texture,level,pname,params); }
-fn void  getTextureLevelParameteriv (GLuint texture, GLint level, GLenum pname, GLint *params) { return bindings.getTextureLevelParameteriv(texture,level,pname,params); }
-fn void  getTextureParameterIiv (GLuint texture, GLenum pname, GLint *params) { return bindings.getTextureParameterIiv(texture,pname,params); }
-fn void  getTextureParameterIuiv (GLuint texture, GLenum pname, GLuint *params) { return bindings.getTextureParameterIuiv(texture,pname,params); }
-fn void  getTextureParameterfv (GLuint texture, GLenum pname, GLfloat *params) { return bindings.getTextureParameterfv(texture,pname,params); }
-fn void  getTextureParameteriv (GLuint texture, GLenum pname, GLint *params) { return bindings.getTextureParameteriv(texture,pname,params); }
-fn void  getTextureSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels) { return bindings.getTextureSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,value_type,bufSize,pixels); }
-fn void  getTransformFeedbackVarying (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *value_type, GLchar *name) { return bindings.getTransformFeedbackVarying(program,index,bufSize,length,size,value_type,name); }
-fn void  getTransformFeedbacki64_v (GLuint xfb, GLenum pname, GLuint index, GLint64 *param) { return bindings.getTransformFeedbacki64_v(xfb,pname,index,param); }
-fn void  getTransformFeedbacki_v (GLuint xfb, GLenum pname, GLuint index, GLint *param) { return bindings.getTransformFeedbacki_v(xfb,pname,index,param); }
-fn void  getTransformFeedbackiv (GLuint xfb, GLenum pname, GLint *param) { return bindings.getTransformFeedbackiv(xfb,pname,param); }
-fn GLuint  getUniformBlockIndex (GLuint program,  GLchar *uniformBlockName) { return bindings.getUniformBlockIndex(program,uniformBlockName); }
-fn void  getUniformIndices (GLuint program, GLsizei uniformCount,  GLchar **uniformNames, GLuint *uniformIndices) { return bindings.getUniformIndices(program,uniformCount,uniformNames,uniformIndices); }
-fn GLint  getUniformLocation (GLuint program,  GLchar *name) { return bindings.getUniformLocation(program,name); }
-fn void  getUniformSubroutineuiv (GLenum shadertype, GLint location, GLuint *params) { return bindings.getUniformSubroutineuiv(shadertype,location,params); }
-fn void  getUniformdv (GLuint program, GLint location, GLdouble *params) { return bindings.getUniformdv(program,location,params); }
-fn void  getUniformfv (GLuint program, GLint location, GLfloat *params) { return bindings.getUniformfv(program,location,params); }
-fn void  getUniformiv (GLuint program, GLint location, GLint *params) { return bindings.getUniformiv(program,location,params); }
-fn void  getUniformuiv (GLuint program, GLint location, GLuint *params) { return bindings.getUniformuiv(program,location,params); }
-fn void  getVertexArrayIndexed64iv (GLuint vaobj, GLuint index, GLenum pname, GLint64 *param) { return bindings.getVertexArrayIndexed64iv(vaobj,index,pname,param); }
-fn void  getVertexArrayIndexediv (GLuint vaobj, GLuint index, GLenum pname, GLint *param) { return bindings.getVertexArrayIndexediv(vaobj,index,pname,param); }
-fn void  getVertexArrayiv (GLuint vaobj, GLenum pname, GLint *param) { return bindings.getVertexArrayiv(vaobj,pname,param); }
-fn void  getVertexAttribIiv (GLuint index, GLenum pname, GLint *params) { return bindings.getVertexAttribIiv(index,pname,params); }
-fn void  getVertexAttribIuiv (GLuint index, GLenum pname, GLuint *params) { return bindings.getVertexAttribIuiv(index,pname,params); }
-fn void  getVertexAttribLdv (GLuint index, GLenum pname, GLdouble *params) { return bindings.getVertexAttribLdv(index,pname,params); }
-fn void  getVertexAttribPointerv (GLuint index, GLenum pname, void **pointer) { return bindings.getVertexAttribPointerv(index,pname,pointer); }
-fn void  getVertexAttribdv (GLuint index, GLenum pname, GLdouble *params) { return bindings.getVertexAttribdv(index,pname,params); }
-fn void  getVertexAttribfv (GLuint index, GLenum pname, GLfloat *params) { return bindings.getVertexAttribfv(index,pname,params); }
-fn void  getVertexAttribiv (GLuint index, GLenum pname, GLint *params) { return bindings.getVertexAttribiv(index,pname,params); }
-fn void  getnColorTable (GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *table) { return bindings.getnColorTable(target,format,value_type,bufSize,table); }
-fn void  getnCompressedTexImage (GLenum target, GLint lod, GLsizei bufSize, void *pixels) { return bindings.getnCompressedTexImage(target,lod,bufSize,pixels); }
-fn void  getnConvolutionFilter (GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *image) { return bindings.getnConvolutionFilter(target,format,value_type,bufSize,image); }
-fn void  getnHistogram (GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values) { return bindings.getnHistogram(target,reset,format,value_type,bufSize,values); }
-fn void  getnMapdv (GLenum target, GLenum query, GLsizei bufSize, GLdouble *v) { return bindings.getnMapdv(target,query,bufSize,v); }
-fn void  getnMapfv (GLenum target, GLenum query, GLsizei bufSize, GLfloat *v) { return bindings.getnMapfv(target,query,bufSize,v); }
-fn void  getnMapiv (GLenum target, GLenum query, GLsizei bufSize, GLint *v) { return bindings.getnMapiv(target,query,bufSize,v); }
-fn void  getnMinmax (GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values) { return bindings.getnMinmax(target,reset,format,value_type,bufSize,values); }
-fn void  getnPixelMapfv (GLenum map, GLsizei bufSize, GLfloat *values) { return bindings.getnPixelMapfv(map,bufSize,values); }
-fn void  getnPixelMapuiv (GLenum map, GLsizei bufSize, GLuint *values) { return bindings.getnPixelMapuiv(map,bufSize,values); }
-fn void  getnPixelMapusv (GLenum map, GLsizei bufSize, GLushort *values) { return bindings.getnPixelMapusv(map,bufSize,values); }
-fn void  getnPolygonStipple (GLsizei bufSize, GLubyte *pattern) { return bindings.getnPolygonStipple(bufSize,pattern); }
-fn void  getnSeparableFilter (GLenum target, GLenum format, GLenum value_type, GLsizei rowBufSize, void *row, GLsizei columnBufSize, void *column, void *span) { return bindings.getnSeparableFilter(target,format,value_type,rowBufSize,row,columnBufSize,column,span); }
-fn void  getnTexImage (GLenum target, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels) { return bindings.getnTexImage(target,level,format,value_type,bufSize,pixels); }
-fn void  getnUniformdv (GLuint program, GLint location, GLsizei bufSize, GLdouble *params) { return bindings.getnUniformdv(program,location,bufSize,params); }
-fn void  getnUniformfv (GLuint program, GLint location, GLsizei bufSize, GLfloat *params) { return bindings.getnUniformfv(program,location,bufSize,params); }
-fn void  getnUniformiv (GLuint program, GLint location, GLsizei bufSize, GLint *params) { return bindings.getnUniformiv(program,location,bufSize,params); }
-fn void  getnUniformuiv (GLuint program, GLint location, GLsizei bufSize, GLuint *params) { return bindings.getnUniformuiv(program,location,bufSize,params); }
-fn void  hint (GLenum target, GLenum mode) { return bindings.hint(target,mode); }
-fn void  indexMask (GLuint mask) { return bindings.indexMask(mask); }
-fn void  indexPointer (GLenum value_type, GLsizei stride,  void *pointer) { return bindings.indexPointer(value_type,stride,pointer); }
-fn void  indexd (GLdouble c) { return bindings.indexd(c); }
-fn void  indexdv ( GLdouble *c) { return bindings.indexdv(c); }
-fn void  indexf (GLfloat c) { return bindings.indexf(c); }
-fn void  indexfv ( GLfloat *c) { return bindings.indexfv(c); }
-fn void  indexi (GLint c) { return bindings.indexi(c); }
-fn void  indexiv ( GLint *c) { return bindings.indexiv(c); }
-fn void  indexs (GLshort c) { return bindings.indexs(c); }
-fn void  indexsv ( GLshort *c) { return bindings.indexsv(c); }
-fn void  indexub (GLubyte c) { return bindings.indexub(c); }
-fn void  indexubv ( GLubyte *c) { return bindings.indexubv(c); }
-fn void  initNames () { return bindings.initNames(); }
-fn void  interleavedArrays (GLenum format, GLsizei stride,  void *pointer) { return bindings.interleavedArrays(format,stride,pointer); }
-fn void  invalidateBufferData (GLuint buffer) { return bindings.invalidateBufferData(buffer); }
-fn void  invalidateBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr length) { return bindings.invalidateBufferSubData(buffer,offset,length); }
-fn void  invalidateFramebuffer (GLenum target, GLsizei numAttachments,  GLenum *attachments) { return bindings.invalidateFramebuffer(target,numAttachments,attachments); }
-fn void  invalidateNamedFramebufferData (GLuint framebuffer, GLsizei numAttachments,  GLenum *attachments) { return bindings.invalidateNamedFramebufferData(framebuffer,numAttachments,attachments); }
-fn void  invalidateNamedFramebufferSubData (GLuint framebuffer, GLsizei numAttachments,  GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.invalidateNamedFramebufferSubData(framebuffer,numAttachments,attachments,x,y,width,height); }
-fn void  invalidateSubFramebuffer (GLenum target, GLsizei numAttachments,  GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.invalidateSubFramebuffer(target,numAttachments,attachments,x,y,width,height); }
-fn void  invalidateTexImage (GLuint texture, GLint level) { return bindings.invalidateTexImage(texture,level); }
-fn void  invalidateTexSubImage (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth) { return bindings.invalidateTexSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth); }
-fn GLboolean  isBuffer (GLuint buffer) { return bindings.isBuffer(buffer); }
-fn GLboolean  isEnabled (GLenum cap) { return bindings.isEnabled(cap); }
-fn GLboolean  isEnabledi (GLenum target, GLuint index) { return bindings.isEnabledi(target,index); }
-fn GLboolean  isFramebuffer (GLuint framebuffer) { return bindings.isFramebuffer(framebuffer); }
-fn GLboolean  isList (GLuint list) { return bindings.isList(list); }
-fn GLboolean  isProgram (GLuint program) { return bindings.isProgram(program); }
-fn GLboolean  isProgramPipeline (GLuint pipeline) { return bindings.isProgramPipeline(pipeline); }
-fn GLboolean  isQuery (GLuint id) { return bindings.isQuery(id); }
-fn GLboolean  isRenderbuffer (GLuint renderbuffer) { return bindings.isRenderbuffer(renderbuffer); }
-fn GLboolean  isSampler (GLuint sampler) { return bindings.isSampler(sampler); }
-fn GLboolean  isShader (GLuint shader) { return bindings.isShader(shader); }
-fn GLboolean  isSync (GLsync sync) { return bindings.isSync(sync); }
-fn GLboolean  isTexture (GLuint texture) { return bindings.isTexture(texture); }
-fn GLboolean  isTransformFeedback (GLuint id) { return bindings.isTransformFeedback(id); }
-fn GLboolean  isVertexArray (GLuint array) { return bindings.isVertexArray(array); }
-fn void  lightModelf (GLenum pname, GLfloat param) { return bindings.lightModelf(pname,param); }
-fn void  lightModelfv (GLenum pname,  GLfloat *params) { return bindings.lightModelfv(pname,params); }
-fn void  lightModeli (GLenum pname, GLint param) { return bindings.lightModeli(pname,param); }
-fn void  lightModeliv (GLenum pname,  GLint *params) { return bindings.lightModeliv(pname,params); }
-fn void  lightf (GLenum light, GLenum pname, GLfloat param) { return bindings.lightf(light,pname,param); }
-fn void  lightfv (GLenum light, GLenum pname,  GLfloat *params) { return bindings.lightfv(light,pname,params); }
-fn void  lighti (GLenum light, GLenum pname, GLint param) { return bindings.lighti(light,pname,param); }
-fn void  lightiv (GLenum light, GLenum pname,  GLint *params) { return bindings.lightiv(light,pname,params); }
-fn void  lineStipple (GLint factor, GLushort pattern) { return bindings.lineStipple(factor,pattern); }
-fn void  lineWidth (GLfloat width) { return bindings.lineWidth(width); }
-fn void  linkProgram (GLuint program) { return bindings.linkProgram(program); }
-fn void  listBase (GLuint base) { return bindings.listBase(base); }
-fn void  loadIdentity () { return bindings.loadIdentity(); }
-fn void  loadMatrixd ( GLdouble *m) { return bindings.loadMatrixd(m); }
-fn void  loadMatrixf ( GLfloat *m) { return bindings.loadMatrixf(m); }
-fn void  loadName (GLuint name) { return bindings.loadName(name); }
-fn void  loadTransposeMatrixd ( GLdouble *m) { return bindings.loadTransposeMatrixd(m); }
-fn void  loadTransposeMatrixf ( GLfloat *m) { return bindings.loadTransposeMatrixf(m); }
-fn void  logicOp (GLenum opcode) { return bindings.logicOp(opcode); }
-fn void  map1d (GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order,  GLdouble *points) { return bindings.map1d(target,u1,u2,stride,order,points); }
-fn void  map1f (GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order,  GLfloat *points) { return bindings.map1f(target,u1,u2,stride,order,points); }
-fn void  map2d (GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder,  GLdouble *points) { return bindings.map2d(target,u1,u2,ustride,uorder,v1,v2,vstride,vorder,points); }
-fn void  map2f (GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder,  GLfloat *points) { return bindings.map2f(target,u1,u2,ustride,uorder,v1,v2,vstride,vorder,points); }
-fn void * mapBuffer (GLenum target, GLenum access) { return bindings.mapBuffer(target,access); }
-fn void * mapBufferRange (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access) { return bindings.mapBufferRange(target,offset,length,access); }
-fn void  mapGrid1d (GLint un, GLdouble u1, GLdouble u2) { return bindings.mapGrid1d(un,u1,u2); }
-fn void  mapGrid1f (GLint un, GLfloat u1, GLfloat u2) { return bindings.mapGrid1f(un,u1,u2); }
-fn void  mapGrid2d (GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2) { return bindings.mapGrid2d(un,u1,u2,vn,v1,v2); }
-fn void  mapGrid2f (GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2) { return bindings.mapGrid2f(un,u1,u2,vn,v1,v2); }
-fn void * mapNamedBuffer (GLuint buffer, GLenum access) { return bindings.mapNamedBuffer(buffer,access); }
-fn void * mapNamedBufferRange (GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access) { return bindings.mapNamedBufferRange(buffer,offset,length,access); }
-fn void  materialf (GLenum face, GLenum pname, GLfloat param) { return bindings.materialf(face,pname,param); }
-fn void  materialfv (GLenum face, GLenum pname,  GLfloat *params) { return bindings.materialfv(face,pname,params); }
-fn void  materiali (GLenum face, GLenum pname, GLint param) { return bindings.materiali(face,pname,param); }
-fn void  materialiv (GLenum face, GLenum pname,  GLint *params) { return bindings.materialiv(face,pname,params); }
-fn void  matrixMode (GLenum mode) { return bindings.matrixMode(mode); }
-fn void  memoryBarrier (GLbitfield barriers) { return bindings.memoryBarrier(barriers); }
-fn void  memoryBarrierByRegion (GLbitfield barriers) { return bindings.memoryBarrierByRegion(barriers); }
-fn void  minSampleShading (GLfloat value) { return bindings.minSampleShading(value); }
-fn void  multMatrixd ( GLdouble *m) { return bindings.multMatrixd(m); }
-fn void  multMatrixf ( GLfloat *m) { return bindings.multMatrixf(m); }
-fn void  multTransposeMatrixd ( GLdouble *m) { return bindings.multTransposeMatrixd(m); }
-fn void  multTransposeMatrixf ( GLfloat *m) { return bindings.multTransposeMatrixf(m); }
-fn void  multiDrawArraysIndirect (GLenum mode,  void *indirect, GLsizei drawcount, GLsizei stride) { return bindings.multiDrawArraysIndirect(mode,indirect,drawcount,stride); }
-fn void  multiDrawArraysIndirectCount (GLenum mode,  void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride) { return bindings.multiDrawArraysIndirectCount(mode,indirect,drawcount,maxdrawcount,stride); }
-fn void  multiDrawElementsBaseVertex (GLenum mode,  GLsizei *count, GLenum value_type,  void **indices, GLsizei drawcount,  GLint *basevertex) { return bindings.multiDrawElementsBaseVertex(mode,count,value_type,indices,drawcount,basevertex); }
-fn void  multiDrawElementsIndirect (GLenum mode, GLenum value_type,  void *indirect, GLsizei drawcount, GLsizei stride) { return bindings.multiDrawElementsIndirect(mode,value_type,indirect,drawcount,stride); }
-fn void  multiDrawElementsIndirectCount (GLenum mode, GLenum value_type,  void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride) { return bindings.multiDrawElementsIndirectCount(mode,value_type,indirect,drawcount,maxdrawcount,stride); }
-fn void  multiTexCoord1d (GLenum target, GLdouble s) { return bindings.multiTexCoord1d(target,s); }
-fn void  multiTexCoord1dv (GLenum target,  GLdouble *v) { return bindings.multiTexCoord1dv(target,v); }
-fn void  multiTexCoord1f (GLenum target, GLfloat s) { return bindings.multiTexCoord1f(target,s); }
-fn void  multiTexCoord1fv (GLenum target,  GLfloat *v) { return bindings.multiTexCoord1fv(target,v); }
-fn void  multiTexCoord1i (GLenum target, GLint s) { return bindings.multiTexCoord1i(target,s); }
-fn void  multiTexCoord1iv (GLenum target,  GLint *v) { return bindings.multiTexCoord1iv(target,v); }
-fn void  multiTexCoord1s (GLenum target, GLshort s) { return bindings.multiTexCoord1s(target,s); }
-fn void  multiTexCoord1sv (GLenum target,  GLshort *v) { return bindings.multiTexCoord1sv(target,v); }
-fn void  multiTexCoord2d (GLenum target, GLdouble s, GLdouble t) { return bindings.multiTexCoord2d(target,s,t); }
-fn void  multiTexCoord2dv (GLenum target,  GLdouble *v) { return bindings.multiTexCoord2dv(target,v); }
-fn void  multiTexCoord2f (GLenum target, GLfloat s, GLfloat t) { return bindings.multiTexCoord2f(target,s,t); }
-fn void  multiTexCoord2fv (GLenum target,  GLfloat *v) { return bindings.multiTexCoord2fv(target,v); }
-fn void  multiTexCoord2i (GLenum target, GLint s, GLint t) { return bindings.multiTexCoord2i(target,s,t); }
-fn void  multiTexCoord2iv (GLenum target,  GLint *v) { return bindings.multiTexCoord2iv(target,v); }
-fn void  multiTexCoord2s (GLenum target, GLshort s, GLshort t) { return bindings.multiTexCoord2s(target,s,t); }
-fn void  multiTexCoord2sv (GLenum target,  GLshort *v) { return bindings.multiTexCoord2sv(target,v); }
-fn void  multiTexCoord3d (GLenum target, GLdouble s, GLdouble t, GLdouble r) { return bindings.multiTexCoord3d(target,s,t,r); }
-fn void  multiTexCoord3dv (GLenum target,  GLdouble *v) { return bindings.multiTexCoord3dv(target,v); }
-fn void  multiTexCoord3f (GLenum target, GLfloat s, GLfloat t, GLfloat r) { return bindings.multiTexCoord3f(target,s,t,r); }
-fn void  multiTexCoord3fv (GLenum target,  GLfloat *v) { return bindings.multiTexCoord3fv(target,v); }
-fn void  multiTexCoord3i (GLenum target, GLint s, GLint t, GLint r) { return bindings.multiTexCoord3i(target,s,t,r); }
-fn void  multiTexCoord3iv (GLenum target,  GLint *v) { return bindings.multiTexCoord3iv(target,v); }
-fn void  multiTexCoord3s (GLenum target, GLshort s, GLshort t, GLshort r) { return bindings.multiTexCoord3s(target,s,t,r); }
-fn void  multiTexCoord3sv (GLenum target,  GLshort *v) { return bindings.multiTexCoord3sv(target,v); }
-fn void  multiTexCoord4d (GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q) { return bindings.multiTexCoord4d(target,s,t,r,q); }
-fn void  multiTexCoord4dv (GLenum target,  GLdouble *v) { return bindings.multiTexCoord4dv(target,v); }
-fn void  multiTexCoord4f (GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q) { return bindings.multiTexCoord4f(target,s,t,r,q); }
-fn void  multiTexCoord4fv (GLenum target,  GLfloat *v) { return bindings.multiTexCoord4fv(target,v); }
-fn void  multiTexCoord4i (GLenum target, GLint s, GLint t, GLint r, GLint q) { return bindings.multiTexCoord4i(target,s,t,r,q); }
-fn void  multiTexCoord4iv (GLenum target,  GLint *v) { return bindings.multiTexCoord4iv(target,v); }
-fn void  multiTexCoord4s (GLenum target, GLshort s, GLshort t, GLshort r, GLshort q) { return bindings.multiTexCoord4s(target,s,t,r,q); }
-fn void  multiTexCoord4sv (GLenum target,  GLshort *v) { return bindings.multiTexCoord4sv(target,v); }
-fn void  multiTexCoordP1ui (GLenum texture, GLenum value_type, GLuint coords) { return bindings.multiTexCoordP1ui(texture,value_type,coords); }
-fn void  multiTexCoordP1uiv (GLenum texture, GLenum value_type,  GLuint *coords) { return bindings.multiTexCoordP1uiv(texture,value_type,coords); }
-fn void  multiTexCoordP2ui (GLenum texture, GLenum value_type, GLuint coords) { return bindings.multiTexCoordP2ui(texture,value_type,coords); }
-fn void  multiTexCoordP2uiv (GLenum texture, GLenum value_type,  GLuint *coords) { return bindings.multiTexCoordP2uiv(texture,value_type,coords); }
-fn void  multiTexCoordP3ui (GLenum texture, GLenum value_type, GLuint coords) { return bindings.multiTexCoordP3ui(texture,value_type,coords); }
-fn void  multiTexCoordP3uiv (GLenum texture, GLenum value_type,  GLuint *coords) { return bindings.multiTexCoordP3uiv(texture,value_type,coords); }
-fn void  multiTexCoordP4ui (GLenum texture, GLenum value_type, GLuint coords) { return bindings.multiTexCoordP4ui(texture,value_type,coords); }
-fn void  multiTexCoordP4uiv (GLenum texture, GLenum value_type,  GLuint *coords) { return bindings.multiTexCoordP4uiv(texture,value_type,coords); }
-fn void  namedBufferData (GLuint buffer, GLsizeiptr size,  void *data, GLenum usage) { return bindings.namedBufferData(buffer,size,data,usage); }
-fn void  namedBufferStorage (GLuint buffer, GLsizeiptr size,  void *data, GLbitfield flags) { return bindings.namedBufferStorage(buffer,size,data,flags); }
-fn void  namedBufferSubData (GLuint buffer, GLintptr offset, GLsizeiptr size,  void *data) { return bindings.namedBufferSubData(buffer,offset,size,data); }
-fn void  namedFramebufferDrawBuffer (GLuint framebuffer, GLenum buf) { return bindings.namedFramebufferDrawBuffer(framebuffer,buf); }
-fn void  namedFramebufferDrawBuffers (GLuint framebuffer, GLsizei n,  GLenum *bufs) { return bindings.namedFramebufferDrawBuffers(framebuffer,n,bufs); }
-fn void  namedFramebufferParameteri (GLuint framebuffer, GLenum pname, GLint param) { return bindings.namedFramebufferParameteri(framebuffer,pname,param); }
-fn void  namedFramebufferReadBuffer (GLuint framebuffer, GLenum src) { return bindings.namedFramebufferReadBuffer(framebuffer,src); }
-fn void  namedFramebufferRenderbuffer (GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer) { return bindings.namedFramebufferRenderbuffer(framebuffer,attachment,renderbuffertarget,renderbuffer); }
-fn void  namedFramebufferTexture (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level) { return bindings.namedFramebufferTexture(framebuffer,attachment,texture,level); }
-fn void  namedFramebufferTextureLayer (GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer) { return bindings.namedFramebufferTextureLayer(framebuffer,attachment,texture,level,layer); }
-fn void  namedRenderbufferStorage (GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height) { return bindings.namedRenderbufferStorage(renderbuffer,internalformat,width,height); }
-fn void  namedRenderbufferStorageMultisample (GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height) { return bindings.namedRenderbufferStorageMultisample(renderbuffer,samples,internalformat,width,height); }
-fn void  newList (GLuint list, GLenum mode) { return bindings.newList(list,mode); }
-fn void  normal3b (GLbyte nx, GLbyte ny, GLbyte nz) { return bindings.normal3b(nx,ny,nz); }
-fn void  normal3bv ( GLbyte *v) { return bindings.normal3bv(v); }
-fn void  normal3d (GLdouble nx, GLdouble ny, GLdouble nz) { return bindings.normal3d(nx,ny,nz); }
-fn void  normal3dv ( GLdouble *v) { return bindings.normal3dv(v); }
-fn void  normal3f (GLfloat nx, GLfloat ny, GLfloat nz) { return bindings.normal3f(nx,ny,nz); }
-fn void  normal3fv ( GLfloat *v) { return bindings.normal3fv(v); }
-fn void  normal3i (GLint nx, GLint ny, GLint nz) { return bindings.normal3i(nx,ny,nz); }
-fn void  normal3iv ( GLint *v) { return bindings.normal3iv(v); }
-fn void  normal3s (GLshort nx, GLshort ny, GLshort nz) { return bindings.normal3s(nx,ny,nz); }
-fn void  normal3sv ( GLshort *v) { return bindings.normal3sv(v); }
-fn void  normalP3ui (GLenum value_type, GLuint coords) { return bindings.normalP3ui(value_type,coords); }
-fn void  normalP3uiv (GLenum value_type,  GLuint *coords) { return bindings.normalP3uiv(value_type,coords); }
-fn void  normalPointer (GLenum value_type, GLsizei stride,  void *pointer) { return bindings.normalPointer(value_type,stride,pointer); }
-fn void  objectLabel (GLenum identifier, GLuint name, GLsizei length,  GLchar *label) { return bindings.objectLabel(identifier,name,length,label); }
-fn void  objectPtrLabel ( void *ptr, GLsizei length,  GLchar *label) { return bindings.objectPtrLabel(ptr,length,label); }
-fn void  ortho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar) { return bindings.ortho(left,right,bottom,top,zNear,zFar); }
-fn void  passThrough (GLfloat token) { return bindings.passThrough(token); }
-fn void  patchParameterfv (GLenum pname,  GLfloat *values) { return bindings.patchParameterfv(pname,values); }
-fn void  patchParameteri (GLenum pname, GLint value) { return bindings.patchParameteri(pname,value); }
-fn void  pauseTransformFeedback () { return bindings.pauseTransformFeedback(); }
-fn void  pixelMapfv (GLenum map, GLsizei mapsize,  GLfloat *values) { return bindings.pixelMapfv(map,mapsize,values); }
-fn void  pixelMapuiv (GLenum map, GLsizei mapsize,  GLuint *values) { return bindings.pixelMapuiv(map,mapsize,values); }
-fn void  pixelMapusv (GLenum map, GLsizei mapsize,  GLushort *values) { return bindings.pixelMapusv(map,mapsize,values); }
-fn void  pixelStoref (GLenum pname, GLfloat param) { return bindings.pixelStoref(pname,param); }
-fn void  pixelStorei (GLenum pname, GLint param) { return bindings.pixelStorei(pname,param); }
-fn void  pixelTransferf (GLenum pname, GLfloat param) { return bindings.pixelTransferf(pname,param); }
-fn void  pixelTransferi (GLenum pname, GLint param) { return bindings.pixelTransferi(pname,param); }
-fn void  pixelZoom (GLfloat xfactor, GLfloat yfactor) { return bindings.pixelZoom(xfactor,yfactor); }
-fn void  pointSize (GLfloat size) { return bindings.pointSize(size); }
-fn void  polygonMode (GLenum face, GLenum mode) { return bindings.polygonMode(face,mode); }
-fn void  polygonOffset (GLfloat factor, GLfloat units) { return bindings.polygonOffset(factor,units); }
-fn void  polygonOffsetClamp (GLfloat factor, GLfloat units, GLfloat clamp) { return bindings.polygonOffsetClamp(factor,units,clamp); }
-fn void  polygonStipple ( GLubyte *mask) { return bindings.polygonStipple(mask); }
-fn void  popAttrib () { return bindings.popAttrib(); }
-fn void  popClientAttrib () { return bindings.popClientAttrib(); }
-fn void  popDebugGroup () { return bindings.popDebugGroup(); }
-fn void  popMatrix () { return bindings.popMatrix(); }
-fn void  popName () { return bindings.popName(); }
-fn void  primitiveRestartIndex (GLuint index) { return bindings.primitiveRestartIndex(index); }
-fn void  prioritizeTextures (GLsizei n,  GLuint *textures,  GLfloat *priorities) { return bindings.prioritizeTextures(n,textures,priorities); }
-fn void  programBinary (GLuint program, GLenum binaryFormat,  void *binary, GLsizei length) { return bindings.programBinary(program,binaryFormat,binary,length); }
-fn void  programParameteri (GLuint program, GLenum pname, GLint value) { return bindings.programParameteri(program,pname,value); }
-fn void  programUniform1d (GLuint program, GLint location, GLdouble v0) { return bindings.programUniform1d(program,location,v0); }
-fn void  programUniform1dv (GLuint program, GLint location, GLsizei count,  GLdouble *value) { return bindings.programUniform1dv(program,location,count,value); }
-fn void  programUniform1f (GLuint program, GLint location, GLfloat v0) { return bindings.programUniform1f(program,location,v0); }
-fn void  programUniform1fv (GLuint program, GLint location, GLsizei count,  GLfloat *value) { return bindings.programUniform1fv(program,location,count,value); }
-fn void  programUniform1i (GLuint program, GLint location, GLint v0) { return bindings.programUniform1i(program,location,v0); }
-fn void  programUniform1iv (GLuint program, GLint location, GLsizei count,  GLint *value) { return bindings.programUniform1iv(program,location,count,value); }
-fn void  programUniform1ui (GLuint program, GLint location, GLuint v0) { return bindings.programUniform1ui(program,location,v0); }
-fn void  programUniform1uiv (GLuint program, GLint location, GLsizei count,  GLuint *value) { return bindings.programUniform1uiv(program,location,count,value); }
-fn void  programUniform2d (GLuint program, GLint location, GLdouble v0, GLdouble v1) { return bindings.programUniform2d(program,location,v0,v1); }
-fn void  programUniform2dv (GLuint program, GLint location, GLsizei count,  GLdouble *value) { return bindings.programUniform2dv(program,location,count,value); }
-fn void  programUniform2f (GLuint program, GLint location, GLfloat v0, GLfloat v1) { return bindings.programUniform2f(program,location,v0,v1); }
-fn void  programUniform2fv (GLuint program, GLint location, GLsizei count,  GLfloat *value) { return bindings.programUniform2fv(program,location,count,value); }
-fn void  programUniform2i (GLuint program, GLint location, GLint v0, GLint v1) { return bindings.programUniform2i(program,location,v0,v1); }
-fn void  programUniform2iv (GLuint program, GLint location, GLsizei count,  GLint *value) { return bindings.programUniform2iv(program,location,count,value); }
-fn void  programUniform2ui (GLuint program, GLint location, GLuint v0, GLuint v1) { return bindings.programUniform2ui(program,location,v0,v1); }
-fn void  programUniform2uiv (GLuint program, GLint location, GLsizei count,  GLuint *value) { return bindings.programUniform2uiv(program,location,count,value); }
-fn void  programUniform3d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2) { return bindings.programUniform3d(program,location,v0,v1,v2); }
-fn void  programUniform3dv (GLuint program, GLint location, GLsizei count,  GLdouble *value) { return bindings.programUniform3dv(program,location,count,value); }
-fn void  programUniform3f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2) { return bindings.programUniform3f(program,location,v0,v1,v2); }
-fn void  programUniform3fv (GLuint program, GLint location, GLsizei count,  GLfloat *value) { return bindings.programUniform3fv(program,location,count,value); }
-fn void  programUniform3i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2) { return bindings.programUniform3i(program,location,v0,v1,v2); }
-fn void  programUniform3iv (GLuint program, GLint location, GLsizei count,  GLint *value) { return bindings.programUniform3iv(program,location,count,value); }
-fn void  programUniform3ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2) { return bindings.programUniform3ui(program,location,v0,v1,v2); }
-fn void  programUniform3uiv (GLuint program, GLint location, GLsizei count,  GLuint *value) { return bindings.programUniform3uiv(program,location,count,value); }
-fn void  programUniform4d (GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3) { return bindings.programUniform4d(program,location,v0,v1,v2,v3); }
-fn void  programUniform4dv (GLuint program, GLint location, GLsizei count,  GLdouble *value) { return bindings.programUniform4dv(program,location,count,value); }
-fn void  programUniform4f (GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) { return bindings.programUniform4f(program,location,v0,v1,v2,v3); }
-fn void  programUniform4fv (GLuint program, GLint location, GLsizei count,  GLfloat *value) { return bindings.programUniform4fv(program,location,count,value); }
-fn void  programUniform4i (GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3) { return bindings.programUniform4i(program,location,v0,v1,v2,v3); }
-fn void  programUniform4iv (GLuint program, GLint location, GLsizei count,  GLint *value) { return bindings.programUniform4iv(program,location,count,value); }
-fn void  programUniform4ui (GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3) { return bindings.programUniform4ui(program,location,v0,v1,v2,v3); }
-fn void  programUniform4uiv (GLuint program, GLint location, GLsizei count,  GLuint *value) { return bindings.programUniform4uiv(program,location,count,value); }
-fn void  programUniformMatrix2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix2dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix2fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix2x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix2x3dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix2x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix2x3fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix2x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix2x4dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix2x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix2x4fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix3dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix3fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix3x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix3x2dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix3x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix3x2fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix3x4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix3x4dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix3x4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix3x4fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix4dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix4dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix4fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix4fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix4x2dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix4x2dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix4x2fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix4x2fv(program,location,count,transpose,value); }
-fn void  programUniformMatrix4x3dv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.programUniformMatrix4x3dv(program,location,count,transpose,value); }
-fn void  programUniformMatrix4x3fv (GLuint program, GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.programUniformMatrix4x3fv(program,location,count,transpose,value); }
-fn void  provokingVertex (GLenum mode) { return bindings.provokingVertex(mode); }
-fn void  pushAttrib (GLbitfield mask) { return bindings.pushAttrib(mask); }
-fn void  pushClientAttrib (GLbitfield mask) { return bindings.pushClientAttrib(mask); }
-fn void  pushDebugGroup (GLenum source, GLuint id, GLsizei length,  GLchar *message) { return bindings.pushDebugGroup(source,id,length,message); }
-fn void  pushMatrix () { return bindings.pushMatrix(); }
-fn void  pushName (GLuint name) { return bindings.pushName(name); }
-fn void  queryCounter (GLuint id, GLenum target) { return bindings.queryCounter(id,target); }
-fn void  rasterPos2d (GLdouble x, GLdouble y) { return bindings.rasterPos2d(x,y); }
-fn void  rasterPos2dv ( GLdouble *v) { return bindings.rasterPos2dv(v); }
-fn void  rasterPos2f (GLfloat x, GLfloat y) { return bindings.rasterPos2f(x,y); }
-fn void  rasterPos2fv ( GLfloat *v) { return bindings.rasterPos2fv(v); }
-fn void  rasterPos2i (GLint x, GLint y) { return bindings.rasterPos2i(x,y); }
-fn void  rasterPos2iv ( GLint *v) { return bindings.rasterPos2iv(v); }
-fn void  rasterPos2s (GLshort x, GLshort y) { return bindings.rasterPos2s(x,y); }
-fn void  rasterPos2sv ( GLshort *v) { return bindings.rasterPos2sv(v); }
-fn void  rasterPos3d (GLdouble x, GLdouble y, GLdouble z) { return bindings.rasterPos3d(x,y,z); }
-fn void  rasterPos3dv ( GLdouble *v) { return bindings.rasterPos3dv(v); }
-fn void  rasterPos3f (GLfloat x, GLfloat y, GLfloat z) { return bindings.rasterPos3f(x,y,z); }
-fn void  rasterPos3fv ( GLfloat *v) { return bindings.rasterPos3fv(v); }
-fn void  rasterPos3i (GLint x, GLint y, GLint z) { return bindings.rasterPos3i(x,y,z); }
-fn void  rasterPos3iv ( GLint *v) { return bindings.rasterPos3iv(v); }
-fn void  rasterPos3s (GLshort x, GLshort y, GLshort z) { return bindings.rasterPos3s(x,y,z); }
-fn void  rasterPos3sv ( GLshort *v) { return bindings.rasterPos3sv(v); }
-fn void  rasterPos4d (GLdouble x, GLdouble y, GLdouble z, GLdouble w) { return bindings.rasterPos4d(x,y,z,w); }
-fn void  rasterPos4dv ( GLdouble *v) { return bindings.rasterPos4dv(v); }
-fn void  rasterPos4f (GLfloat x, GLfloat y, GLfloat z, GLfloat w) { return bindings.rasterPos4f(x,y,z,w); }
-fn void  rasterPos4fv ( GLfloat *v) { return bindings.rasterPos4fv(v); }
-fn void  rasterPos4i (GLint x, GLint y, GLint z, GLint w) { return bindings.rasterPos4i(x,y,z,w); }
-fn void  rasterPos4iv ( GLint *v) { return bindings.rasterPos4iv(v); }
-fn void  rasterPos4s (GLshort x, GLshort y, GLshort z, GLshort w) { return bindings.rasterPos4s(x,y,z,w); }
-fn void  rasterPos4sv ( GLshort *v) { return bindings.rasterPos4sv(v); }
-fn void  readBuffer (GLenum src) { return bindings.readBuffer(src); }
-fn void  readPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels) { return bindings.readPixels(x,y,width,height,format,value_type,pixels); }
-fn void  readnPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, GLsizei bufSize, void *data) { return bindings.readnPixels(x,y,width,height,format,value_type,bufSize,data); }
-fn void  rectd (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2) { return bindings.rectd(x1,y1,x2,y2); }
-fn void  rectdv ( GLdouble *v1,  GLdouble *v2) { return bindings.rectdv(v1,v2); }
-fn void  rectf (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2) { return bindings.rectf(x1,y1,x2,y2); }
-fn void  rectfv ( GLfloat *v1,  GLfloat *v2) { return bindings.rectfv(v1,v2); }
-fn void  recti (GLint x1, GLint y1, GLint x2, GLint y2) { return bindings.recti(x1,y1,x2,y2); }
-fn void  rectiv ( GLint *v1,  GLint *v2) { return bindings.rectiv(v1,v2); }
-fn void  rects (GLshort x1, GLshort y1, GLshort x2, GLshort y2) { return bindings.rects(x1,y1,x2,y2); }
-fn void  rectsv ( GLshort *v1,  GLshort *v2) { return bindings.rectsv(v1,v2); }
-fn void  releaseShaderCompiler () { return bindings.releaseShaderCompiler(); }
-fn GLint  renderMode (GLenum mode) { return bindings.renderMode(mode); }
-fn void  renderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height) { return bindings.renderbufferStorage(target,internalformat,width,height); }
-fn void  renderbufferStorageMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height) { return bindings.renderbufferStorageMultisample(target,samples,internalformat,width,height); }
-fn void  resumeTransformFeedback () { return bindings.resumeTransformFeedback(); }
-fn void  rotated (GLdouble angle, GLdouble x, GLdouble y, GLdouble z) { return bindings.rotated(angle,x,y,z); }
-fn void  rotatef (GLfloat angle, GLfloat x, GLfloat y, GLfloat z) { return bindings.rotatef(angle,x,y,z); }
-fn void  sampleMaski (GLuint maskNumber, GLbitfield mask) { return bindings.sampleMaski(maskNumber,mask); }
-fn void  samplerParameterIiv (GLuint sampler, GLenum pname,  GLint *param) { return bindings.samplerParameterIiv(sampler,pname,param); }
-fn void  samplerParameterIuiv (GLuint sampler, GLenum pname,  GLuint *param) { return bindings.samplerParameterIuiv(sampler,pname,param); }
-fn void  samplerParameterf (GLuint sampler, GLenum pname, GLfloat param) { return bindings.samplerParameterf(sampler,pname,param); }
-fn void  samplerParameterfv (GLuint sampler, GLenum pname,  GLfloat *param) { return bindings.samplerParameterfv(sampler,pname,param); }
-fn void  samplerParameteri (GLuint sampler, GLenum pname, GLint param) { return bindings.samplerParameteri(sampler,pname,param); }
-fn void  samplerParameteriv (GLuint sampler, GLenum pname,  GLint *param) { return bindings.samplerParameteriv(sampler,pname,param); }
-fn void  scaled (GLdouble x, GLdouble y, GLdouble z) { return bindings.scaled(x,y,z); }
-fn void  scalef (GLfloat x, GLfloat y, GLfloat z) { return bindings.scalef(x,y,z); }
-fn void  scissor (GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.scissor(x,y,width,height); }
-fn void  scissorArrayv (GLuint first, GLsizei count,  GLint *v) { return bindings.scissorArrayv(first,count,v); }
-fn void  scissorIndexed (GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height) { return bindings.scissorIndexed(index,left,bottom,width,height); }
-fn void  scissorIndexedv (GLuint index,  GLint *v) { return bindings.scissorIndexedv(index,v); }
-fn void  secondaryColor3b (GLbyte red, GLbyte green, GLbyte blue) { return bindings.secondaryColor3b(red,green,blue); }
-fn void  secondaryColor3bv ( GLbyte *v) { return bindings.secondaryColor3bv(v); }
-fn void  secondaryColor3d (GLdouble red, GLdouble green, GLdouble blue) { return bindings.secondaryColor3d(red,green,blue); }
-fn void  secondaryColor3dv ( GLdouble *v) { return bindings.secondaryColor3dv(v); }
-fn void  secondaryColor3f (GLfloat red, GLfloat green, GLfloat blue) { return bindings.secondaryColor3f(red,green,blue); }
-fn void  secondaryColor3fv ( GLfloat *v) { return bindings.secondaryColor3fv(v); }
-fn void  secondaryColor3i (GLint red, GLint green, GLint blue) { return bindings.secondaryColor3i(red,green,blue); }
-fn void  secondaryColor3iv ( GLint *v) { return bindings.secondaryColor3iv(v); }
-fn void  secondaryColor3s (GLshort red, GLshort green, GLshort blue) { return bindings.secondaryColor3s(red,green,blue); }
-fn void  secondaryColor3sv ( GLshort *v) { return bindings.secondaryColor3sv(v); }
-fn void  secondaryColor3ub (GLubyte red, GLubyte green, GLubyte blue) { return bindings.secondaryColor3ub(red,green,blue); }
-fn void  secondaryColor3ubv ( GLubyte *v) { return bindings.secondaryColor3ubv(v); }
-fn void  secondaryColor3ui (GLuint red, GLuint green, GLuint blue) { return bindings.secondaryColor3ui(red,green,blue); }
-fn void  secondaryColor3uiv ( GLuint *v) { return bindings.secondaryColor3uiv(v); }
-fn void  secondaryColor3us (GLushort red, GLushort green, GLushort blue) { return bindings.secondaryColor3us(red,green,blue); }
-fn void  secondaryColor3usv ( GLushort *v) { return bindings.secondaryColor3usv(v); }
-fn void  secondaryColorP3ui (GLenum value_type, GLuint color) { return bindings.secondaryColorP3ui(value_type,color); }
-fn void  secondaryColorP3uiv (GLenum value_type,  GLuint *color) { return bindings.secondaryColorP3uiv(value_type,color); }
-fn void  secondaryColorPointer (GLint size, GLenum value_type, GLsizei stride,  void *pointer) { return bindings.secondaryColorPointer(size,value_type,stride,pointer); }
-fn void  selectBuffer (GLsizei size, GLuint *buffer) { return bindings.selectBuffer(size,buffer); }
-fn void  shadeModel (GLenum mode) { return bindings.shadeModel(mode); }
-fn void  shaderBinary (GLsizei count,  GLuint *shaders, GLenum binaryFormat,  void *binary, GLsizei length) { return bindings.shaderBinary(count,shaders,binaryFormat,binary,length); }
-fn void  shaderSource (GLuint shader, GLsizei count,  GLchar **string,  GLint *length) { return bindings.shaderSource(shader,count,string,length); }
-fn void  shaderStorageBlockBinding (GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding) { return bindings.shaderStorageBlockBinding(program,storageBlockIndex,storageBlockBinding); }
-fn void  specializeShader (GLuint shader,  GLchar *pEntryPoint, GLuint numSpecializationConstants,  GLuint *pConstantIndex,  GLuint *pConstantValue) { return bindings.specializeShader(shader,pEntryPoint,numSpecializationConstants,pConstantIndex,pConstantValue); }
-fn void  stencilFunc (GLenum func_param, GLint ref, GLuint mask) { return bindings.stencilFunc(func_param,ref,mask); }
-fn void  stencilFuncSeparate (GLenum face, GLenum func_param, GLint ref, GLuint mask) { return bindings.stencilFuncSeparate(face,func_param,ref,mask); }
-fn void  stencilMask (GLuint mask) { return bindings.stencilMask(mask); }
-fn void  stencilMaskSeparate (GLenum face, GLuint mask) { return bindings.stencilMaskSeparate(face,mask); }
-fn void  stencilOp (GLenum fail, GLenum zfail, GLenum zpass) { return bindings.stencilOp(fail,zfail,zpass); }
-fn void  stencilOpSeparate (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass) { return bindings.stencilOpSeparate(face,sfail,dpfail,dppass); }
-fn void  texBuffer (GLenum target, GLenum internalformat, GLuint buffer) { return bindings.texBuffer(target,internalformat,buffer); }
-fn void  texBufferRange (GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size) { return bindings.texBufferRange(target,internalformat,buffer,offset,size); }
-fn void  texCoord1d (GLdouble s) { return bindings.texCoord1d(s); }
-fn void  texCoord1dv ( GLdouble *v) { return bindings.texCoord1dv(v); }
-fn void  texCoord1f (GLfloat s) { return bindings.texCoord1f(s); }
-fn void  texCoord1fv ( GLfloat *v) { return bindings.texCoord1fv(v); }
-fn void  texCoord1i (GLint s) { return bindings.texCoord1i(s); }
-fn void  texCoord1iv ( GLint *v) { return bindings.texCoord1iv(v); }
-fn void  texCoord1s (GLshort s) { return bindings.texCoord1s(s); }
-fn void  texCoord1sv ( GLshort *v) { return bindings.texCoord1sv(v); }
-fn void  texCoord2d (GLdouble s, GLdouble t) { return bindings.texCoord2d(s,t); }
-fn void  texCoord2dv ( GLdouble *v) { return bindings.texCoord2dv(v); }
-fn void  texCoord2f (GLfloat s, GLfloat t) { return bindings.texCoord2f(s,t); }
-fn void  texCoord2fv ( GLfloat *v) { return bindings.texCoord2fv(v); }
-fn void  texCoord2i (GLint s, GLint t) { return bindings.texCoord2i(s,t); }
-fn void  texCoord2iv ( GLint *v) { return bindings.texCoord2iv(v); }
-fn void  texCoord2s (GLshort s, GLshort t) { return bindings.texCoord2s(s,t); }
-fn void  texCoord2sv ( GLshort *v) { return bindings.texCoord2sv(v); }
-fn void  texCoord3d (GLdouble s, GLdouble t, GLdouble r) { return bindings.texCoord3d(s,t,r); }
-fn void  texCoord3dv ( GLdouble *v) { return bindings.texCoord3dv(v); }
-fn void  texCoord3f (GLfloat s, GLfloat t, GLfloat r) { return bindings.texCoord3f(s,t,r); }
-fn void  texCoord3fv ( GLfloat *v) { return bindings.texCoord3fv(v); }
-fn void  texCoord3i (GLint s, GLint t, GLint r) { return bindings.texCoord3i(s,t,r); }
-fn void  texCoord3iv ( GLint *v) { return bindings.texCoord3iv(v); }
-fn void  texCoord3s (GLshort s, GLshort t, GLshort r) { return bindings.texCoord3s(s,t,r); }
-fn void  texCoord3sv ( GLshort *v) { return bindings.texCoord3sv(v); }
-fn void  texCoord4d (GLdouble s, GLdouble t, GLdouble r, GLdouble q) { return bindings.texCoord4d(s,t,r,q); }
-fn void  texCoord4dv ( GLdouble *v) { return bindings.texCoord4dv(v); }
-fn void  texCoord4f (GLfloat s, GLfloat t, GLfloat r, GLfloat q) { return bindings.texCoord4f(s,t,r,q); }
-fn void  texCoord4fv ( GLfloat *v) { return bindings.texCoord4fv(v); }
-fn void  texCoord4i (GLint s, GLint t, GLint r, GLint q) { return bindings.texCoord4i(s,t,r,q); }
-fn void  texCoord4iv ( GLint *v) { return bindings.texCoord4iv(v); }
-fn void  texCoord4s (GLshort s, GLshort t, GLshort r, GLshort q) { return bindings.texCoord4s(s,t,r,q); }
-fn void  texCoord4sv ( GLshort *v) { return bindings.texCoord4sv(v); }
-fn void  texCoordP1ui (GLenum value_type, GLuint coords) { return bindings.texCoordP1ui(value_type,coords); }
-fn void  texCoordP1uiv (GLenum value_type,  GLuint *coords) { return bindings.texCoordP1uiv(value_type,coords); }
-fn void  texCoordP2ui (GLenum value_type, GLuint coords) { return bindings.texCoordP2ui(value_type,coords); }
-fn void  texCoordP2uiv (GLenum value_type,  GLuint *coords) { return bindings.texCoordP2uiv(value_type,coords); }
-fn void  texCoordP3ui (GLenum value_type, GLuint coords) { return bindings.texCoordP3ui(value_type,coords); }
-fn void  texCoordP3uiv (GLenum value_type,  GLuint *coords) { return bindings.texCoordP3uiv(value_type,coords); }
-fn void  texCoordP4ui (GLenum value_type, GLuint coords) { return bindings.texCoordP4ui(value_type,coords); }
-fn void  texCoordP4uiv (GLenum value_type,  GLuint *coords) { return bindings.texCoordP4uiv(value_type,coords); }
-fn void  texCoordPointer (GLint size, GLenum value_type, GLsizei stride,  void *pointer) { return bindings.texCoordPointer(size,value_type,stride,pointer); }
-fn void  texEnvf (GLenum target, GLenum pname, GLfloat param) { return bindings.texEnvf(target,pname,param); }
-fn void  texEnvfv (GLenum target, GLenum pname,  GLfloat *params) { return bindings.texEnvfv(target,pname,params); }
-fn void  texEnvi (GLenum target, GLenum pname, GLint param) { return bindings.texEnvi(target,pname,param); }
-fn void  texEnviv (GLenum target, GLenum pname,  GLint *params) { return bindings.texEnviv(target,pname,params); }
-fn void  texGend (GLenum coord, GLenum pname, GLdouble param) { return bindings.texGend(coord,pname,param); }
-fn void  texGendv (GLenum coord, GLenum pname,  GLdouble *params) { return bindings.texGendv(coord,pname,params); }
-fn void  texGenf (GLenum coord, GLenum pname, GLfloat param) { return bindings.texGenf(coord,pname,param); }
-fn void  texGenfv (GLenum coord, GLenum pname,  GLfloat *params) { return bindings.texGenfv(coord,pname,params); }
-fn void  texGeni (GLenum coord, GLenum pname, GLint param) { return bindings.texGeni(coord,pname,param); }
-fn void  texGeniv (GLenum coord, GLenum pname,  GLint *params) { return bindings.texGeniv(coord,pname,params); }
-fn void  texImage1D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum value_type,  void *pixels) { return bindings.texImage1D(target,level,internalformat,width,border,format,value_type,pixels); }
-fn void  texImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum value_type,  void *pixels) { return bindings.texImage2D(target,level,internalformat,width,height,border,format,value_type,pixels); }
-fn void  texImage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) { return bindings.texImage2DMultisample(target,samples,internalformat,width,height,fixedsamplelocations); }
-fn void  texImage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) { return bindings.texImage3DMultisample(target,samples,internalformat,width,height,depth,fixedsamplelocations); }
-fn void  texParameterIiv (GLenum target, GLenum pname,  GLint *params) { return bindings.texParameterIiv(target,pname,params); }
-fn void  texParameterIuiv (GLenum target, GLenum pname,  GLuint *params) { return bindings.texParameterIuiv(target,pname,params); }
-fn void  texParameterf (GLenum target, GLenum pname, GLfloat param) { return bindings.texParameterf(target,pname,param); }
-fn void  texParameterfv (GLenum target, GLenum pname,  GLfloat *params) { return bindings.texParameterfv(target,pname,params); }
-fn void  texParameteri (GLenum target, GLenum pname, GLint param) { return bindings.texParameteri(target,pname,param); }
-fn void  texParameteriv (GLenum target, GLenum pname,  GLint *params) { return bindings.texParameteriv(target,pname,params); }
-fn void  texStorage1D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width) { return bindings.texStorage1D(target,levels,internalformat,width); }
-fn void  texStorage2D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height) { return bindings.texStorage2D(target,levels,internalformat,width,height); }
-fn void  texStorage2DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) { return bindings.texStorage2DMultisample(target,samples,internalformat,width,height,fixedsamplelocations); }
-fn void  texStorage3D (GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth) { return bindings.texStorage3D(target,levels,internalformat,width,height,depth); }
-fn void  texStorage3DMultisample (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) { return bindings.texStorage3DMultisample(target,samples,internalformat,width,height,depth,fixedsamplelocations); }
-fn void  texSubImage1D (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type,  void *pixels) { return bindings.texSubImage1D(target,level,xoffset,width,format,value_type,pixels); }
-fn void  texSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type,  void *pixels) { return bindings.texSubImage2D(target,level,xoffset,yoffset,width,height,format,value_type,pixels); }
-fn void  textureBarrier () { return bindings.textureBarrier(); }
-fn void  textureBuffer (GLuint texture, GLenum internalformat, GLuint buffer) { return bindings.textureBuffer(texture,internalformat,buffer); }
-fn void  textureBufferRange (GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size) { return bindings.textureBufferRange(texture,internalformat,buffer,offset,size); }
-fn void  textureParameterIiv (GLuint texture, GLenum pname,  GLint *params) { return bindings.textureParameterIiv(texture,pname,params); }
-fn void  textureParameterIuiv (GLuint texture, GLenum pname,  GLuint *params) { return bindings.textureParameterIuiv(texture,pname,params); }
-fn void  textureParameterf (GLuint texture, GLenum pname, GLfloat param) { return bindings.textureParameterf(texture,pname,param); }
-fn void  textureParameterfv (GLuint texture, GLenum pname,  GLfloat *param) { return bindings.textureParameterfv(texture,pname,param); }
-fn void  textureParameteri (GLuint texture, GLenum pname, GLint param) { return bindings.textureParameteri(texture,pname,param); }
-fn void  textureParameteriv (GLuint texture, GLenum pname,  GLint *param) { return bindings.textureParameteriv(texture,pname,param); }
-fn void  textureStorage1D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width) { return bindings.textureStorage1D(texture,levels,internalformat,width); }
-fn void  textureStorage2D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height) { return bindings.textureStorage2D(texture,levels,internalformat,width,height); }
-fn void  textureStorage2DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) { return bindings.textureStorage2DMultisample(texture,samples,internalformat,width,height,fixedsamplelocations); }
-fn void  textureStorage3D (GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth) { return bindings.textureStorage3D(texture,levels,internalformat,width,height,depth); }
-fn void  textureStorage3DMultisample (GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) { return bindings.textureStorage3DMultisample(texture,samples,internalformat,width,height,depth,fixedsamplelocations); }
-fn void  textureSubImage1D (GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type,  void *pixels) { return bindings.textureSubImage1D(texture,level,xoffset,width,format,value_type,pixels); }
-fn void  textureSubImage2D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type,  void *pixels) { return bindings.textureSubImage2D(texture,level,xoffset,yoffset,width,height,format,value_type,pixels); }
-fn void  textureSubImage3D (GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type,  void *pixels) { return bindings.textureSubImage3D(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,value_type,pixels); }
-fn void  textureView (GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers) { return bindings.textureView(texture,target,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers); }
-fn void  transformFeedbackBufferBase (GLuint xfb, GLuint index, GLuint buffer) { return bindings.transformFeedbackBufferBase(xfb,index,buffer); }
-fn void  transformFeedbackBufferRange (GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size) { return bindings.transformFeedbackBufferRange(xfb,index,buffer,offset,size); }
-fn void  transformFeedbackVaryings (GLuint program, GLsizei count,  GLchar **varyings, GLenum bufferMode) { return bindings.transformFeedbackVaryings(program,count,varyings,bufferMode); }
-fn void  translated (GLdouble x, GLdouble y, GLdouble z) { return bindings.translated(x,y,z); }
-fn void  translatef (GLfloat x, GLfloat y, GLfloat z) { return bindings.translatef(x,y,z); }
-fn void  uniform1d (GLint location, GLdouble x) { return bindings.uniform1d(location,x); }
-fn void  uniform1dv (GLint location, GLsizei count,  GLdouble *value) { return bindings.uniform1dv(location,count,value); }
-fn void  uniform1f (GLint location, GLfloat v0) { return bindings.uniform1f(location,v0); }
-fn void  uniform1fv (GLint location, GLsizei count,  GLfloat *value) { return bindings.uniform1fv(location,count,value); }
-fn void  uniform1i (GLint location, GLint v0) { return bindings.uniform1i(location,v0); }
-fn void  uniform1iv (GLint location, GLsizei count,  GLint *value) { return bindings.uniform1iv(location,count,value); }
-fn void  uniform1ui (GLint location, GLuint v0) { return bindings.uniform1ui(location,v0); }
-fn void  uniform1uiv (GLint location, GLsizei count,  GLuint *value) { return bindings.uniform1uiv(location,count,value); }
-fn void  uniform2d (GLint location, GLdouble x, GLdouble y) { return bindings.uniform2d(location,x,y); }
-fn void  uniform2dv (GLint location, GLsizei count,  GLdouble *value) { return bindings.uniform2dv(location,count,value); }
-fn void  uniform2f (GLint location, GLfloat v0, GLfloat v1) { return bindings.uniform2f(location,v0,v1); }
-fn void  uniform2fv (GLint location, GLsizei count,  GLfloat *value) { return bindings.uniform2fv(location,count,value); }
-fn void  uniform2i (GLint location, GLint v0, GLint v1) { return bindings.uniform2i(location,v0,v1); }
-fn void  uniform2iv (GLint location, GLsizei count,  GLint *value) { return bindings.uniform2iv(location,count,value); }
-fn void  uniform2ui (GLint location, GLuint v0, GLuint v1) { return bindings.uniform2ui(location,v0,v1); }
-fn void  uniform2uiv (GLint location, GLsizei count,  GLuint *value) { return bindings.uniform2uiv(location,count,value); }
-fn void  uniform3d (GLint location, GLdouble x, GLdouble y, GLdouble z) { return bindings.uniform3d(location,x,y,z); }
-fn void  uniform3dv (GLint location, GLsizei count,  GLdouble *value) { return bindings.uniform3dv(location,count,value); }
-fn void  uniform3f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2) { return bindings.uniform3f(location,v0,v1,v2); }
-fn void  uniform3fv (GLint location, GLsizei count,  GLfloat *value) { return bindings.uniform3fv(location,count,value); }
-fn void  uniform3i (GLint location, GLint v0, GLint v1, GLint v2) { return bindings.uniform3i(location,v0,v1,v2); }
-fn void  uniform3iv (GLint location, GLsizei count,  GLint *value) { return bindings.uniform3iv(location,count,value); }
-fn void  uniform3ui (GLint location, GLuint v0, GLuint v1, GLuint v2) { return bindings.uniform3ui(location,v0,v1,v2); }
-fn void  uniform3uiv (GLint location, GLsizei count,  GLuint *value) { return bindings.uniform3uiv(location,count,value); }
-fn void  uniform4d (GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w) { return bindings.uniform4d(location,x,y,z,w); }
-fn void  uniform4dv (GLint location, GLsizei count,  GLdouble *value) { return bindings.uniform4dv(location,count,value); }
-fn void  uniform4f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) { return bindings.uniform4f(location,v0,v1,v2,v3); }
-fn void  uniform4fv (GLint location, GLsizei count,  GLfloat *value) { return bindings.uniform4fv(location,count,value); }
-fn void  uniform4i (GLint location, GLint v0, GLint v1, GLint v2, GLint v3) { return bindings.uniform4i(location,v0,v1,v2,v3); }
-fn void  uniform4iv (GLint location, GLsizei count,  GLint *value) { return bindings.uniform4iv(location,count,value); }
-fn void  uniform4ui (GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3) { return bindings.uniform4ui(location,v0,v1,v2,v3); }
-fn void  uniform4uiv (GLint location, GLsizei count,  GLuint *value) { return bindings.uniform4uiv(location,count,value); }
-fn void  uniformBlockBinding (GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding) { return bindings.uniformBlockBinding(program,uniformBlockIndex,uniformBlockBinding); }
-fn void  uniformMatrix2dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix2dv(location,count,transpose,value); }
-fn void  uniformMatrix2fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix2fv(location,count,transpose,value); }
-fn void  uniformMatrix2x3dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix2x3dv(location,count,transpose,value); }
-fn void  uniformMatrix2x3fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix2x3fv(location,count,transpose,value); }
-fn void  uniformMatrix2x4dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix2x4dv(location,count,transpose,value); }
-fn void  uniformMatrix2x4fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix2x4fv(location,count,transpose,value); }
-fn void  uniformMatrix3dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix3dv(location,count,transpose,value); }
-fn void  uniformMatrix3fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix3fv(location,count,transpose,value); }
-fn void  uniformMatrix3x2dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix3x2dv(location,count,transpose,value); }
-fn void  uniformMatrix3x2fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix3x2fv(location,count,transpose,value); }
-fn void  uniformMatrix3x4dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix3x4dv(location,count,transpose,value); }
-fn void  uniformMatrix3x4fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix3x4fv(location,count,transpose,value); }
-fn void  uniformMatrix4dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix4dv(location,count,transpose,value); }
-fn void  uniformMatrix4fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix4fv(location,count,transpose,value); }
-fn void  uniformMatrix4x2dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix4x2dv(location,count,transpose,value); }
-fn void  uniformMatrix4x2fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix4x2fv(location,count,transpose,value); }
-fn void  uniformMatrix4x3dv (GLint location, GLsizei count, GLboolean transpose,  GLdouble *value) { return bindings.uniformMatrix4x3dv(location,count,transpose,value); }
-fn void  uniformMatrix4x3fv (GLint location, GLsizei count, GLboolean transpose,  GLfloat *value) { return bindings.uniformMatrix4x3fv(location,count,transpose,value); }
-fn void  uniformSubroutinesuiv (GLenum shadertype, GLsizei count,  GLuint *indices) { return bindings.uniformSubroutinesuiv(shadertype,count,indices); }
-fn GLboolean  unmapBuffer (GLenum target) { return bindings.unmapBuffer(target); }
-fn GLboolean  unmapNamedBuffer (GLuint buffer) { return bindings.unmapNamedBuffer(buffer); }
-fn void  useProgram (GLuint program) { return bindings.useProgram(program); }
-fn void  useProgramStages (GLuint pipeline, GLbitfield stages, GLuint program) { return bindings.useProgramStages(pipeline,stages,program); }
-fn void  validateProgram (GLuint program) { return bindings.validateProgram(program); }
-fn void  validateProgramPipeline (GLuint pipeline) { return bindings.validateProgramPipeline(pipeline); }
-fn void  vertex2d (GLdouble x, GLdouble y) { return bindings.vertex2d(x,y); }
-fn void  vertex2dv ( GLdouble *v) { return bindings.vertex2dv(v); }
-fn void  vertex2f (GLfloat x, GLfloat y) { return bindings.vertex2f(x,y); }
-fn void  vertex2fv ( GLfloat *v) { return bindings.vertex2fv(v); }
-fn void  vertex2i (GLint x, GLint y) { return bindings.vertex2i(x,y); }
-fn void  vertex2iv ( GLint *v) { return bindings.vertex2iv(v); }
-fn void  vertex2s (GLshort x, GLshort y) { return bindings.vertex2s(x,y); }
-fn void  vertex2sv ( GLshort *v) { return bindings.vertex2sv(v); }
-fn void  vertex3d (GLdouble x, GLdouble y, GLdouble z) { return bindings.vertex3d(x,y,z); }
-fn void  vertex3dv ( GLdouble *v) { return bindings.vertex3dv(v); }
-fn void  vertex3f (GLfloat x, GLfloat y, GLfloat z) { return bindings.vertex3f(x,y,z); }
-fn void  vertex3fv ( GLfloat *v) { return bindings.vertex3fv(v); }
-fn void  vertex3i (GLint x, GLint y, GLint z) { return bindings.vertex3i(x,y,z); }
-fn void  vertex3iv ( GLint *v) { return bindings.vertex3iv(v); }
-fn void  vertex3s (GLshort x, GLshort y, GLshort z) { return bindings.vertex3s(x,y,z); }
-fn void  vertex3sv ( GLshort *v) { return bindings.vertex3sv(v); }
-fn void  vertex4d (GLdouble x, GLdouble y, GLdouble z, GLdouble w) { return bindings.vertex4d(x,y,z,w); }
-fn void  vertex4dv ( GLdouble *v) { return bindings.vertex4dv(v); }
-fn void  vertex4f (GLfloat x, GLfloat y, GLfloat z, GLfloat w) { return bindings.vertex4f(x,y,z,w); }
-fn void  vertex4fv ( GLfloat *v) { return bindings.vertex4fv(v); }
-fn void  vertex4i (GLint x, GLint y, GLint z, GLint w) { return bindings.vertex4i(x,y,z,w); }
-fn void  vertex4iv ( GLint *v) { return bindings.vertex4iv(v); }
-fn void  vertex4s (GLshort x, GLshort y, GLshort z, GLshort w) { return bindings.vertex4s(x,y,z,w); }
-fn void  vertex4sv ( GLshort *v) { return bindings.vertex4sv(v); }
-fn void  vertexArrayAttribBinding (GLuint vaobj, GLuint attribindex, GLuint bindingindex) { return bindings.vertexArrayAttribBinding(vaobj,attribindex,bindingindex); }
-fn void  vertexArrayAttribFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset) { return bindings.vertexArrayAttribFormat(vaobj,attribindex,size,value_type,normalized,relativeoffset); }
-fn void  vertexArrayAttribIFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) { return bindings.vertexArrayAttribIFormat(vaobj,attribindex,size,value_type,relativeoffset); }
-fn void  vertexArrayAttribLFormat (GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) { return bindings.vertexArrayAttribLFormat(vaobj,attribindex,size,value_type,relativeoffset); }
-fn void  vertexArrayBindingDivisor (GLuint vaobj, GLuint bindingindex, GLuint divisor) { return bindings.vertexArrayBindingDivisor(vaobj,bindingindex,divisor); }
-fn void  vertexArrayElementBuffer (GLuint vaobj, GLuint buffer) { return bindings.vertexArrayElementBuffer(vaobj,buffer); }
-fn void  vertexArrayVertexBuffer (GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride) { return bindings.vertexArrayVertexBuffer(vaobj,bindingindex,buffer,offset,stride); }
-fn void  vertexArrayVertexBuffers (GLuint vaobj, GLuint first, GLsizei count,  GLuint *buffers,  GLintptr *offsets,  GLsizei *strides) { return bindings.vertexArrayVertexBuffers(vaobj,first,count,buffers,offsets,strides); }
-fn void  vertexAttrib1d (GLuint index, GLdouble x) { return bindings.vertexAttrib1d(index,x); }
-fn void  vertexAttrib1dv (GLuint index,  GLdouble *v) { return bindings.vertexAttrib1dv(index,v); }
-fn void  vertexAttrib1f (GLuint index, GLfloat x) { return bindings.vertexAttrib1f(index,x); }
-fn void  vertexAttrib1fv (GLuint index,  GLfloat *v) { return bindings.vertexAttrib1fv(index,v); }
-fn void  vertexAttrib1s (GLuint index, GLshort x) { return bindings.vertexAttrib1s(index,x); }
-fn void  vertexAttrib1sv (GLuint index,  GLshort *v) { return bindings.vertexAttrib1sv(index,v); }
-fn void  vertexAttrib2d (GLuint index, GLdouble x, GLdouble y) { return bindings.vertexAttrib2d(index,x,y); }
-fn void  vertexAttrib2dv (GLuint index,  GLdouble *v) { return bindings.vertexAttrib2dv(index,v); }
-fn void  vertexAttrib2f (GLuint index, GLfloat x, GLfloat y) { return bindings.vertexAttrib2f(index,x,y); }
-fn void  vertexAttrib2fv (GLuint index,  GLfloat *v) { return bindings.vertexAttrib2fv(index,v); }
-fn void  vertexAttrib2s (GLuint index, GLshort x, GLshort y) { return bindings.vertexAttrib2s(index,x,y); }
-fn void  vertexAttrib2sv (GLuint index,  GLshort *v) { return bindings.vertexAttrib2sv(index,v); }
-fn void  vertexAttrib3d (GLuint index, GLdouble x, GLdouble y, GLdouble z) { return bindings.vertexAttrib3d(index,x,y,z); }
-fn void  vertexAttrib3dv (GLuint index,  GLdouble *v) { return bindings.vertexAttrib3dv(index,v); }
-fn void  vertexAttrib3f (GLuint index, GLfloat x, GLfloat y, GLfloat z) { return bindings.vertexAttrib3f(index,x,y,z); }
-fn void  vertexAttrib3fv (GLuint index,  GLfloat *v) { return bindings.vertexAttrib3fv(index,v); }
-fn void  vertexAttrib3s (GLuint index, GLshort x, GLshort y, GLshort z) { return bindings.vertexAttrib3s(index,x,y,z); }
-fn void  vertexAttrib3sv (GLuint index,  GLshort *v) { return bindings.vertexAttrib3sv(index,v); }
-fn void  vertexAttrib4Nbv (GLuint index,  GLbyte *v) { return bindings.vertexAttrib4Nbv(index,v); }
-fn void  vertexAttrib4Niv (GLuint index,  GLint *v) { return bindings.vertexAttrib4Niv(index,v); }
-fn void  vertexAttrib4Nsv (GLuint index,  GLshort *v) { return bindings.vertexAttrib4Nsv(index,v); }
-fn void  vertexAttrib4Nub (GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w) { return bindings.vertexAttrib4Nub(index,x,y,z,w); }
-fn void  vertexAttrib4Nubv (GLuint index,  GLubyte *v) { return bindings.vertexAttrib4Nubv(index,v); }
-fn void  vertexAttrib4Nuiv (GLuint index,  GLuint *v) { return bindings.vertexAttrib4Nuiv(index,v); }
-fn void  vertexAttrib4Nusv (GLuint index,  GLushort *v) { return bindings.vertexAttrib4Nusv(index,v); }
-fn void  vertexAttrib4bv (GLuint index,  GLbyte *v) { return bindings.vertexAttrib4bv(index,v); }
-fn void  vertexAttrib4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w) { return bindings.vertexAttrib4d(index,x,y,z,w); }
-fn void  vertexAttrib4dv (GLuint index,  GLdouble *v) { return bindings.vertexAttrib4dv(index,v); }
-fn void  vertexAttrib4f (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w) { return bindings.vertexAttrib4f(index,x,y,z,w); }
-fn void  vertexAttrib4fv (GLuint index,  GLfloat *v) { return bindings.vertexAttrib4fv(index,v); }
-fn void  vertexAttrib4iv (GLuint index,  GLint *v) { return bindings.vertexAttrib4iv(index,v); }
-fn void  vertexAttrib4s (GLuint index, GLshort x, GLshort y, GLshort z, GLshort w) { return bindings.vertexAttrib4s(index,x,y,z,w); }
-fn void  vertexAttrib4sv (GLuint index,  GLshort *v) { return bindings.vertexAttrib4sv(index,v); }
-fn void  vertexAttrib4ubv (GLuint index,  GLubyte *v) { return bindings.vertexAttrib4ubv(index,v); }
-fn void  vertexAttrib4uiv (GLuint index,  GLuint *v) { return bindings.vertexAttrib4uiv(index,v); }
-fn void  vertexAttrib4usv (GLuint index,  GLushort *v) { return bindings.vertexAttrib4usv(index,v); }
-fn void  vertexAttribBinding (GLuint attribindex, GLuint bindingindex) { return bindings.vertexAttribBinding(attribindex,bindingindex); }
-fn void  vertexAttribDivisor (GLuint index, GLuint divisor) { return bindings.vertexAttribDivisor(index,divisor); }
-fn void  vertexAttribFormat (GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset) { return bindings.vertexAttribFormat(attribindex,size,value_type,normalized,relativeoffset); }
-fn void  vertexAttribI1i (GLuint index, GLint x) { return bindings.vertexAttribI1i(index,x); }
-fn void  vertexAttribI1iv (GLuint index,  GLint *v) { return bindings.vertexAttribI1iv(index,v); }
-fn void  vertexAttribI1ui (GLuint index, GLuint x) { return bindings.vertexAttribI1ui(index,x); }
-fn void  vertexAttribI1uiv (GLuint index,  GLuint *v) { return bindings.vertexAttribI1uiv(index,v); }
-fn void  vertexAttribI2i (GLuint index, GLint x, GLint y) { return bindings.vertexAttribI2i(index,x,y); }
-fn void  vertexAttribI2iv (GLuint index,  GLint *v) { return bindings.vertexAttribI2iv(index,v); }
-fn void  vertexAttribI2ui (GLuint index, GLuint x, GLuint y) { return bindings.vertexAttribI2ui(index,x,y); }
-fn void  vertexAttribI2uiv (GLuint index,  GLuint *v) { return bindings.vertexAttribI2uiv(index,v); }
-fn void  vertexAttribI3i (GLuint index, GLint x, GLint y, GLint z) { return bindings.vertexAttribI3i(index,x,y,z); }
-fn void  vertexAttribI3iv (GLuint index,  GLint *v) { return bindings.vertexAttribI3iv(index,v); }
-fn void  vertexAttribI3ui (GLuint index, GLuint x, GLuint y, GLuint z) { return bindings.vertexAttribI3ui(index,x,y,z); }
-fn void  vertexAttribI3uiv (GLuint index,  GLuint *v) { return bindings.vertexAttribI3uiv(index,v); }
-fn void  vertexAttribI4bv (GLuint index,  GLbyte *v) { return bindings.vertexAttribI4bv(index,v); }
-fn void  vertexAttribI4i (GLuint index, GLint x, GLint y, GLint z, GLint w) { return bindings.vertexAttribI4i(index,x,y,z,w); }
-fn void  vertexAttribI4iv (GLuint index,  GLint *v) { return bindings.vertexAttribI4iv(index,v); }
-fn void  vertexAttribI4sv (GLuint index,  GLshort *v) { return bindings.vertexAttribI4sv(index,v); }
-fn void  vertexAttribI4ubv (GLuint index,  GLubyte *v) { return bindings.vertexAttribI4ubv(index,v); }
-fn void  vertexAttribI4ui (GLuint index, GLuint x, GLuint y, GLuint z, GLuint w) { return bindings.vertexAttribI4ui(index,x,y,z,w); }
-fn void  vertexAttribI4uiv (GLuint index,  GLuint *v) { return bindings.vertexAttribI4uiv(index,v); }
-fn void  vertexAttribI4usv (GLuint index,  GLushort *v) { return bindings.vertexAttribI4usv(index,v); }
-fn void  vertexAttribIFormat (GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) { return bindings.vertexAttribIFormat(attribindex,size,value_type,relativeoffset); }
-fn void  vertexAttribIPointer (GLuint index, GLint size, GLenum value_type, GLsizei stride,  void *pointer) { return bindings.vertexAttribIPointer(index,size,value_type,stride,pointer); }
-fn void  vertexAttribL1d (GLuint index, GLdouble x) { return bindings.vertexAttribL1d(index,x); }
-fn void  vertexAttribL1dv (GLuint index,  GLdouble *v) { return bindings.vertexAttribL1dv(index,v); }
-fn void  vertexAttribL2d (GLuint index, GLdouble x, GLdouble y) { return bindings.vertexAttribL2d(index,x,y); }
-fn void  vertexAttribL2dv (GLuint index,  GLdouble *v) { return bindings.vertexAttribL2dv(index,v); }
-fn void  vertexAttribL3d (GLuint index, GLdouble x, GLdouble y, GLdouble z) { return bindings.vertexAttribL3d(index,x,y,z); }
-fn void  vertexAttribL3dv (GLuint index,  GLdouble *v) { return bindings.vertexAttribL3dv(index,v); }
-fn void  vertexAttribL4d (GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w) { return bindings.vertexAttribL4d(index,x,y,z,w); }
-fn void  vertexAttribL4dv (GLuint index,  GLdouble *v) { return bindings.vertexAttribL4dv(index,v); }
-fn void  vertexAttribLFormat (GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) { return bindings.vertexAttribLFormat(attribindex,size,value_type,relativeoffset); }
-fn void  vertexAttribLPointer (GLuint index, GLint size, GLenum value_type, GLsizei stride,  void *pointer) { return bindings.vertexAttribLPointer(index,size,value_type,stride,pointer); }
-fn void  vertexAttribP1ui (GLuint index, GLenum value_type, GLboolean normalized, GLuint value) { return bindings.vertexAttribP1ui(index,value_type,normalized,value); }
-fn void  vertexAttribP1uiv (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value) { return bindings.vertexAttribP1uiv(index,value_type,normalized,value); }
-fn void  vertexAttribP2ui (GLuint index, GLenum value_type, GLboolean normalized, GLuint value) { return bindings.vertexAttribP2ui(index,value_type,normalized,value); }
-fn void  vertexAttribP2uiv (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value) { return bindings.vertexAttribP2uiv(index,value_type,normalized,value); }
-fn void  vertexAttribP3ui (GLuint index, GLenum value_type, GLboolean normalized, GLuint value) { return bindings.vertexAttribP3ui(index,value_type,normalized,value); }
-fn void  vertexAttribP3uiv (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value) { return bindings.vertexAttribP3uiv(index,value_type,normalized,value); }
-fn void  vertexAttribP4ui (GLuint index, GLenum value_type, GLboolean normalized, GLuint value) { return bindings.vertexAttribP4ui(index,value_type,normalized,value); }
-fn void  vertexAttribP4uiv (GLuint index, GLenum value_type, GLboolean normalized,  GLuint *value) { return bindings.vertexAttribP4uiv(index,value_type,normalized,value); }
-fn void  vertexAttribPointer (GLuint index, GLint size, GLenum value_type, GLboolean normalized, GLsizei stride,  void *pointer) { return bindings.vertexAttribPointer(index,size,value_type,normalized,stride,pointer); }
-fn void  vertexBindingDivisor (GLuint bindingindex, GLuint divisor) { return bindings.vertexBindingDivisor(bindingindex,divisor); }
-fn void  vertexP2ui (GLenum value_type, GLuint value) { return bindings.vertexP2ui(value_type,value); }
-fn void  vertexP2uiv (GLenum value_type,  GLuint *value) { return bindings.vertexP2uiv(value_type,value); }
-fn void  vertexP3ui (GLenum value_type, GLuint value) { return bindings.vertexP3ui(value_type,value); }
-fn void  vertexP3uiv (GLenum value_type,  GLuint *value) { return bindings.vertexP3uiv(value_type,value); }
-fn void  vertexP4ui (GLenum value_type, GLuint value) { return bindings.vertexP4ui(value_type,value); }
-fn void  vertexP4uiv (GLenum value_type,  GLuint *value) { return bindings.vertexP4uiv(value_type,value); }
-fn void  vertexPointer (GLint size, GLenum value_type, GLsizei stride,  void *pointer) { return bindings.vertexPointer(size,value_type,stride,pointer); }
-fn void  viewport (GLint x, GLint y, GLsizei width, GLsizei height) { return bindings.viewport(x,y,width,height); }
-fn void  viewportArrayv (GLuint first, GLsizei count,  GLfloat *v) { return bindings.viewportArrayv(first,count,v); }
-fn void  viewportIndexedf (GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h) { return bindings.viewportIndexedf(index,x,y,w,h); }
-fn void  viewportIndexedfv (GLuint index,  GLfloat *v) { return bindings.viewportIndexedfv(index,v); }
-fn void  waitSync (GLsync sync, GLbitfield flags, GLuint64 timeout) { return bindings.waitSync(sync,flags,timeout); }
-fn void  windowPos2d (GLdouble x, GLdouble y) { return bindings.windowPos2d(x,y); }
-fn void  windowPos2dv ( GLdouble *v) { return bindings.windowPos2dv(v); }
-fn void  windowPos2f (GLfloat x, GLfloat y) { return bindings.windowPos2f(x,y); }
-fn void  windowPos2fv ( GLfloat *v) { return bindings.windowPos2fv(v); }
-fn void  windowPos2i (GLint x, GLint y) { return bindings.windowPos2i(x,y); }
-fn void  windowPos2iv ( GLint *v) { return bindings.windowPos2iv(v); }
-fn void  windowPos2s (GLshort x, GLshort y) { return bindings.windowPos2s(x,y); }
-fn void  windowPos2sv ( GLshort *v) { return bindings.windowPos2sv(v); }
-fn void  windowPos3d (GLdouble x, GLdouble y, GLdouble z) { return bindings.windowPos3d(x,y,z); }
-fn void  windowPos3dv ( GLdouble *v) { return bindings.windowPos3dv(v); }
-fn void  windowPos3f (GLfloat x, GLfloat y, GLfloat z) { return bindings.windowPos3f(x,y,z); }
-fn void  windowPos3fv ( GLfloat *v) { return bindings.windowPos3fv(v); }
-fn void  windowPos3i (GLint x, GLint y, GLint z) { return bindings.windowPos3i(x,y,z); }
-fn void  windowPos3iv ( GLint *v) { return bindings.windowPos3iv(v); }
-fn void  windowPos3s (GLshort x, GLshort y, GLshort z) { return bindings.windowPos3s(x,y,z); }
-fn void  windowPos3sv ( GLshort *v) { return bindings.windowPos3sv(v); }
+fn void init(ProcFN procAddress) {
+	bindings.accum = (GL_Accum)procAddress("glAccum");
+	bindings.activeShaderProgram = (GL_ActiveShaderProgram)procAddress("glActiveShaderProgram");
+	bindings.alphaFunc = (GL_AlphaFunc)procAddress("glAlphaFunc");
+	bindings.areTexturesResident = (GL_AreTexturesResident)procAddress("glAreTexturesResident");
+	bindings.arrayElement = (GL_ArrayElement)procAddress("glArrayElement");
+	bindings.attachShader = (GL_AttachShader)procAddress("glAttachShader");
+	bindings.begin = (GL_Begin)procAddress("glBegin");
+	bindings.beginConditionalRender = (GL_BeginConditionalRender)procAddress("glBeginConditionalRender");
+	bindings.beginQuery = (GL_BeginQuery)procAddress("glBeginQuery");
+	bindings.beginQueryIndexed = (GL_BeginQueryIndexed)procAddress("glBeginQueryIndexed");
+	bindings.beginTransformFeedback = (GL_BeginTransformFeedback)procAddress("glBeginTransformFeedback");
+	bindings.bindAttribLocation = (GL_BindAttribLocation)procAddress("glBindAttribLocation");
+	bindings.bindBuffer = (GL_BindBuffer)procAddress("glBindBuffer");
+	bindings.bindBufferBase = (GL_BindBufferBase)procAddress("glBindBufferBase");
+	bindings.bindBufferRange = (GL_BindBufferRange)procAddress("glBindBufferRange");
+	bindings.bindBuffersBase = (GL_BindBuffersBase)procAddress("glBindBuffersBase");
+	bindings.bindBuffersRange = (GL_BindBuffersRange)procAddress("glBindBuffersRange");
+	bindings.bindFragDataLocation = (GL_BindFragDataLocation)procAddress("glBindFragDataLocation");
+	bindings.bindFragDataLocationIndexed = (GL_BindFragDataLocationIndexed)procAddress("glBindFragDataLocationIndexed");
+	bindings.bindFramebuffer = (GL_BindFramebuffer)procAddress("glBindFramebuffer");
+	bindings.bindImageTexture = (GL_BindImageTexture)procAddress("glBindImageTexture");
+	bindings.bindImageTextures = (GL_BindImageTextures)procAddress("glBindImageTextures");
+	bindings.bindProgramPipeline = (GL_BindProgramPipeline)procAddress("glBindProgramPipeline");
+	bindings.bindRenderbuffer = (GL_BindRenderbuffer)procAddress("glBindRenderbuffer");
+	bindings.bindSampler = (GL_BindSampler)procAddress("glBindSampler");
+	bindings.bindSamplers = (GL_BindSamplers)procAddress("glBindSamplers");
+	bindings.bindTexture = (GL_BindTexture)procAddress("glBindTexture");
+	bindings.bindTextureUnit = (GL_BindTextureUnit)procAddress("glBindTextureUnit");
+	bindings.bindTextures = (GL_BindTextures)procAddress("glBindTextures");
+	bindings.bindTransformFeedback = (GL_BindTransformFeedback)procAddress("glBindTransformFeedback");
+	bindings.bindVertexArray = (GL_BindVertexArray)procAddress("glBindVertexArray");
+	bindings.bindVertexBuffer = (GL_BindVertexBuffer)procAddress("glBindVertexBuffer");
+	bindings.bindVertexBuffers = (GL_BindVertexBuffers)procAddress("glBindVertexBuffers");
+	bindings.bitmap = (GL_Bitmap)procAddress("glBitmap");
+	bindings.blendEquationSeparate = (GL_BlendEquationSeparate)procAddress("glBlendEquationSeparate");
+	bindings.blendEquationSeparatei = (GL_BlendEquationSeparatei)procAddress("glBlendEquationSeparatei");
+	bindings.blendEquationi = (GL_BlendEquationi)procAddress("glBlendEquationi");
+	bindings.blendFunc = (GL_BlendFunc)procAddress("glBlendFunc");
+	bindings.blendFuncSeparatei = (GL_BlendFuncSeparatei)procAddress("glBlendFuncSeparatei");
+	bindings.blendFunci = (GL_BlendFunci)procAddress("glBlendFunci");
+	bindings.blitFramebuffer = (GL_BlitFramebuffer)procAddress("glBlitFramebuffer");
+	bindings.blitNamedFramebuffer = (GL_BlitNamedFramebuffer)procAddress("glBlitNamedFramebuffer");
+	bindings.bufferData = (GL_BufferData)procAddress("glBufferData");
+	bindings.bufferStorage = (GL_BufferStorage)procAddress("glBufferStorage");
+	bindings.bufferSubData = (GL_BufferSubData)procAddress("glBufferSubData");
+	bindings.callList = (GL_CallList)procAddress("glCallList");
+	bindings.callLists = (GL_CallLists)procAddress("glCallLists");
+	bindings.checkFramebufferStatus = (GL_CheckFramebufferStatus)procAddress("glCheckFramebufferStatus");
+	bindings.checkNamedFramebufferStatus = (GL_CheckNamedFramebufferStatus)procAddress("glCheckNamedFramebufferStatus");
+	bindings.clampColor = (GL_ClampColor)procAddress("glClampColor");
+	bindings.clear = (GL_Clear)procAddress("glClear");
+	bindings.clearAccum = (GL_ClearAccum)procAddress("glClearAccum");
+	bindings.clearBufferData = (GL_ClearBufferData)procAddress("glClearBufferData");
+	bindings.clearBufferSubData = (GL_ClearBufferSubData)procAddress("glClearBufferSubData");
+	bindings.clearBufferfi = (GL_ClearBufferfi)procAddress("glClearBufferfi");
+	bindings.clearBufferfv = (GL_ClearBufferfv)procAddress("glClearBufferfv");
+	bindings.clearBufferiv = (GL_ClearBufferiv)procAddress("glClearBufferiv");
+	bindings.clearBufferuiv = (GL_ClearBufferuiv)procAddress("glClearBufferuiv");
+	bindings.clearColor = (GL_ClearColor)procAddress("glClearColor");
+	bindings.clearDepth = (GL_ClearDepth)procAddress("glClearDepth");
+	bindings.clearDepthf = (GL_ClearDepthf)procAddress("glClearDepthf");
+	bindings.clearIndex = (GL_ClearIndex)procAddress("glClearIndex");
+	bindings.clearNamedBufferData = (GL_ClearNamedBufferData)procAddress("glClearNamedBufferData");
+	bindings.clearNamedBufferSubData = (GL_ClearNamedBufferSubData)procAddress("glClearNamedBufferSubData");
+	bindings.clearNamedFramebufferfi = (GL_ClearNamedFramebufferfi)procAddress("glClearNamedFramebufferfi");
+	bindings.clearNamedFramebufferfv = (GL_ClearNamedFramebufferfv)procAddress("glClearNamedFramebufferfv");
+	bindings.clearNamedFramebufferiv = (GL_ClearNamedFramebufferiv)procAddress("glClearNamedFramebufferiv");
+	bindings.clearNamedFramebufferuiv = (GL_ClearNamedFramebufferuiv)procAddress("glClearNamedFramebufferuiv");
+	bindings.clearStencil = (GL_ClearStencil)procAddress("glClearStencil");
+	bindings.clearTexImage = (GL_ClearTexImage)procAddress("glClearTexImage");
+	bindings.clearTexSubImage = (GL_ClearTexSubImage)procAddress("glClearTexSubImage");
+	bindings.clientActiveTexture = (GL_ClientActiveTexture)procAddress("glClientActiveTexture");
+	bindings.clientWaitSync = (GL_ClientWaitSync)procAddress("glClientWaitSync");
+	bindings.clipControl = (GL_ClipControl)procAddress("glClipControl");
+	bindings.clipPlane = (GL_ClipPlane)procAddress("glClipPlane");
+	bindings.color3b = (GL_Color3b)procAddress("glColor3b");
+	bindings.color3bv = (GL_Color3bv)procAddress("glColor3bv");
+	bindings.color3d = (GL_Color3d)procAddress("glColor3d");
+	bindings.color3dv = (GL_Color3dv)procAddress("glColor3dv");
+	bindings.color3f = (GL_Color3f)procAddress("glColor3f");
+	bindings.color3fv = (GL_Color3fv)procAddress("glColor3fv");
+	bindings.color3i = (GL_Color3i)procAddress("glColor3i");
+	bindings.color3iv = (GL_Color3iv)procAddress("glColor3iv");
+	bindings.color3s = (GL_Color3s)procAddress("glColor3s");
+	bindings.color3sv = (GL_Color3sv)procAddress("glColor3sv");
+	bindings.color3ub = (GL_Color3ub)procAddress("glColor3ub");
+	bindings.color3ubv = (GL_Color3ubv)procAddress("glColor3ubv");
+	bindings.color3ui = (GL_Color3ui)procAddress("glColor3ui");
+	bindings.color3uiv = (GL_Color3uiv)procAddress("glColor3uiv");
+	bindings.color3us = (GL_Color3us)procAddress("glColor3us");
+	bindings.color3usv = (GL_Color3usv)procAddress("glColor3usv");
+	bindings.color4b = (GL_Color4b)procAddress("glColor4b");
+	bindings.color4bv = (GL_Color4bv)procAddress("glColor4bv");
+	bindings.color4d = (GL_Color4d)procAddress("glColor4d");
+	bindings.color4dv = (GL_Color4dv)procAddress("glColor4dv");
+	bindings.color4f = (GL_Color4f)procAddress("glColor4f");
+	bindings.color4fv = (GL_Color4fv)procAddress("glColor4fv");
+	bindings.color4i = (GL_Color4i)procAddress("glColor4i");
+	bindings.color4iv = (GL_Color4iv)procAddress("glColor4iv");
+	bindings.color4s = (GL_Color4s)procAddress("glColor4s");
+	bindings.color4sv = (GL_Color4sv)procAddress("glColor4sv");
+	bindings.color4ub = (GL_Color4ub)procAddress("glColor4ub");
+	bindings.color4ubv = (GL_Color4ubv)procAddress("glColor4ubv");
+	bindings.color4ui = (GL_Color4ui)procAddress("glColor4ui");
+	bindings.color4uiv = (GL_Color4uiv)procAddress("glColor4uiv");
+	bindings.color4us = (GL_Color4us)procAddress("glColor4us");
+	bindings.color4usv = (GL_Color4usv)procAddress("glColor4usv");
+	bindings.colorMask = (GL_ColorMask)procAddress("glColorMask");
+	bindings.colorMaski = (GL_ColorMaski)procAddress("glColorMaski");
+	bindings.colorMaterial = (GL_ColorMaterial)procAddress("glColorMaterial");
+	bindings.colorP3ui = (GL_ColorP3ui)procAddress("glColorP3ui");
+	bindings.colorP3uiv = (GL_ColorP3uiv)procAddress("glColorP3uiv");
+	bindings.colorP4ui = (GL_ColorP4ui)procAddress("glColorP4ui");
+	bindings.colorP4uiv = (GL_ColorP4uiv)procAddress("glColorP4uiv");
+	bindings.colorPointer = (GL_ColorPointer)procAddress("glColorPointer");
+	bindings.compileShader = (GL_CompileShader)procAddress("glCompileShader");
+	bindings.compressedTextureSubImage1D = (GL_CompressedTextureSubImage1D)procAddress("glCompressedTextureSubImage1D");
+	bindings.compressedTextureSubImage2D = (GL_CompressedTextureSubImage2D)procAddress("glCompressedTextureSubImage2D");
+	bindings.compressedTextureSubImage3D = (GL_CompressedTextureSubImage3D)procAddress("glCompressedTextureSubImage3D");
+	bindings.copyBufferSubData = (GL_CopyBufferSubData)procAddress("glCopyBufferSubData");
+	bindings.copyImageSubData = (GL_CopyImageSubData)procAddress("glCopyImageSubData");
+	bindings.copyNamedBufferSubData = (GL_CopyNamedBufferSubData)procAddress("glCopyNamedBufferSubData");
+	bindings.copyPixels = (GL_CopyPixels)procAddress("glCopyPixels");
+	bindings.copyTexImage1D = (GL_CopyTexImage1D)procAddress("glCopyTexImage1D");
+	bindings.copyTexImage2D = (GL_CopyTexImage2D)procAddress("glCopyTexImage2D");
+	bindings.copyTexSubImage1D = (GL_CopyTexSubImage1D)procAddress("glCopyTexSubImage1D");
+	bindings.copyTexSubImage2D = (GL_CopyTexSubImage2D)procAddress("glCopyTexSubImage2D");
+	bindings.copyTextureSubImage1D = (GL_CopyTextureSubImage1D)procAddress("glCopyTextureSubImage1D");
+	bindings.copyTextureSubImage2D = (GL_CopyTextureSubImage2D)procAddress("glCopyTextureSubImage2D");
+	bindings.copyTextureSubImage3D = (GL_CopyTextureSubImage3D)procAddress("glCopyTextureSubImage3D");
+	bindings.createBuffers = (GL_CreateBuffers)procAddress("glCreateBuffers");
+	bindings.createFramebuffers = (GL_CreateFramebuffers)procAddress("glCreateFramebuffers");
+	bindings.createProgram = (GL_CreateProgram)procAddress("glCreateProgram");
+	bindings.createProgramPipelines = (GL_CreateProgramPipelines)procAddress("glCreateProgramPipelines");
+	bindings.createQueries = (GL_CreateQueries)procAddress("glCreateQueries");
+	bindings.createRenderbuffers = (GL_CreateRenderbuffers)procAddress("glCreateRenderbuffers");
+	bindings.createSamplers = (GL_CreateSamplers)procAddress("glCreateSamplers");
+	bindings.createShader = (GL_CreateShader)procAddress("glCreateShader");
+	bindings.createShaderProgramv = (GL_CreateShaderProgramv)procAddress("glCreateShaderProgramv");
+	bindings.createTextures = (GL_CreateTextures)procAddress("glCreateTextures");
+	bindings.createTransformFeedbacks = (GL_CreateTransformFeedbacks)procAddress("glCreateTransformFeedbacks");
+	bindings.createVertexArrays = (GL_CreateVertexArrays)procAddress("glCreateVertexArrays");
+	bindings.cullFace = (GL_CullFace)procAddress("glCullFace");
+	bindings.debugMessageCallback = (GL_DebugMessageCallback)procAddress("glDebugMessageCallback");
+	bindings.debugMessageControl = (GL_DebugMessageControl)procAddress("glDebugMessageControl");
+	bindings.debugMessageInsert = (GL_DebugMessageInsert)procAddress("glDebugMessageInsert");
+	bindings.deleteBuffers = (GL_DeleteBuffers)procAddress("glDeleteBuffers");
+	bindings.deleteFramebuffers = (GL_DeleteFramebuffers)procAddress("glDeleteFramebuffers");
+	bindings.deleteLists = (GL_DeleteLists)procAddress("glDeleteLists");
+	bindings.deleteProgram = (GL_DeleteProgram)procAddress("glDeleteProgram");
+	bindings.deleteProgramPipelines = (GL_DeleteProgramPipelines)procAddress("glDeleteProgramPipelines");
+	bindings.deleteQueries = (GL_DeleteQueries)procAddress("glDeleteQueries");
+	bindings.deleteRenderbuffers = (GL_DeleteRenderbuffers)procAddress("glDeleteRenderbuffers");
+	bindings.deleteSamplers = (GL_DeleteSamplers)procAddress("glDeleteSamplers");
+	bindings.deleteShader = (GL_DeleteShader)procAddress("glDeleteShader");
+	bindings.deleteSync = (GL_DeleteSync)procAddress("glDeleteSync");
+	bindings.deleteTextures = (GL_DeleteTextures)procAddress("glDeleteTextures");
+	bindings.deleteTransformFeedbacks = (GL_DeleteTransformFeedbacks)procAddress("glDeleteTransformFeedbacks");
+	bindings.deleteVertexArrays = (GL_DeleteVertexArrays)procAddress("glDeleteVertexArrays");
+	bindings.depthFunc = (GL_DepthFunc)procAddress("glDepthFunc");
+	bindings.depthMask = (GL_DepthMask)procAddress("glDepthMask");
+	bindings.depthRange = (GL_DepthRange)procAddress("glDepthRange");
+	bindings.depthRangeArrayv = (GL_DepthRangeArrayv)procAddress("glDepthRangeArrayv");
+	bindings.depthRangeIndexed = (GL_DepthRangeIndexed)procAddress("glDepthRangeIndexed");
+	bindings.depthRangef = (GL_DepthRangef)procAddress("glDepthRangef");
+	bindings.detachShader = (GL_DetachShader)procAddress("glDetachShader");
+	bindings.disable = (GL_Disable)procAddress("glDisable");
+	bindings.disableClientState = (GL_DisableClientState)procAddress("glDisableClientState");
+	bindings.disableVertexArrayAttrib = (GL_DisableVertexArrayAttrib)procAddress("glDisableVertexArrayAttrib");
+	bindings.disableVertexAttribArray = (GL_DisableVertexAttribArray)procAddress("glDisableVertexAttribArray");
+	bindings.disablei = (GL_Disablei)procAddress("glDisablei");
+	bindings.dispatchCompute = (GL_DispatchCompute)procAddress("glDispatchCompute");
+	bindings.dispatchComputeIndirect = (GL_DispatchComputeIndirect)procAddress("glDispatchComputeIndirect");
+	bindings.drawArrays = (GL_DrawArrays)procAddress("glDrawArrays");
+	bindings.drawArraysIndirect = (GL_DrawArraysIndirect)procAddress("glDrawArraysIndirect");
+	bindings.drawArraysInstanced = (GL_DrawArraysInstanced)procAddress("glDrawArraysInstanced");
+	bindings.drawArraysInstancedBaseInstance = (GL_DrawArraysInstancedBaseInstance)procAddress("glDrawArraysInstancedBaseInstance");
+	bindings.drawBuffer = (GL_DrawBuffer)procAddress("glDrawBuffer");
+	bindings.drawBuffers = (GL_DrawBuffers)procAddress("glDrawBuffers");
+	bindings.drawElements = (GL_DrawElements)procAddress("glDrawElements");
+	bindings.drawElementsBaseVertex = (GL_DrawElementsBaseVertex)procAddress("glDrawElementsBaseVertex");
+	bindings.drawElementsIndirect = (GL_DrawElementsIndirect)procAddress("glDrawElementsIndirect");
+	bindings.drawElementsInstanced = (GL_DrawElementsInstanced)procAddress("glDrawElementsInstanced");
+	bindings.drawElementsInstancedBaseInstance = (GL_DrawElementsInstancedBaseInstance)procAddress("glDrawElementsInstancedBaseInstance");
+	bindings.drawElementsInstancedBaseVertex = (GL_DrawElementsInstancedBaseVertex)procAddress("glDrawElementsInstancedBaseVertex");
+	bindings.drawElementsInstancedBaseVertexBaseInstance = (GL_DrawElementsInstancedBaseVertexBaseInstance)procAddress("glDrawElementsInstancedBaseVertexBaseInstance");
+	bindings.drawPixels = (GL_DrawPixels)procAddress("glDrawPixels");
+	bindings.drawRangeElementsBaseVertex = (GL_DrawRangeElementsBaseVertex)procAddress("glDrawRangeElementsBaseVertex");
+	bindings.drawTransformFeedback = (GL_DrawTransformFeedback)procAddress("glDrawTransformFeedback");
+	bindings.drawTransformFeedbackInstanced = (GL_DrawTransformFeedbackInstanced)procAddress("glDrawTransformFeedbackInstanced");
+	bindings.drawTransformFeedbackStream = (GL_DrawTransformFeedbackStream)procAddress("glDrawTransformFeedbackStream");
+	bindings.drawTransformFeedbackStreamInstanced = (GL_DrawTransformFeedbackStreamInstanced)procAddress("glDrawTransformFeedbackStreamInstanced");
+	bindings.edgeFlag = (GL_EdgeFlag)procAddress("glEdgeFlag");
+	bindings.edgeFlagPointer = (GL_EdgeFlagPointer)procAddress("glEdgeFlagPointer");
+	bindings.edgeFlagv = (GL_EdgeFlagv)procAddress("glEdgeFlagv");
+	bindings.enable = (GL_Enable)procAddress("glEnable");
+	bindings.enableClientState = (GL_EnableClientState)procAddress("glEnableClientState");
+	bindings.enableVertexArrayAttrib = (GL_EnableVertexArrayAttrib)procAddress("glEnableVertexArrayAttrib");
+	bindings.enableVertexAttribArray = (GL_EnableVertexAttribArray)procAddress("glEnableVertexAttribArray");
+	bindings.enablei = (GL_Enablei)procAddress("glEnablei");
+	bindings.end = (GL_End)procAddress("glEnd");
+	bindings.endConditionalRender = (GL_EndConditionalRender)procAddress("glEndConditionalRender");
+	bindings.endList = (GL_EndList)procAddress("glEndList");
+	bindings.endQuery = (GL_EndQuery)procAddress("glEndQuery");
+	bindings.endQueryIndexed = (GL_EndQueryIndexed)procAddress("glEndQueryIndexed");
+	bindings.endTransformFeedback = (GL_EndTransformFeedback)procAddress("glEndTransformFeedback");
+	bindings.evalCoord1d = (GL_EvalCoord1d)procAddress("glEvalCoord1d");
+	bindings.evalCoord1dv = (GL_EvalCoord1dv)procAddress("glEvalCoord1dv");
+	bindings.evalCoord1f = (GL_EvalCoord1f)procAddress("glEvalCoord1f");
+	bindings.evalCoord1fv = (GL_EvalCoord1fv)procAddress("glEvalCoord1fv");
+	bindings.evalCoord2d = (GL_EvalCoord2d)procAddress("glEvalCoord2d");
+	bindings.evalCoord2dv = (GL_EvalCoord2dv)procAddress("glEvalCoord2dv");
+	bindings.evalCoord2f = (GL_EvalCoord2f)procAddress("glEvalCoord2f");
+	bindings.evalCoord2fv = (GL_EvalCoord2fv)procAddress("glEvalCoord2fv");
+	bindings.evalMesh1 = (GL_EvalMesh1)procAddress("glEvalMesh1");
+	bindings.evalMesh2 = (GL_EvalMesh2)procAddress("glEvalMesh2");
+	bindings.evalPoint1 = (GL_EvalPoint1)procAddress("glEvalPoint1");
+	bindings.evalPoint2 = (GL_EvalPoint2)procAddress("glEvalPoint2");
+	bindings.feedbackBuffer = (GL_FeedbackBuffer)procAddress("glFeedbackBuffer");
+	bindings.fenceSync = (GL_FenceSync)procAddress("glFenceSync");
+	bindings.finish = (GL_Finish)procAddress("glFinish");
+	bindings.flush = (GL_Flush)procAddress("glFlush");
+	bindings.flushMappedBufferRange = (GL_FlushMappedBufferRange)procAddress("glFlushMappedBufferRange");
+	bindings.flushMappedNamedBufferRange = (GL_FlushMappedNamedBufferRange)procAddress("glFlushMappedNamedBufferRange");
+	bindings.fogCoordPointer = (GL_FogCoordPointer)procAddress("glFogCoordPointer");
+	bindings.fogCoordd = (GL_FogCoordd)procAddress("glFogCoordd");
+	bindings.fogCoorddv = (GL_FogCoorddv)procAddress("glFogCoorddv");
+	bindings.fogCoordf = (GL_FogCoordf)procAddress("glFogCoordf");
+	bindings.fogCoordfv = (GL_FogCoordfv)procAddress("glFogCoordfv");
+	bindings.fogf = (GL_Fogf)procAddress("glFogf");
+	bindings.fogfv = (GL_Fogfv)procAddress("glFogfv");
+	bindings.fogi = (GL_Fogi)procAddress("glFogi");
+	bindings.fogiv = (GL_Fogiv)procAddress("glFogiv");
+	bindings.framebufferParameteri = (GL_FramebufferParameteri)procAddress("glFramebufferParameteri");
+	bindings.framebufferRenderbuffer = (GL_FramebufferRenderbuffer)procAddress("glFramebufferRenderbuffer");
+	bindings.framebufferTexture = (GL_FramebufferTexture)procAddress("glFramebufferTexture");
+	bindings.framebufferTexture1D = (GL_FramebufferTexture1D)procAddress("glFramebufferTexture1D");
+	bindings.framebufferTexture2D = (GL_FramebufferTexture2D)procAddress("glFramebufferTexture2D");
+	bindings.framebufferTexture3D = (GL_FramebufferTexture3D)procAddress("glFramebufferTexture3D");
+	bindings.framebufferTextureLayer = (GL_FramebufferTextureLayer)procAddress("glFramebufferTextureLayer");
+	bindings.frontFace = (GL_FrontFace)procAddress("glFrontFace");
+	bindings.frustum = (GL_Frustum)procAddress("glFrustum");
+	bindings.genBuffers = (GL_GenBuffers)procAddress("glGenBuffers");
+	bindings.genFramebuffers = (GL_GenFramebuffers)procAddress("glGenFramebuffers");
+	bindings.genLists = (GL_GenLists)procAddress("glGenLists");
+	bindings.genProgramPipelines = (GL_GenProgramPipelines)procAddress("glGenProgramPipelines");
+	bindings.genQueries = (GL_GenQueries)procAddress("glGenQueries");
+	bindings.genRenderbuffers = (GL_GenRenderbuffers)procAddress("glGenRenderbuffers");
+	bindings.genSamplers = (GL_GenSamplers)procAddress("glGenSamplers");
+	bindings.genTextures = (GL_GenTextures)procAddress("glGenTextures");
+	bindings.genTransformFeedbacks = (GL_GenTransformFeedbacks)procAddress("glGenTransformFeedbacks");
+	bindings.genVertexArrays = (GL_GenVertexArrays)procAddress("glGenVertexArrays");
+	bindings.generateMipmap = (GL_GenerateMipmap)procAddress("glGenerateMipmap");
+	bindings.generateTextureMipmap = (GL_GenerateTextureMipmap)procAddress("glGenerateTextureMipmap");
+	bindings.getActiveAtomicCounterBufferiv = (GL_GetActiveAtomicCounterBufferiv)procAddress("glGetActiveAtomicCounterBufferiv");
+	bindings.getActiveAttrib = (GL_GetActiveAttrib)procAddress("glGetActiveAttrib");
+	bindings.getActiveSubroutineName = (GL_GetActiveSubroutineName)procAddress("glGetActiveSubroutineName");
+	bindings.getActiveSubroutineUniformName = (GL_GetActiveSubroutineUniformName)procAddress("glGetActiveSubroutineUniformName");
+	bindings.getActiveSubroutineUniformiv = (GL_GetActiveSubroutineUniformiv)procAddress("glGetActiveSubroutineUniformiv");
+	bindings.getActiveUniform = (GL_GetActiveUniform)procAddress("glGetActiveUniform");
+	bindings.getActiveUniformBlockName = (GL_GetActiveUniformBlockName)procAddress("glGetActiveUniformBlockName");
+	bindings.getActiveUniformBlockiv = (GL_GetActiveUniformBlockiv)procAddress("glGetActiveUniformBlockiv");
+	bindings.getActiveUniformName = (GL_GetActiveUniformName)procAddress("glGetActiveUniformName");
+	bindings.getActiveUniformsiv = (GL_GetActiveUniformsiv)procAddress("glGetActiveUniformsiv");
+	bindings.getAttachedShaders = (GL_GetAttachedShaders)procAddress("glGetAttachedShaders");
+	bindings.getAttribLocation = (GL_GetAttribLocation)procAddress("glGetAttribLocation");
+	bindings.getBooleani_v = (GL_GetBooleani_v)procAddress("glGetBooleani_v");
+	bindings.getBooleanv = (GL_GetBooleanv)procAddress("glGetBooleanv");
+	bindings.getBufferParameteri64v = (GL_GetBufferParameteri64v)procAddress("glGetBufferParameteri64v");
+	bindings.getBufferParameteriv = (GL_GetBufferParameteriv)procAddress("glGetBufferParameteriv");
+	bindings.getBufferPointerv = (GL_GetBufferPointerv)procAddress("glGetBufferPointerv");
+	bindings.getBufferSubData = (GL_GetBufferSubData)procAddress("glGetBufferSubData");
+	bindings.getClipPlane = (GL_GetClipPlane)procAddress("glGetClipPlane");
+	bindings.getCompressedTextureImage = (GL_GetCompressedTextureImage)procAddress("glGetCompressedTextureImage");
+	bindings.getCompressedTextureSubImage = (GL_GetCompressedTextureSubImage)procAddress("glGetCompressedTextureSubImage");
+	bindings.getDebugMessageLog = (GL_GetDebugMessageLog)procAddress("glGetDebugMessageLog");
+	bindings.getDoublei_v = (GL_GetDoublei_v)procAddress("glGetDoublei_v");
+	bindings.getDoublev = (GL_GetDoublev)procAddress("glGetDoublev");
+	bindings.getError = (GL_GetError)procAddress("glGetError");
+	bindings.getFloati_v = (GL_GetFloati_v)procAddress("glGetFloati_v");
+	bindings.getFloatv = (GL_GetFloatv)procAddress("glGetFloatv");
+	bindings.getFragDataIndex = (GL_GetFragDataIndex)procAddress("glGetFragDataIndex");
+	bindings.getFragDataLocation = (GL_GetFragDataLocation)procAddress("glGetFragDataLocation");
+	bindings.getFramebufferAttachmentParameteriv = (GL_GetFramebufferAttachmentParameteriv)procAddress("glGetFramebufferAttachmentParameteriv");
+	bindings.getFramebufferParameteriv = (GL_GetFramebufferParameteriv)procAddress("glGetFramebufferParameteriv");
+	bindings.getGraphicsResetStatus = (GL_GetGraphicsResetStatus)procAddress("glGetGraphicsResetStatus");
+	bindings.getInteger64i_v = (GL_GetInteger64i_v)procAddress("glGetInteger64i_v");
+	bindings.getInteger64v = (GL_GetInteger64v)procAddress("glGetInteger64v");
+	bindings.getIntegeri_v = (GL_GetIntegeri_v)procAddress("glGetIntegeri_v");
+	bindings.getIntegerv = (GL_GetIntegerv)procAddress("glGetIntegerv");
+	bindings.getInternalformati64v = (GL_GetInternalformati64v)procAddress("glGetInternalformati64v");
+	bindings.getInternalformativ = (GL_GetInternalformativ)procAddress("glGetInternalformativ");
+	bindings.getLightfv = (GL_GetLightfv)procAddress("glGetLightfv");
+	bindings.getLightiv = (GL_GetLightiv)procAddress("glGetLightiv");
+	bindings.getMapdv = (GL_GetMapdv)procAddress("glGetMapdv");
+	bindings.getMapfv = (GL_GetMapfv)procAddress("glGetMapfv");
+	bindings.getMapiv = (GL_GetMapiv)procAddress("glGetMapiv");
+	bindings.getMaterialfv = (GL_GetMaterialfv)procAddress("glGetMaterialfv");
+	bindings.getMaterialiv = (GL_GetMaterialiv)procAddress("glGetMaterialiv");
+	bindings.getMultisamplefv = (GL_GetMultisamplefv)procAddress("glGetMultisamplefv");
+	bindings.getNamedBufferParameteri64v = (GL_GetNamedBufferParameteri64v)procAddress("glGetNamedBufferParameteri64v");
+	bindings.getNamedBufferParameteriv = (GL_GetNamedBufferParameteriv)procAddress("glGetNamedBufferParameteriv");
+	bindings.getNamedBufferPointerv = (GL_GetNamedBufferPointerv)procAddress("glGetNamedBufferPointerv");
+	bindings.getNamedBufferSubData = (GL_GetNamedBufferSubData)procAddress("glGetNamedBufferSubData");
+	bindings.getNamedFramebufferAttachmentParameteriv = (GL_GetNamedFramebufferAttachmentParameteriv)procAddress("glGetNamedFramebufferAttachmentParameteriv");
+	bindings.getNamedFramebufferParameteriv = (GL_GetNamedFramebufferParameteriv)procAddress("glGetNamedFramebufferParameteriv");
+	bindings.getNamedRenderbufferParameteriv = (GL_GetNamedRenderbufferParameteriv)procAddress("glGetNamedRenderbufferParameteriv");
+	bindings.getObjectLabel = (GL_GetObjectLabel)procAddress("glGetObjectLabel");
+	bindings.getObjectPtrLabel = (GL_GetObjectPtrLabel)procAddress("glGetObjectPtrLabel");
+	bindings.getPixelMapfv = (GL_GetPixelMapfv)procAddress("glGetPixelMapfv");
+	bindings.getPixelMapuiv = (GL_GetPixelMapuiv)procAddress("glGetPixelMapuiv");
+	bindings.getPixelMapusv = (GL_GetPixelMapusv)procAddress("glGetPixelMapusv");
+	bindings.getPointerv = (GL_GetPointerv)procAddress("glGetPointerv");
+	bindings.getPolygonStipple = (GL_GetPolygonStipple)procAddress("glGetPolygonStipple");
+	bindings.getProgramBinary = (GL_GetProgramBinary)procAddress("glGetProgramBinary");
+	bindings.getProgramInfoLog = (GL_GetProgramInfoLog)procAddress("glGetProgramInfoLog");
+	bindings.getProgramInterfaceiv = (GL_GetProgramInterfaceiv)procAddress("glGetProgramInterfaceiv");
+	bindings.getProgramPipelineInfoLog = (GL_GetProgramPipelineInfoLog)procAddress("glGetProgramPipelineInfoLog");
+	bindings.getProgramPipelineiv = (GL_GetProgramPipelineiv)procAddress("glGetProgramPipelineiv");
+	bindings.getProgramResourceIndex = (GL_GetProgramResourceIndex)procAddress("glGetProgramResourceIndex");
+	bindings.getProgramResourceLocation = (GL_GetProgramResourceLocation)procAddress("glGetProgramResourceLocation");
+	bindings.getProgramResourceLocationIndex = (GL_GetProgramResourceLocationIndex)procAddress("glGetProgramResourceLocationIndex");
+	bindings.getProgramResourceName = (GL_GetProgramResourceName)procAddress("glGetProgramResourceName");
+	bindings.getProgramResourceiv = (GL_GetProgramResourceiv)procAddress("glGetProgramResourceiv");
+	bindings.getProgramStageiv = (GL_GetProgramStageiv)procAddress("glGetProgramStageiv");
+	bindings.getProgramiv = (GL_GetProgramiv)procAddress("glGetProgramiv");
+	bindings.getQueryBufferObjecti64v = (GL_GetQueryBufferObjecti64v)procAddress("glGetQueryBufferObjecti64v");
+	bindings.getQueryBufferObjectiv = (GL_GetQueryBufferObjectiv)procAddress("glGetQueryBufferObjectiv");
+	bindings.getQueryBufferObjectui64v = (GL_GetQueryBufferObjectui64v)procAddress("glGetQueryBufferObjectui64v");
+	bindings.getQueryBufferObjectuiv = (GL_GetQueryBufferObjectuiv)procAddress("glGetQueryBufferObjectuiv");
+	bindings.getQueryIndexediv = (GL_GetQueryIndexediv)procAddress("glGetQueryIndexediv");
+	bindings.getQueryObjecti64v = (GL_GetQueryObjecti64v)procAddress("glGetQueryObjecti64v");
+	bindings.getQueryObjectiv = (GL_GetQueryObjectiv)procAddress("glGetQueryObjectiv");
+	bindings.getQueryObjectui64v = (GL_GetQueryObjectui64v)procAddress("glGetQueryObjectui64v");
+	bindings.getQueryObjectuiv = (GL_GetQueryObjectuiv)procAddress("glGetQueryObjectuiv");
+	bindings.getQueryiv = (GL_GetQueryiv)procAddress("glGetQueryiv");
+	bindings.getRenderbufferParameteriv = (GL_GetRenderbufferParameteriv)procAddress("glGetRenderbufferParameteriv");
+	bindings.getSamplerParameterIiv = (GL_GetSamplerParameterIiv)procAddress("glGetSamplerParameterIiv");
+	bindings.getSamplerParameterIuiv = (GL_GetSamplerParameterIuiv)procAddress("glGetSamplerParameterIuiv");
+	bindings.getSamplerParameterfv = (GL_GetSamplerParameterfv)procAddress("glGetSamplerParameterfv");
+	bindings.getSamplerParameteriv = (GL_GetSamplerParameteriv)procAddress("glGetSamplerParameteriv");
+	bindings.getShaderInfoLog = (GL_GetShaderInfoLog)procAddress("glGetShaderInfoLog");
+	bindings.getShaderPrecisionFormat = (GL_GetShaderPrecisionFormat)procAddress("glGetShaderPrecisionFormat");
+	bindings.getShaderSource = (GL_GetShaderSource)procAddress("glGetShaderSource");
+	bindings.getShaderiv = (GL_GetShaderiv)procAddress("glGetShaderiv");
+	bindings.getString = (GL_GetString)procAddress("glGetString");
+	bindings.getStringi = (GL_GetStringi)procAddress("glGetStringi");
+	bindings.getSubroutineIndex = (GL_GetSubroutineIndex)procAddress("glGetSubroutineIndex");
+	bindings.getSubroutineUniformLocation = (GL_GetSubroutineUniformLocation)procAddress("glGetSubroutineUniformLocation");
+	bindings.getSynciv = (GL_GetSynciv)procAddress("glGetSynciv");
+	bindings.getTexEnvfv = (GL_GetTexEnvfv)procAddress("glGetTexEnvfv");
+	bindings.getTexEnviv = (GL_GetTexEnviv)procAddress("glGetTexEnviv");
+	bindings.getTexGendv = (GL_GetTexGendv)procAddress("glGetTexGendv");
+	bindings.getTexGenfv = (GL_GetTexGenfv)procAddress("glGetTexGenfv");
+	bindings.getTexGeniv = (GL_GetTexGeniv)procAddress("glGetTexGeniv");
+	bindings.getTexImage = (GL_GetTexImage)procAddress("glGetTexImage");
+	bindings.getTexLevelParameterfv = (GL_GetTexLevelParameterfv)procAddress("glGetTexLevelParameterfv");
+	bindings.getTexLevelParameteriv = (GL_GetTexLevelParameteriv)procAddress("glGetTexLevelParameteriv");
+	bindings.getTexParameterIiv = (GL_GetTexParameterIiv)procAddress("glGetTexParameterIiv");
+	bindings.getTexParameterIuiv = (GL_GetTexParameterIuiv)procAddress("glGetTexParameterIuiv");
+	bindings.getTexParameterfv = (GL_GetTexParameterfv)procAddress("glGetTexParameterfv");
+	bindings.getTexParameteriv = (GL_GetTexParameteriv)procAddress("glGetTexParameteriv");
+	bindings.getTextureImage = (GL_GetTextureImage)procAddress("glGetTextureImage");
+	bindings.getTextureLevelParameterfv = (GL_GetTextureLevelParameterfv)procAddress("glGetTextureLevelParameterfv");
+	bindings.getTextureLevelParameteriv = (GL_GetTextureLevelParameteriv)procAddress("glGetTextureLevelParameteriv");
+	bindings.getTextureParameterIiv = (GL_GetTextureParameterIiv)procAddress("glGetTextureParameterIiv");
+	bindings.getTextureParameterIuiv = (GL_GetTextureParameterIuiv)procAddress("glGetTextureParameterIuiv");
+	bindings.getTextureParameterfv = (GL_GetTextureParameterfv)procAddress("glGetTextureParameterfv");
+	bindings.getTextureParameteriv = (GL_GetTextureParameteriv)procAddress("glGetTextureParameteriv");
+	bindings.getTextureSubImage = (GL_GetTextureSubImage)procAddress("glGetTextureSubImage");
+	bindings.getTransformFeedbackVarying = (GL_GetTransformFeedbackVarying)procAddress("glGetTransformFeedbackVarying");
+	bindings.getTransformFeedbacki64_v = (GL_GetTransformFeedbacki64_v)procAddress("glGetTransformFeedbacki64_v");
+	bindings.getTransformFeedbacki_v = (GL_GetTransformFeedbacki_v)procAddress("glGetTransformFeedbacki_v");
+	bindings.getTransformFeedbackiv = (GL_GetTransformFeedbackiv)procAddress("glGetTransformFeedbackiv");
+	bindings.getUniformBlockIndex = (GL_GetUniformBlockIndex)procAddress("glGetUniformBlockIndex");
+	bindings.getUniformIndices = (GL_GetUniformIndices)procAddress("glGetUniformIndices");
+	bindings.getUniformLocation = (GL_GetUniformLocation)procAddress("glGetUniformLocation");
+	bindings.getUniformSubroutineuiv = (GL_GetUniformSubroutineuiv)procAddress("glGetUniformSubroutineuiv");
+	bindings.getUniformdv = (GL_GetUniformdv)procAddress("glGetUniformdv");
+	bindings.getUniformfv = (GL_GetUniformfv)procAddress("glGetUniformfv");
+	bindings.getUniformiv = (GL_GetUniformiv)procAddress("glGetUniformiv");
+	bindings.getUniformuiv = (GL_GetUniformuiv)procAddress("glGetUniformuiv");
+	bindings.getVertexArrayIndexed64iv = (GL_GetVertexArrayIndexed64iv)procAddress("glGetVertexArrayIndexed64iv");
+	bindings.getVertexArrayIndexediv = (GL_GetVertexArrayIndexediv)procAddress("glGetVertexArrayIndexediv");
+	bindings.getVertexArrayiv = (GL_GetVertexArrayiv)procAddress("glGetVertexArrayiv");
+	bindings.getVertexAttribIiv = (GL_GetVertexAttribIiv)procAddress("glGetVertexAttribIiv");
+	bindings.getVertexAttribIuiv = (GL_GetVertexAttribIuiv)procAddress("glGetVertexAttribIuiv");
+	bindings.getVertexAttribLdv = (GL_GetVertexAttribLdv)procAddress("glGetVertexAttribLdv");
+	bindings.getVertexAttribPointerv = (GL_GetVertexAttribPointerv)procAddress("glGetVertexAttribPointerv");
+	bindings.getVertexAttribdv = (GL_GetVertexAttribdv)procAddress("glGetVertexAttribdv");
+	bindings.getVertexAttribfv = (GL_GetVertexAttribfv)procAddress("glGetVertexAttribfv");
+	bindings.getVertexAttribiv = (GL_GetVertexAttribiv)procAddress("glGetVertexAttribiv");
+	bindings.getnColorTable = (GL_GetnColorTable)procAddress("glGetnColorTable");
+	bindings.getnCompressedTexImage = (GL_GetnCompressedTexImage)procAddress("glGetnCompressedTexImage");
+	bindings.getnConvolutionFilter = (GL_GetnConvolutionFilter)procAddress("glGetnConvolutionFilter");
+	bindings.getnHistogram = (GL_GetnHistogram)procAddress("glGetnHistogram");
+	bindings.getnMapdv = (GL_GetnMapdv)procAddress("glGetnMapdv");
+	bindings.getnMapfv = (GL_GetnMapfv)procAddress("glGetnMapfv");
+	bindings.getnMapiv = (GL_GetnMapiv)procAddress("glGetnMapiv");
+	bindings.getnMinmax = (GL_GetnMinmax)procAddress("glGetnMinmax");
+	bindings.getnPixelMapfv = (GL_GetnPixelMapfv)procAddress("glGetnPixelMapfv");
+	bindings.getnPixelMapuiv = (GL_GetnPixelMapuiv)procAddress("glGetnPixelMapuiv");
+	bindings.getnPixelMapusv = (GL_GetnPixelMapusv)procAddress("glGetnPixelMapusv");
+	bindings.getnPolygonStipple = (GL_GetnPolygonStipple)procAddress("glGetnPolygonStipple");
+	bindings.getnSeparableFilter = (GL_GetnSeparableFilter)procAddress("glGetnSeparableFilter");
+	bindings.getnTexImage = (GL_GetnTexImage)procAddress("glGetnTexImage");
+	bindings.getnUniformdv = (GL_GetnUniformdv)procAddress("glGetnUniformdv");
+	bindings.getnUniformfv = (GL_GetnUniformfv)procAddress("glGetnUniformfv");
+	bindings.getnUniformiv = (GL_GetnUniformiv)procAddress("glGetnUniformiv");
+	bindings.getnUniformuiv = (GL_GetnUniformuiv)procAddress("glGetnUniformuiv");
+	bindings.hint = (GL_Hint)procAddress("glHint");
+	bindings.indexMask = (GL_IndexMask)procAddress("glIndexMask");
+	bindings.indexPointer = (GL_IndexPointer)procAddress("glIndexPointer");
+	bindings.indexd = (GL_Indexd)procAddress("glIndexd");
+	bindings.indexdv = (GL_Indexdv)procAddress("glIndexdv");
+	bindings.indexf = (GL_Indexf)procAddress("glIndexf");
+	bindings.indexfv = (GL_Indexfv)procAddress("glIndexfv");
+	bindings.indexi = (GL_Indexi)procAddress("glIndexi");
+	bindings.indexiv = (GL_Indexiv)procAddress("glIndexiv");
+	bindings.indexs = (GL_Indexs)procAddress("glIndexs");
+	bindings.indexsv = (GL_Indexsv)procAddress("glIndexsv");
+	bindings.indexub = (GL_Indexub)procAddress("glIndexub");
+	bindings.indexubv = (GL_Indexubv)procAddress("glIndexubv");
+	bindings.initNames = (GL_InitNames)procAddress("glInitNames");
+	bindings.interleavedArrays = (GL_InterleavedArrays)procAddress("glInterleavedArrays");
+	bindings.invalidateBufferData = (GL_InvalidateBufferData)procAddress("glInvalidateBufferData");
+	bindings.invalidateBufferSubData = (GL_InvalidateBufferSubData)procAddress("glInvalidateBufferSubData");
+	bindings.invalidateFramebuffer = (GL_InvalidateFramebuffer)procAddress("glInvalidateFramebuffer");
+	bindings.invalidateNamedFramebufferData = (GL_InvalidateNamedFramebufferData)procAddress("glInvalidateNamedFramebufferData");
+	bindings.invalidateNamedFramebufferSubData = (GL_InvalidateNamedFramebufferSubData)procAddress("glInvalidateNamedFramebufferSubData");
+	bindings.invalidateSubFramebuffer = (GL_InvalidateSubFramebuffer)procAddress("glInvalidateSubFramebuffer");
+	bindings.invalidateTexImage = (GL_InvalidateTexImage)procAddress("glInvalidateTexImage");
+	bindings.invalidateTexSubImage = (GL_InvalidateTexSubImage)procAddress("glInvalidateTexSubImage");
+	bindings.isBuffer = (GL_IsBuffer)procAddress("glIsBuffer");
+	bindings.isEnabled = (GL_IsEnabled)procAddress("glIsEnabled");
+	bindings.isEnabledi = (GL_IsEnabledi)procAddress("glIsEnabledi");
+	bindings.isFramebuffer = (GL_IsFramebuffer)procAddress("glIsFramebuffer");
+	bindings.isList = (GL_IsList)procAddress("glIsList");
+	bindings.isProgram = (GL_IsProgram)procAddress("glIsProgram");
+	bindings.isProgramPipeline = (GL_IsProgramPipeline)procAddress("glIsProgramPipeline");
+	bindings.isQuery = (GL_IsQuery)procAddress("glIsQuery");
+	bindings.isRenderbuffer = (GL_IsRenderbuffer)procAddress("glIsRenderbuffer");
+	bindings.isSampler = (GL_IsSampler)procAddress("glIsSampler");
+	bindings.isShader = (GL_IsShader)procAddress("glIsShader");
+	bindings.isSync = (GL_IsSync)procAddress("glIsSync");
+	bindings.isTexture = (GL_IsTexture)procAddress("glIsTexture");
+	bindings.isTransformFeedback = (GL_IsTransformFeedback)procAddress("glIsTransformFeedback");
+	bindings.isVertexArray = (GL_IsVertexArray)procAddress("glIsVertexArray");
+	bindings.lightModelf = (GL_LightModelf)procAddress("glLightModelf");
+	bindings.lightModelfv = (GL_LightModelfv)procAddress("glLightModelfv");
+	bindings.lightModeli = (GL_LightModeli)procAddress("glLightModeli");
+	bindings.lightModeliv = (GL_LightModeliv)procAddress("glLightModeliv");
+	bindings.lightf = (GL_Lightf)procAddress("glLightf");
+	bindings.lightfv = (GL_Lightfv)procAddress("glLightfv");
+	bindings.lighti = (GL_Lighti)procAddress("glLighti");
+	bindings.lightiv = (GL_Lightiv)procAddress("glLightiv");
+	bindings.lineStipple = (GL_LineStipple)procAddress("glLineStipple");
+	bindings.lineWidth = (GL_LineWidth)procAddress("glLineWidth");
+	bindings.linkProgram = (GL_LinkProgram)procAddress("glLinkProgram");
+	bindings.listBase = (GL_ListBase)procAddress("glListBase");
+	bindings.loadIdentity = (GL_LoadIdentity)procAddress("glLoadIdentity");
+	bindings.loadMatrixd = (GL_LoadMatrixd)procAddress("glLoadMatrixd");
+	bindings.loadMatrixf = (GL_LoadMatrixf)procAddress("glLoadMatrixf");
+	bindings.loadName = (GL_LoadName)procAddress("glLoadName");
+	bindings.loadTransposeMatrixd = (GL_LoadTransposeMatrixd)procAddress("glLoadTransposeMatrixd");
+	bindings.loadTransposeMatrixf = (GL_LoadTransposeMatrixf)procAddress("glLoadTransposeMatrixf");
+	bindings.logicOp = (GL_LogicOp)procAddress("glLogicOp");
+	bindings.map1d = (GL_Map1d)procAddress("glMap1d");
+	bindings.map1f = (GL_Map1f)procAddress("glMap1f");
+	bindings.map2d = (GL_Map2d)procAddress("glMap2d");
+	bindings.map2f = (GL_Map2f)procAddress("glMap2f");
+	bindings.mapBuffer = (GL_MapBuffer)procAddress("glMapBuffer");
+	bindings.mapBufferRange = (GL_MapBufferRange)procAddress("glMapBufferRange");
+	bindings.mapGrid1d = (GL_MapGrid1d)procAddress("glMapGrid1d");
+	bindings.mapGrid1f = (GL_MapGrid1f)procAddress("glMapGrid1f");
+	bindings.mapGrid2d = (GL_MapGrid2d)procAddress("glMapGrid2d");
+	bindings.mapGrid2f = (GL_MapGrid2f)procAddress("glMapGrid2f");
+	bindings.mapNamedBuffer = (GL_MapNamedBuffer)procAddress("glMapNamedBuffer");
+	bindings.mapNamedBufferRange = (GL_MapNamedBufferRange)procAddress("glMapNamedBufferRange");
+	bindings.materialf = (GL_Materialf)procAddress("glMaterialf");
+	bindings.materialfv = (GL_Materialfv)procAddress("glMaterialfv");
+	bindings.materiali = (GL_Materiali)procAddress("glMateriali");
+	bindings.materialiv = (GL_Materialiv)procAddress("glMaterialiv");
+	bindings.matrixMode = (GL_MatrixMode)procAddress("glMatrixMode");
+	bindings.memoryBarrier = (GL_MemoryBarrier)procAddress("glMemoryBarrier");
+	bindings.memoryBarrierByRegion = (GL_MemoryBarrierByRegion)procAddress("glMemoryBarrierByRegion");
+	bindings.minSampleShading = (GL_MinSampleShading)procAddress("glMinSampleShading");
+	bindings.multMatrixd = (GL_MultMatrixd)procAddress("glMultMatrixd");
+	bindings.multMatrixf = (GL_MultMatrixf)procAddress("glMultMatrixf");
+	bindings.multTransposeMatrixd = (GL_MultTransposeMatrixd)procAddress("glMultTransposeMatrixd");
+	bindings.multTransposeMatrixf = (GL_MultTransposeMatrixf)procAddress("glMultTransposeMatrixf");
+	bindings.multiDrawArraysIndirect = (GL_MultiDrawArraysIndirect)procAddress("glMultiDrawArraysIndirect");
+	bindings.multiDrawArraysIndirectCount = (GL_MultiDrawArraysIndirectCount)procAddress("glMultiDrawArraysIndirectCount");
+	bindings.multiDrawElementsBaseVertex = (GL_MultiDrawElementsBaseVertex)procAddress("glMultiDrawElementsBaseVertex");
+	bindings.multiDrawElementsIndirect = (GL_MultiDrawElementsIndirect)procAddress("glMultiDrawElementsIndirect");
+	bindings.multiDrawElementsIndirectCount = (GL_MultiDrawElementsIndirectCount)procAddress("glMultiDrawElementsIndirectCount");
+	bindings.multiTexCoord1d = (GL_MultiTexCoord1d)procAddress("glMultiTexCoord1d");
+	bindings.multiTexCoord1dv = (GL_MultiTexCoord1dv)procAddress("glMultiTexCoord1dv");
+	bindings.multiTexCoord1f = (GL_MultiTexCoord1f)procAddress("glMultiTexCoord1f");
+	bindings.multiTexCoord1fv = (GL_MultiTexCoord1fv)procAddress("glMultiTexCoord1fv");
+	bindings.multiTexCoord1i = (GL_MultiTexCoord1i)procAddress("glMultiTexCoord1i");
+	bindings.multiTexCoord1iv = (GL_MultiTexCoord1iv)procAddress("glMultiTexCoord1iv");
+	bindings.multiTexCoord1s = (GL_MultiTexCoord1s)procAddress("glMultiTexCoord1s");
+	bindings.multiTexCoord1sv = (GL_MultiTexCoord1sv)procAddress("glMultiTexCoord1sv");
+	bindings.multiTexCoord2d = (GL_MultiTexCoord2d)procAddress("glMultiTexCoord2d");
+	bindings.multiTexCoord2dv = (GL_MultiTexCoord2dv)procAddress("glMultiTexCoord2dv");
+	bindings.multiTexCoord2f = (GL_MultiTexCoord2f)procAddress("glMultiTexCoord2f");
+	bindings.multiTexCoord2fv = (GL_MultiTexCoord2fv)procAddress("glMultiTexCoord2fv");
+	bindings.multiTexCoord2i = (GL_MultiTexCoord2i)procAddress("glMultiTexCoord2i");
+	bindings.multiTexCoord2iv = (GL_MultiTexCoord2iv)procAddress("glMultiTexCoord2iv");
+	bindings.multiTexCoord2s = (GL_MultiTexCoord2s)procAddress("glMultiTexCoord2s");
+	bindings.multiTexCoord2sv = (GL_MultiTexCoord2sv)procAddress("glMultiTexCoord2sv");
+	bindings.multiTexCoord3d = (GL_MultiTexCoord3d)procAddress("glMultiTexCoord3d");
+	bindings.multiTexCoord3dv = (GL_MultiTexCoord3dv)procAddress("glMultiTexCoord3dv");
+	bindings.multiTexCoord3f = (GL_MultiTexCoord3f)procAddress("glMultiTexCoord3f");
+	bindings.multiTexCoord3fv = (GL_MultiTexCoord3fv)procAddress("glMultiTexCoord3fv");
+	bindings.multiTexCoord3i = (GL_MultiTexCoord3i)procAddress("glMultiTexCoord3i");
+	bindings.multiTexCoord3iv = (GL_MultiTexCoord3iv)procAddress("glMultiTexCoord3iv");
+	bindings.multiTexCoord3s = (GL_MultiTexCoord3s)procAddress("glMultiTexCoord3s");
+	bindings.multiTexCoord3sv = (GL_MultiTexCoord3sv)procAddress("glMultiTexCoord3sv");
+	bindings.multiTexCoord4d = (GL_MultiTexCoord4d)procAddress("glMultiTexCoord4d");
+	bindings.multiTexCoord4dv = (GL_MultiTexCoord4dv)procAddress("glMultiTexCoord4dv");
+	bindings.multiTexCoord4f = (GL_MultiTexCoord4f)procAddress("glMultiTexCoord4f");
+	bindings.multiTexCoord4fv = (GL_MultiTexCoord4fv)procAddress("glMultiTexCoord4fv");
+	bindings.multiTexCoord4i = (GL_MultiTexCoord4i)procAddress("glMultiTexCoord4i");
+	bindings.multiTexCoord4iv = (GL_MultiTexCoord4iv)procAddress("glMultiTexCoord4iv");
+	bindings.multiTexCoord4s = (GL_MultiTexCoord4s)procAddress("glMultiTexCoord4s");
+	bindings.multiTexCoord4sv = (GL_MultiTexCoord4sv)procAddress("glMultiTexCoord4sv");
+	bindings.multiTexCoordP1ui = (GL_MultiTexCoordP1ui)procAddress("glMultiTexCoordP1ui");
+	bindings.multiTexCoordP1uiv = (GL_MultiTexCoordP1uiv)procAddress("glMultiTexCoordP1uiv");
+	bindings.multiTexCoordP2ui = (GL_MultiTexCoordP2ui)procAddress("glMultiTexCoordP2ui");
+	bindings.multiTexCoordP2uiv = (GL_MultiTexCoordP2uiv)procAddress("glMultiTexCoordP2uiv");
+	bindings.multiTexCoordP3ui = (GL_MultiTexCoordP3ui)procAddress("glMultiTexCoordP3ui");
+	bindings.multiTexCoordP3uiv = (GL_MultiTexCoordP3uiv)procAddress("glMultiTexCoordP3uiv");
+	bindings.multiTexCoordP4ui = (GL_MultiTexCoordP4ui)procAddress("glMultiTexCoordP4ui");
+	bindings.multiTexCoordP4uiv = (GL_MultiTexCoordP4uiv)procAddress("glMultiTexCoordP4uiv");
+	bindings.namedBufferData = (GL_NamedBufferData)procAddress("glNamedBufferData");
+	bindings.namedBufferStorage = (GL_NamedBufferStorage)procAddress("glNamedBufferStorage");
+	bindings.namedBufferSubData = (GL_NamedBufferSubData)procAddress("glNamedBufferSubData");
+	bindings.namedFramebufferDrawBuffer = (GL_NamedFramebufferDrawBuffer)procAddress("glNamedFramebufferDrawBuffer");
+	bindings.namedFramebufferDrawBuffers = (GL_NamedFramebufferDrawBuffers)procAddress("glNamedFramebufferDrawBuffers");
+	bindings.namedFramebufferParameteri = (GL_NamedFramebufferParameteri)procAddress("glNamedFramebufferParameteri");
+	bindings.namedFramebufferReadBuffer = (GL_NamedFramebufferReadBuffer)procAddress("glNamedFramebufferReadBuffer");
+	bindings.namedFramebufferRenderbuffer = (GL_NamedFramebufferRenderbuffer)procAddress("glNamedFramebufferRenderbuffer");
+	bindings.namedFramebufferTexture = (GL_NamedFramebufferTexture)procAddress("glNamedFramebufferTexture");
+	bindings.namedFramebufferTextureLayer = (GL_NamedFramebufferTextureLayer)procAddress("glNamedFramebufferTextureLayer");
+	bindings.namedRenderbufferStorage = (GL_NamedRenderbufferStorage)procAddress("glNamedRenderbufferStorage");
+	bindings.namedRenderbufferStorageMultisample = (GL_NamedRenderbufferStorageMultisample)procAddress("glNamedRenderbufferStorageMultisample");
+	bindings.newList = (GL_NewList)procAddress("glNewList");
+	bindings.normal3b = (GL_Normal3b)procAddress("glNormal3b");
+	bindings.normal3bv = (GL_Normal3bv)procAddress("glNormal3bv");
+	bindings.normal3d = (GL_Normal3d)procAddress("glNormal3d");
+	bindings.normal3dv = (GL_Normal3dv)procAddress("glNormal3dv");
+	bindings.normal3f = (GL_Normal3f)procAddress("glNormal3f");
+	bindings.normal3fv = (GL_Normal3fv)procAddress("glNormal3fv");
+	bindings.normal3i = (GL_Normal3i)procAddress("glNormal3i");
+	bindings.normal3iv = (GL_Normal3iv)procAddress("glNormal3iv");
+	bindings.normal3s = (GL_Normal3s)procAddress("glNormal3s");
+	bindings.normal3sv = (GL_Normal3sv)procAddress("glNormal3sv");
+	bindings.normalP3ui = (GL_NormalP3ui)procAddress("glNormalP3ui");
+	bindings.normalP3uiv = (GL_NormalP3uiv)procAddress("glNormalP3uiv");
+	bindings.normalPointer = (GL_NormalPointer)procAddress("glNormalPointer");
+	bindings.objectLabel = (GL_ObjectLabel)procAddress("glObjectLabel");
+	bindings.objectPtrLabel = (GL_ObjectPtrLabel)procAddress("glObjectPtrLabel");
+	bindings.ortho = (GL_Ortho)procAddress("glOrtho");
+	bindings.passThrough = (GL_PassThrough)procAddress("glPassThrough");
+	bindings.patchParameterfv = (GL_PatchParameterfv)procAddress("glPatchParameterfv");
+	bindings.patchParameteri = (GL_PatchParameteri)procAddress("glPatchParameteri");
+	bindings.pauseTransformFeedback = (GL_PauseTransformFeedback)procAddress("glPauseTransformFeedback");
+	bindings.pixelMapfv = (GL_PixelMapfv)procAddress("glPixelMapfv");
+	bindings.pixelMapuiv = (GL_PixelMapuiv)procAddress("glPixelMapuiv");
+	bindings.pixelMapusv = (GL_PixelMapusv)procAddress("glPixelMapusv");
+	bindings.pixelStoref = (GL_PixelStoref)procAddress("glPixelStoref");
+	bindings.pixelStorei = (GL_PixelStorei)procAddress("glPixelStorei");
+	bindings.pixelTransferf = (GL_PixelTransferf)procAddress("glPixelTransferf");
+	bindings.pixelTransferi = (GL_PixelTransferi)procAddress("glPixelTransferi");
+	bindings.pixelZoom = (GL_PixelZoom)procAddress("glPixelZoom");
+	bindings.pointSize = (GL_PointSize)procAddress("glPointSize");
+	bindings.polygonMode = (GL_PolygonMode)procAddress("glPolygonMode");
+	bindings.polygonOffset = (GL_PolygonOffset)procAddress("glPolygonOffset");
+	bindings.polygonOffsetClamp = (GL_PolygonOffsetClamp)procAddress("glPolygonOffsetClamp");
+	bindings.polygonStipple = (GL_PolygonStipple)procAddress("glPolygonStipple");
+	bindings.popAttrib = (GL_PopAttrib)procAddress("glPopAttrib");
+	bindings.popClientAttrib = (GL_PopClientAttrib)procAddress("glPopClientAttrib");
+	bindings.popDebugGroup = (GL_PopDebugGroup)procAddress("glPopDebugGroup");
+	bindings.popMatrix = (GL_PopMatrix)procAddress("glPopMatrix");
+	bindings.popName = (GL_PopName)procAddress("glPopName");
+	bindings.primitiveRestartIndex = (GL_PrimitiveRestartIndex)procAddress("glPrimitiveRestartIndex");
+	bindings.prioritizeTextures = (GL_PrioritizeTextures)procAddress("glPrioritizeTextures");
+	bindings.programBinary = (GL_ProgramBinary)procAddress("glProgramBinary");
+	bindings.programParameteri = (GL_ProgramParameteri)procAddress("glProgramParameteri");
+	bindings.programUniform1d = (GL_ProgramUniform1d)procAddress("glProgramUniform1d");
+	bindings.programUniform1dv = (GL_ProgramUniform1dv)procAddress("glProgramUniform1dv");
+	bindings.programUniform1f = (GL_ProgramUniform1f)procAddress("glProgramUniform1f");
+	bindings.programUniform1fv = (GL_ProgramUniform1fv)procAddress("glProgramUniform1fv");
+	bindings.programUniform1i = (GL_ProgramUniform1i)procAddress("glProgramUniform1i");
+	bindings.programUniform1iv = (GL_ProgramUniform1iv)procAddress("glProgramUniform1iv");
+	bindings.programUniform1ui = (GL_ProgramUniform1ui)procAddress("glProgramUniform1ui");
+	bindings.programUniform1uiv = (GL_ProgramUniform1uiv)procAddress("glProgramUniform1uiv");
+	bindings.programUniform2d = (GL_ProgramUniform2d)procAddress("glProgramUniform2d");
+	bindings.programUniform2dv = (GL_ProgramUniform2dv)procAddress("glProgramUniform2dv");
+	bindings.programUniform2f = (GL_ProgramUniform2f)procAddress("glProgramUniform2f");
+	bindings.programUniform2fv = (GL_ProgramUniform2fv)procAddress("glProgramUniform2fv");
+	bindings.programUniform2i = (GL_ProgramUniform2i)procAddress("glProgramUniform2i");
+	bindings.programUniform2iv = (GL_ProgramUniform2iv)procAddress("glProgramUniform2iv");
+	bindings.programUniform2ui = (GL_ProgramUniform2ui)procAddress("glProgramUniform2ui");
+	bindings.programUniform2uiv = (GL_ProgramUniform2uiv)procAddress("glProgramUniform2uiv");
+	bindings.programUniform3d = (GL_ProgramUniform3d)procAddress("glProgramUniform3d");
+	bindings.programUniform3dv = (GL_ProgramUniform3dv)procAddress("glProgramUniform3dv");
+	bindings.programUniform3f = (GL_ProgramUniform3f)procAddress("glProgramUniform3f");
+	bindings.programUniform3fv = (GL_ProgramUniform3fv)procAddress("glProgramUniform3fv");
+	bindings.programUniform3i = (GL_ProgramUniform3i)procAddress("glProgramUniform3i");
+	bindings.programUniform3iv = (GL_ProgramUniform3iv)procAddress("glProgramUniform3iv");
+	bindings.programUniform3ui = (GL_ProgramUniform3ui)procAddress("glProgramUniform3ui");
+	bindings.programUniform3uiv = (GL_ProgramUniform3uiv)procAddress("glProgramUniform3uiv");
+	bindings.programUniform4d = (GL_ProgramUniform4d)procAddress("glProgramUniform4d");
+	bindings.programUniform4dv = (GL_ProgramUniform4dv)procAddress("glProgramUniform4dv");
+	bindings.programUniform4f = (GL_ProgramUniform4f)procAddress("glProgramUniform4f");
+	bindings.programUniform4fv = (GL_ProgramUniform4fv)procAddress("glProgramUniform4fv");
+	bindings.programUniform4i = (GL_ProgramUniform4i)procAddress("glProgramUniform4i");
+	bindings.programUniform4iv = (GL_ProgramUniform4iv)procAddress("glProgramUniform4iv");
+	bindings.programUniform4ui = (GL_ProgramUniform4ui)procAddress("glProgramUniform4ui");
+	bindings.programUniform4uiv = (GL_ProgramUniform4uiv)procAddress("glProgramUniform4uiv");
+	bindings.programUniformMatrix2dv = (GL_ProgramUniformMatrix2dv)procAddress("glProgramUniformMatrix2dv");
+	bindings.programUniformMatrix2fv = (GL_ProgramUniformMatrix2fv)procAddress("glProgramUniformMatrix2fv");
+	bindings.programUniformMatrix2x3dv = (GL_ProgramUniformMatrix2x3dv)procAddress("glProgramUniformMatrix2x3dv");
+	bindings.programUniformMatrix2x3fv = (GL_ProgramUniformMatrix2x3fv)procAddress("glProgramUniformMatrix2x3fv");
+	bindings.programUniformMatrix2x4dv = (GL_ProgramUniformMatrix2x4dv)procAddress("glProgramUniformMatrix2x4dv");
+	bindings.programUniformMatrix2x4fv = (GL_ProgramUniformMatrix2x4fv)procAddress("glProgramUniformMatrix2x4fv");
+	bindings.programUniformMatrix3dv = (GL_ProgramUniformMatrix3dv)procAddress("glProgramUniformMatrix3dv");
+	bindings.programUniformMatrix3fv = (GL_ProgramUniformMatrix3fv)procAddress("glProgramUniformMatrix3fv");
+	bindings.programUniformMatrix3x2dv = (GL_ProgramUniformMatrix3x2dv)procAddress("glProgramUniformMatrix3x2dv");
+	bindings.programUniformMatrix3x2fv = (GL_ProgramUniformMatrix3x2fv)procAddress("glProgramUniformMatrix3x2fv");
+	bindings.programUniformMatrix3x4dv = (GL_ProgramUniformMatrix3x4dv)procAddress("glProgramUniformMatrix3x4dv");
+	bindings.programUniformMatrix3x4fv = (GL_ProgramUniformMatrix3x4fv)procAddress("glProgramUniformMatrix3x4fv");
+	bindings.programUniformMatrix4dv = (GL_ProgramUniformMatrix4dv)procAddress("glProgramUniformMatrix4dv");
+	bindings.programUniformMatrix4fv = (GL_ProgramUniformMatrix4fv)procAddress("glProgramUniformMatrix4fv");
+	bindings.programUniformMatrix4x2dv = (GL_ProgramUniformMatrix4x2dv)procAddress("glProgramUniformMatrix4x2dv");
+	bindings.programUniformMatrix4x2fv = (GL_ProgramUniformMatrix4x2fv)procAddress("glProgramUniformMatrix4x2fv");
+	bindings.programUniformMatrix4x3dv = (GL_ProgramUniformMatrix4x3dv)procAddress("glProgramUniformMatrix4x3dv");
+	bindings.programUniformMatrix4x3fv = (GL_ProgramUniformMatrix4x3fv)procAddress("glProgramUniformMatrix4x3fv");
+	bindings.provokingVertex = (GL_ProvokingVertex)procAddress("glProvokingVertex");
+	bindings.pushAttrib = (GL_PushAttrib)procAddress("glPushAttrib");
+	bindings.pushClientAttrib = (GL_PushClientAttrib)procAddress("glPushClientAttrib");
+	bindings.pushDebugGroup = (GL_PushDebugGroup)procAddress("glPushDebugGroup");
+	bindings.pushMatrix = (GL_PushMatrix)procAddress("glPushMatrix");
+	bindings.pushName = (GL_PushName)procAddress("glPushName");
+	bindings.queryCounter = (GL_QueryCounter)procAddress("glQueryCounter");
+	bindings.rasterPos2d = (GL_RasterPos2d)procAddress("glRasterPos2d");
+	bindings.rasterPos2dv = (GL_RasterPos2dv)procAddress("glRasterPos2dv");
+	bindings.rasterPos2f = (GL_RasterPos2f)procAddress("glRasterPos2f");
+	bindings.rasterPos2fv = (GL_RasterPos2fv)procAddress("glRasterPos2fv");
+	bindings.rasterPos2i = (GL_RasterPos2i)procAddress("glRasterPos2i");
+	bindings.rasterPos2iv = (GL_RasterPos2iv)procAddress("glRasterPos2iv");
+	bindings.rasterPos2s = (GL_RasterPos2s)procAddress("glRasterPos2s");
+	bindings.rasterPos2sv = (GL_RasterPos2sv)procAddress("glRasterPos2sv");
+	bindings.rasterPos3d = (GL_RasterPos3d)procAddress("glRasterPos3d");
+	bindings.rasterPos3dv = (GL_RasterPos3dv)procAddress("glRasterPos3dv");
+	bindings.rasterPos3f = (GL_RasterPos3f)procAddress("glRasterPos3f");
+	bindings.rasterPos3fv = (GL_RasterPos3fv)procAddress("glRasterPos3fv");
+	bindings.rasterPos3i = (GL_RasterPos3i)procAddress("glRasterPos3i");
+	bindings.rasterPos3iv = (GL_RasterPos3iv)procAddress("glRasterPos3iv");
+	bindings.rasterPos3s = (GL_RasterPos3s)procAddress("glRasterPos3s");
+	bindings.rasterPos3sv = (GL_RasterPos3sv)procAddress("glRasterPos3sv");
+	bindings.rasterPos4d = (GL_RasterPos4d)procAddress("glRasterPos4d");
+	bindings.rasterPos4dv = (GL_RasterPos4dv)procAddress("glRasterPos4dv");
+	bindings.rasterPos4f = (GL_RasterPos4f)procAddress("glRasterPos4f");
+	bindings.rasterPos4fv = (GL_RasterPos4fv)procAddress("glRasterPos4fv");
+	bindings.rasterPos4i = (GL_RasterPos4i)procAddress("glRasterPos4i");
+	bindings.rasterPos4iv = (GL_RasterPos4iv)procAddress("glRasterPos4iv");
+	bindings.rasterPos4s = (GL_RasterPos4s)procAddress("glRasterPos4s");
+	bindings.rasterPos4sv = (GL_RasterPos4sv)procAddress("glRasterPos4sv");
+	bindings.readBuffer = (GL_ReadBuffer)procAddress("glReadBuffer");
+	bindings.readPixels = (GL_ReadPixels)procAddress("glReadPixels");
+	bindings.readnPixels = (GL_ReadnPixels)procAddress("glReadnPixels");
+	bindings.rectd = (GL_Rectd)procAddress("glRectd");
+	bindings.rectdv = (GL_Rectdv)procAddress("glRectdv");
+	bindings.rectf = (GL_Rectf)procAddress("glRectf");
+	bindings.rectfv = (GL_Rectfv)procAddress("glRectfv");
+	bindings.recti = (GL_Recti)procAddress("glRecti");
+	bindings.rectiv = (GL_Rectiv)procAddress("glRectiv");
+	bindings.rects = (GL_Rects)procAddress("glRects");
+	bindings.rectsv = (GL_Rectsv)procAddress("glRectsv");
+	bindings.releaseShaderCompiler = (GL_ReleaseShaderCompiler)procAddress("glReleaseShaderCompiler");
+	bindings.renderMode = (GL_RenderMode)procAddress("glRenderMode");
+	bindings.renderbufferStorage = (GL_RenderbufferStorage)procAddress("glRenderbufferStorage");
+	bindings.renderbufferStorageMultisample = (GL_RenderbufferStorageMultisample)procAddress("glRenderbufferStorageMultisample");
+	bindings.resumeTransformFeedback = (GL_ResumeTransformFeedback)procAddress("glResumeTransformFeedback");
+	bindings.rotated = (GL_Rotated)procAddress("glRotated");
+	bindings.rotatef = (GL_Rotatef)procAddress("glRotatef");
+	bindings.sampleMaski = (GL_SampleMaski)procAddress("glSampleMaski");
+	bindings.samplerParameterIiv = (GL_SamplerParameterIiv)procAddress("glSamplerParameterIiv");
+	bindings.samplerParameterIuiv = (GL_SamplerParameterIuiv)procAddress("glSamplerParameterIuiv");
+	bindings.samplerParameterf = (GL_SamplerParameterf)procAddress("glSamplerParameterf");
+	bindings.samplerParameterfv = (GL_SamplerParameterfv)procAddress("glSamplerParameterfv");
+	bindings.samplerParameteri = (GL_SamplerParameteri)procAddress("glSamplerParameteri");
+	bindings.samplerParameteriv = (GL_SamplerParameteriv)procAddress("glSamplerParameteriv");
+	bindings.scaled = (GL_Scaled)procAddress("glScaled");
+	bindings.scalef = (GL_Scalef)procAddress("glScalef");
+	bindings.scissor = (GL_Scissor)procAddress("glScissor");
+	bindings.scissorArrayv = (GL_ScissorArrayv)procAddress("glScissorArrayv");
+	bindings.scissorIndexed = (GL_ScissorIndexed)procAddress("glScissorIndexed");
+	bindings.scissorIndexedv = (GL_ScissorIndexedv)procAddress("glScissorIndexedv");
+	bindings.secondaryColor3b = (GL_SecondaryColor3b)procAddress("glSecondaryColor3b");
+	bindings.secondaryColor3bv = (GL_SecondaryColor3bv)procAddress("glSecondaryColor3bv");
+	bindings.secondaryColor3d = (GL_SecondaryColor3d)procAddress("glSecondaryColor3d");
+	bindings.secondaryColor3dv = (GL_SecondaryColor3dv)procAddress("glSecondaryColor3dv");
+	bindings.secondaryColor3f = (GL_SecondaryColor3f)procAddress("glSecondaryColor3f");
+	bindings.secondaryColor3fv = (GL_SecondaryColor3fv)procAddress("glSecondaryColor3fv");
+	bindings.secondaryColor3i = (GL_SecondaryColor3i)procAddress("glSecondaryColor3i");
+	bindings.secondaryColor3iv = (GL_SecondaryColor3iv)procAddress("glSecondaryColor3iv");
+	bindings.secondaryColor3s = (GL_SecondaryColor3s)procAddress("glSecondaryColor3s");
+	bindings.secondaryColor3sv = (GL_SecondaryColor3sv)procAddress("glSecondaryColor3sv");
+	bindings.secondaryColor3ub = (GL_SecondaryColor3ub)procAddress("glSecondaryColor3ub");
+	bindings.secondaryColor3ubv = (GL_SecondaryColor3ubv)procAddress("glSecondaryColor3ubv");
+	bindings.secondaryColor3ui = (GL_SecondaryColor3ui)procAddress("glSecondaryColor3ui");
+	bindings.secondaryColor3uiv = (GL_SecondaryColor3uiv)procAddress("glSecondaryColor3uiv");
+	bindings.secondaryColor3us = (GL_SecondaryColor3us)procAddress("glSecondaryColor3us");
+	bindings.secondaryColor3usv = (GL_SecondaryColor3usv)procAddress("glSecondaryColor3usv");
+	bindings.secondaryColorP3ui = (GL_SecondaryColorP3ui)procAddress("glSecondaryColorP3ui");
+	bindings.secondaryColorP3uiv = (GL_SecondaryColorP3uiv)procAddress("glSecondaryColorP3uiv");
+	bindings.secondaryColorPointer = (GL_SecondaryColorPointer)procAddress("glSecondaryColorPointer");
+	bindings.selectBuffer = (GL_SelectBuffer)procAddress("glSelectBuffer");
+	bindings.shadeModel = (GL_ShadeModel)procAddress("glShadeModel");
+	bindings.shaderBinary = (GL_ShaderBinary)procAddress("glShaderBinary");
+	bindings.shaderSource = (GL_ShaderSource)procAddress("glShaderSource");
+	bindings.shaderStorageBlockBinding = (GL_ShaderStorageBlockBinding)procAddress("glShaderStorageBlockBinding");
+	bindings.specializeShader = (GL_SpecializeShader)procAddress("glSpecializeShader");
+	bindings.stencilFunc = (GL_StencilFunc)procAddress("glStencilFunc");
+	bindings.stencilFuncSeparate = (GL_StencilFuncSeparate)procAddress("glStencilFuncSeparate");
+	bindings.stencilMask = (GL_StencilMask)procAddress("glStencilMask");
+	bindings.stencilMaskSeparate = (GL_StencilMaskSeparate)procAddress("glStencilMaskSeparate");
+	bindings.stencilOp = (GL_StencilOp)procAddress("glStencilOp");
+	bindings.stencilOpSeparate = (GL_StencilOpSeparate)procAddress("glStencilOpSeparate");
+	bindings.texBuffer = (GL_TexBuffer)procAddress("glTexBuffer");
+	bindings.texBufferRange = (GL_TexBufferRange)procAddress("glTexBufferRange");
+	bindings.texCoord1d = (GL_TexCoord1d)procAddress("glTexCoord1d");
+	bindings.texCoord1dv = (GL_TexCoord1dv)procAddress("glTexCoord1dv");
+	bindings.texCoord1f = (GL_TexCoord1f)procAddress("glTexCoord1f");
+	bindings.texCoord1fv = (GL_TexCoord1fv)procAddress("glTexCoord1fv");
+	bindings.texCoord1i = (GL_TexCoord1i)procAddress("glTexCoord1i");
+	bindings.texCoord1iv = (GL_TexCoord1iv)procAddress("glTexCoord1iv");
+	bindings.texCoord1s = (GL_TexCoord1s)procAddress("glTexCoord1s");
+	bindings.texCoord1sv = (GL_TexCoord1sv)procAddress("glTexCoord1sv");
+	bindings.texCoord2d = (GL_TexCoord2d)procAddress("glTexCoord2d");
+	bindings.texCoord2dv = (GL_TexCoord2dv)procAddress("glTexCoord2dv");
+	bindings.texCoord2f = (GL_TexCoord2f)procAddress("glTexCoord2f");
+	bindings.texCoord2fv = (GL_TexCoord2fv)procAddress("glTexCoord2fv");
+	bindings.texCoord2i = (GL_TexCoord2i)procAddress("glTexCoord2i");
+	bindings.texCoord2iv = (GL_TexCoord2iv)procAddress("glTexCoord2iv");
+	bindings.texCoord2s = (GL_TexCoord2s)procAddress("glTexCoord2s");
+	bindings.texCoord2sv = (GL_TexCoord2sv)procAddress("glTexCoord2sv");
+	bindings.texCoord3d = (GL_TexCoord3d)procAddress("glTexCoord3d");
+	bindings.texCoord3dv = (GL_TexCoord3dv)procAddress("glTexCoord3dv");
+	bindings.texCoord3f = (GL_TexCoord3f)procAddress("glTexCoord3f");
+	bindings.texCoord3fv = (GL_TexCoord3fv)procAddress("glTexCoord3fv");
+	bindings.texCoord3i = (GL_TexCoord3i)procAddress("glTexCoord3i");
+	bindings.texCoord3iv = (GL_TexCoord3iv)procAddress("glTexCoord3iv");
+	bindings.texCoord3s = (GL_TexCoord3s)procAddress("glTexCoord3s");
+	bindings.texCoord3sv = (GL_TexCoord3sv)procAddress("glTexCoord3sv");
+	bindings.texCoord4d = (GL_TexCoord4d)procAddress("glTexCoord4d");
+	bindings.texCoord4dv = (GL_TexCoord4dv)procAddress("glTexCoord4dv");
+	bindings.texCoord4f = (GL_TexCoord4f)procAddress("glTexCoord4f");
+	bindings.texCoord4fv = (GL_TexCoord4fv)procAddress("glTexCoord4fv");
+	bindings.texCoord4i = (GL_TexCoord4i)procAddress("glTexCoord4i");
+	bindings.texCoord4iv = (GL_TexCoord4iv)procAddress("glTexCoord4iv");
+	bindings.texCoord4s = (GL_TexCoord4s)procAddress("glTexCoord4s");
+	bindings.texCoord4sv = (GL_TexCoord4sv)procAddress("glTexCoord4sv");
+	bindings.texCoordP1ui = (GL_TexCoordP1ui)procAddress("glTexCoordP1ui");
+	bindings.texCoordP1uiv = (GL_TexCoordP1uiv)procAddress("glTexCoordP1uiv");
+	bindings.texCoordP2ui = (GL_TexCoordP2ui)procAddress("glTexCoordP2ui");
+	bindings.texCoordP2uiv = (GL_TexCoordP2uiv)procAddress("glTexCoordP2uiv");
+	bindings.texCoordP3ui = (GL_TexCoordP3ui)procAddress("glTexCoordP3ui");
+	bindings.texCoordP3uiv = (GL_TexCoordP3uiv)procAddress("glTexCoordP3uiv");
+	bindings.texCoordP4ui = (GL_TexCoordP4ui)procAddress("glTexCoordP4ui");
+	bindings.texCoordP4uiv = (GL_TexCoordP4uiv)procAddress("glTexCoordP4uiv");
+	bindings.texCoordPointer = (GL_TexCoordPointer)procAddress("glTexCoordPointer");
+	bindings.texEnvf = (GL_TexEnvf)procAddress("glTexEnvf");
+	bindings.texEnvfv = (GL_TexEnvfv)procAddress("glTexEnvfv");
+	bindings.texEnvi = (GL_TexEnvi)procAddress("glTexEnvi");
+	bindings.texEnviv = (GL_TexEnviv)procAddress("glTexEnviv");
+	bindings.texGend = (GL_TexGend)procAddress("glTexGend");
+	bindings.texGendv = (GL_TexGendv)procAddress("glTexGendv");
+	bindings.texGenf = (GL_TexGenf)procAddress("glTexGenf");
+	bindings.texGenfv = (GL_TexGenfv)procAddress("glTexGenfv");
+	bindings.texGeni = (GL_TexGeni)procAddress("glTexGeni");
+	bindings.texGeniv = (GL_TexGeniv)procAddress("glTexGeniv");
+	bindings.texImage1D = (GL_TexImage1D)procAddress("glTexImage1D");
+	bindings.texImage2D = (GL_TexImage2D)procAddress("glTexImage2D");
+	bindings.texImage2DMultisample = (GL_TexImage2DMultisample)procAddress("glTexImage2DMultisample");
+	bindings.texImage3DMultisample = (GL_TexImage3DMultisample)procAddress("glTexImage3DMultisample");
+	bindings.texParameterIiv = (GL_TexParameterIiv)procAddress("glTexParameterIiv");
+	bindings.texParameterIuiv = (GL_TexParameterIuiv)procAddress("glTexParameterIuiv");
+	bindings.texParameterf = (GL_TexParameterf)procAddress("glTexParameterf");
+	bindings.texParameterfv = (GL_TexParameterfv)procAddress("glTexParameterfv");
+	bindings.texParameteri = (GL_TexParameteri)procAddress("glTexParameteri");
+	bindings.texParameteriv = (GL_TexParameteriv)procAddress("glTexParameteriv");
+	bindings.texStorage1D = (GL_TexStorage1D)procAddress("glTexStorage1D");
+	bindings.texStorage2D = (GL_TexStorage2D)procAddress("glTexStorage2D");
+	bindings.texStorage2DMultisample = (GL_TexStorage2DMultisample)procAddress("glTexStorage2DMultisample");
+	bindings.texStorage3D = (GL_TexStorage3D)procAddress("glTexStorage3D");
+	bindings.texStorage3DMultisample = (GL_TexStorage3DMultisample)procAddress("glTexStorage3DMultisample");
+	bindings.texSubImage1D = (GL_TexSubImage1D)procAddress("glTexSubImage1D");
+	bindings.texSubImage2D = (GL_TexSubImage2D)procAddress("glTexSubImage2D");
+	bindings.textureBarrier = (GL_TextureBarrier)procAddress("glTextureBarrier");
+	bindings.textureBuffer = (GL_TextureBuffer)procAddress("glTextureBuffer");
+	bindings.textureBufferRange = (GL_TextureBufferRange)procAddress("glTextureBufferRange");
+	bindings.textureParameterIiv = (GL_TextureParameterIiv)procAddress("glTextureParameterIiv");
+	bindings.textureParameterIuiv = (GL_TextureParameterIuiv)procAddress("glTextureParameterIuiv");
+	bindings.textureParameterf = (GL_TextureParameterf)procAddress("glTextureParameterf");
+	bindings.textureParameterfv = (GL_TextureParameterfv)procAddress("glTextureParameterfv");
+	bindings.textureParameteri = (GL_TextureParameteri)procAddress("glTextureParameteri");
+	bindings.textureParameteriv = (GL_TextureParameteriv)procAddress("glTextureParameteriv");
+	bindings.textureStorage1D = (GL_TextureStorage1D)procAddress("glTextureStorage1D");
+	bindings.textureStorage2D = (GL_TextureStorage2D)procAddress("glTextureStorage2D");
+	bindings.textureStorage2DMultisample = (GL_TextureStorage2DMultisample)procAddress("glTextureStorage2DMultisample");
+	bindings.textureStorage3D = (GL_TextureStorage3D)procAddress("glTextureStorage3D");
+	bindings.textureStorage3DMultisample = (GL_TextureStorage3DMultisample)procAddress("glTextureStorage3DMultisample");
+	bindings.textureSubImage1D = (GL_TextureSubImage1D)procAddress("glTextureSubImage1D");
+	bindings.textureSubImage2D = (GL_TextureSubImage2D)procAddress("glTextureSubImage2D");
+	bindings.textureSubImage3D = (GL_TextureSubImage3D)procAddress("glTextureSubImage3D");
+	bindings.textureView = (GL_TextureView)procAddress("glTextureView");
+	bindings.transformFeedbackBufferBase = (GL_TransformFeedbackBufferBase)procAddress("glTransformFeedbackBufferBase");
+	bindings.transformFeedbackBufferRange = (GL_TransformFeedbackBufferRange)procAddress("glTransformFeedbackBufferRange");
+	bindings.transformFeedbackVaryings = (GL_TransformFeedbackVaryings)procAddress("glTransformFeedbackVaryings");
+	bindings.translated = (GL_Translated)procAddress("glTranslated");
+	bindings.translatef = (GL_Translatef)procAddress("glTranslatef");
+	bindings.uniform1d = (GL_Uniform1d)procAddress("glUniform1d");
+	bindings.uniform1dv = (GL_Uniform1dv)procAddress("glUniform1dv");
+	bindings.uniform1f = (GL_Uniform1f)procAddress("glUniform1f");
+	bindings.uniform1fv = (GL_Uniform1fv)procAddress("glUniform1fv");
+	bindings.uniform1i = (GL_Uniform1i)procAddress("glUniform1i");
+	bindings.uniform1iv = (GL_Uniform1iv)procAddress("glUniform1iv");
+	bindings.uniform1ui = (GL_Uniform1ui)procAddress("glUniform1ui");
+	bindings.uniform1uiv = (GL_Uniform1uiv)procAddress("glUniform1uiv");
+	bindings.uniform2d = (GL_Uniform2d)procAddress("glUniform2d");
+	bindings.uniform2dv = (GL_Uniform2dv)procAddress("glUniform2dv");
+	bindings.uniform2f = (GL_Uniform2f)procAddress("glUniform2f");
+	bindings.uniform2fv = (GL_Uniform2fv)procAddress("glUniform2fv");
+	bindings.uniform2i = (GL_Uniform2i)procAddress("glUniform2i");
+	bindings.uniform2iv = (GL_Uniform2iv)procAddress("glUniform2iv");
+	bindings.uniform2ui = (GL_Uniform2ui)procAddress("glUniform2ui");
+	bindings.uniform2uiv = (GL_Uniform2uiv)procAddress("glUniform2uiv");
+	bindings.uniform3d = (GL_Uniform3d)procAddress("glUniform3d");
+	bindings.uniform3dv = (GL_Uniform3dv)procAddress("glUniform3dv");
+	bindings.uniform3f = (GL_Uniform3f)procAddress("glUniform3f");
+	bindings.uniform3fv = (GL_Uniform3fv)procAddress("glUniform3fv");
+	bindings.uniform3i = (GL_Uniform3i)procAddress("glUniform3i");
+	bindings.uniform3iv = (GL_Uniform3iv)procAddress("glUniform3iv");
+	bindings.uniform3ui = (GL_Uniform3ui)procAddress("glUniform3ui");
+	bindings.uniform3uiv = (GL_Uniform3uiv)procAddress("glUniform3uiv");
+	bindings.uniform4d = (GL_Uniform4d)procAddress("glUniform4d");
+	bindings.uniform4dv = (GL_Uniform4dv)procAddress("glUniform4dv");
+	bindings.uniform4f = (GL_Uniform4f)procAddress("glUniform4f");
+	bindings.uniform4fv = (GL_Uniform4fv)procAddress("glUniform4fv");
+	bindings.uniform4i = (GL_Uniform4i)procAddress("glUniform4i");
+	bindings.uniform4iv = (GL_Uniform4iv)procAddress("glUniform4iv");
+	bindings.uniform4ui = (GL_Uniform4ui)procAddress("glUniform4ui");
+	bindings.uniform4uiv = (GL_Uniform4uiv)procAddress("glUniform4uiv");
+	bindings.uniformBlockBinding = (GL_UniformBlockBinding)procAddress("glUniformBlockBinding");
+	bindings.uniformMatrix2dv = (GL_UniformMatrix2dv)procAddress("glUniformMatrix2dv");
+	bindings.uniformMatrix2fv = (GL_UniformMatrix2fv)procAddress("glUniformMatrix2fv");
+	bindings.uniformMatrix2x3dv = (GL_UniformMatrix2x3dv)procAddress("glUniformMatrix2x3dv");
+	bindings.uniformMatrix2x3fv = (GL_UniformMatrix2x3fv)procAddress("glUniformMatrix2x3fv");
+	bindings.uniformMatrix2x4dv = (GL_UniformMatrix2x4dv)procAddress("glUniformMatrix2x4dv");
+	bindings.uniformMatrix2x4fv = (GL_UniformMatrix2x4fv)procAddress("glUniformMatrix2x4fv");
+	bindings.uniformMatrix3dv = (GL_UniformMatrix3dv)procAddress("glUniformMatrix3dv");
+	bindings.uniformMatrix3fv = (GL_UniformMatrix3fv)procAddress("glUniformMatrix3fv");
+	bindings.uniformMatrix3x2dv = (GL_UniformMatrix3x2dv)procAddress("glUniformMatrix3x2dv");
+	bindings.uniformMatrix3x2fv = (GL_UniformMatrix3x2fv)procAddress("glUniformMatrix3x2fv");
+	bindings.uniformMatrix3x4dv = (GL_UniformMatrix3x4dv)procAddress("glUniformMatrix3x4dv");
+	bindings.uniformMatrix3x4fv = (GL_UniformMatrix3x4fv)procAddress("glUniformMatrix3x4fv");
+	bindings.uniformMatrix4dv = (GL_UniformMatrix4dv)procAddress("glUniformMatrix4dv");
+	bindings.uniformMatrix4fv = (GL_UniformMatrix4fv)procAddress("glUniformMatrix4fv");
+	bindings.uniformMatrix4x2dv = (GL_UniformMatrix4x2dv)procAddress("glUniformMatrix4x2dv");
+	bindings.uniformMatrix4x2fv = (GL_UniformMatrix4x2fv)procAddress("glUniformMatrix4x2fv");
+	bindings.uniformMatrix4x3dv = (GL_UniformMatrix4x3dv)procAddress("glUniformMatrix4x3dv");
+	bindings.uniformMatrix4x3fv = (GL_UniformMatrix4x3fv)procAddress("glUniformMatrix4x3fv");
+	bindings.uniformSubroutinesuiv = (GL_UniformSubroutinesuiv)procAddress("glUniformSubroutinesuiv");
+	bindings.unmapBuffer = (GL_UnmapBuffer)procAddress("glUnmapBuffer");
+	bindings.unmapNamedBuffer = (GL_UnmapNamedBuffer)procAddress("glUnmapNamedBuffer");
+	bindings.useProgram = (GL_UseProgram)procAddress("glUseProgram");
+	bindings.useProgramStages = (GL_UseProgramStages)procAddress("glUseProgramStages");
+	bindings.validateProgram = (GL_ValidateProgram)procAddress("glValidateProgram");
+	bindings.validateProgramPipeline = (GL_ValidateProgramPipeline)procAddress("glValidateProgramPipeline");
+	bindings.vertex2d = (GL_Vertex2d)procAddress("glVertex2d");
+	bindings.vertex2dv = (GL_Vertex2dv)procAddress("glVertex2dv");
+	bindings.vertex2f = (GL_Vertex2f)procAddress("glVertex2f");
+	bindings.vertex2fv = (GL_Vertex2fv)procAddress("glVertex2fv");
+	bindings.vertex2i = (GL_Vertex2i)procAddress("glVertex2i");
+	bindings.vertex2iv = (GL_Vertex2iv)procAddress("glVertex2iv");
+	bindings.vertex2s = (GL_Vertex2s)procAddress("glVertex2s");
+	bindings.vertex2sv = (GL_Vertex2sv)procAddress("glVertex2sv");
+	bindings.vertex3d = (GL_Vertex3d)procAddress("glVertex3d");
+	bindings.vertex3dv = (GL_Vertex3dv)procAddress("glVertex3dv");
+	bindings.vertex3f = (GL_Vertex3f)procAddress("glVertex3f");
+	bindings.vertex3fv = (GL_Vertex3fv)procAddress("glVertex3fv");
+	bindings.vertex3i = (GL_Vertex3i)procAddress("glVertex3i");
+	bindings.vertex3iv = (GL_Vertex3iv)procAddress("glVertex3iv");
+	bindings.vertex3s = (GL_Vertex3s)procAddress("glVertex3s");
+	bindings.vertex3sv = (GL_Vertex3sv)procAddress("glVertex3sv");
+	bindings.vertex4d = (GL_Vertex4d)procAddress("glVertex4d");
+	bindings.vertex4dv = (GL_Vertex4dv)procAddress("glVertex4dv");
+	bindings.vertex4f = (GL_Vertex4f)procAddress("glVertex4f");
+	bindings.vertex4fv = (GL_Vertex4fv)procAddress("glVertex4fv");
+	bindings.vertex4i = (GL_Vertex4i)procAddress("glVertex4i");
+	bindings.vertex4iv = (GL_Vertex4iv)procAddress("glVertex4iv");
+	bindings.vertex4s = (GL_Vertex4s)procAddress("glVertex4s");
+	bindings.vertex4sv = (GL_Vertex4sv)procAddress("glVertex4sv");
+	bindings.vertexArrayAttribBinding = (GL_VertexArrayAttribBinding)procAddress("glVertexArrayAttribBinding");
+	bindings.vertexArrayAttribFormat = (GL_VertexArrayAttribFormat)procAddress("glVertexArrayAttribFormat");
+	bindings.vertexArrayAttribIFormat = (GL_VertexArrayAttribIFormat)procAddress("glVertexArrayAttribIFormat");
+	bindings.vertexArrayAttribLFormat = (GL_VertexArrayAttribLFormat)procAddress("glVertexArrayAttribLFormat");
+	bindings.vertexArrayBindingDivisor = (GL_VertexArrayBindingDivisor)procAddress("glVertexArrayBindingDivisor");
+	bindings.vertexArrayElementBuffer = (GL_VertexArrayElementBuffer)procAddress("glVertexArrayElementBuffer");
+	bindings.vertexArrayVertexBuffer = (GL_VertexArrayVertexBuffer)procAddress("glVertexArrayVertexBuffer");
+	bindings.vertexArrayVertexBuffers = (GL_VertexArrayVertexBuffers)procAddress("glVertexArrayVertexBuffers");
+	bindings.vertexAttrib1d = (GL_VertexAttrib1d)procAddress("glVertexAttrib1d");
+	bindings.vertexAttrib1dv = (GL_VertexAttrib1dv)procAddress("glVertexAttrib1dv");
+	bindings.vertexAttrib1f = (GL_VertexAttrib1f)procAddress("glVertexAttrib1f");
+	bindings.vertexAttrib1fv = (GL_VertexAttrib1fv)procAddress("glVertexAttrib1fv");
+	bindings.vertexAttrib1s = (GL_VertexAttrib1s)procAddress("glVertexAttrib1s");
+	bindings.vertexAttrib1sv = (GL_VertexAttrib1sv)procAddress("glVertexAttrib1sv");
+	bindings.vertexAttrib2d = (GL_VertexAttrib2d)procAddress("glVertexAttrib2d");
+	bindings.vertexAttrib2dv = (GL_VertexAttrib2dv)procAddress("glVertexAttrib2dv");
+	bindings.vertexAttrib2f = (GL_VertexAttrib2f)procAddress("glVertexAttrib2f");
+	bindings.vertexAttrib2fv = (GL_VertexAttrib2fv)procAddress("glVertexAttrib2fv");
+	bindings.vertexAttrib2s = (GL_VertexAttrib2s)procAddress("glVertexAttrib2s");
+	bindings.vertexAttrib2sv = (GL_VertexAttrib2sv)procAddress("glVertexAttrib2sv");
+	bindings.vertexAttrib3d = (GL_VertexAttrib3d)procAddress("glVertexAttrib3d");
+	bindings.vertexAttrib3dv = (GL_VertexAttrib3dv)procAddress("glVertexAttrib3dv");
+	bindings.vertexAttrib3f = (GL_VertexAttrib3f)procAddress("glVertexAttrib3f");
+	bindings.vertexAttrib3fv = (GL_VertexAttrib3fv)procAddress("glVertexAttrib3fv");
+	bindings.vertexAttrib3s = (GL_VertexAttrib3s)procAddress("glVertexAttrib3s");
+	bindings.vertexAttrib3sv = (GL_VertexAttrib3sv)procAddress("glVertexAttrib3sv");
+	bindings.vertexAttrib4Nbv = (GL_VertexAttrib4Nbv)procAddress("glVertexAttrib4Nbv");
+	bindings.vertexAttrib4Niv = (GL_VertexAttrib4Niv)procAddress("glVertexAttrib4Niv");
+	bindings.vertexAttrib4Nsv = (GL_VertexAttrib4Nsv)procAddress("glVertexAttrib4Nsv");
+	bindings.vertexAttrib4Nub = (GL_VertexAttrib4Nub)procAddress("glVertexAttrib4Nub");
+	bindings.vertexAttrib4Nubv = (GL_VertexAttrib4Nubv)procAddress("glVertexAttrib4Nubv");
+	bindings.vertexAttrib4Nuiv = (GL_VertexAttrib4Nuiv)procAddress("glVertexAttrib4Nuiv");
+	bindings.vertexAttrib4Nusv = (GL_VertexAttrib4Nusv)procAddress("glVertexAttrib4Nusv");
+	bindings.vertexAttrib4bv = (GL_VertexAttrib4bv)procAddress("glVertexAttrib4bv");
+	bindings.vertexAttrib4d = (GL_VertexAttrib4d)procAddress("glVertexAttrib4d");
+	bindings.vertexAttrib4dv = (GL_VertexAttrib4dv)procAddress("glVertexAttrib4dv");
+	bindings.vertexAttrib4f = (GL_VertexAttrib4f)procAddress("glVertexAttrib4f");
+	bindings.vertexAttrib4fv = (GL_VertexAttrib4fv)procAddress("glVertexAttrib4fv");
+	bindings.vertexAttrib4iv = (GL_VertexAttrib4iv)procAddress("glVertexAttrib4iv");
+	bindings.vertexAttrib4s = (GL_VertexAttrib4s)procAddress("glVertexAttrib4s");
+	bindings.vertexAttrib4sv = (GL_VertexAttrib4sv)procAddress("glVertexAttrib4sv");
+	bindings.vertexAttrib4ubv = (GL_VertexAttrib4ubv)procAddress("glVertexAttrib4ubv");
+	bindings.vertexAttrib4uiv = (GL_VertexAttrib4uiv)procAddress("glVertexAttrib4uiv");
+	bindings.vertexAttrib4usv = (GL_VertexAttrib4usv)procAddress("glVertexAttrib4usv");
+	bindings.vertexAttribBinding = (GL_VertexAttribBinding)procAddress("glVertexAttribBinding");
+	bindings.vertexAttribDivisor = (GL_VertexAttribDivisor)procAddress("glVertexAttribDivisor");
+	bindings.vertexAttribFormat = (GL_VertexAttribFormat)procAddress("glVertexAttribFormat");
+	bindings.vertexAttribI1i = (GL_VertexAttribI1i)procAddress("glVertexAttribI1i");
+	bindings.vertexAttribI1iv = (GL_VertexAttribI1iv)procAddress("glVertexAttribI1iv");
+	bindings.vertexAttribI1ui = (GL_VertexAttribI1ui)procAddress("glVertexAttribI1ui");
+	bindings.vertexAttribI1uiv = (GL_VertexAttribI1uiv)procAddress("glVertexAttribI1uiv");
+	bindings.vertexAttribI2i = (GL_VertexAttribI2i)procAddress("glVertexAttribI2i");
+	bindings.vertexAttribI2iv = (GL_VertexAttribI2iv)procAddress("glVertexAttribI2iv");
+	bindings.vertexAttribI2ui = (GL_VertexAttribI2ui)procAddress("glVertexAttribI2ui");
+	bindings.vertexAttribI2uiv = (GL_VertexAttribI2uiv)procAddress("glVertexAttribI2uiv");
+	bindings.vertexAttribI3i = (GL_VertexAttribI3i)procAddress("glVertexAttribI3i");
+	bindings.vertexAttribI3iv = (GL_VertexAttribI3iv)procAddress("glVertexAttribI3iv");
+	bindings.vertexAttribI3ui = (GL_VertexAttribI3ui)procAddress("glVertexAttribI3ui");
+	bindings.vertexAttribI3uiv = (GL_VertexAttribI3uiv)procAddress("glVertexAttribI3uiv");
+	bindings.vertexAttribI4bv = (GL_VertexAttribI4bv)procAddress("glVertexAttribI4bv");
+	bindings.vertexAttribI4i = (GL_VertexAttribI4i)procAddress("glVertexAttribI4i");
+	bindings.vertexAttribI4iv = (GL_VertexAttribI4iv)procAddress("glVertexAttribI4iv");
+	bindings.vertexAttribI4sv = (GL_VertexAttribI4sv)procAddress("glVertexAttribI4sv");
+	bindings.vertexAttribI4ubv = (GL_VertexAttribI4ubv)procAddress("glVertexAttribI4ubv");
+	bindings.vertexAttribI4ui = (GL_VertexAttribI4ui)procAddress("glVertexAttribI4ui");
+	bindings.vertexAttribI4uiv = (GL_VertexAttribI4uiv)procAddress("glVertexAttribI4uiv");
+	bindings.vertexAttribI4usv = (GL_VertexAttribI4usv)procAddress("glVertexAttribI4usv");
+	bindings.vertexAttribIFormat = (GL_VertexAttribIFormat)procAddress("glVertexAttribIFormat");
+	bindings.vertexAttribIPointer = (GL_VertexAttribIPointer)procAddress("glVertexAttribIPointer");
+	bindings.vertexAttribL1d = (GL_VertexAttribL1d)procAddress("glVertexAttribL1d");
+	bindings.vertexAttribL1dv = (GL_VertexAttribL1dv)procAddress("glVertexAttribL1dv");
+	bindings.vertexAttribL2d = (GL_VertexAttribL2d)procAddress("glVertexAttribL2d");
+	bindings.vertexAttribL2dv = (GL_VertexAttribL2dv)procAddress("glVertexAttribL2dv");
+	bindings.vertexAttribL3d = (GL_VertexAttribL3d)procAddress("glVertexAttribL3d");
+	bindings.vertexAttribL3dv = (GL_VertexAttribL3dv)procAddress("glVertexAttribL3dv");
+	bindings.vertexAttribL4d = (GL_VertexAttribL4d)procAddress("glVertexAttribL4d");
+	bindings.vertexAttribL4dv = (GL_VertexAttribL4dv)procAddress("glVertexAttribL4dv");
+	bindings.vertexAttribLFormat = (GL_VertexAttribLFormat)procAddress("glVertexAttribLFormat");
+	bindings.vertexAttribLPointer = (GL_VertexAttribLPointer)procAddress("glVertexAttribLPointer");
+	bindings.vertexAttribP1ui = (GL_VertexAttribP1ui)procAddress("glVertexAttribP1ui");
+	bindings.vertexAttribP1uiv = (GL_VertexAttribP1uiv)procAddress("glVertexAttribP1uiv");
+	bindings.vertexAttribP2ui = (GL_VertexAttribP2ui)procAddress("glVertexAttribP2ui");
+	bindings.vertexAttribP2uiv = (GL_VertexAttribP2uiv)procAddress("glVertexAttribP2uiv");
+	bindings.vertexAttribP3ui = (GL_VertexAttribP3ui)procAddress("glVertexAttribP3ui");
+	bindings.vertexAttribP3uiv = (GL_VertexAttribP3uiv)procAddress("glVertexAttribP3uiv");
+	bindings.vertexAttribP4ui = (GL_VertexAttribP4ui)procAddress("glVertexAttribP4ui");
+	bindings.vertexAttribP4uiv = (GL_VertexAttribP4uiv)procAddress("glVertexAttribP4uiv");
+	bindings.vertexAttribPointer = (GL_VertexAttribPointer)procAddress("glVertexAttribPointer");
+	bindings.vertexBindingDivisor = (GL_VertexBindingDivisor)procAddress("glVertexBindingDivisor");
+	bindings.vertexP2ui = (GL_VertexP2ui)procAddress("glVertexP2ui");
+	bindings.vertexP2uiv = (GL_VertexP2uiv)procAddress("glVertexP2uiv");
+	bindings.vertexP3ui = (GL_VertexP3ui)procAddress("glVertexP3ui");
+	bindings.vertexP3uiv = (GL_VertexP3uiv)procAddress("glVertexP3uiv");
+	bindings.vertexP4ui = (GL_VertexP4ui)procAddress("glVertexP4ui");
+	bindings.vertexP4uiv = (GL_VertexP4uiv)procAddress("glVertexP4uiv");
+	bindings.vertexPointer = (GL_VertexPointer)procAddress("glVertexPointer");
+	bindings.viewport = (GL_Viewport)procAddress("glViewport");
+	bindings.viewportArrayv = (GL_ViewportArrayv)procAddress("glViewportArrayv");
+	bindings.viewportIndexedf = (GL_ViewportIndexedf)procAddress("glViewportIndexedf");
+	bindings.viewportIndexedfv = (GL_ViewportIndexedfv)procAddress("glViewportIndexedfv");
+	bindings.waitSync = (GL_WaitSync)procAddress("glWaitSync");
+	bindings.windowPos2d = (GL_WindowPos2d)procAddress("glWindowPos2d");
+	bindings.windowPos2dv = (GL_WindowPos2dv)procAddress("glWindowPos2dv");
+	bindings.windowPos2f = (GL_WindowPos2f)procAddress("glWindowPos2f");
+	bindings.windowPos2fv = (GL_WindowPos2fv)procAddress("glWindowPos2fv");
+	bindings.windowPos2i = (GL_WindowPos2i)procAddress("glWindowPos2i");
+	bindings.windowPos2iv = (GL_WindowPos2iv)procAddress("glWindowPos2iv");
+	bindings.windowPos2s = (GL_WindowPos2s)procAddress("glWindowPos2s");
+	bindings.windowPos2sv = (GL_WindowPos2sv)procAddress("glWindowPos2sv");
+	bindings.windowPos3d = (GL_WindowPos3d)procAddress("glWindowPos3d");
+	bindings.windowPos3dv = (GL_WindowPos3dv)procAddress("glWindowPos3dv");
+	bindings.windowPos3f = (GL_WindowPos3f)procAddress("glWindowPos3f");
+	bindings.windowPos3fv = (GL_WindowPos3fv)procAddress("glWindowPos3fv");
+	bindings.windowPos3i = (GL_WindowPos3i)procAddress("glWindowPos3i");
+	bindings.windowPos3iv = (GL_WindowPos3iv)procAddress("glWindowPos3iv");
+	bindings.windowPos3s = (GL_WindowPos3s)procAddress("glWindowPos3s");
+	bindings.windowPos3sv = (GL_WindowPos3sv)procAddress("glWindowPos3sv");
+}
+
+
+fn void accum(GLenum op, GLfloat value) => bindings.accum(op,value);
+fn void activeShaderProgram(GLuint pipeline, GLuint program) => bindings.activeShaderProgram(pipeline,program);
+fn void alphaFunc(GLenum func_param, GLfloat ref) => bindings.alphaFunc(func_param,ref);
+fn GLboolean areTexturesResident(GLsizei n, GLuint *textures, GLboolean *residences) => bindings.areTexturesResident(n,textures,residences);
+fn void arrayElement(GLint i) => bindings.arrayElement(i);
+fn void attachShader(GLuint program, GLuint shader) => bindings.attachShader(program,shader);
+fn void begin(GLenum mode) => bindings.begin(mode);
+fn void beginConditionalRender(GLuint id, GLenum mode) => bindings.beginConditionalRender(id,mode);
+fn void beginQuery(GLenum target, GLuint id) => bindings.beginQuery(target,id);
+fn void beginQueryIndexed(GLenum target, GLuint index, GLuint id) => bindings.beginQueryIndexed(target,index,id);
+fn void beginTransformFeedback(GLenum primitiveMode) => bindings.beginTransformFeedback(primitiveMode);
+fn void bindAttribLocation(GLuint program, GLuint index, GLchar *name) => bindings.bindAttribLocation(program,index,name);
+fn void bindBuffer(GLenum target, GLuint buffer) => bindings.bindBuffer(target,buffer);
+fn void bindBufferBase(GLenum target, GLuint index, GLuint buffer) => bindings.bindBufferBase(target,index,buffer);
+fn void bindBufferRange(GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size) => bindings.bindBufferRange(target,index,buffer,offset,size);
+fn void bindBuffersBase(GLenum target, GLuint first, GLsizei count, GLuint *buffers) => bindings.bindBuffersBase(target,first,count,buffers);
+fn void bindBuffersRange(GLenum target, GLuint first, GLsizei count, GLuint *buffers, GLintptr *offsets, GLsizeiptr *sizes) => bindings.bindBuffersRange(target,first,count,buffers,offsets,sizes);
+fn void bindFragDataLocation(GLuint program, GLuint color, GLchar *name) => bindings.bindFragDataLocation(program,color,name);
+fn void bindFragDataLocationIndexed(GLuint program, GLuint colorNumber, GLuint index, GLchar *name) => bindings.bindFragDataLocationIndexed(program,colorNumber,index,name);
+fn void bindFramebuffer(GLenum target, GLuint framebuffer) => bindings.bindFramebuffer(target,framebuffer);
+fn void bindImageTexture(GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format) => bindings.bindImageTexture(unit,texture,level,layered,layer,access,format);
+fn void bindImageTextures(GLuint first, GLsizei count, GLuint *textures) => bindings.bindImageTextures(first,count,textures);
+fn void bindProgramPipeline(GLuint pipeline) => bindings.bindProgramPipeline(pipeline);
+fn void bindRenderbuffer(GLenum target, GLuint renderbuffer) => bindings.bindRenderbuffer(target,renderbuffer);
+fn void bindSampler(GLuint unit, GLuint sampler) => bindings.bindSampler(unit,sampler);
+fn void bindSamplers(GLuint first, GLsizei count, GLuint *samplers) => bindings.bindSamplers(first,count,samplers);
+fn void bindTexture(GLenum target, GLuint texture) => bindings.bindTexture(target,texture);
+fn void bindTextureUnit(GLuint unit, GLuint texture) => bindings.bindTextureUnit(unit,texture);
+fn void bindTextures(GLuint first, GLsizei count, GLuint *textures) => bindings.bindTextures(first,count,textures);
+fn void bindTransformFeedback(GLenum target, GLuint id) => bindings.bindTransformFeedback(target,id);
+fn void bindVertexArray(GLuint array) => bindings.bindVertexArray(array);
+fn void bindVertexBuffer(GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride) => bindings.bindVertexBuffer(bindingindex,buffer,offset,stride);
+fn void bindVertexBuffers(GLuint first, GLsizei count, GLuint *buffers, GLintptr *offsets, GLsizei *strides) => bindings.bindVertexBuffers(first,count,buffers,offsets,strides);
+fn void bitmap(GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, GLubyte *bitmap) => bindings.bitmap(width,height,xorig,yorig,xmove,ymove,bitmap);
+fn void blendEquationSeparate(GLenum modeRGB, GLenum modeAlpha) => bindings.blendEquationSeparate(modeRGB,modeAlpha);
+fn void blendEquationSeparatei(GLuint buf, GLenum modeRGB, GLenum modeAlpha) => bindings.blendEquationSeparatei(buf,modeRGB,modeAlpha);
+fn void blendEquationi(GLuint buf, GLenum mode) => bindings.blendEquationi(buf,mode);
+fn void blendFunc(GLenum sfactor, GLenum dfactor) => bindings.blendFunc(sfactor,dfactor);
+fn void blendFuncSeparatei(GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha) => bindings.blendFuncSeparatei(buf,srcRGB,dstRGB,srcAlpha,dstAlpha);
+fn void blendFunci(GLuint buf, GLenum src, GLenum dst) => bindings.blendFunci(buf,src,dst);
+fn void blitFramebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter) => bindings.blitFramebuffer(srcX0,srcY0,srcX1,srcY1,dstX0,dstY0,dstX1,dstY1,mask,filter);
+fn void blitNamedFramebuffer(GLuint readFramebuffer, GLuint drawFramebuffer, GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter) => bindings.blitNamedFramebuffer(readFramebuffer,drawFramebuffer,srcX0,srcY0,srcX1,srcY1,dstX0,dstY0,dstX1,dstY1,mask,filter);
+fn void bufferData(GLenum target, GLsizeiptr size, void *data, GLenum usage) => bindings.bufferData(target,size,data,usage);
+fn void bufferStorage(GLenum target, GLsizeiptr size, void *data, GLbitfield flags) => bindings.bufferStorage(target,size,data,flags);
+fn void bufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, void *data) => bindings.bufferSubData(target,offset,size,data);
+fn void callList(GLuint list) => bindings.callList(list);
+fn void callLists(GLsizei n, GLenum value_type, void *lists) => bindings.callLists(n,value_type,lists);
+fn GLenum checkFramebufferStatus(GLenum target) => bindings.checkFramebufferStatus(target);
+fn GLenum checkNamedFramebufferStatus(GLuint framebuffer, GLenum target) => bindings.checkNamedFramebufferStatus(framebuffer,target);
+fn void clampColor(GLenum target, GLenum clamp) => bindings.clampColor(target,clamp);
+fn void clear(GLbitfield mask) => bindings.clear(mask);
+fn void clearAccum(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) => bindings.clearAccum(red,green,blue,alpha);
+fn void clearBufferData(GLenum target, GLenum internalformat, GLenum format, GLenum value_type, void *data) => bindings.clearBufferData(target,internalformat,format,value_type,data);
+fn void clearBufferSubData(GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type, void *data) => bindings.clearBufferSubData(target,internalformat,offset,size,format,value_type,data);
+fn void clearBufferfi(GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil) => bindings.clearBufferfi(buffer,drawbuffer,depth,stencil);
+fn void clearBufferfv(GLenum buffer, GLint drawbuffer, GLfloat *value) => bindings.clearBufferfv(buffer,drawbuffer,value);
+fn void clearBufferiv(GLenum buffer, GLint drawbuffer, GLint *value) => bindings.clearBufferiv(buffer,drawbuffer,value);
+fn void clearBufferuiv(GLenum buffer, GLint drawbuffer, GLuint *value) => bindings.clearBufferuiv(buffer,drawbuffer,value);
+fn void clearColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) => bindings.clearColor(red,green,blue,alpha);
+fn void clearDepth(GLdouble depth) => bindings.clearDepth(depth);
+fn void clearDepthf(GLfloat d) => bindings.clearDepthf(d);
+fn void clearIndex(GLfloat c) => bindings.clearIndex(c);
+fn void clearNamedBufferData(GLuint buffer, GLenum internalformat, GLenum format, GLenum value_type, void *data) => bindings.clearNamedBufferData(buffer,internalformat,format,value_type,data);
+fn void clearNamedBufferSubData(GLuint buffer, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum value_type, void *data) => bindings.clearNamedBufferSubData(buffer,internalformat,offset,size,format,value_type,data);
+fn void clearNamedFramebufferfi(GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil) => bindings.clearNamedFramebufferfi(framebuffer,buffer,drawbuffer,depth,stencil);
+fn void clearNamedFramebufferfv(GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLfloat *value) => bindings.clearNamedFramebufferfv(framebuffer,buffer,drawbuffer,value);
+fn void clearNamedFramebufferiv(GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLint *value) => bindings.clearNamedFramebufferiv(framebuffer,buffer,drawbuffer,value);
+fn void clearNamedFramebufferuiv(GLuint framebuffer, GLenum buffer, GLint drawbuffer, GLuint *value) => bindings.clearNamedFramebufferuiv(framebuffer,buffer,drawbuffer,value);
+fn void clearStencil(GLint s) => bindings.clearStencil(s);
+fn void clearTexImage(GLuint texture, GLint level, GLenum format, GLenum value_type, void *data) => bindings.clearTexImage(texture,level,format,value_type,data);
+fn void clearTexSubImage(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, void *data) => bindings.clearTexSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,value_type,data);
+fn void clientActiveTexture(GLenum texture) => bindings.clientActiveTexture(texture);
+fn GLenum clientWaitSync(GLsync sync, GLbitfield flags, GLuint64 timeout) => bindings.clientWaitSync(sync,flags,timeout);
+fn void clipControl(GLenum origin, GLenum depth) => bindings.clipControl(origin,depth);
+fn void clipPlane(GLenum plane, GLdouble *equation) => bindings.clipPlane(plane,equation);
+fn void color3b(GLbyte red, GLbyte green, GLbyte blue) => bindings.color3b(red,green,blue);
+fn void color3bv(GLbyte *v) => bindings.color3bv(v);
+fn void color3d(GLdouble red, GLdouble green, GLdouble blue) => bindings.color3d(red,green,blue);
+fn void color3dv(GLdouble *v) => bindings.color3dv(v);
+fn void color3f(GLfloat red, GLfloat green, GLfloat blue) => bindings.color3f(red,green,blue);
+fn void color3fv(GLfloat *v) => bindings.color3fv(v);
+fn void color3i(GLint red, GLint green, GLint blue) => bindings.color3i(red,green,blue);
+fn void color3iv(GLint *v) => bindings.color3iv(v);
+fn void color3s(GLshort red, GLshort green, GLshort blue) => bindings.color3s(red,green,blue);
+fn void color3sv(GLshort *v) => bindings.color3sv(v);
+fn void color3ub(GLubyte red, GLubyte green, GLubyte blue) => bindings.color3ub(red,green,blue);
+fn void color3ubv(GLubyte *v) => bindings.color3ubv(v);
+fn void color3ui(GLuint red, GLuint green, GLuint blue) => bindings.color3ui(red,green,blue);
+fn void color3uiv(GLuint *v) => bindings.color3uiv(v);
+fn void color3us(GLushort red, GLushort green, GLushort blue) => bindings.color3us(red,green,blue);
+fn void color3usv(GLushort *v) => bindings.color3usv(v);
+fn void color4b(GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha) => bindings.color4b(red,green,blue,alpha);
+fn void color4bv(GLbyte *v) => bindings.color4bv(v);
+fn void color4d(GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha) => bindings.color4d(red,green,blue,alpha);
+fn void color4dv(GLdouble *v) => bindings.color4dv(v);
+fn void color4f(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) => bindings.color4f(red,green,blue,alpha);
+fn void color4fv(GLfloat *v) => bindings.color4fv(v);
+fn void color4i(GLint red, GLint green, GLint blue, GLint alpha) => bindings.color4i(red,green,blue,alpha);
+fn void color4iv(GLint *v) => bindings.color4iv(v);
+fn void color4s(GLshort red, GLshort green, GLshort blue, GLshort alpha) => bindings.color4s(red,green,blue,alpha);
+fn void color4sv(GLshort *v) => bindings.color4sv(v);
+fn void color4ub(GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha) => bindings.color4ub(red,green,blue,alpha);
+fn void color4ubv(GLubyte *v) => bindings.color4ubv(v);
+fn void color4ui(GLuint red, GLuint green, GLuint blue, GLuint alpha) => bindings.color4ui(red,green,blue,alpha);
+fn void color4uiv(GLuint *v) => bindings.color4uiv(v);
+fn void color4us(GLushort red, GLushort green, GLushort blue, GLushort alpha) => bindings.color4us(red,green,blue,alpha);
+fn void color4usv(GLushort *v) => bindings.color4usv(v);
+fn void colorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) => bindings.colorMask(red,green,blue,alpha);
+fn void colorMaski(GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a) => bindings.colorMaski(index,r,g,b,a);
+fn void colorMaterial(GLenum face, GLenum mode) => bindings.colorMaterial(face,mode);
+fn void colorP3ui(GLenum value_type, GLuint color) => bindings.colorP3ui(value_type,color);
+fn void colorP3uiv(GLenum value_type, GLuint *color) => bindings.colorP3uiv(value_type,color);
+fn void colorP4ui(GLenum value_type, GLuint color) => bindings.colorP4ui(value_type,color);
+fn void colorP4uiv(GLenum value_type, GLuint *color) => bindings.colorP4uiv(value_type,color);
+fn void colorPointer(GLint size, GLenum value_type, GLsizei stride, void *pointer) => bindings.colorPointer(size,value_type,stride,pointer);
+fn void compileShader(GLuint shader) => bindings.compileShader(shader);
+fn void compressedTextureSubImage1D(GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, void *data) => bindings.compressedTextureSubImage1D(texture,level,xoffset,width,format,imageSize,data);
+fn void compressedTextureSubImage2D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, void *data) => bindings.compressedTextureSubImage2D(texture,level,xoffset,yoffset,width,height,format,imageSize,data);
+fn void compressedTextureSubImage3D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, void *data) => bindings.compressedTextureSubImage3D(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,imageSize,data);
+fn void copyBufferSubData(GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) => bindings.copyBufferSubData(readTarget,writeTarget,readOffset,writeOffset,size);
+fn void copyImageSubData(GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth) => bindings.copyImageSubData(srcName,srcTarget,srcLevel,srcX,srcY,srcZ,dstName,dstTarget,dstLevel,dstX,dstY,dstZ,srcWidth,srcHeight,srcDepth);
+fn void copyNamedBufferSubData(GLuint readBuffer, GLuint writeBuffer, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) => bindings.copyNamedBufferSubData(readBuffer,writeBuffer,readOffset,writeOffset,size);
+fn void copyPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum value_type) => bindings.copyPixels(x, y,width,height,value_type);
+fn void copyTexImage1D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border) => bindings.copyTexImage1D(target,level,internalformat,x, y,width,border);
+fn void copyTexImage2D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border) => bindings.copyTexImage2D(target,level,internalformat,x, y,width,height,border);
+fn void copyTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) => bindings.copyTexSubImage1D(target,level,xoffset,x, y,width);
+fn void copyTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) => bindings.copyTexSubImage2D(target,level,xoffset,yoffset,x, y,width,height);
+fn void copyTextureSubImage1D(GLuint texture, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) => bindings.copyTextureSubImage1D(texture,level,xoffset,x, y,width);
+fn void copyTextureSubImage2D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) => bindings.copyTextureSubImage2D(texture,level,xoffset,yoffset,x, y,width,height);
+fn void copyTextureSubImage3D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height) => bindings.copyTextureSubImage3D(texture,level,xoffset,yoffset,zoffset,x, y,width,height);
+fn void createBuffers(GLsizei n, GLuint *buffers) => bindings.createBuffers(n,buffers);
+fn void createFramebuffers(GLsizei n, GLuint *framebuffers) => bindings.createFramebuffers(n,framebuffers);
+fn GLuint createProgram() => bindings.createProgram();
+fn void createProgramPipelines(GLsizei n, GLuint *pipelines) => bindings.createProgramPipelines(n,pipelines);
+fn void createQueries(GLenum target, GLsizei n, GLuint *ids) => bindings.createQueries(target,n,ids);
+fn void createRenderbuffers(GLsizei n, GLuint *renderbuffers) => bindings.createRenderbuffers(n,renderbuffers);
+fn void createSamplers(GLsizei n, GLuint *samplers) => bindings.createSamplers(n,samplers);
+fn GLuint createShader(GLenum value_type) => bindings.createShader(value_type);
+fn GLuint createShaderProgramv(GLenum value_type, GLsizei count, GLchar **strings) => bindings.createShaderProgramv(value_type,count,strings);
+fn void createTextures(GLenum target, GLsizei n, GLuint *textures) => bindings.createTextures(target,n,textures);
+fn void createTransformFeedbacks(GLsizei n, GLuint *ids) => bindings.createTransformFeedbacks(n,ids);
+fn void createVertexArrays(GLsizei n, GLuint *arrays) => bindings.createVertexArrays(n,arrays);
+fn void cullFace(GLenum mode) => bindings.cullFace(mode);
+fn void debugMessageCallback(GLdebugproc callback, void *userParam) => bindings.debugMessageCallback(callback,userParam);
+fn void debugMessageControl(GLenum source, GLenum value_type, GLenum severity, GLsizei count, GLuint *ids, GLboolean enabled) => bindings.debugMessageControl(source,value_type,severity,count,ids,enabled);
+fn void debugMessageInsert(GLenum source, GLenum value_type, GLuint id, GLenum severity, GLsizei length, GLchar *buf) => bindings.debugMessageInsert(source,value_type,id,severity,length,buf);
+fn void deleteBuffers(GLsizei n, GLuint *buffers) => bindings.deleteBuffers(n,buffers);
+fn void deleteFramebuffers(GLsizei n, GLuint *framebuffers) => bindings.deleteFramebuffers(n,framebuffers);
+fn void deleteLists(GLuint list, GLsizei range) => bindings.deleteLists(list,range);
+fn void deleteProgram(GLuint program) => bindings.deleteProgram(program);
+fn void deleteProgramPipelines(GLsizei n, GLuint *pipelines) => bindings.deleteProgramPipelines(n,pipelines);
+fn void deleteQueries(GLsizei n, GLuint *ids) => bindings.deleteQueries(n,ids);
+fn void deleteRenderbuffers(GLsizei n, GLuint *renderbuffers) => bindings.deleteRenderbuffers(n,renderbuffers);
+fn void deleteSamplers(GLsizei count, GLuint *samplers) => bindings.deleteSamplers(count,samplers);
+fn void deleteShader(GLuint shader) => bindings.deleteShader(shader);
+fn void deleteSync(GLsync sync) => bindings.deleteSync(sync);
+fn void deleteTextures(GLsizei n, GLuint *textures) => bindings.deleteTextures(n,textures);
+fn void deleteTransformFeedbacks(GLsizei n, GLuint *ids) => bindings.deleteTransformFeedbacks(n,ids);
+fn void deleteVertexArrays(GLsizei n, GLuint *arrays) => bindings.deleteVertexArrays(n,arrays);
+fn void depthFunc(GLenum func_param) => bindings.depthFunc(func_param);
+fn void depthMask(GLboolean flag) => bindings.depthMask(flag);
+fn void depthRange(GLdouble n, GLdouble f) => bindings.depthRange(n,f);
+fn void depthRangeArrayv(GLuint first, GLsizei count, GLdouble *v) => bindings.depthRangeArrayv(first,count,v);
+fn void depthRangeIndexed(GLuint index, GLdouble n, GLdouble f) => bindings.depthRangeIndexed(index,n,f);
+fn void depthRangef(GLfloat n, GLfloat f) => bindings.depthRangef(n,f);
+fn void detachShader(GLuint program, GLuint shader) => bindings.detachShader(program,shader);
+fn void disable(GLenum cap) => bindings.disable(cap);
+fn void disableClientState(GLenum array) => bindings.disableClientState(array);
+fn void disableVertexArrayAttrib(GLuint vaobj, GLuint index) => bindings.disableVertexArrayAttrib(vaobj,index);
+fn void disableVertexAttribArray(GLuint index) => bindings.disableVertexAttribArray(index);
+fn void disablei(GLenum target, GLuint index) => bindings.disablei(target,index);
+fn void dispatchCompute(GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z) => bindings.dispatchCompute(num_groups_x,num_groups_y,num_groups_z);
+fn void dispatchComputeIndirect(GLintptr indirect) => bindings.dispatchComputeIndirect(indirect);
+fn void drawArrays(GLenum mode, GLint first, GLsizei count) => bindings.drawArrays(mode,first,count);
+fn void drawArraysIndirect(GLenum mode, void *indirect) => bindings.drawArraysIndirect(mode,indirect);
+fn void drawArraysInstanced(GLenum mode, GLint first, GLsizei count, GLsizei instancecount) => bindings.drawArraysInstanced(mode,first,count,instancecount);
+fn void drawArraysInstancedBaseInstance(GLenum mode, GLint first, GLsizei count, GLsizei instancecount, GLuint baseinstance) => bindings.drawArraysInstancedBaseInstance(mode,first,count,instancecount,baseinstance);
+fn void drawBuffer(GLenum buf) => bindings.drawBuffer(buf);
+fn void drawBuffers(GLsizei n, GLenum *bufs) => bindings.drawBuffers(n,bufs);
+fn void drawElements(GLenum mode, GLsizei count, GLenum value_type, void *indices) => bindings.drawElements(mode,count,value_type,indices);
+fn void drawElementsBaseVertex(GLenum mode, GLsizei count, GLenum value_type, void *indices, GLint basevertex) => bindings.drawElementsBaseVertex(mode,count,value_type,indices,basevertex);
+fn void drawElementsIndirect(GLenum mode, GLenum value_type, void *indirect) => bindings.drawElementsIndirect(mode,value_type,indirect);
+fn void drawElementsInstanced(GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount) => bindings.drawElementsInstanced(mode,count,value_type,indices,instancecount);
+fn void drawElementsInstancedBaseInstance(GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount, GLuint baseinstance) => bindings.drawElementsInstancedBaseInstance(mode,count,value_type,indices,instancecount,baseinstance);
+fn void drawElementsInstancedBaseVertex(GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount, GLint basevertex) => bindings.drawElementsInstancedBaseVertex(mode,count,value_type,indices,instancecount,basevertex);
+fn void drawElementsInstancedBaseVertexBaseInstance(GLenum mode, GLsizei count, GLenum value_type, void *indices, GLsizei instancecount, GLint basevertex, GLuint baseinstance) => bindings.drawElementsInstancedBaseVertexBaseInstance(mode,count,value_type,indices,instancecount,basevertex,baseinstance);
+fn void drawPixels(GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels) => bindings.drawPixels(width,height,format,value_type,pixels);
+fn void drawRangeElementsBaseVertex(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum value_type, void *indices, GLint basevertex) => bindings.drawRangeElementsBaseVertex(mode,start,end,count,value_type,indices,basevertex);
+fn void drawTransformFeedback(GLenum mode, GLuint id) => bindings.drawTransformFeedback(mode,id);
+fn void drawTransformFeedbackInstanced(GLenum mode, GLuint id, GLsizei instancecount) => bindings.drawTransformFeedbackInstanced(mode,id,instancecount);
+fn void drawTransformFeedbackStream(GLenum mode, GLuint id, GLuint stream) => bindings.drawTransformFeedbackStream(mode,id,stream);
+fn void drawTransformFeedbackStreamInstanced(GLenum mode, GLuint id, GLuint stream, GLsizei instancecount) => bindings.drawTransformFeedbackStreamInstanced(mode,id,stream,instancecount);
+fn void edgeFlag(GLboolean flag) => bindings.edgeFlag(flag);
+fn void edgeFlagPointer(GLsizei stride, void *pointer) => bindings.edgeFlagPointer(stride,pointer);
+fn void edgeFlagv(GLboolean *flag) => bindings.edgeFlagv(flag);
+fn void enable(GLenum cap) => bindings.enable(cap);
+fn void enableClientState(GLenum array) => bindings.enableClientState(array);
+fn void enableVertexArrayAttrib(GLuint vaobj, GLuint index) => bindings.enableVertexArrayAttrib(vaobj,index);
+fn void enableVertexAttribArray(GLuint index) => bindings.enableVertexAttribArray(index);
+fn void enablei(GLenum target, GLuint index) => bindings.enablei(target,index);
+fn void end() => bindings.end();
+fn void endConditionalRender() => bindings.endConditionalRender();
+fn void endList() => bindings.endList();
+fn void endQuery(GLenum target) => bindings.endQuery(target);
+fn void endQueryIndexed(GLenum target, GLuint index) => bindings.endQueryIndexed(target,index);
+fn void endTransformFeedback() => bindings.endTransformFeedback();
+fn void evalCoord1d(GLdouble u) => bindings.evalCoord1d(u);
+fn void evalCoord1dv(GLdouble *u) => bindings.evalCoord1dv(u);
+fn void evalCoord1f(GLfloat u) => bindings.evalCoord1f(u);
+fn void evalCoord1fv(GLfloat *u) => bindings.evalCoord1fv(u);
+fn void evalCoord2d(GLdouble u, GLdouble v) => bindings.evalCoord2d(u,v);
+fn void evalCoord2dv(GLdouble *u) => bindings.evalCoord2dv(u);
+fn void evalCoord2f(GLfloat u, GLfloat v) => bindings.evalCoord2f(u,v);
+fn void evalCoord2fv(GLfloat *u) => bindings.evalCoord2fv(u);
+fn void evalMesh1(GLenum mode, GLint i1, GLint i2) => bindings.evalMesh1(mode,i1,i2);
+fn void evalMesh2(GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2) => bindings.evalMesh2(mode,i1,i2,j1,j2);
+fn void evalPoint1(GLint i) => bindings.evalPoint1(i);
+fn void evalPoint2(GLint i, GLint j) => bindings.evalPoint2(i,j);
+fn void feedbackBuffer(GLsizei size, GLenum value_type, GLfloat *buffer) => bindings.feedbackBuffer(size,value_type,buffer);
+fn GLsync fenceSync(GLenum condition, GLbitfield flags) => bindings.fenceSync(condition,flags);
+fn void finish() => bindings.finish();
+fn void flush() => bindings.flush();
+fn void flushMappedBufferRange(GLenum target, GLintptr offset, GLsizeiptr length) => bindings.flushMappedBufferRange(target,offset,length);
+fn void flushMappedNamedBufferRange(GLuint buffer, GLintptr offset, GLsizeiptr length) => bindings.flushMappedNamedBufferRange(buffer,offset,length);
+fn void fogCoordPointer(GLenum value_type, GLsizei stride, void *pointer) => bindings.fogCoordPointer(value_type,stride,pointer);
+fn void fogCoordd(GLdouble coord) => bindings.fogCoordd(coord);
+fn void fogCoorddv(GLdouble *coord) => bindings.fogCoorddv(coord);
+fn void fogCoordf(GLfloat coord) => bindings.fogCoordf(coord);
+fn void fogCoordfv(GLfloat *coord) => bindings.fogCoordfv(coord);
+fn void fogf(GLenum pname, GLfloat param) => bindings.fogf(pname,param);
+fn void fogfv(GLenum pname, GLfloat *params) => bindings.fogfv(pname,params);
+fn void fogi(GLenum pname, GLint param) => bindings.fogi(pname,param);
+fn void fogiv(GLenum pname, GLint *params) => bindings.fogiv(pname,params);
+fn void framebufferParameteri(GLenum target, GLenum pname, GLint param) => bindings.framebufferParameteri(target,pname,param);
+fn void framebufferRenderbuffer(GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer) => bindings.framebufferRenderbuffer(target,attachment,renderbuffertarget,renderbuffer);
+fn void framebufferTexture(GLenum target, GLenum attachment, GLuint texture, GLint level) => bindings.framebufferTexture(target,attachment,texture,level);
+fn void framebufferTexture1D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) => bindings.framebufferTexture1D(target,attachment,textarget,texture,level);
+fn void framebufferTexture2D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) => bindings.framebufferTexture2D(target,attachment,textarget,texture,level);
+fn void framebufferTexture3D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset) => bindings.framebufferTexture3D(target,attachment,textarget,texture,level,zoffset);
+fn void framebufferTextureLayer(GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer) => bindings.framebufferTextureLayer(target,attachment,texture,level,layer);
+fn void frontFace(GLenum mode) => bindings.frontFace(mode);
+fn void frustum(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar) => bindings.frustum(left,right,bottom,top,zNear,zFar);
+fn void genBuffers(GLsizei n, GLuint *buffers) => bindings.genBuffers(n,buffers);
+fn void genFramebuffers(GLsizei n, GLuint *framebuffers) => bindings.genFramebuffers(n,framebuffers);
+fn GLuint genLists(GLsizei range) => bindings.genLists(range);
+fn void genProgramPipelines(GLsizei n, GLuint *pipelines) => bindings.genProgramPipelines(n,pipelines);
+fn void genQueries(GLsizei n, GLuint *ids) => bindings.genQueries(n,ids);
+fn void genRenderbuffers(GLsizei n, GLuint *renderbuffers) => bindings.genRenderbuffers(n,renderbuffers);
+fn void genSamplers(GLsizei count, GLuint *samplers) => bindings.genSamplers(count,samplers);
+fn void genTextures(GLsizei n, GLuint *textures) => bindings.genTextures(n,textures);
+fn void genTransformFeedbacks(GLsizei n, GLuint *ids) => bindings.genTransformFeedbacks(n,ids);
+fn void genVertexArrays(GLsizei n, GLuint *arrays) => bindings.genVertexArrays(n,arrays);
+fn void generateMipmap(GLenum target) => bindings.generateMipmap(target);
+fn void generateTextureMipmap(GLuint texture) => bindings.generateTextureMipmap(texture);
+fn void getActiveAtomicCounterBufferiv(GLuint program, GLuint bufferIndex, GLenum pname, GLint *params) => bindings.getActiveAtomicCounterBufferiv(program,bufferIndex,pname,params);
+fn void getActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name) => bindings.getActiveAttrib(program,index,bufSize,length,size,value_type,name);
+fn void getActiveSubroutineName(GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name) => bindings.getActiveSubroutineName(program,shadertype,index,bufSize,length,name);
+fn void getActiveSubroutineUniformName(GLuint program, GLenum shadertype, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name) => bindings.getActiveSubroutineUniformName(program,shadertype,index,bufSize,length,name);
+fn void getActiveSubroutineUniformiv(GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint *values) => bindings.getActiveSubroutineUniformiv(program,shadertype,index,pname,values);
+fn void getActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *value_type, GLchar *name) => bindings.getActiveUniform(program,index,bufSize,length,size,value_type,name);
+fn void getActiveUniformBlockName(GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName) => bindings.getActiveUniformBlockName(program,uniformBlockIndex,bufSize,length,uniformBlockName);
+fn void getActiveUniformBlockiv(GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint *params) => bindings.getActiveUniformBlockiv(program,uniformBlockIndex,pname,params);
+fn void getActiveUniformName(GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformName) => bindings.getActiveUniformName(program,uniformIndex,bufSize,length,uniformName);
+fn void getActiveUniformsiv(GLuint program, GLsizei uniformCount, GLuint *uniformIndices, GLenum pname, GLint *params) => bindings.getActiveUniformsiv(program,uniformCount,uniformIndices,pname,params);
+fn void getAttachedShaders(GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders) => bindings.getAttachedShaders(program,maxCount,count,shaders);
+fn GLint getAttribLocation(GLuint program, GLchar *name) => bindings.getAttribLocation(program,name);
+fn void getBooleani_v(GLenum target, GLuint index, GLboolean *data) => bindings.getBooleani_v(target,index,data);
+fn void getBooleanv(GLenum pname, GLboolean *data) => bindings.getBooleanv(pname,data);
+fn void getBufferParameteri64v(GLenum target, GLenum pname, GLint64 *params) => bindings.getBufferParameteri64v(target,pname,params);
+fn void getBufferParameteriv(GLenum target, GLenum pname, GLint *params) => bindings.getBufferParameteriv(target,pname,params);
+fn void getBufferPointerv(GLenum target, GLenum pname, void **params) => bindings.getBufferPointerv(target,pname,params);
+fn void getBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, void *data) => bindings.getBufferSubData(target,offset,size,data);
+fn void getClipPlane(GLenum plane, GLdouble *equation) => bindings.getClipPlane(plane,equation);
+fn void getCompressedTextureImage(GLuint texture, GLint level, GLsizei bufSize, void *pixels) => bindings.getCompressedTextureImage(texture,level,bufSize,pixels);
+fn void getCompressedTextureSubImage(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei bufSize, void *pixels) => bindings.getCompressedTextureSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth,bufSize,pixels);
+fn GLuint getDebugMessageLog(GLuint count, GLsizei bufSize, GLenum *sources, GLenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog) => bindings.getDebugMessageLog(count,bufSize,sources,types,ids,severities,lengths,messageLog);
+fn void getDoublei_v(GLenum target, GLuint index, GLdouble *data) => bindings.getDoublei_v(target,index,data);
+fn void getDoublev(GLenum pname, GLdouble *data) => bindings.getDoublev(pname,data);
+fn GLenum getError() => bindings.getError();
+fn void getFloati_v(GLenum target, GLuint index, GLfloat *data) => bindings.getFloati_v(target,index,data);
+fn void getFloatv(GLenum pname, GLfloat *data) => bindings.getFloatv(pname,data);
+fn GLint getFragDataIndex(GLuint program, GLchar *name) => bindings.getFragDataIndex(program,name);
+fn GLint getFragDataLocation(GLuint program, GLchar *name) => bindings.getFragDataLocation(program,name);
+fn void getFramebufferAttachmentParameteriv(GLenum target, GLenum attachment, GLenum pname, GLint *params) => bindings.getFramebufferAttachmentParameteriv(target,attachment,pname,params);
+fn void getFramebufferParameteriv(GLenum target, GLenum pname, GLint *params) => bindings.getFramebufferParameteriv(target,pname,params);
+fn GLenum getGraphicsResetStatus() => bindings.getGraphicsResetStatus();
+fn void getInteger64i_v(GLenum target, GLuint index, GLint64 *data) => bindings.getInteger64i_v(target,index,data);
+fn void getInteger64v(GLenum pname, GLint64 *data) => bindings.getInteger64v(pname,data);
+fn void getIntegeri_v(GLenum target, GLuint index, GLint *data) => bindings.getIntegeri_v(target,index,data);
+fn void getIntegerv(GLenum pname, GLint *data) => bindings.getIntegerv(pname,data);
+fn void getInternalformati64v(GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint64 *params) => bindings.getInternalformati64v(target,internalformat,pname,count,params);
+fn void getInternalformativ(GLenum target, GLenum internalformat, GLenum pname, GLsizei count, GLint *params) => bindings.getInternalformativ(target,internalformat,pname,count,params);
+fn void getLightfv(GLenum light, GLenum pname, GLfloat *params) => bindings.getLightfv(light,pname,params);
+fn void getLightiv(GLenum light, GLenum pname, GLint *params) => bindings.getLightiv(light,pname,params);
+fn void getMapdv(GLenum target, GLenum query, GLdouble *v) => bindings.getMapdv(target,query,v);
+fn void getMapfv(GLenum target, GLenum query, GLfloat *v) => bindings.getMapfv(target,query,v);
+fn void getMapiv(GLenum target, GLenum query, GLint *v) => bindings.getMapiv(target,query,v);
+fn void getMaterialfv(GLenum face, GLenum pname, GLfloat *params) => bindings.getMaterialfv(face,pname,params);
+fn void getMaterialiv(GLenum face, GLenum pname, GLint *params) => bindings.getMaterialiv(face,pname,params);
+fn void getMultisamplefv(GLenum pname, GLuint index, GLfloat *val) => bindings.getMultisamplefv(pname,index,val);
+fn void getNamedBufferParameteri64v(GLuint buffer, GLenum pname, GLint64 *params) => bindings.getNamedBufferParameteri64v(buffer,pname,params);
+fn void getNamedBufferParameteriv(GLuint buffer, GLenum pname, GLint *params) => bindings.getNamedBufferParameteriv(buffer,pname,params);
+fn void getNamedBufferPointerv(GLuint buffer, GLenum pname, void **params) => bindings.getNamedBufferPointerv(buffer,pname,params);
+fn void getNamedBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr size, void *data) => bindings.getNamedBufferSubData(buffer,offset,size,data);
+fn void getNamedFramebufferAttachmentParameteriv(GLuint framebuffer, GLenum attachment, GLenum pname, GLint *params) => bindings.getNamedFramebufferAttachmentParameteriv(framebuffer,attachment,pname,params);
+fn void getNamedFramebufferParameteriv(GLuint framebuffer, GLenum pname, GLint *param) => bindings.getNamedFramebufferParameteriv(framebuffer,pname,param);
+fn void getNamedRenderbufferParameteriv(GLuint renderbuffer, GLenum pname, GLint *params) => bindings.getNamedRenderbufferParameteriv(renderbuffer,pname,params);
+fn void getObjectLabel(GLenum identifier, GLuint name, GLsizei bufSize, GLsizei *length, GLchar *label) => bindings.getObjectLabel(identifier,name,bufSize,length,label);
+fn void getObjectPtrLabel(void *ptr, GLsizei bufSize, GLsizei *length, GLchar *label) => bindings.getObjectPtrLabel(ptr,bufSize,length,label);
+fn void getPixelMapfv(GLenum map, GLfloat *values) => bindings.getPixelMapfv(map,values);
+fn void getPixelMapuiv(GLenum map, GLuint *values) => bindings.getPixelMapuiv(map,values);
+fn void getPixelMapusv(GLenum map, GLushort *values) => bindings.getPixelMapusv(map,values);
+fn void getPointerv(GLenum pname, void **params) => bindings.getPointerv(pname,params);
+fn void getPolygonStipple(GLubyte *mask) => bindings.getPolygonStipple(mask);
+fn void getProgramBinary(GLuint program, GLsizei bufSize, GLsizei *length, GLenum *binaryFormat, void *binary) => bindings.getProgramBinary(program,bufSize,length,binaryFormat,binary);
+fn void getProgramInfoLog(GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog) => bindings.getProgramInfoLog(program,bufSize,length,infoLog);
+fn void getProgramInterfaceiv(GLuint program, GLenum programInterface, GLenum pname, GLint *params) => bindings.getProgramInterfaceiv(program,programInterface,pname,params);
+fn void getProgramPipelineInfoLog(GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog) => bindings.getProgramPipelineInfoLog(pipeline,bufSize,length,infoLog);
+fn void getProgramPipelineiv(GLuint pipeline, GLenum pname, GLint *params) => bindings.getProgramPipelineiv(pipeline,pname,params);
+fn GLuint getProgramResourceIndex(GLuint program, GLenum programInterface, GLchar *name) => bindings.getProgramResourceIndex(program,programInterface,name);
+fn GLint getProgramResourceLocation(GLuint program, GLenum programInterface, GLchar *name) => bindings.getProgramResourceLocation(program,programInterface,name);
+fn GLint getProgramResourceLocationIndex(GLuint program, GLenum programInterface, GLchar *name) => bindings.getProgramResourceLocationIndex(program,programInterface,name);
+fn void getProgramResourceName(GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei *length, GLchar *name) => bindings.getProgramResourceName(program,programInterface,index,bufSize,length,name);
+fn void getProgramResourceiv(GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, GLenum *props, GLsizei count, GLsizei *length, GLint *params) => bindings.getProgramResourceiv(program,programInterface,index,propCount,props,count,length,params);
+fn void getProgramStageiv(GLuint program, GLenum shadertype, GLenum pname, GLint *values) => bindings.getProgramStageiv(program,shadertype,pname,values);
+fn void getProgramiv(GLuint program, GLenum pname, GLint *params) => bindings.getProgramiv(program,pname,params);
+fn void getQueryBufferObjecti64v(GLuint id, GLuint buffer, GLenum pname, GLintptr offset) => bindings.getQueryBufferObjecti64v(id,buffer,pname,offset);
+fn void getQueryBufferObjectiv(GLuint id, GLuint buffer, GLenum pname, GLintptr offset) => bindings.getQueryBufferObjectiv(id,buffer,pname,offset);
+fn void getQueryBufferObjectui64v(GLuint id, GLuint buffer, GLenum pname, GLintptr offset) => bindings.getQueryBufferObjectui64v(id,buffer,pname,offset);
+fn void getQueryBufferObjectuiv(GLuint id, GLuint buffer, GLenum pname, GLintptr offset) => bindings.getQueryBufferObjectuiv(id,buffer,pname,offset);
+fn void getQueryIndexediv(GLenum target, GLuint index, GLenum pname, GLint *params) => bindings.getQueryIndexediv(target,index,pname,params);
+fn void getQueryObjecti64v(GLuint id, GLenum pname, GLint64 *params) => bindings.getQueryObjecti64v(id,pname,params);
+fn void getQueryObjectiv(GLuint id, GLenum pname, GLint *params) => bindings.getQueryObjectiv(id,pname,params);
+fn void getQueryObjectui64v(GLuint id, GLenum pname, GLuint64 *params) => bindings.getQueryObjectui64v(id,pname,params);
+fn void getQueryObjectuiv(GLuint id, GLenum pname, GLuint *params) => bindings.getQueryObjectuiv(id,pname,params);
+fn void getQueryiv(GLenum target, GLenum pname, GLint *params) => bindings.getQueryiv(target,pname,params);
+fn void getRenderbufferParameteriv(GLenum target, GLenum pname, GLint *params) => bindings.getRenderbufferParameteriv(target,pname,params);
+fn void getSamplerParameterIiv(GLuint sampler, GLenum pname, GLint *params) => bindings.getSamplerParameterIiv(sampler,pname,params);
+fn void getSamplerParameterIuiv(GLuint sampler, GLenum pname, GLuint *params) => bindings.getSamplerParameterIuiv(sampler,pname,params);
+fn void getSamplerParameterfv(GLuint sampler, GLenum pname, GLfloat *params) => bindings.getSamplerParameterfv(sampler,pname,params);
+fn void getSamplerParameteriv(GLuint sampler, GLenum pname, GLint *params) => bindings.getSamplerParameteriv(sampler,pname,params);
+fn void getShaderInfoLog(GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog) => bindings.getShaderInfoLog(shader,bufSize,length,infoLog);
+fn void getShaderPrecisionFormat(GLenum shadertype, GLenum precisiontype, GLint *range, GLint *precision) => bindings.getShaderPrecisionFormat(shadertype,precisiontype,range,precision);
+fn void getShaderSource(GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source) => bindings.getShaderSource(shader,bufSize,length,source);
+fn void getShaderiv(GLuint shader, GLenum pname, GLint *params) => bindings.getShaderiv(shader,pname,params);
+fn GLubyte * getString(GLenum name) => bindings.getString(name);
+fn GLubyte * getStringi(GLenum name, GLuint index) => bindings.getStringi(name,index);
+fn GLuint getSubroutineIndex(GLuint program, GLenum shadertype, GLchar *name) => bindings.getSubroutineIndex(program,shadertype,name);
+fn GLint getSubroutineUniformLocation(GLuint program, GLenum shadertype, GLchar *name) => bindings.getSubroutineUniformLocation(program,shadertype,name);
+fn void getSynciv(GLsync sync, GLenum pname, GLsizei count, GLsizei *length, GLint *values) => bindings.getSynciv(sync,pname,count,length,values);
+fn void getTexEnvfv(GLenum target, GLenum pname, GLfloat *params) => bindings.getTexEnvfv(target,pname,params);
+fn void getTexEnviv(GLenum target, GLenum pname, GLint *params) => bindings.getTexEnviv(target,pname,params);
+fn void getTexGendv(GLenum coord, GLenum pname, GLdouble *params) => bindings.getTexGendv(coord,pname,params);
+fn void getTexGenfv(GLenum coord, GLenum pname, GLfloat *params) => bindings.getTexGenfv(coord,pname,params);
+fn void getTexGeniv(GLenum coord, GLenum pname, GLint *params) => bindings.getTexGeniv(coord,pname,params);
+fn void getTexImage(GLenum target, GLint level, GLenum format, GLenum value_type, void *pixels) => bindings.getTexImage(target,level,format,value_type,pixels);
+fn void getTexLevelParameterfv(GLenum target, GLint level, GLenum pname, GLfloat *params) => bindings.getTexLevelParameterfv(target,level,pname,params);
+fn void getTexLevelParameteriv(GLenum target, GLint level, GLenum pname, GLint *params) => bindings.getTexLevelParameteriv(target,level,pname,params);
+fn void getTexParameterIiv(GLenum target, GLenum pname, GLint *params) => bindings.getTexParameterIiv(target,pname,params);
+fn void getTexParameterIuiv(GLenum target, GLenum pname, GLuint *params) => bindings.getTexParameterIuiv(target,pname,params);
+fn void getTexParameterfv(GLenum target, GLenum pname, GLfloat *params) => bindings.getTexParameterfv(target,pname,params);
+fn void getTexParameteriv(GLenum target, GLenum pname, GLint *params) => bindings.getTexParameteriv(target,pname,params);
+fn void getTextureImage(GLuint texture, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels) => bindings.getTextureImage(texture,level,format,value_type,bufSize,pixels);
+fn void getTextureLevelParameterfv(GLuint texture, GLint level, GLenum pname, GLfloat *params) => bindings.getTextureLevelParameterfv(texture,level,pname,params);
+fn void getTextureLevelParameteriv(GLuint texture, GLint level, GLenum pname, GLint *params) => bindings.getTextureLevelParameteriv(texture,level,pname,params);
+fn void getTextureParameterIiv(GLuint texture, GLenum pname, GLint *params) => bindings.getTextureParameterIiv(texture,pname,params);
+fn void getTextureParameterIuiv(GLuint texture, GLenum pname, GLuint *params) => bindings.getTextureParameterIuiv(texture,pname,params);
+fn void getTextureParameterfv(GLuint texture, GLenum pname, GLfloat *params) => bindings.getTextureParameterfv(texture,pname,params);
+fn void getTextureParameteriv(GLuint texture, GLenum pname, GLint *params) => bindings.getTextureParameteriv(texture,pname,params);
+fn void getTextureSubImage(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels) => bindings.getTextureSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,value_type,bufSize,pixels);
+fn void getTransformFeedbackVarying(GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLsizei *size, GLenum *value_type, GLchar *name) => bindings.getTransformFeedbackVarying(program,index,bufSize,length,size,value_type,name);
+fn void getTransformFeedbacki64_v(GLuint xfb, GLenum pname, GLuint index, GLint64 *param) => bindings.getTransformFeedbacki64_v(xfb,pname,index,param);
+fn void getTransformFeedbacki_v(GLuint xfb, GLenum pname, GLuint index, GLint *param) => bindings.getTransformFeedbacki_v(xfb,pname,index,param);
+fn void getTransformFeedbackiv(GLuint xfb, GLenum pname, GLint *param) => bindings.getTransformFeedbackiv(xfb,pname,param);
+fn GLuint getUniformBlockIndex(GLuint program, GLchar *uniformBlockName) => bindings.getUniformBlockIndex(program,uniformBlockName);
+fn void getUniformIndices(GLuint program, GLsizei uniformCount, GLchar **uniformNames, GLuint *uniformIndices) => bindings.getUniformIndices(program,uniformCount,uniformNames,uniformIndices);
+fn GLint getUniformLocation(GLuint program, GLchar *name) => bindings.getUniformLocation(program,name);
+fn void getUniformSubroutineuiv(GLenum shadertype, GLint location, GLuint *params) => bindings.getUniformSubroutineuiv(shadertype,location,params);
+fn void getUniformdv(GLuint program, GLint location, GLdouble *params) => bindings.getUniformdv(program,location,params);
+fn void getUniformfv(GLuint program, GLint location, GLfloat *params) => bindings.getUniformfv(program,location,params);
+fn void getUniformiv(GLuint program, GLint location, GLint *params) => bindings.getUniformiv(program,location,params);
+fn void getUniformuiv(GLuint program, GLint location, GLuint *params) => bindings.getUniformuiv(program,location,params);
+fn void getVertexArrayIndexed64iv(GLuint vaobj, GLuint index, GLenum pname, GLint64 *param) => bindings.getVertexArrayIndexed64iv(vaobj,index,pname,param);
+fn void getVertexArrayIndexediv(GLuint vaobj, GLuint index, GLenum pname, GLint *param) => bindings.getVertexArrayIndexediv(vaobj,index,pname,param);
+fn void getVertexArrayiv(GLuint vaobj, GLenum pname, GLint *param) => bindings.getVertexArrayiv(vaobj,pname,param);
+fn void getVertexAttribIiv(GLuint index, GLenum pname, GLint *params) => bindings.getVertexAttribIiv(index,pname,params);
+fn void getVertexAttribIuiv(GLuint index, GLenum pname, GLuint *params) => bindings.getVertexAttribIuiv(index,pname,params);
+fn void getVertexAttribLdv(GLuint index, GLenum pname, GLdouble *params) => bindings.getVertexAttribLdv(index,pname,params);
+fn void getVertexAttribPointerv(GLuint index, GLenum pname, void **pointer) => bindings.getVertexAttribPointerv(index,pname,pointer);
+fn void getVertexAttribdv(GLuint index, GLenum pname, GLdouble *params) => bindings.getVertexAttribdv(index,pname,params);
+fn void getVertexAttribfv(GLuint index, GLenum pname, GLfloat *params) => bindings.getVertexAttribfv(index,pname,params);
+fn void getVertexAttribiv(GLuint index, GLenum pname, GLint *params) => bindings.getVertexAttribiv(index,pname,params);
+fn void getnColorTable(GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *table) => bindings.getnColorTable(target,format,value_type,bufSize,table);
+fn void getnCompressedTexImage(GLenum target, GLint lod, GLsizei bufSize, void *pixels) => bindings.getnCompressedTexImage(target,lod,bufSize,pixels);
+fn void getnConvolutionFilter(GLenum target, GLenum format, GLenum value_type, GLsizei bufSize, void *image) => bindings.getnConvolutionFilter(target,format,value_type,bufSize,image);
+fn void getnHistogram(GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values) => bindings.getnHistogram(target,reset,format,value_type,bufSize,values);
+fn void getnMapdv(GLenum target, GLenum query, GLsizei bufSize, GLdouble *v) => bindings.getnMapdv(target,query,bufSize,v);
+fn void getnMapfv(GLenum target, GLenum query, GLsizei bufSize, GLfloat *v) => bindings.getnMapfv(target,query,bufSize,v);
+fn void getnMapiv(GLenum target, GLenum query, GLsizei bufSize, GLint *v) => bindings.getnMapiv(target,query,bufSize,v);
+fn void getnMinmax(GLenum target, GLboolean reset, GLenum format, GLenum value_type, GLsizei bufSize, void *values) => bindings.getnMinmax(target,reset,format,value_type,bufSize,values);
+fn void getnPixelMapfv(GLenum map, GLsizei bufSize, GLfloat *values) => bindings.getnPixelMapfv(map,bufSize,values);
+fn void getnPixelMapuiv(GLenum map, GLsizei bufSize, GLuint *values) => bindings.getnPixelMapuiv(map,bufSize,values);
+fn void getnPixelMapusv(GLenum map, GLsizei bufSize, GLushort *values) => bindings.getnPixelMapusv(map,bufSize,values);
+fn void getnPolygonStipple(GLsizei bufSize, GLubyte *pattern) => bindings.getnPolygonStipple(bufSize,pattern);
+fn void getnSeparableFilter(GLenum target, GLenum format, GLenum value_type, GLsizei rowBufSize, void *row, GLsizei columnBufSize, void *column, void *span) => bindings.getnSeparableFilter(target,format,value_type,rowBufSize,row,columnBufSize,column,span);
+fn void getnTexImage(GLenum target, GLint level, GLenum format, GLenum value_type, GLsizei bufSize, void *pixels) => bindings.getnTexImage(target,level,format,value_type,bufSize,pixels);
+fn void getnUniformdv(GLuint program, GLint location, GLsizei bufSize, GLdouble *params) => bindings.getnUniformdv(program,location,bufSize,params);
+fn void getnUniformfv(GLuint program, GLint location, GLsizei bufSize, GLfloat *params) => bindings.getnUniformfv(program,location,bufSize,params);
+fn void getnUniformiv(GLuint program, GLint location, GLsizei bufSize, GLint *params) => bindings.getnUniformiv(program,location,bufSize,params);
+fn void getnUniformuiv(GLuint program, GLint location, GLsizei bufSize, GLuint *params) => bindings.getnUniformuiv(program,location,bufSize,params);
+fn void hint(GLenum target, GLenum mode) => bindings.hint(target,mode);
+fn void indexMask(GLuint mask) => bindings.indexMask(mask);
+fn void indexPointer(GLenum value_type, GLsizei stride, void *pointer) => bindings.indexPointer(value_type,stride,pointer);
+fn void indexd(GLdouble c) => bindings.indexd(c);
+fn void indexdv(GLdouble *c) => bindings.indexdv(c);
+fn void indexf(GLfloat c) => bindings.indexf(c);
+fn void indexfv(GLfloat *c) => bindings.indexfv(c);
+fn void indexi(GLint c) => bindings.indexi(c);
+fn void indexiv(GLint *c) => bindings.indexiv(c);
+fn void indexs(GLshort c) => bindings.indexs(c);
+fn void indexsv(GLshort *c) => bindings.indexsv(c);
+fn void indexub(GLubyte c) => bindings.indexub(c);
+fn void indexubv(GLubyte *c) => bindings.indexubv(c);
+fn void initNames() => bindings.initNames();
+fn void interleavedArrays(GLenum format, GLsizei stride, void *pointer) => bindings.interleavedArrays(format,stride,pointer);
+fn void invalidateBufferData(GLuint buffer) => bindings.invalidateBufferData(buffer);
+fn void invalidateBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr length) => bindings.invalidateBufferSubData(buffer,offset,length);
+fn void invalidateFramebuffer(GLenum target, GLsizei numAttachments, GLenum *attachments) => bindings.invalidateFramebuffer(target,numAttachments,attachments);
+fn void invalidateNamedFramebufferData(GLuint framebuffer, GLsizei numAttachments, GLenum *attachments) => bindings.invalidateNamedFramebufferData(framebuffer,numAttachments,attachments);
+fn void invalidateNamedFramebufferSubData(GLuint framebuffer, GLsizei numAttachments, GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height) => bindings.invalidateNamedFramebufferSubData(framebuffer,numAttachments,attachments,x, y,width,height);
+fn void invalidateSubFramebuffer(GLenum target, GLsizei numAttachments, GLenum *attachments, GLint x, GLint y, GLsizei width, GLsizei height) => bindings.invalidateSubFramebuffer(target,numAttachments,attachments,x, y,width,height);
+fn void invalidateTexImage(GLuint texture, GLint level) => bindings.invalidateTexImage(texture,level);
+fn void invalidateTexSubImage(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth) => bindings.invalidateTexSubImage(texture,level,xoffset,yoffset,zoffset,width,height,depth);
+fn GLboolean isBuffer(GLuint buffer) => bindings.isBuffer(buffer);
+fn GLboolean isEnabled(GLenum cap) => bindings.isEnabled(cap);
+fn GLboolean isEnabledi(GLenum target, GLuint index) => bindings.isEnabledi(target,index);
+fn GLboolean isFramebuffer(GLuint framebuffer) => bindings.isFramebuffer(framebuffer);
+fn GLboolean isList(GLuint list) => bindings.isList(list);
+fn GLboolean isProgram(GLuint program) => bindings.isProgram(program);
+fn GLboolean isProgramPipeline(GLuint pipeline) => bindings.isProgramPipeline(pipeline);
+fn GLboolean isQuery(GLuint id) => bindings.isQuery(id);
+fn GLboolean isRenderbuffer(GLuint renderbuffer) => bindings.isRenderbuffer(renderbuffer);
+fn GLboolean isSampler(GLuint sampler) => bindings.isSampler(sampler);
+fn GLboolean isShader(GLuint shader) => bindings.isShader(shader);
+fn GLboolean isSync(GLsync sync) => bindings.isSync(sync);
+fn GLboolean isTexture(GLuint texture) => bindings.isTexture(texture);
+fn GLboolean isTransformFeedback(GLuint id) => bindings.isTransformFeedback(id);
+fn GLboolean isVertexArray(GLuint array) => bindings.isVertexArray(array);
+fn void lightModelf(GLenum pname, GLfloat param) => bindings.lightModelf(pname,param);
+fn void lightModelfv(GLenum pname, GLfloat *params) => bindings.lightModelfv(pname,params);
+fn void lightModeli(GLenum pname, GLint param) => bindings.lightModeli(pname,param);
+fn void lightModeliv(GLenum pname, GLint *params) => bindings.lightModeliv(pname,params);
+fn void lightf(GLenum light, GLenum pname, GLfloat param) => bindings.lightf(light,pname,param);
+fn void lightfv(GLenum light, GLenum pname, GLfloat *params) => bindings.lightfv(light,pname,params);
+fn void lighti(GLenum light, GLenum pname, GLint param) => bindings.lighti(light,pname,param);
+fn void lightiv(GLenum light, GLenum pname, GLint *params) => bindings.lightiv(light,pname,params);
+fn void lineStipple(GLint factor, GLushort pattern) => bindings.lineStipple(factor,pattern);
+fn void lineWidth(GLfloat width) => bindings.lineWidth(width);
+fn void linkProgram(GLuint program) => bindings.linkProgram(program);
+fn void listBase(GLuint base) => bindings.listBase(base);
+fn void loadIdentity() => bindings.loadIdentity();
+fn void loadMatrixd(GLdouble *m) => bindings.loadMatrixd(m);
+fn void loadMatrixf(GLfloat *m) => bindings.loadMatrixf(m);
+fn void loadName(GLuint name) => bindings.loadName(name);
+fn void loadTransposeMatrixd(GLdouble *m) => bindings.loadTransposeMatrixd(m);
+fn void loadTransposeMatrixf(GLfloat *m) => bindings.loadTransposeMatrixf(m);
+fn void logicOp(GLenum opcode) => bindings.logicOp(opcode);
+fn void map1d(GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, GLdouble *points) => bindings.map1d(target,u1,u2,stride,order,points);
+fn void map1f(GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, GLfloat *points) => bindings.map1f(target,u1,u2,stride,order,points);
+fn void map2d(GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble *points) => bindings.map2d(target,u1,u2,ustride,uorder,v1,v2,vstride,vorder,points);
+fn void map2f(GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat *points) => bindings.map2f(target,u1,u2,ustride,uorder,v1,v2,vstride,vorder,points);
+fn void * mapBuffer(GLenum target, GLenum access) => bindings.mapBuffer(target,access);
+fn void * mapBufferRange(GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access) => bindings.mapBufferRange(target,offset,length,access);
+fn void mapGrid1d(GLint un, GLdouble u1, GLdouble u2) => bindings.mapGrid1d(un,u1,u2);
+fn void mapGrid1f(GLint un, GLfloat u1, GLfloat u2) => bindings.mapGrid1f(un,u1,u2);
+fn void mapGrid2d(GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2) => bindings.mapGrid2d(un,u1,u2,vn,v1,v2);
+fn void mapGrid2f(GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2) => bindings.mapGrid2f(un,u1,u2,vn,v1,v2);
+fn void * mapNamedBuffer(GLuint buffer, GLenum access) => bindings.mapNamedBuffer(buffer,access);
+fn void * mapNamedBufferRange(GLuint buffer, GLintptr offset, GLsizeiptr length, GLbitfield access) => bindings.mapNamedBufferRange(buffer,offset,length,access);
+fn void materialf(GLenum face, GLenum pname, GLfloat param) => bindings.materialf(face,pname,param);
+fn void materialfv(GLenum face, GLenum pname, GLfloat *params) => bindings.materialfv(face,pname,params);
+fn void materiali(GLenum face, GLenum pname, GLint param) => bindings.materiali(face,pname,param);
+fn void materialiv(GLenum face, GLenum pname, GLint *params) => bindings.materialiv(face,pname,params);
+fn void matrixMode(GLenum mode) => bindings.matrixMode(mode);
+fn void memoryBarrier(GLbitfield barriers) => bindings.memoryBarrier(barriers);
+fn void memoryBarrierByRegion(GLbitfield barriers) => bindings.memoryBarrierByRegion(barriers);
+fn void minSampleShading(GLfloat value) => bindings.minSampleShading(value);
+fn void multMatrixd(GLdouble *m) => bindings.multMatrixd(m);
+fn void multMatrixf(GLfloat *m) => bindings.multMatrixf(m);
+fn void multTransposeMatrixd(GLdouble *m) => bindings.multTransposeMatrixd(m);
+fn void multTransposeMatrixf(GLfloat *m) => bindings.multTransposeMatrixf(m);
+fn void multiDrawArraysIndirect(GLenum mode, void *indirect, GLsizei drawcount, GLsizei stride) => bindings.multiDrawArraysIndirect(mode,indirect,drawcount,stride);
+fn void multiDrawArraysIndirectCount(GLenum mode, void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride) => bindings.multiDrawArraysIndirectCount(mode,indirect,drawcount,maxdrawcount,stride);
+fn void multiDrawElementsBaseVertex(GLenum mode, GLsizei *count, GLenum value_type, void **indices, GLsizei drawcount, GLint *basevertex) => bindings.multiDrawElementsBaseVertex(mode,count,value_type,indices,drawcount,basevertex);
+fn void multiDrawElementsIndirect(GLenum mode, GLenum value_type, void *indirect, GLsizei drawcount, GLsizei stride) => bindings.multiDrawElementsIndirect(mode,value_type,indirect,drawcount,stride);
+fn void multiDrawElementsIndirectCount(GLenum mode, GLenum value_type, void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride) => bindings.multiDrawElementsIndirectCount(mode,value_type,indirect,drawcount,maxdrawcount,stride);
+fn void multiTexCoord1d(GLenum target, GLdouble s) => bindings.multiTexCoord1d(target,s);
+fn void multiTexCoord1dv(GLenum target, GLdouble *v) => bindings.multiTexCoord1dv(target,v);
+fn void multiTexCoord1f(GLenum target, GLfloat s) => bindings.multiTexCoord1f(target,s);
+fn void multiTexCoord1fv(GLenum target, GLfloat *v) => bindings.multiTexCoord1fv(target,v);
+fn void multiTexCoord1i(GLenum target, GLint s) => bindings.multiTexCoord1i(target,s);
+fn void multiTexCoord1iv(GLenum target, GLint *v) => bindings.multiTexCoord1iv(target,v);
+fn void multiTexCoord1s(GLenum target, GLshort s) => bindings.multiTexCoord1s(target,s);
+fn void multiTexCoord1sv(GLenum target, GLshort *v) => bindings.multiTexCoord1sv(target,v);
+fn void multiTexCoord2d(GLenum target, GLdouble s, GLdouble t) => bindings.multiTexCoord2d(target,s,t);
+fn void multiTexCoord2dv(GLenum target, GLdouble *v) => bindings.multiTexCoord2dv(target,v);
+fn void multiTexCoord2f(GLenum target, GLfloat s, GLfloat t) => bindings.multiTexCoord2f(target,s,t);
+fn void multiTexCoord2fv(GLenum target, GLfloat *v) => bindings.multiTexCoord2fv(target,v);
+fn void multiTexCoord2i(GLenum target, GLint s, GLint t) => bindings.multiTexCoord2i(target,s,t);
+fn void multiTexCoord2iv(GLenum target, GLint *v) => bindings.multiTexCoord2iv(target,v);
+fn void multiTexCoord2s(GLenum target, GLshort s, GLshort t) => bindings.multiTexCoord2s(target,s,t);
+fn void multiTexCoord2sv(GLenum target, GLshort *v) => bindings.multiTexCoord2sv(target,v);
+fn void multiTexCoord3d(GLenum target, GLdouble s, GLdouble t, GLdouble r) => bindings.multiTexCoord3d(target,s,t,r);
+fn void multiTexCoord3dv(GLenum target, GLdouble *v) => bindings.multiTexCoord3dv(target,v);
+fn void multiTexCoord3f(GLenum target, GLfloat s, GLfloat t, GLfloat r) => bindings.multiTexCoord3f(target,s,t,r);
+fn void multiTexCoord3fv(GLenum target, GLfloat *v) => bindings.multiTexCoord3fv(target,v);
+fn void multiTexCoord3i(GLenum target, GLint s, GLint t, GLint r) => bindings.multiTexCoord3i(target,s,t,r);
+fn void multiTexCoord3iv(GLenum target, GLint *v) => bindings.multiTexCoord3iv(target,v);
+fn void multiTexCoord3s(GLenum target, GLshort s, GLshort t, GLshort r) => bindings.multiTexCoord3s(target,s,t,r);
+fn void multiTexCoord3sv(GLenum target, GLshort *v) => bindings.multiTexCoord3sv(target,v);
+fn void multiTexCoord4d(GLenum target, GLdouble s, GLdouble t, GLdouble r, GLdouble q) => bindings.multiTexCoord4d(target,s,t,r,q);
+fn void multiTexCoord4dv(GLenum target, GLdouble *v) => bindings.multiTexCoord4dv(target,v);
+fn void multiTexCoord4f(GLenum target, GLfloat s, GLfloat t, GLfloat r, GLfloat q) => bindings.multiTexCoord4f(target,s,t,r,q);
+fn void multiTexCoord4fv(GLenum target, GLfloat *v) => bindings.multiTexCoord4fv(target,v);
+fn void multiTexCoord4i(GLenum target, GLint s, GLint t, GLint r, GLint q) => bindings.multiTexCoord4i(target,s,t,r,q);
+fn void multiTexCoord4iv(GLenum target, GLint *v) => bindings.multiTexCoord4iv(target,v);
+fn void multiTexCoord4s(GLenum target, GLshort s, GLshort t, GLshort r, GLshort q) => bindings.multiTexCoord4s(target,s,t,r,q);
+fn void multiTexCoord4sv(GLenum target, GLshort *v) => bindings.multiTexCoord4sv(target,v);
+fn void multiTexCoordP1ui(GLenum texture, GLenum value_type, GLuint coords) => bindings.multiTexCoordP1ui(texture,value_type,coords);
+fn void multiTexCoordP1uiv(GLenum texture, GLenum value_type, GLuint *coords) => bindings.multiTexCoordP1uiv(texture,value_type,coords);
+fn void multiTexCoordP2ui(GLenum texture, GLenum value_type, GLuint coords) => bindings.multiTexCoordP2ui(texture,value_type,coords);
+fn void multiTexCoordP2uiv(GLenum texture, GLenum value_type, GLuint *coords) => bindings.multiTexCoordP2uiv(texture,value_type,coords);
+fn void multiTexCoordP3ui(GLenum texture, GLenum value_type, GLuint coords) => bindings.multiTexCoordP3ui(texture,value_type,coords);
+fn void multiTexCoordP3uiv(GLenum texture, GLenum value_type, GLuint *coords) => bindings.multiTexCoordP3uiv(texture,value_type,coords);
+fn void multiTexCoordP4ui(GLenum texture, GLenum value_type, GLuint coords) => bindings.multiTexCoordP4ui(texture,value_type,coords);
+fn void multiTexCoordP4uiv(GLenum texture, GLenum value_type, GLuint *coords) => bindings.multiTexCoordP4uiv(texture,value_type,coords);
+fn void namedBufferData(GLuint buffer, GLsizeiptr size, void *data, GLenum usage) => bindings.namedBufferData(buffer,size,data,usage);
+fn void namedBufferStorage(GLuint buffer, GLsizeiptr size, void *data, GLbitfield flags) => bindings.namedBufferStorage(buffer,size,data,flags);
+fn void namedBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr size, void *data) => bindings.namedBufferSubData(buffer,offset,size,data);
+fn void namedFramebufferDrawBuffer(GLuint framebuffer, GLenum buf) => bindings.namedFramebufferDrawBuffer(framebuffer,buf);
+fn void namedFramebufferDrawBuffers(GLuint framebuffer, GLsizei n, GLenum *bufs) => bindings.namedFramebufferDrawBuffers(framebuffer,n,bufs);
+fn void namedFramebufferParameteri(GLuint framebuffer, GLenum pname, GLint param) => bindings.namedFramebufferParameteri(framebuffer,pname,param);
+fn void namedFramebufferReadBuffer(GLuint framebuffer, GLenum src) => bindings.namedFramebufferReadBuffer(framebuffer,src);
+fn void namedFramebufferRenderbuffer(GLuint framebuffer, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer) => bindings.namedFramebufferRenderbuffer(framebuffer,attachment,renderbuffertarget,renderbuffer);
+fn void namedFramebufferTexture(GLuint framebuffer, GLenum attachment, GLuint texture, GLint level) => bindings.namedFramebufferTexture(framebuffer,attachment,texture,level);
+fn void namedFramebufferTextureLayer(GLuint framebuffer, GLenum attachment, GLuint texture, GLint level, GLint layer) => bindings.namedFramebufferTextureLayer(framebuffer,attachment,texture,level,layer);
+fn void namedRenderbufferStorage(GLuint renderbuffer, GLenum internalformat, GLsizei width, GLsizei height) => bindings.namedRenderbufferStorage(renderbuffer,internalformat,width,height);
+fn void namedRenderbufferStorageMultisample(GLuint renderbuffer, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height) => bindings.namedRenderbufferStorageMultisample(renderbuffer,samples,internalformat,width,height);
+fn void newList(GLuint list, GLenum mode) => bindings.newList(list,mode);
+fn void normal3b(GLbyte nx, GLbyte ny, GLbyte nz) => bindings.normal3b(nx,ny,nz);
+fn void normal3bv(GLbyte *v) => bindings.normal3bv(v);
+fn void normal3d(GLdouble nx, GLdouble ny, GLdouble nz) => bindings.normal3d(nx,ny,nz);
+fn void normal3dv(GLdouble *v) => bindings.normal3dv(v);
+fn void normal3f(GLfloat nx, GLfloat ny, GLfloat nz) => bindings.normal3f(nx,ny,nz);
+fn void normal3fv(GLfloat *v) => bindings.normal3fv(v);
+fn void normal3i(GLint nx, GLint ny, GLint nz) => bindings.normal3i(nx,ny,nz);
+fn void normal3iv(GLint *v) => bindings.normal3iv(v);
+fn void normal3s(GLshort nx, GLshort ny, GLshort nz) => bindings.normal3s(nx,ny,nz);
+fn void normal3sv(GLshort *v) => bindings.normal3sv(v);
+fn void normalP3ui(GLenum value_type, GLuint coords) => bindings.normalP3ui(value_type,coords);
+fn void normalP3uiv(GLenum value_type, GLuint *coords) => bindings.normalP3uiv(value_type,coords);
+fn void normalPointer(GLenum value_type, GLsizei stride, void *pointer) => bindings.normalPointer(value_type,stride,pointer);
+fn void objectLabel(GLenum identifier, GLuint name, GLsizei length, GLchar *label) => bindings.objectLabel(identifier,name,length,label);
+fn void objectPtrLabel(void *ptr, GLsizei length, GLchar *label) => bindings.objectPtrLabel(ptr,length,label);
+fn void ortho(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar) => bindings.ortho(left,right,bottom,top,zNear,zFar);
+fn void passThrough(GLfloat token) => bindings.passThrough(token);
+fn void patchParameterfv(GLenum pname, GLfloat *values) => bindings.patchParameterfv(pname,values);
+fn void patchParameteri(GLenum pname, GLint value) => bindings.patchParameteri(pname,value);
+fn void pauseTransformFeedback() => bindings.pauseTransformFeedback();
+fn void pixelMapfv(GLenum map, GLsizei mapsize, GLfloat *values) => bindings.pixelMapfv(map,mapsize,values);
+fn void pixelMapuiv(GLenum map, GLsizei mapsize, GLuint *values) => bindings.pixelMapuiv(map,mapsize,values);
+fn void pixelMapusv(GLenum map, GLsizei mapsize, GLushort *values) => bindings.pixelMapusv(map,mapsize,values);
+fn void pixelStoref(GLenum pname, GLfloat param) => bindings.pixelStoref(pname,param);
+fn void pixelStorei(GLenum pname, GLint param) => bindings.pixelStorei(pname,param);
+fn void pixelTransferf(GLenum pname, GLfloat param) => bindings.pixelTransferf(pname,param);
+fn void pixelTransferi(GLenum pname, GLint param) => bindings.pixelTransferi(pname,param);
+fn void pixelZoom(GLfloat xfactor, GLfloat yfactor) => bindings.pixelZoom(xfactor,yfactor);
+fn void pointSize(GLfloat size) => bindings.pointSize(size);
+fn void polygonMode(GLenum face, GLenum mode) => bindings.polygonMode(face,mode);
+fn void polygonOffset(GLfloat factor, GLfloat units) => bindings.polygonOffset(factor,units);
+fn void polygonOffsetClamp(GLfloat factor, GLfloat units, GLfloat clamp) => bindings.polygonOffsetClamp(factor,units,clamp);
+fn void polygonStipple(GLubyte *mask) => bindings.polygonStipple(mask);
+fn void popAttrib() => bindings.popAttrib();
+fn void popClientAttrib() => bindings.popClientAttrib();
+fn void popDebugGroup() => bindings.popDebugGroup();
+fn void popMatrix() => bindings.popMatrix();
+fn void popName() => bindings.popName();
+fn void primitiveRestartIndex(GLuint index) => bindings.primitiveRestartIndex(index);
+fn void prioritizeTextures(GLsizei n, GLuint *textures, GLfloat *priorities) => bindings.prioritizeTextures(n,textures,priorities);
+fn void programBinary(GLuint program, GLenum binaryFormat, void *binary, GLsizei length) => bindings.programBinary(program,binaryFormat,binary,length);
+fn void programParameteri(GLuint program, GLenum pname, GLint value) => bindings.programParameteri(program,pname,value);
+fn void programUniform1d(GLuint program, GLint location, GLdouble v0) => bindings.programUniform1d(program,location,v0);
+fn void programUniform1dv(GLuint program, GLint location, GLsizei count, GLdouble *value) => bindings.programUniform1dv(program,location,count,value);
+fn void programUniform1f(GLuint program, GLint location, GLfloat v0) => bindings.programUniform1f(program,location,v0);
+fn void programUniform1fv(GLuint program, GLint location, GLsizei count, GLfloat *value) => bindings.programUniform1fv(program,location,count,value);
+fn void programUniform1i(GLuint program, GLint location, GLint v0) => bindings.programUniform1i(program,location,v0);
+fn void programUniform1iv(GLuint program, GLint location, GLsizei count, GLint *value) => bindings.programUniform1iv(program,location,count,value);
+fn void programUniform1ui(GLuint program, GLint location, GLuint v0) => bindings.programUniform1ui(program,location,v0);
+fn void programUniform1uiv(GLuint program, GLint location, GLsizei count, GLuint *value) => bindings.programUniform1uiv(program,location,count,value);
+fn void programUniform2d(GLuint program, GLint location, GLdouble v0, GLdouble v1) => bindings.programUniform2d(program,location,v0,v1);
+fn void programUniform2dv(GLuint program, GLint location, GLsizei count, GLdouble *value) => bindings.programUniform2dv(program,location,count,value);
+fn void programUniform2f(GLuint program, GLint location, GLfloat v0, GLfloat v1) => bindings.programUniform2f(program,location,v0,v1);
+fn void programUniform2fv(GLuint program, GLint location, GLsizei count, GLfloat *value) => bindings.programUniform2fv(program,location,count,value);
+fn void programUniform2i(GLuint program, GLint location, GLint v0, GLint v1) => bindings.programUniform2i(program,location,v0,v1);
+fn void programUniform2iv(GLuint program, GLint location, GLsizei count, GLint *value) => bindings.programUniform2iv(program,location,count,value);
+fn void programUniform2ui(GLuint program, GLint location, GLuint v0, GLuint v1) => bindings.programUniform2ui(program,location,v0,v1);
+fn void programUniform2uiv(GLuint program, GLint location, GLsizei count, GLuint *value) => bindings.programUniform2uiv(program,location,count,value);
+fn void programUniform3d(GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2) => bindings.programUniform3d(program,location,v0,v1,v2);
+fn void programUniform3dv(GLuint program, GLint location, GLsizei count, GLdouble *value) => bindings.programUniform3dv(program,location,count,value);
+fn void programUniform3f(GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2) => bindings.programUniform3f(program,location,v0,v1,v2);
+fn void programUniform3fv(GLuint program, GLint location, GLsizei count, GLfloat *value) => bindings.programUniform3fv(program,location,count,value);
+fn void programUniform3i(GLuint program, GLint location, GLint v0, GLint v1, GLint v2) => bindings.programUniform3i(program,location,v0,v1,v2);
+fn void programUniform3iv(GLuint program, GLint location, GLsizei count, GLint *value) => bindings.programUniform3iv(program,location,count,value);
+fn void programUniform3ui(GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2) => bindings.programUniform3ui(program,location,v0,v1,v2);
+fn void programUniform3uiv(GLuint program, GLint location, GLsizei count, GLuint *value) => bindings.programUniform3uiv(program,location,count,value);
+fn void programUniform4d(GLuint program, GLint location, GLdouble v0, GLdouble v1, GLdouble v2, GLdouble v3) => bindings.programUniform4d(program,location,v0,v1,v2,v3);
+fn void programUniform4dv(GLuint program, GLint location, GLsizei count, GLdouble *value) => bindings.programUniform4dv(program,location,count,value);
+fn void programUniform4f(GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) => bindings.programUniform4f(program,location,v0,v1,v2,v3);
+fn void programUniform4fv(GLuint program, GLint location, GLsizei count, GLfloat *value) => bindings.programUniform4fv(program,location,count,value);
+fn void programUniform4i(GLuint program, GLint location, GLint v0, GLint v1, GLint v2, GLint v3) => bindings.programUniform4i(program,location,v0,v1,v2,v3);
+fn void programUniform4iv(GLuint program, GLint location, GLsizei count, GLint *value) => bindings.programUniform4iv(program,location,count,value);
+fn void programUniform4ui(GLuint program, GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3) => bindings.programUniform4ui(program,location,v0,v1,v2,v3);
+fn void programUniform4uiv(GLuint program, GLint location, GLsizei count, GLuint *value) => bindings.programUniform4uiv(program,location,count,value);
+fn void programUniformMatrix2dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix2dv(program,location,count,transpose,value);
+fn void programUniformMatrix2fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix2fv(program,location,count,transpose,value);
+fn void programUniformMatrix2x3dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix2x3dv(program,location,count,transpose,value);
+fn void programUniformMatrix2x3fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix2x3fv(program,location,count,transpose,value);
+fn void programUniformMatrix2x4dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix2x4dv(program,location,count,transpose,value);
+fn void programUniformMatrix2x4fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix2x4fv(program,location,count,transpose,value);
+fn void programUniformMatrix3dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix3dv(program,location,count,transpose,value);
+fn void programUniformMatrix3fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix3fv(program,location,count,transpose,value);
+fn void programUniformMatrix3x2dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix3x2dv(program,location,count,transpose,value);
+fn void programUniformMatrix3x2fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix3x2fv(program,location,count,transpose,value);
+fn void programUniformMatrix3x4dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix3x4dv(program,location,count,transpose,value);
+fn void programUniformMatrix3x4fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix3x4fv(program,location,count,transpose,value);
+fn void programUniformMatrix4dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix4dv(program,location,count,transpose,value);
+fn void programUniformMatrix4fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix4fv(program,location,count,transpose,value);
+fn void programUniformMatrix4x2dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix4x2dv(program,location,count,transpose,value);
+fn void programUniformMatrix4x2fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix4x2fv(program,location,count,transpose,value);
+fn void programUniformMatrix4x3dv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.programUniformMatrix4x3dv(program,location,count,transpose,value);
+fn void programUniformMatrix4x3fv(GLuint program, GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.programUniformMatrix4x3fv(program,location,count,transpose,value);
+fn void provokingVertex(GLenum mode) => bindings.provokingVertex(mode);
+fn void pushAttrib(GLbitfield mask) => bindings.pushAttrib(mask);
+fn void pushClientAttrib(GLbitfield mask) => bindings.pushClientAttrib(mask);
+fn void pushDebugGroup(GLenum source, GLuint id, GLsizei length, GLchar *message) => bindings.pushDebugGroup(source,id,length,message);
+fn void pushMatrix() => bindings.pushMatrix();
+fn void pushName(GLuint name) => bindings.pushName(name);
+fn void queryCounter(GLuint id, GLenum target) => bindings.queryCounter(id,target);
+fn void rasterPos2d(GLdouble x, GLdouble y) => bindings.rasterPos2d(x, y);
+fn void rasterPos2dv(GLdouble *v) => bindings.rasterPos2dv(v);
+fn void rasterPos2f(GLfloat x, GLfloat y) => bindings.rasterPos2f(x, y);
+fn void rasterPos2fv(GLfloat *v) => bindings.rasterPos2fv(v);
+fn void rasterPos2i(GLint x, GLint y) => bindings.rasterPos2i(x, y);
+fn void rasterPos2iv(GLint *v) => bindings.rasterPos2iv(v);
+fn void rasterPos2s(GLshort x, GLshort y) => bindings.rasterPos2s(x, y);
+fn void rasterPos2sv(GLshort *v) => bindings.rasterPos2sv(v);
+fn void rasterPos3d(GLdouble x, GLdouble y, GLdouble z) => bindings.rasterPos3d(x, y, z);
+fn void rasterPos3dv(GLdouble *v) => bindings.rasterPos3dv(v);
+fn void rasterPos3f(GLfloat x, GLfloat y, GLfloat z) => bindings.rasterPos3f(x, y, z);
+fn void rasterPos3fv(GLfloat *v) => bindings.rasterPos3fv(v);
+fn void rasterPos3i(GLint x, GLint y, GLint z) => bindings.rasterPos3i(x, y, z);
+fn void rasterPos3iv(GLint *v) => bindings.rasterPos3iv(v);
+fn void rasterPos3s(GLshort x, GLshort y, GLshort z) => bindings.rasterPos3s(x, y, z);
+fn void rasterPos3sv(GLshort *v) => bindings.rasterPos3sv(v);
+fn void rasterPos4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w) => bindings.rasterPos4d(x, y, z,w);
+fn void rasterPos4dv(GLdouble *v) => bindings.rasterPos4dv(v);
+fn void rasterPos4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) => bindings.rasterPos4f(x, y, z,w);
+fn void rasterPos4fv(GLfloat *v) => bindings.rasterPos4fv(v);
+fn void rasterPos4i(GLint x, GLint y, GLint z, GLint w) => bindings.rasterPos4i(x, y, z,w);
+fn void rasterPos4iv(GLint *v) => bindings.rasterPos4iv(v);
+fn void rasterPos4s(GLshort x, GLshort y, GLshort z, GLshort w) => bindings.rasterPos4s(x, y, z,w);
+fn void rasterPos4sv(GLshort *v) => bindings.rasterPos4sv(v);
+fn void readBuffer(GLenum src) => bindings.readBuffer(src);
+fn void readPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels) => bindings.readPixels(x, y,width,height,format,value_type,pixels);
+fn void readnPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum value_type, GLsizei bufSize, void *data) => bindings.readnPixels(x, y,width,height,format,value_type,bufSize,data);
+fn void rectd(GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2) => bindings.rectd(x1,y1,x2,y2);
+fn void rectdv(GLdouble *v1, GLdouble *v2) => bindings.rectdv(v1,v2);
+fn void rectf(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2) => bindings.rectf(x1,y1,x2,y2);
+fn void rectfv(GLfloat *v1, GLfloat *v2) => bindings.rectfv(v1,v2);
+fn void recti(GLint x1, GLint y1, GLint x2, GLint y2) => bindings.recti(x1,y1,x2,y2);
+fn void rectiv(GLint *v1, GLint *v2) => bindings.rectiv(v1,v2);
+fn void rects(GLshort x1, GLshort y1, GLshort x2, GLshort y2) => bindings.rects(x1,y1,x2,y2);
+fn void rectsv(GLshort *v1, GLshort *v2) => bindings.rectsv(v1,v2);
+fn void releaseShaderCompiler() => bindings.releaseShaderCompiler();
+fn GLint renderMode(GLenum mode) => bindings.renderMode(mode);
+fn void renderbufferStorage(GLenum target, GLenum internalformat, GLsizei width, GLsizei height) => bindings.renderbufferStorage(target,internalformat,width,height);
+fn void renderbufferStorageMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height) => bindings.renderbufferStorageMultisample(target,samples,internalformat,width,height);
+fn void resumeTransformFeedback() => bindings.resumeTransformFeedback();
+fn void rotated(GLdouble angle, GLdouble x, GLdouble y, GLdouble z) => bindings.rotated(angle,x, y, z);
+fn void rotatef(GLfloat angle, GLfloat x, GLfloat y, GLfloat z) => bindings.rotatef(angle,x, y, z);
+fn void sampleMaski(GLuint maskNumber, GLbitfield mask) => bindings.sampleMaski(maskNumber,mask);
+fn void samplerParameterIiv(GLuint sampler, GLenum pname, GLint *param) => bindings.samplerParameterIiv(sampler,pname,param);
+fn void samplerParameterIuiv(GLuint sampler, GLenum pname, GLuint *param) => bindings.samplerParameterIuiv(sampler,pname,param);
+fn void samplerParameterf(GLuint sampler, GLenum pname, GLfloat param) => bindings.samplerParameterf(sampler,pname,param);
+fn void samplerParameterfv(GLuint sampler, GLenum pname, GLfloat *param) => bindings.samplerParameterfv(sampler,pname,param);
+fn void samplerParameteri(GLuint sampler, GLenum pname, GLint param) => bindings.samplerParameteri(sampler,pname,param);
+fn void samplerParameteriv(GLuint sampler, GLenum pname, GLint *param) => bindings.samplerParameteriv(sampler,pname,param);
+fn void scaled(GLdouble x, GLdouble y, GLdouble z) => bindings.scaled(x, y, z);
+fn void scalef(GLfloat x, GLfloat y, GLfloat z) => bindings.scalef(x, y, z);
+fn void scissor(GLint x, GLint y, GLsizei width, GLsizei height) => bindings.scissor(x, y,width,height);
+fn void scissorArrayv(GLuint first, GLsizei count, GLint *v) => bindings.scissorArrayv(first,count,v);
+fn void scissorIndexed(GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height) => bindings.scissorIndexed(index,left,bottom,width,height);
+fn void scissorIndexedv(GLuint index, GLint *v) => bindings.scissorIndexedv(index,v);
+fn void secondaryColor3b(GLbyte red, GLbyte green, GLbyte blue) => bindings.secondaryColor3b(red,green,blue);
+fn void secondaryColor3bv(GLbyte *v) => bindings.secondaryColor3bv(v);
+fn void secondaryColor3d(GLdouble red, GLdouble green, GLdouble blue) => bindings.secondaryColor3d(red,green,blue);
+fn void secondaryColor3dv(GLdouble *v) => bindings.secondaryColor3dv(v);
+fn void secondaryColor3f(GLfloat red, GLfloat green, GLfloat blue) => bindings.secondaryColor3f(red,green,blue);
+fn void secondaryColor3fv(GLfloat *v) => bindings.secondaryColor3fv(v);
+fn void secondaryColor3i(GLint red, GLint green, GLint blue) => bindings.secondaryColor3i(red,green,blue);
+fn void secondaryColor3iv(GLint *v) => bindings.secondaryColor3iv(v);
+fn void secondaryColor3s(GLshort red, GLshort green, GLshort blue) => bindings.secondaryColor3s(red,green,blue);
+fn void secondaryColor3sv(GLshort *v) => bindings.secondaryColor3sv(v);
+fn void secondaryColor3ub(GLubyte red, GLubyte green, GLubyte blue) => bindings.secondaryColor3ub(red,green,blue);
+fn void secondaryColor3ubv(GLubyte *v) => bindings.secondaryColor3ubv(v);
+fn void secondaryColor3ui(GLuint red, GLuint green, GLuint blue) => bindings.secondaryColor3ui(red,green,blue);
+fn void secondaryColor3uiv(GLuint *v) => bindings.secondaryColor3uiv(v);
+fn void secondaryColor3us(GLushort red, GLushort green, GLushort blue) => bindings.secondaryColor3us(red,green,blue);
+fn void secondaryColor3usv(GLushort *v) => bindings.secondaryColor3usv(v);
+fn void secondaryColorP3ui(GLenum value_type, GLuint color) => bindings.secondaryColorP3ui(value_type,color);
+fn void secondaryColorP3uiv(GLenum value_type, GLuint *color) => bindings.secondaryColorP3uiv(value_type,color);
+fn void secondaryColorPointer(GLint size, GLenum value_type, GLsizei stride, void *pointer) => bindings.secondaryColorPointer(size,value_type,stride,pointer);
+fn void selectBuffer(GLsizei size, GLuint *buffer) => bindings.selectBuffer(size,buffer);
+fn void shadeModel(GLenum mode) => bindings.shadeModel(mode);
+fn void shaderBinary(GLsizei count, GLuint *shaders, GLenum binaryFormat, void *binary, GLsizei length) => bindings.shaderBinary(count,shaders,binaryFormat,binary,length);
+fn void shaderSource(GLuint shader, GLsizei count, GLchar **string, GLint *length) => bindings.shaderSource(shader,count,string,length);
+fn void shaderStorageBlockBinding(GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding) => bindings.shaderStorageBlockBinding(program,storageBlockIndex,storageBlockBinding);
+fn void specializeShader(GLuint shader, GLchar *pEntryPoint, GLuint numSpecializationConstants, GLuint *pConstantIndex, GLuint *pConstantValue) => bindings.specializeShader(shader,pEntryPoint,numSpecializationConstants,pConstantIndex,pConstantValue);
+fn void stencilFunc(GLenum func_param, GLint ref, GLuint mask) => bindings.stencilFunc(func_param,ref,mask);
+fn void stencilFuncSeparate(GLenum face, GLenum func_param, GLint ref, GLuint mask) => bindings.stencilFuncSeparate(face,func_param,ref,mask);
+fn void stencilMask(GLuint mask) => bindings.stencilMask(mask);
+fn void stencilMaskSeparate(GLenum face, GLuint mask) => bindings.stencilMaskSeparate(face,mask);
+fn void stencilOp(GLenum fail, GLenum zfail, GLenum zpass) => bindings.stencilOp(fail,zfail,zpass);
+fn void stencilOpSeparate(GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass) => bindings.stencilOpSeparate(face,sfail,dpfail,dppass);
+fn void texBuffer(GLenum target, GLenum internalformat, GLuint buffer) => bindings.texBuffer(target,internalformat,buffer);
+fn void texBufferRange(GLenum target, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size) => bindings.texBufferRange(target,internalformat,buffer,offset,size);
+fn void texCoord1d(GLdouble s) => bindings.texCoord1d(s);
+fn void texCoord1dv(GLdouble *v) => bindings.texCoord1dv(v);
+fn void texCoord1f(GLfloat s) => bindings.texCoord1f(s);
+fn void texCoord1fv(GLfloat *v) => bindings.texCoord1fv(v);
+fn void texCoord1i(GLint s) => bindings.texCoord1i(s);
+fn void texCoord1iv(GLint *v) => bindings.texCoord1iv(v);
+fn void texCoord1s(GLshort s) => bindings.texCoord1s(s);
+fn void texCoord1sv(GLshort *v) => bindings.texCoord1sv(v);
+fn void texCoord2d(GLdouble s, GLdouble t) => bindings.texCoord2d(s,t);
+fn void texCoord2dv(GLdouble *v) => bindings.texCoord2dv(v);
+fn void texCoord2f(GLfloat s, GLfloat t) => bindings.texCoord2f(s,t);
+fn void texCoord2fv(GLfloat *v) => bindings.texCoord2fv(v);
+fn void texCoord2i(GLint s, GLint t) => bindings.texCoord2i(s,t);
+fn void texCoord2iv(GLint *v) => bindings.texCoord2iv(v);
+fn void texCoord2s(GLshort s, GLshort t) => bindings.texCoord2s(s,t);
+fn void texCoord2sv(GLshort *v) => bindings.texCoord2sv(v);
+fn void texCoord3d(GLdouble s, GLdouble t, GLdouble r) => bindings.texCoord3d(s,t,r);
+fn void texCoord3dv(GLdouble *v) => bindings.texCoord3dv(v);
+fn void texCoord3f(GLfloat s, GLfloat t, GLfloat r) => bindings.texCoord3f(s,t,r);
+fn void texCoord3fv(GLfloat *v) => bindings.texCoord3fv(v);
+fn void texCoord3i(GLint s, GLint t, GLint r) => bindings.texCoord3i(s,t,r);
+fn void texCoord3iv(GLint *v) => bindings.texCoord3iv(v);
+fn void texCoord3s(GLshort s, GLshort t, GLshort r) => bindings.texCoord3s(s,t,r);
+fn void texCoord3sv(GLshort *v) => bindings.texCoord3sv(v);
+fn void texCoord4d(GLdouble s, GLdouble t, GLdouble r, GLdouble q) => bindings.texCoord4d(s,t,r,q);
+fn void texCoord4dv(GLdouble *v) => bindings.texCoord4dv(v);
+fn void texCoord4f(GLfloat s, GLfloat t, GLfloat r, GLfloat q) => bindings.texCoord4f(s,t,r,q);
+fn void texCoord4fv(GLfloat *v) => bindings.texCoord4fv(v);
+fn void texCoord4i(GLint s, GLint t, GLint r, GLint q) => bindings.texCoord4i(s,t,r,q);
+fn void texCoord4iv(GLint *v) => bindings.texCoord4iv(v);
+fn void texCoord4s(GLshort s, GLshort t, GLshort r, GLshort q) => bindings.texCoord4s(s,t,r,q);
+fn void texCoord4sv(GLshort *v) => bindings.texCoord4sv(v);
+fn void texCoordP1ui(GLenum value_type, GLuint coords) => bindings.texCoordP1ui(value_type,coords);
+fn void texCoordP1uiv(GLenum value_type, GLuint *coords) => bindings.texCoordP1uiv(value_type,coords);
+fn void texCoordP2ui(GLenum value_type, GLuint coords) => bindings.texCoordP2ui(value_type,coords);
+fn void texCoordP2uiv(GLenum value_type, GLuint *coords) => bindings.texCoordP2uiv(value_type,coords);
+fn void texCoordP3ui(GLenum value_type, GLuint coords) => bindings.texCoordP3ui(value_type,coords);
+fn void texCoordP3uiv(GLenum value_type, GLuint *coords) => bindings.texCoordP3uiv(value_type,coords);
+fn void texCoordP4ui(GLenum value_type, GLuint coords) => bindings.texCoordP4ui(value_type,coords);
+fn void texCoordP4uiv(GLenum value_type, GLuint *coords) => bindings.texCoordP4uiv(value_type,coords);
+fn void texCoordPointer(GLint size, GLenum value_type, GLsizei stride, void *pointer) => bindings.texCoordPointer(size,value_type,stride,pointer);
+fn void texEnvf(GLenum target, GLenum pname, GLfloat param) => bindings.texEnvf(target,pname,param);
+fn void texEnvfv(GLenum target, GLenum pname, GLfloat *params) => bindings.texEnvfv(target,pname,params);
+fn void texEnvi(GLenum target, GLenum pname, GLint param) => bindings.texEnvi(target,pname,param);
+fn void texEnviv(GLenum target, GLenum pname, GLint *params) => bindings.texEnviv(target,pname,params);
+fn void texGend(GLenum coord, GLenum pname, GLdouble param) => bindings.texGend(coord,pname,param);
+fn void texGendv(GLenum coord, GLenum pname, GLdouble *params) => bindings.texGendv(coord,pname,params);
+fn void texGenf(GLenum coord, GLenum pname, GLfloat param) => bindings.texGenf(coord,pname,param);
+fn void texGenfv(GLenum coord, GLenum pname, GLfloat *params) => bindings.texGenfv(coord,pname,params);
+fn void texGeni(GLenum coord, GLenum pname, GLint param) => bindings.texGeni(coord,pname,param);
+fn void texGeniv(GLenum coord, GLenum pname, GLint *params) => bindings.texGeniv(coord,pname,params);
+fn void texImage1D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum value_type, void *pixels) => bindings.texImage1D(target,level,internalformat,width,border,format,value_type,pixels);
+fn void texImage2D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum value_type, void *pixels) => bindings.texImage2D(target,level,internalformat,width,height,border,format,value_type,pixels);
+fn void texImage2DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) => bindings.texImage2DMultisample(target,samples,internalformat,width,height,fixedsamplelocations);
+fn void texImage3DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) => bindings.texImage3DMultisample(target,samples,internalformat,width,height,depth,fixedsamplelocations);
+fn void texParameterIiv(GLenum target, GLenum pname, GLint *params) => bindings.texParameterIiv(target,pname,params);
+fn void texParameterIuiv(GLenum target, GLenum pname, GLuint *params) => bindings.texParameterIuiv(target,pname,params);
+fn void texParameterf(GLenum target, GLenum pname, GLfloat param) => bindings.texParameterf(target,pname,param);
+fn void texParameterfv(GLenum target, GLenum pname, GLfloat *params) => bindings.texParameterfv(target,pname,params);
+fn void texParameteri(GLenum target, GLenum pname, GLint param) => bindings.texParameteri(target,pname,param);
+fn void texParameteriv(GLenum target, GLenum pname, GLint *params) => bindings.texParameteriv(target,pname,params);
+fn void texStorage1D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width) => bindings.texStorage1D(target,levels,internalformat,width);
+fn void texStorage2D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height) => bindings.texStorage2D(target,levels,internalformat,width,height);
+fn void texStorage2DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) => bindings.texStorage2DMultisample(target,samples,internalformat,width,height,fixedsamplelocations);
+fn void texStorage3D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth) => bindings.texStorage3D(target,levels,internalformat,width,height,depth);
+fn void texStorage3DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) => bindings.texStorage3DMultisample(target,samples,internalformat,width,height,depth,fixedsamplelocations);
+fn void texSubImage1D(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type, void *pixels) => bindings.texSubImage1D(target,level,xoffset,width,format,value_type,pixels);
+fn void texSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels) => bindings.texSubImage2D(target,level,xoffset,yoffset,width,height,format,value_type,pixels);
+fn void textureBarrier() => bindings.textureBarrier();
+fn void textureBuffer(GLuint texture, GLenum internalformat, GLuint buffer) => bindings.textureBuffer(texture,internalformat,buffer);
+fn void textureBufferRange(GLuint texture, GLenum internalformat, GLuint buffer, GLintptr offset, GLsizeiptr size) => bindings.textureBufferRange(texture,internalformat,buffer,offset,size);
+fn void textureParameterIiv(GLuint texture, GLenum pname, GLint *params) => bindings.textureParameterIiv(texture,pname,params);
+fn void textureParameterIuiv(GLuint texture, GLenum pname, GLuint *params) => bindings.textureParameterIuiv(texture,pname,params);
+fn void textureParameterf(GLuint texture, GLenum pname, GLfloat param) => bindings.textureParameterf(texture,pname,param);
+fn void textureParameterfv(GLuint texture, GLenum pname, GLfloat *param) => bindings.textureParameterfv(texture,pname,param);
+fn void textureParameteri(GLuint texture, GLenum pname, GLint param) => bindings.textureParameteri(texture,pname,param);
+fn void textureParameteriv(GLuint texture, GLenum pname, GLint *param) => bindings.textureParameteriv(texture,pname,param);
+fn void textureStorage1D(GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width) => bindings.textureStorage1D(texture,levels,internalformat,width);
+fn void textureStorage2D(GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height) => bindings.textureStorage2D(texture,levels,internalformat,width,height);
+fn void textureStorage2DMultisample(GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) => bindings.textureStorage2DMultisample(texture,samples,internalformat,width,height,fixedsamplelocations);
+fn void textureStorage3D(GLuint texture, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth) => bindings.textureStorage3D(texture,levels,internalformat,width,height,depth);
+fn void textureStorage3DMultisample(GLuint texture, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) => bindings.textureStorage3DMultisample(texture,samples,internalformat,width,height,depth,fixedsamplelocations);
+fn void textureSubImage1D(GLuint texture, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum value_type, void *pixels) => bindings.textureSubImage1D(texture,level,xoffset,width,format,value_type,pixels);
+fn void textureSubImage2D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum value_type, void *pixels) => bindings.textureSubImage2D(texture,level,xoffset,yoffset,width,height,format,value_type,pixels);
+fn void textureSubImage3D(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum value_type, void *pixels) => bindings.textureSubImage3D(texture,level,xoffset,yoffset,zoffset,width,height,depth,format,value_type,pixels);
+fn void textureView(GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers) => bindings.textureView(texture,target,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
+fn void transformFeedbackBufferBase(GLuint xfb, GLuint index, GLuint buffer) => bindings.transformFeedbackBufferBase(xfb,index,buffer);
+fn void transformFeedbackBufferRange(GLuint xfb, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size) => bindings.transformFeedbackBufferRange(xfb,index,buffer,offset,size);
+fn void transformFeedbackVaryings(GLuint program, GLsizei count, GLchar **varyings, GLenum bufferMode) => bindings.transformFeedbackVaryings(program,count,varyings,bufferMode);
+fn void translated(GLdouble x, GLdouble y, GLdouble z) => bindings.translated(x, y, z);
+fn void translatef(GLfloat x, GLfloat y, GLfloat z) => bindings.translatef(x, y, z);
+fn void uniform1d(GLint location, GLdouble x) => bindings.uniform1d(location,x);
+fn void uniform1dv(GLint location, GLsizei count, GLdouble *value) => bindings.uniform1dv(location,count,value);
+fn void uniform1f(GLint location, GLfloat v0) => bindings.uniform1f(location,v0);
+fn void uniform1fv(GLint location, GLsizei count, GLfloat *value) => bindings.uniform1fv(location,count,value);
+fn void uniform1i(GLint location, GLint v0) => bindings.uniform1i(location,v0);
+fn void uniform1iv(GLint location, GLsizei count, GLint *value) => bindings.uniform1iv(location,count,value);
+fn void uniform1ui(GLint location, GLuint v0) => bindings.uniform1ui(location,v0);
+fn void uniform1uiv(GLint location, GLsizei count, GLuint *value) => bindings.uniform1uiv(location,count,value);
+fn void uniform2d(GLint location, GLdouble x, GLdouble y) => bindings.uniform2d(location,x, y);
+fn void uniform2dv(GLint location, GLsizei count, GLdouble *value) => bindings.uniform2dv(location,count,value);
+fn void uniform2f(GLint location, GLfloat v0, GLfloat v1) => bindings.uniform2f(location,v0,v1);
+fn void uniform2fv(GLint location, GLsizei count, GLfloat *value) => bindings.uniform2fv(location,count,value);
+fn void uniform2i(GLint location, GLint v0, GLint v1) => bindings.uniform2i(location,v0,v1);
+fn void uniform2iv(GLint location, GLsizei count, GLint *value) => bindings.uniform2iv(location,count,value);
+fn void uniform2ui(GLint location, GLuint v0, GLuint v1) => bindings.uniform2ui(location,v0,v1);
+fn void uniform2uiv(GLint location, GLsizei count, GLuint *value) => bindings.uniform2uiv(location,count,value);
+fn void uniform3d(GLint location, GLdouble x, GLdouble y, GLdouble z) => bindings.uniform3d(location,x, y, z);
+fn void uniform3dv(GLint location, GLsizei count, GLdouble *value) => bindings.uniform3dv(location,count,value);
+fn void uniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2) => bindings.uniform3f(location,v0,v1,v2);
+fn void uniform3fv(GLint location, GLsizei count, GLfloat *value) => bindings.uniform3fv(location,count,value);
+fn void uniform3i(GLint location, GLint v0, GLint v1, GLint v2) => bindings.uniform3i(location,v0,v1,v2);
+fn void uniform3iv(GLint location, GLsizei count, GLint *value) => bindings.uniform3iv(location,count,value);
+fn void uniform3ui(GLint location, GLuint v0, GLuint v1, GLuint v2) => bindings.uniform3ui(location,v0,v1,v2);
+fn void uniform3uiv(GLint location, GLsizei count, GLuint *value) => bindings.uniform3uiv(location,count,value);
+fn void uniform4d(GLint location, GLdouble x, GLdouble y, GLdouble z, GLdouble w) => bindings.uniform4d(location,x, y, z,w);
+fn void uniform4dv(GLint location, GLsizei count, GLdouble *value) => bindings.uniform4dv(location,count,value);
+fn void uniform4f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) => bindings.uniform4f(location,v0,v1,v2,v3);
+fn void uniform4fv(GLint location, GLsizei count, GLfloat *value) => bindings.uniform4fv(location,count,value);
+fn void uniform4i(GLint location, GLint v0, GLint v1, GLint v2, GLint v3) => bindings.uniform4i(location,v0,v1,v2,v3);
+fn void uniform4iv(GLint location, GLsizei count, GLint *value) => bindings.uniform4iv(location,count,value);
+fn void uniform4ui(GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3) => bindings.uniform4ui(location,v0,v1,v2,v3);
+fn void uniform4uiv(GLint location, GLsizei count, GLuint *value) => bindings.uniform4uiv(location,count,value);
+fn void uniformBlockBinding(GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding) => bindings.uniformBlockBinding(program,uniformBlockIndex,uniformBlockBinding);
+fn void uniformMatrix2dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix2dv(location,count,transpose,value);
+fn void uniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix2fv(location,count,transpose,value);
+fn void uniformMatrix2x3dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix2x3dv(location,count,transpose,value);
+fn void uniformMatrix2x3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix2x3fv(location,count,transpose,value);
+fn void uniformMatrix2x4dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix2x4dv(location,count,transpose,value);
+fn void uniformMatrix2x4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix2x4fv(location,count,transpose,value);
+fn void uniformMatrix3dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix3dv(location,count,transpose,value);
+fn void uniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix3fv(location,count,transpose,value);
+fn void uniformMatrix3x2dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix3x2dv(location,count,transpose,value);
+fn void uniformMatrix3x2fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix3x2fv(location,count,transpose,value);
+fn void uniformMatrix3x4dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix3x4dv(location,count,transpose,value);
+fn void uniformMatrix3x4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix3x4fv(location,count,transpose,value);
+fn void uniformMatrix4dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix4dv(location,count,transpose,value);
+fn void uniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix4fv(location,count,transpose,value);
+fn void uniformMatrix4x2dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix4x2dv(location,count,transpose,value);
+fn void uniformMatrix4x2fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix4x2fv(location,count,transpose,value);
+fn void uniformMatrix4x3dv(GLint location, GLsizei count, GLboolean transpose, GLdouble *value) => bindings.uniformMatrix4x3dv(location,count,transpose,value);
+fn void uniformMatrix4x3fv(GLint location, GLsizei count, GLboolean transpose, GLfloat *value) => bindings.uniformMatrix4x3fv(location,count,transpose,value);
+fn void uniformSubroutinesuiv(GLenum shadertype, GLsizei count, GLuint *indices) => bindings.uniformSubroutinesuiv(shadertype,count,indices);
+fn GLboolean unmapBuffer(GLenum target) => bindings.unmapBuffer(target);
+fn GLboolean unmapNamedBuffer(GLuint buffer) => bindings.unmapNamedBuffer(buffer);
+fn void useProgram(GLuint program) => bindings.useProgram(program);
+fn void useProgramStages(GLuint pipeline, GLbitfield stages, GLuint program) => bindings.useProgramStages(pipeline,stages,program);
+fn void validateProgram(GLuint program) => bindings.validateProgram(program);
+fn void validateProgramPipeline(GLuint pipeline) => bindings.validateProgramPipeline(pipeline);
+fn void vertex2d(GLdouble x, GLdouble y) => bindings.vertex2d(x, y);
+fn void vertex2dv(GLdouble *v) => bindings.vertex2dv(v);
+fn void vertex2f(GLfloat x, GLfloat y) => bindings.vertex2f(x, y);
+fn void vertex2fv(GLfloat *v) => bindings.vertex2fv(v);
+fn void vertex2i(GLint x, GLint y) => bindings.vertex2i(x, y);
+fn void vertex2iv(GLint *v) => bindings.vertex2iv(v);
+fn void vertex2s(GLshort x, GLshort y) => bindings.vertex2s(x, y);
+fn void vertex2sv(GLshort *v) => bindings.vertex2sv(v);
+fn void vertex3d(GLdouble x, GLdouble y, GLdouble z) => bindings.vertex3d(x, y, z);
+fn void vertex3dv(GLdouble *v) => bindings.vertex3dv(v);
+fn void vertex3f(GLfloat x, GLfloat y, GLfloat z) => bindings.vertex3f(x, y, z);
+fn void vertex3fv(GLfloat *v) => bindings.vertex3fv(v);
+fn void vertex3i(GLint x, GLint y, GLint z) => bindings.vertex3i(x, y, z);
+fn void vertex3iv(GLint *v) => bindings.vertex3iv(v);
+fn void vertex3s(GLshort x, GLshort y, GLshort z) => bindings.vertex3s(x, y, z);
+fn void vertex3sv(GLshort *v) => bindings.vertex3sv(v);
+fn void vertex4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w) => bindings.vertex4d(x, y, z,w);
+fn void vertex4dv(GLdouble *v) => bindings.vertex4dv(v);
+fn void vertex4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) => bindings.vertex4f(x, y, z,w);
+fn void vertex4fv(GLfloat *v) => bindings.vertex4fv(v);
+fn void vertex4i(GLint x, GLint y, GLint z, GLint w) => bindings.vertex4i(x, y, z,w);
+fn void vertex4iv(GLint *v) => bindings.vertex4iv(v);
+fn void vertex4s(GLshort x, GLshort y, GLshort z, GLshort w) => bindings.vertex4s(x, y, z,w);
+fn void vertex4sv(GLshort *v) => bindings.vertex4sv(v);
+fn void vertexArrayAttribBinding(GLuint vaobj, GLuint attribindex, GLuint bindingindex) => bindings.vertexArrayAttribBinding(vaobj,attribindex,bindingindex);
+fn void vertexArrayAttribFormat(GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset) => bindings.vertexArrayAttribFormat(vaobj,attribindex,size,value_type,normalized,relativeoffset);
+fn void vertexArrayAttribIFormat(GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) => bindings.vertexArrayAttribIFormat(vaobj,attribindex,size,value_type,relativeoffset);
+fn void vertexArrayAttribLFormat(GLuint vaobj, GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) => bindings.vertexArrayAttribLFormat(vaobj,attribindex,size,value_type,relativeoffset);
+fn void vertexArrayBindingDivisor(GLuint vaobj, GLuint bindingindex, GLuint divisor) => bindings.vertexArrayBindingDivisor(vaobj,bindingindex,divisor);
+fn void vertexArrayElementBuffer(GLuint vaobj, GLuint buffer) => bindings.vertexArrayElementBuffer(vaobj,buffer);
+fn void vertexArrayVertexBuffer(GLuint vaobj, GLuint bindingindex, GLuint buffer, GLintptr offset, GLsizei stride) => bindings.vertexArrayVertexBuffer(vaobj,bindingindex,buffer,offset,stride);
+fn void vertexArrayVertexBuffers(GLuint vaobj, GLuint first, GLsizei count, GLuint *buffers, GLintptr *offsets, GLsizei *strides) => bindings.vertexArrayVertexBuffers(vaobj,first,count,buffers,offsets,strides);
+fn void vertexAttrib1d(GLuint index, GLdouble x) => bindings.vertexAttrib1d(index,x);
+fn void vertexAttrib1dv(GLuint index, GLdouble *v) => bindings.vertexAttrib1dv(index,v);
+fn void vertexAttrib1f(GLuint index, GLfloat x) => bindings.vertexAttrib1f(index,x);
+fn void vertexAttrib1fv(GLuint index, GLfloat *v) => bindings.vertexAttrib1fv(index,v);
+fn void vertexAttrib1s(GLuint index, GLshort x) => bindings.vertexAttrib1s(index,x);
+fn void vertexAttrib1sv(GLuint index, GLshort *v) => bindings.vertexAttrib1sv(index,v);
+fn void vertexAttrib2d(GLuint index, GLdouble x, GLdouble y) => bindings.vertexAttrib2d(index,x, y);
+fn void vertexAttrib2dv(GLuint index, GLdouble *v) => bindings.vertexAttrib2dv(index,v);
+fn void vertexAttrib2f(GLuint index, GLfloat x, GLfloat y) => bindings.vertexAttrib2f(index,x, y);
+fn void vertexAttrib2fv(GLuint index, GLfloat *v) => bindings.vertexAttrib2fv(index,v);
+fn void vertexAttrib2s(GLuint index, GLshort x, GLshort y) => bindings.vertexAttrib2s(index,x, y);
+fn void vertexAttrib2sv(GLuint index, GLshort *v) => bindings.vertexAttrib2sv(index,v);
+fn void vertexAttrib3d(GLuint index, GLdouble x, GLdouble y, GLdouble z) => bindings.vertexAttrib3d(index,x, y, z);
+fn void vertexAttrib3dv(GLuint index, GLdouble *v) => bindings.vertexAttrib3dv(index,v);
+fn void vertexAttrib3f(GLuint index, GLfloat x, GLfloat y, GLfloat z) => bindings.vertexAttrib3f(index,x, y, z);
+fn void vertexAttrib3fv(GLuint index, GLfloat *v) => bindings.vertexAttrib3fv(index,v);
+fn void vertexAttrib3s(GLuint index, GLshort x, GLshort y, GLshort z) => bindings.vertexAttrib3s(index,x, y, z);
+fn void vertexAttrib3sv(GLuint index, GLshort *v) => bindings.vertexAttrib3sv(index,v);
+fn void vertexAttrib4Nbv(GLuint index, GLbyte *v) => bindings.vertexAttrib4Nbv(index,v);
+fn void vertexAttrib4Niv(GLuint index, GLint *v) => bindings.vertexAttrib4Niv(index,v);
+fn void vertexAttrib4Nsv(GLuint index, GLshort *v) => bindings.vertexAttrib4Nsv(index,v);
+fn void vertexAttrib4Nub(GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w) => bindings.vertexAttrib4Nub(index,x, y, z,w);
+fn void vertexAttrib4Nubv(GLuint index, GLubyte *v) => bindings.vertexAttrib4Nubv(index,v);
+fn void vertexAttrib4Nuiv(GLuint index, GLuint *v) => bindings.vertexAttrib4Nuiv(index,v);
+fn void vertexAttrib4Nusv(GLuint index, GLushort *v) => bindings.vertexAttrib4Nusv(index,v);
+fn void vertexAttrib4bv(GLuint index, GLbyte *v) => bindings.vertexAttrib4bv(index,v);
+fn void vertexAttrib4d(GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w) => bindings.vertexAttrib4d(index,x, y, z,w);
+fn void vertexAttrib4dv(GLuint index, GLdouble *v) => bindings.vertexAttrib4dv(index,v);
+fn void vertexAttrib4f(GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w) => bindings.vertexAttrib4f(index,x, y, z,w);
+fn void vertexAttrib4fv(GLuint index, GLfloat *v) => bindings.vertexAttrib4fv(index,v);
+fn void vertexAttrib4iv(GLuint index, GLint *v) => bindings.vertexAttrib4iv(index,v);
+fn void vertexAttrib4s(GLuint index, GLshort x, GLshort y, GLshort z, GLshort w) => bindings.vertexAttrib4s(index,x, y, z,w);
+fn void vertexAttrib4sv(GLuint index, GLshort *v) => bindings.vertexAttrib4sv(index,v);
+fn void vertexAttrib4ubv(GLuint index, GLubyte *v) => bindings.vertexAttrib4ubv(index,v);
+fn void vertexAttrib4uiv(GLuint index, GLuint *v) => bindings.vertexAttrib4uiv(index,v);
+fn void vertexAttrib4usv(GLuint index, GLushort *v) => bindings.vertexAttrib4usv(index,v);
+fn void vertexAttribBinding(GLuint attribindex, GLuint bindingindex) => bindings.vertexAttribBinding(attribindex,bindingindex);
+fn void vertexAttribDivisor(GLuint index, GLuint divisor) => bindings.vertexAttribDivisor(index,divisor);
+fn void vertexAttribFormat(GLuint attribindex, GLint size, GLenum value_type, GLboolean normalized, GLuint relativeoffset) => bindings.vertexAttribFormat(attribindex,size,value_type,normalized,relativeoffset);
+fn void vertexAttribI1i(GLuint index, GLint x) => bindings.vertexAttribI1i(index,x);
+fn void vertexAttribI1iv(GLuint index, GLint *v) => bindings.vertexAttribI1iv(index,v);
+fn void vertexAttribI1ui(GLuint index, GLuint x) => bindings.vertexAttribI1ui(index,x);
+fn void vertexAttribI1uiv(GLuint index, GLuint *v) => bindings.vertexAttribI1uiv(index,v);
+fn void vertexAttribI2i(GLuint index, GLint x, GLint y) => bindings.vertexAttribI2i(index,x, y);
+fn void vertexAttribI2iv(GLuint index, GLint *v) => bindings.vertexAttribI2iv(index,v);
+fn void vertexAttribI2ui(GLuint index, GLuint x, GLuint y) => bindings.vertexAttribI2ui(index,x, y);
+fn void vertexAttribI2uiv(GLuint index, GLuint *v) => bindings.vertexAttribI2uiv(index,v);
+fn void vertexAttribI3i(GLuint index, GLint x, GLint y, GLint z) => bindings.vertexAttribI3i(index,x, y, z);
+fn void vertexAttribI3iv(GLuint index, GLint *v) => bindings.vertexAttribI3iv(index,v);
+fn void vertexAttribI3ui(GLuint index, GLuint x, GLuint y, GLuint z) => bindings.vertexAttribI3ui(index,x, y, z);
+fn void vertexAttribI3uiv(GLuint index, GLuint *v) => bindings.vertexAttribI3uiv(index,v);
+fn void vertexAttribI4bv(GLuint index, GLbyte *v) => bindings.vertexAttribI4bv(index,v);
+fn void vertexAttribI4i(GLuint index, GLint x, GLint y, GLint z, GLint w) => bindings.vertexAttribI4i(index,x, y, z,w);
+fn void vertexAttribI4iv(GLuint index, GLint *v) => bindings.vertexAttribI4iv(index,v);
+fn void vertexAttribI4sv(GLuint index, GLshort *v) => bindings.vertexAttribI4sv(index,v);
+fn void vertexAttribI4ubv(GLuint index, GLubyte *v) => bindings.vertexAttribI4ubv(index,v);
+fn void vertexAttribI4ui(GLuint index, GLuint x, GLuint y, GLuint z, GLuint w) => bindings.vertexAttribI4ui(index,x, y, z,w);
+fn void vertexAttribI4uiv(GLuint index, GLuint *v) => bindings.vertexAttribI4uiv(index,v);
+fn void vertexAttribI4usv(GLuint index, GLushort *v) => bindings.vertexAttribI4usv(index,v);
+fn void vertexAttribIFormat(GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) => bindings.vertexAttribIFormat(attribindex,size,value_type,relativeoffset);
+fn void vertexAttribIPointer(GLuint index, GLint size, GLenum value_type, GLsizei stride, void *pointer) => bindings.vertexAttribIPointer(index,size,value_type,stride,pointer);
+fn void vertexAttribL1d(GLuint index, GLdouble x) => bindings.vertexAttribL1d(index,x);
+fn void vertexAttribL1dv(GLuint index, GLdouble *v) => bindings.vertexAttribL1dv(index,v);
+fn void vertexAttribL2d(GLuint index, GLdouble x, GLdouble y) => bindings.vertexAttribL2d(index,x, y);
+fn void vertexAttribL2dv(GLuint index, GLdouble *v) => bindings.vertexAttribL2dv(index,v);
+fn void vertexAttribL3d(GLuint index, GLdouble x, GLdouble y, GLdouble z) => bindings.vertexAttribL3d(index,x, y, z);
+fn void vertexAttribL3dv(GLuint index, GLdouble *v) => bindings.vertexAttribL3dv(index,v);
+fn void vertexAttribL4d(GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w) => bindings.vertexAttribL4d(index,x, y, z,w);
+fn void vertexAttribL4dv(GLuint index, GLdouble *v) => bindings.vertexAttribL4dv(index,v);
+fn void vertexAttribLFormat(GLuint attribindex, GLint size, GLenum value_type, GLuint relativeoffset) => bindings.vertexAttribLFormat(attribindex,size,value_type,relativeoffset);
+fn void vertexAttribLPointer(GLuint index, GLint size, GLenum value_type, GLsizei stride, void *pointer) => bindings.vertexAttribLPointer(index,size,value_type,stride,pointer);
+fn void vertexAttribP1ui(GLuint index, GLenum value_type, GLboolean normalized, GLuint value) => bindings.vertexAttribP1ui(index,value_type,normalized,value);
+fn void vertexAttribP1uiv(GLuint index, GLenum value_type, GLboolean normalized, GLuint *value) => bindings.vertexAttribP1uiv(index,value_type,normalized,value);
+fn void vertexAttribP2ui(GLuint index, GLenum value_type, GLboolean normalized, GLuint value) => bindings.vertexAttribP2ui(index,value_type,normalized,value);
+fn void vertexAttribP2uiv(GLuint index, GLenum value_type, GLboolean normalized, GLuint *value) => bindings.vertexAttribP2uiv(index,value_type,normalized,value);
+fn void vertexAttribP3ui(GLuint index, GLenum value_type, GLboolean normalized, GLuint value) => bindings.vertexAttribP3ui(index,value_type,normalized,value);
+fn void vertexAttribP3uiv(GLuint index, GLenum value_type, GLboolean normalized, GLuint *value) => bindings.vertexAttribP3uiv(index,value_type,normalized,value);
+fn void vertexAttribP4ui(GLuint index, GLenum value_type, GLboolean normalized, GLuint value) => bindings.vertexAttribP4ui(index,value_type,normalized,value);
+fn void vertexAttribP4uiv(GLuint index, GLenum value_type, GLboolean normalized, GLuint *value) => bindings.vertexAttribP4uiv(index,value_type,normalized,value);
+fn void vertexAttribPointer(GLuint index, GLint size, GLenum value_type, GLboolean normalized, GLsizei stride, void *pointer) => bindings.vertexAttribPointer(index,size,value_type,normalized,stride,pointer);
+fn void vertexBindingDivisor(GLuint bindingindex, GLuint divisor) => bindings.vertexBindingDivisor(bindingindex,divisor);
+fn void vertexP2ui(GLenum value_type, GLuint value) => bindings.vertexP2ui(value_type,value);
+fn void vertexP2uiv(GLenum value_type, GLuint *value) => bindings.vertexP2uiv(value_type,value);
+fn void vertexP3ui(GLenum value_type, GLuint value) => bindings.vertexP3ui(value_type,value);
+fn void vertexP3uiv(GLenum value_type, GLuint *value) => bindings.vertexP3uiv(value_type,value);
+fn void vertexP4ui(GLenum value_type, GLuint value) => bindings.vertexP4ui(value_type,value);
+fn void vertexP4uiv(GLenum value_type, GLuint *value) => bindings.vertexP4uiv(value_type,value);
+fn void vertexPointer(GLint size, GLenum value_type, GLsizei stride, void *pointer) => bindings.vertexPointer(size,value_type,stride,pointer);
+fn void viewport(GLint x, GLint y, GLsizei width, GLsizei height) => bindings.viewport(x, y,width,height);
+fn void viewportArrayv(GLuint first, GLsizei count, GLfloat *v) => bindings.viewportArrayv(first,count,v);
+fn void viewportIndexedf(GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h) => bindings.viewportIndexedf(index,x, y,w,h);
+fn void viewportIndexedfv(GLuint index, GLfloat *v) => bindings.viewportIndexedfv(index,v);
+fn void waitSync(GLsync sync, GLbitfield flags, GLuint64 timeout) => bindings.waitSync(sync,flags,timeout);
+fn void windowPos2d(GLdouble x, GLdouble y) => bindings.windowPos2d(x, y);
+fn void windowPos2dv(GLdouble *v) => bindings.windowPos2dv(v);
+fn void windowPos2f(GLfloat x, GLfloat y) => bindings.windowPos2f(x, y);
+fn void windowPos2fv(GLfloat *v) => bindings.windowPos2fv(v);
+fn void windowPos2i(GLint x, GLint y) => bindings.windowPos2i(x, y);
+fn void windowPos2iv(GLint *v) => bindings.windowPos2iv(v);
+fn void windowPos2s(GLshort x, GLshort y) => bindings.windowPos2s(x, y);
+fn void windowPos2sv(GLshort *v) => bindings.windowPos2sv(v);
+fn void windowPos3d(GLdouble x, GLdouble y, GLdouble z) => bindings.windowPos3d(x, y, z);
+fn void windowPos3dv(GLdouble *v) => bindings.windowPos3dv(v);
+fn void windowPos3f(GLfloat x, GLfloat y, GLfloat z) => bindings.windowPos3f(x, y, z);
+fn void windowPos3fv(GLfloat *v) => bindings.windowPos3fv(v);
+fn void windowPos3i(GLint x, GLint y, GLint z) => bindings.windowPos3i(x, y, z);
+fn void windowPos3iv(GLint *v) => bindings.windowPos3iv(v);
+fn void windowPos3s(GLshort x, GLshort y, GLshort z) => bindings.windowPos3s(x, y, z);
+fn void windowPos3sv(GLshort *v) => bindings.windowPos3sv(v);
