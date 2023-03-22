@@ -11,8 +11,8 @@ enum Channel : int
   STBI_RGB_ALPHA
 }
 
-fn char* stbi_load(char*, uint*, uint*, uint*, uint) @extname("stbi_load");
-fn void* stbi_image_free(char*) @extname("stbi_image_free");
+fn char* stbi_load(char*, uint*, uint*, uint*, uint) @extern("stbi_load");
+fn void* stbi_image_free(char*) @extern("stbi_image_free");
 
 fault FileError
 {

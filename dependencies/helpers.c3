@@ -6,7 +6,6 @@ import std::math;
 
 
 macro Matrix4f identity_4x4() => { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
-macro tan(x) => $$sin(x) / $$cos(x);
 
 fn float toRadians(float value) {
     return value * (float)math::PI / 180;

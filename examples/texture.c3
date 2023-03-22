@@ -8,6 +8,7 @@ import std::math::vector;
 import std::math::matrix;
 import stb;
 import std::core::mem;
+import libc;
 
 // Shader data
 
@@ -153,8 +154,8 @@ fn int main()
   renderer = gl::getString( gl::GL_RENDERER );
   version  = gl::getString( gl::GL_VERSION );
 
-  io::printfn( "Renderer: %s", renderer );
-  io::printfn( "OpenGL version supported %s", version );
+  libc::printf( "Renderer: %s\n", renderer );
+  libc::printf( "OpenGL version supported %s\n", version );
 
 
   // Load texture
