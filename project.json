@@ -8,6 +8,8 @@
 	"dependencies": ["opengl", "stb"],
 	"dependency-search-paths": [ "dependencies" ],
 	"sources": ["./dependencies/helpers.c3", "./dependencies/glfw.c3"],
+	"c-sources": ["./dependencies/stb.c3l/native/*"],
+	"cflags": "-fPIE",
 	"targets": {
 		"cube": {
 			"type": "executable",
@@ -20,8 +22,7 @@
 		"texture": {
 			"type": "executable",
 			"sources-add": ["./examples/texture.c3"],
-			"c-sources-add": ["./dependencies/stb.c3l/native/*"],
-			"cflags-add": "-fPIE"
+	
 		},
 		"gltf": {
 			"type": "executable",
