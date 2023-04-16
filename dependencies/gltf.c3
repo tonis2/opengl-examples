@@ -7,6 +7,8 @@ import std::core::mem;
 import std::collections::list;
 import std::encoding::json;
 
+import base64;
+
 typedef PrimitiveList = List<Primitive>;
 typedef NodeList = List<Node>;
 typedef SceneList= List<Scene>;
@@ -57,26 +59,35 @@ struct Accessor {
     AccessorType type;
 }
 
-struct BufferView {
-    uint buffer;
-    uint byteLength;
-    uint byteOffset;
-    Targets target;     
-}
-
 struct Mesh {
     String name;
     PrimitiveList primitives;
 }
 
+struct BufferView {
+    uint buffer;
+    uint byteLength;
+    uint offset;
+    Targets target;     
+}
+
 struct Buffer {
     char* data;
     uint size;
+    BufferType data_type;
 }
 
 enum Targets {
     ARRAY_BUFFER,
     ELEMENT_ARRAY_BUFFER
+}
+
+enum BufferType {
+    IMAGE_JPEG,
+    IMAGE_PNG,
+    IMAGE_BMP,
+    IMAGE_GIF,
+    STREAM
 }
 
 enum AccessorType {
@@ -114,7 +125,8 @@ fault ParseError
     FILE_NOT_READABLE,
     JSON_PARSE_FAILED,
     NO_BUFFER_VIEW,
-    NO_BUFFER
+    NO_BUFFER,
+    BROKEN_BUFFER
 }    
 
 fn Gltf! loadFile(String path) {
@@ -297,12 +309,12 @@ fn Gltf! loadFile(String path) {
             
             int! buffer = bufferView.get_int("buffer");
             int! byteLength = bufferView.get_int("byteLength");
-            int! byteOffset = bufferView.get_int("byteOffset");
+            int! offset = bufferView.get_int("byteOffset");
             int! target = bufferView.get_int("target");
 
             if (try buffer) data.buffer = buffer;
             if (try byteLength) data.byteLength = byteLength;
-            if (try byteOffset) data.byteOffset = byteOffset;
+            if (try offset) data.offset = offset;
             if (try target) {
                 switch(target) {
                     case 34962: {
@@ -322,17 +334,31 @@ fn Gltf! loadFile(String path) {
         foreach (buffer : buffers.array) {
             uint! size = buffer.get_int("byteLength");
             String! data = buffer.get_string("uri");
+            BufferType bufferType;
 
-            if (try size && try data) {
+            if (try size && try data) {          
+                String[] bufferHeader = data.split(",");
+                defer mem::free(bufferHeader);
+                char* parsedBuffer = mem::malloc(char, size);
+
+                // Parse buffer from base64 to bytes
+                if (mem::equals(bufferHeader[0], "data:application/octet-stream;base64")) {
+                    if (catch err = base64::decode(bufferHeader[1], parsedBuffer)) {
+                         io::printf("failed parsing buffer %s \n", bufferHeader[0]);
+                         return ParseError.BROKEN_BUFFER!;
+                    };
+                    io::printf("parsing buffer %s \n", "data:application/octet-stream;base64");
+                    bufferType = BufferType.STREAM;
+                }
+
                 content.buffers.push(Buffer {
-                    .data = data.split("base64,")[1],
-                    .size = size
+                    .data = parsedBuffer,
+                    .size = size,
+                    .data_type = bufferType
                 });
             }
         }
     }
-
- 
 
     file.close()?;
     return content;
@@ -344,6 +370,10 @@ fn void Gltf.close(Gltf* self) {
         mesh.primitives.free();
     }
 
+    foreach (buffer : self.buffers) {
+        buffer.free();
+    }
+
     self.accessors.free();
     self.bufferViews.free();
     self.buffers.free();
@@ -351,17 +381,22 @@ fn void Gltf.close(Gltf* self) {
     self.nodes.free();
     self.meshes.free();
     self.json.free();
-}   
+}
+
+fn void Buffer.free(Buffer* self) {
+    mem::free(self.data);
+}
 
 
 macro uint Accessor.size(Accessor* self, uint size) {
     return self.count * size;
 }
 
-macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor, list) {
-    
+macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor) {
+
     BufferView bufferView = self.bufferViews[accessor.bufferView];
     Buffer buffer = self.buffers[bufferView.buffer];
+    char* data = (buffer.data + accessor.offset + bufferView.offset);
 
     uint datum = {| 
         switch(accessor.type) {
@@ -388,10 +423,10 @@ macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor, list) {
             }     
         };
         return 0;
-    |}; 
+    |};
 
     // Todo convert bytes to correct format
     for (uint i = 0; i < accessor.count; i++) {
-        list.push((buffer.data + bufferView.byteOffset)[i*(i+1) + i]);
+        io::printf("Buffer value %s \n", data[i]);
     }
 }

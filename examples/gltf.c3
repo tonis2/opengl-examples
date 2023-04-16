@@ -5,8 +5,6 @@ import gltf;
 import std::collections::list;
 
 
-typedef Buffer = List<float>;
-
 fn void main() {
     Gltf! data = gltf::loadFile("assets/minimal.gltf");
     defer data.close();
@@ -16,40 +14,18 @@ fn void main() {
         return;
     }
 
-    // foreach (node : data.nodes) {
-    //     if (node.mesh) {
-    //         Mesh mesh = data.meshes[node.mesh];
-
-    //         Primitive prim = mesh.primitives[0];
-    //         int! position = prim.attributes.get_int("POSITION");
-
-    //         if (try position) {
-    //             io::printf("Position %d \n", position);
-    //             Accessor accessor = data.accessors[position];
-
-    //             uint size = accessor.size(float.sizeof);
-
-
-           
-    //         };
-    //     };
-    // }
-
-
     foreach (mesh : data.meshes) {
         Primitive prim = mesh.primitives[0];
         int! position = prim.attributes.get_int("POSITION");
 
-        Buffer buffferData;
-        defer buffferData.free();
-
         if (try position) {
             Accessor accessor = data.accessors[position];
-            anyerr err = data.@get_buffer(accessor, &buffferData);
+
+            if (catch err = data.@get_buffer(accessor)) {
+                io::printf("Error parsing buffer %d \n", position);
+            }
         };
 
-        foreach (item : buffferData) {
-            io::printf("item %d \n", item);
-        }
+       
     }
 }
