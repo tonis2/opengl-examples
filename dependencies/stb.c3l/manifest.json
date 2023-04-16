@@ -7,8 +7,8 @@
 		  "cflags-add": "-fPIE"
   },
   "linux-x64" : {
-      "c-sources": ["./native/*"],
-      "cflags": "-fPIE"
+      "c-sources-add": ["./native/*"],
+      "cflags-add": "-fPIE"
   },
 	"windows-x64" : {
     "c-sources-add": ["./native/*"],
