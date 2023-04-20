@@ -68,6 +68,7 @@ struct BufferView {
     uint buffer;
     uint byteLength;
     uint offset;
+    uint stride;
     Targets target;     
 }
 
@@ -181,7 +182,6 @@ fn Gltf! loadFile(String path) {
             Node nodeItem;
 
             String! name = node.get_string("name");
-
             if (try name) nodeItem.name = name;
 
             // Parse node transforms
@@ -191,15 +191,12 @@ fn Gltf! loadFile(String path) {
             Object*! mesh = node.get("mesh");
 
             if (try mesh) nodeItem.mesh = (uint)mesh.f;
-
             if (try rotation) {
                 nodeItem.rotation = Vec4f {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
             }
-
             if (try scale) {
                 nodeItem.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
             }
-
             if (try translation) {
                 nodeItem.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
             }
@@ -254,10 +251,9 @@ fn Gltf! loadFile(String path) {
             Object*! bufferView = accessor.get("bufferView");
             Object*! count = accessor.get("count");
             Object*! offset = accessor.get("offset");
-            Object*! stride = accessor.get("stride");
+            // Object*! stride = accessor.get("stride");
             Object*! normalize = accessor.get("normalize");
 
-            if (try stride) data.stride = (uint)stride.f;
             if (try count) data.count = (uint)count.f;
             if (try offset) data.offset = (uint)offset.f;
             if (try normalize) data.normalize = normalize.b;
@@ -279,7 +275,9 @@ fn Gltf! loadFile(String path) {
                         data.data_type = DataType.F32;
                 }
 
-
+                if (mem::equals(objectType.s, "SCALAR")) {
+                    data.type = AccessorType.SCALAR;
+                }
                 if (mem::equals(objectType.s, "VEC2")) {
                     data.type = AccessorType.VEC2;
                 }
@@ -299,6 +297,46 @@ fn Gltf! loadFile(String path) {
                     data.type = AccessorType.MAT4;
                 }   
             }
+
+            uint component_size = {|
+                switch(data.data_type) {
+                    case DataType.I8:
+                        return ichar.sizeof;
+                    case DataType.U8:
+                        return char.sizeof;
+                    case DataType.I16:
+                        return short.sizeof;
+                    case DataType.U16:
+                        return ushort.sizeof;
+                    case DataType.U32:
+                        return uint.sizeof;
+                    case DataType.F32:
+                        return float.sizeof;           
+                }
+                return 0;
+            |};
+
+            uint stride = {|
+                switch(data.type) {
+                    case AccessorType.SCALAR:
+                        return component_size;
+                    case AccessorType.VEC2:
+                        return 2 * component_size;
+                    case AccessorType.VEC3:
+                        return 3 * component_size;
+                    case AccessorType.VEC4:
+                        return 4 * component_size;
+                    case AccessorType.MAT2:
+                        return 4 * component_size;
+                    case AccessorType.MAT3:
+                        return 9 * component_size;
+                    case AccessorType.MAT4:
+                        return 16 * component_size;       
+                }
+                return 0;
+            |};
+
+            data.stride = stride;
             content.accessors.push(data);
         }
     }
@@ -307,10 +345,10 @@ fn Gltf! loadFile(String path) {
         foreach (bufferView : bufferViews.array) {
             BufferView data;
             
-            int! buffer = bufferView.get_int("buffer");
-            int! byteLength = bufferView.get_int("byteLength");
-            int! offset = bufferView.get_int("byteOffset");
-            int! target = bufferView.get_int("target");
+            uint! buffer = bufferView.get_int("buffer");
+            uint! byteLength = bufferView.get_int("byteLength");
+            uint! offset = bufferView.get_int("byteOffset");
+            uint! target = bufferView.get_int("target");
 
             if (try buffer) data.buffer = buffer;
             if (try byteLength) data.byteLength = byteLength;
@@ -347,7 +385,6 @@ fn Gltf! loadFile(String path) {
                          io::printf("failed parsing buffer %s \n", bufferHeader[0]);
                          return ParseError.BROKEN_BUFFER!;
                     };
-                    io::printf("parsing buffer %s \n", "data:application/octet-stream;base64");
                     bufferType = BufferType.STREAM;
                 }
 
@@ -424,6 +461,33 @@ macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor) {
         };
         return 0;
     |};
+
+    // uint stride = {| 
+    //     switch(accessor.type) {
+    //         case AccessorType.SCALAR: {
+    //             return 1;
+    //         }
+    //         case AccessorType.VEC2: {
+    //             return 2;
+    //         }
+    //         case AccessorType.VEC3: {
+    //             return 3;
+    //         }
+    //         case AccessorType.VEC4: {
+    //             return 4;
+    //         }
+    //         case AccessorType.MAT2: {
+    //             return 4;
+    //         }
+    //         case AccessorType.MAT3: {
+    //             return 9;
+    //         }
+    //         case AccessorType.MAT4: {
+    //             return 16;
+    //         }     
+    //     };
+    //     return 0;
+    // |};
 
     // Todo convert bytes to correct format
     for (uint i = 0; i < accessor.count; i++) {
