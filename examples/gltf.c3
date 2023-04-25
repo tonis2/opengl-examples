@@ -6,25 +6,32 @@ import std::collections::list;
 
 
 fn void main() {
-    Gltf! data = gltf::loadFile("assets/minimal.gltf");
-    defer data.close();
+    Gltf! gltf_data = gltf::loadFile("assets/minimal.gltf");
+    defer gltf_data.close();
 
-    if (catch err = data) {
+    if (catch err = gltf_data) {
         io::printf("Gltf loading failed %s \n", err);
         return;
     }
 
-    foreach (mesh : data.meshes) {
+    foreach (mesh : gltf_data.meshes) {
         Primitive prim = mesh.primitives[0];
         int! position = prim.attributes.get_int("POSITION");
+        int indices = prim.indices;
 
-        if (try position) {
-            Accessor accessor = data.accessors[position];
+        Accessor indices_data = gltf_data.accessors[indices];
 
-            if (catch err = data.@get_buffer(accessor)) {
-                io::printf("Error parsing buffer %d \n", position);
-            }
-        };
+        if (catch err = gltf_data.@get_buffer(indices_data)) {
+            io::printf("Error parsing buffer %d \n", indices);
+        }
+
+        // if (try position) {
+        //     Accessor position_data = gltf_data.accessors[position];
+
+        //     if (catch err = gltf_data.@get_buffer(position_data)) {
+        //         io::printf("Error parsing buffer %d \n", position);
+        //     }
+        // };
 
        
     }

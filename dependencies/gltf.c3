@@ -219,7 +219,7 @@ fn Gltf! loadFile(String path) {
                     // Add all attributes
                     Primitive data;
                     Object*! indices = primitive.get("indices");
-                    Object*! material = primitive.get("indices");
+                    Object*! material = primitive.get("material");
                     Object*! attributes = primitive.get("attributes");
 
                     if (try indices) {
@@ -251,13 +251,14 @@ fn Gltf! loadFile(String path) {
             Object*! bufferView = accessor.get("bufferView");
             Object*! count = accessor.get("count");
             Object*! offset = accessor.get("offset");
-            // Object*! stride = accessor.get("stride");
+            Object*! stride = accessor.get("stride");
             Object*! normalize = accessor.get("normalize");
 
             if (try count) data.count = (uint)count.f;
             if (try offset) data.offset = (uint)offset.f;
             if (try normalize) data.normalize = normalize.b;
             if (try bufferView) data.bufferView = (uint)bufferView.f;
+            if (try stride) data.stride = (uint)stride.f;
 
             if (try dataType && try objectType) {
                 switch(dataType.f) {
@@ -298,45 +299,6 @@ fn Gltf! loadFile(String path) {
                 }   
             }
 
-            uint component_size = {|
-                switch(data.data_type) {
-                    case DataType.I8:
-                        return ichar.sizeof;
-                    case DataType.U8:
-                        return char.sizeof;
-                    case DataType.I16:
-                        return short.sizeof;
-                    case DataType.U16:
-                        return ushort.sizeof;
-                    case DataType.U32:
-                        return uint.sizeof;
-                    case DataType.F32:
-                        return float.sizeof;           
-                }
-                return 0;
-            |};
-
-            uint stride = {|
-                switch(data.type) {
-                    case AccessorType.SCALAR:
-                        return component_size;
-                    case AccessorType.VEC2:
-                        return 2 * component_size;
-                    case AccessorType.VEC3:
-                        return 3 * component_size;
-                    case AccessorType.VEC4:
-                        return 4 * component_size;
-                    case AccessorType.MAT2:
-                        return 4 * component_size;
-                    case AccessorType.MAT3:
-                        return 9 * component_size;
-                    case AccessorType.MAT4:
-                        return 16 * component_size;       
-                }
-                return 0;
-            |};
-
-            data.stride = stride;
             content.accessors.push(data);
         }
     }
@@ -424,73 +386,71 @@ fn void Buffer.free(Buffer* self) {
     mem::free(self.data);
 }
 
+fn uint Accessor.value_size(Accessor* self) {
+    return {|
+            switch(self.type) {
+                case AccessorType.SCALAR:
+                    return 1;
+                case AccessorType.VEC2:
+                    return 2;
+                case AccessorType.VEC3:
+                    return 3;
+                case AccessorType.VEC4:
+                    return 4;
+                case AccessorType.MAT2:
+                    return 4;
+                case AccessorType .MAT3:
+                    return 9;
+                case AccessorType.MAT4:
+                    return 16;       
+            }
+            return 0;
+    |};
+}
 
-macro uint Accessor.size(Accessor* self, uint size) {
-    return self.count * size;
+
+fn void readU8(uint* result, char* data) {
+    mem::copy(&result, &data, uint.sizeof);
+}
+
+fn uint Accessor.data_size(Accessor* self) {
+    return {|
+            switch(self.data_type) {
+                case DataType.I8:
+                    return ichar.sizeof;
+                case DataType.U8:
+                    return uint.sizeof;
+                case DataType.I16:
+                    return short.sizeof;
+                case DataType.U16:
+                    return ushort.sizeof;
+                case DataType.U32:
+                    return uint.sizeof;
+                case DataType.F32:
+                    return float.sizeof;
+            }
+            return 0;
+        |};
 }
 
 macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor) {
-
     BufferView bufferView = self.bufferViews[accessor.bufferView];
     Buffer buffer = self.buffers[bufferView.buffer];
     char* data = (buffer.data + accessor.offset + bufferView.offset);
+    io::printf("Offset value %d \n", accessor.offset + bufferView.offset);
+    io::printf("Stride value %d \n", bufferView.stride);
+    io::printf("Accessor count %d \n", accessor.count);
+    io::printf("Accessor size %d \n", accessor.data_size());
 
-    uint datum = {| 
-        switch(accessor.type) {
-            case AccessorType.SCALAR: {
-                return 1;
-            }
-            case AccessorType.VEC2: {
-                return 2;
-            }
-            case AccessorType.VEC3: {
-                return 3;
-            }
-            case AccessorType.VEC4: {
-                return 4;
-            }
-            case AccessorType.MAT2: {
-                return 4;
-            }
-            case AccessorType.MAT3: {
-                return 9;
-            }
-            case AccessorType.MAT4: {
-                return 16;
-            }     
-        };
-        return 0;
-    |};
-
-    // uint stride = {| 
-    //     switch(accessor.type) {
-    //         case AccessorType.SCALAR: {
-    //             return 1;
-    //         }
-    //         case AccessorType.VEC2: {
-    //             return 2;
-    //         }
-    //         case AccessorType.VEC3: {
-    //             return 3;
-    //         }
-    //         case AccessorType.VEC4: {
-    //             return 4;
-    //         }
-    //         case AccessorType.MAT2: {
-    //             return 4;
-    //         }
-    //         case AccessorType.MAT3: {
-    //             return 9;
-    //         }
-    //         case AccessorType.MAT4: {
-    //             return 16;
-    //         }     
-    //     };
-    //     return 0;
-    // |};
-
-    // Todo convert bytes to correct format
-    for (uint i = 0; i < accessor.count; i++) {
-        io::printf("Buffer value %s \n", data[i]);
+    if (accessor.data_size() == 2) {
+        for (uint i = 0; i < accessor.count * accessor.data_size(); i++) {
+            uint value = (data[i] << 8 ) | (int)data[i + 1];
+            io::printf("Parsed value %d \n", value);
+        }
     }
+   // io::printf("Buffer value %01X \n", data[i]);
+
+
+     
+    
 }
