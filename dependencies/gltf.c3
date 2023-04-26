@@ -112,12 +112,12 @@ enum Mode {
 }
 
 enum DataType {
-    I8,
-    U8,
-    I16,
-    U16,
-    U32,
-    F32,
+    ICHAR,
+    CHAR,
+    SHORT,
+    USHORT,
+    UINT,
+    FLOAT,
 }
 
 fault ParseError
@@ -263,17 +263,17 @@ fn Gltf! loadFile(String path) {
             if (try dataType && try objectType) {
                 switch(dataType.f) {
                     case 5120:
-                        data.data_type = DataType.I8;
+                        data.data_type = DataType.ICHAR;
                     case 5121:
-                        data.data_type = DataType.U8;
+                        data.data_type = DataType.CHAR;
                     case 5122:
-                        data.data_type = DataType.I16;
+                        data.data_type = DataType.SHORT;
                     case 5123:
-                        data.data_type = DataType.U16;
+                        data.data_type = DataType.USHORT;
                     case 5125:
-                        data.data_type = DataType.U32;
+                        data.data_type = DataType.UINT;
                     case 5126:
-                        data.data_type = DataType.F32;
+                        data.data_type = DataType.FLOAT;
                 }
 
                 if (mem::equals(objectType.s, "SCALAR")) {
@@ -329,7 +329,6 @@ fn Gltf! loadFile(String path) {
         }
     }
 
-    // Parse buffers
     if (try buffers) { 
         foreach (buffer : buffers.array) {
             uint! size = buffer.get_int("byteLength");
@@ -412,17 +411,17 @@ fn uint Accessor.data_len(Accessor* self) {
 fn uint Accessor.size(Accessor* self) {
     return {|
             switch(self.data_type) {
-                case DataType.I8:
+                case DataType.ICHAR:
                     return ichar.sizeof;
-                case DataType.U8:
-                    return uint.sizeof;
-                case DataType.I16:
+                case DataType.CHAR:
+                    return char.sizeof;
+                case DataType.SHORT:
                     return short.sizeof;
-                case DataType.U16:
+                case DataType.USHORT:
                     return ushort.sizeof;
-                case DataType.U32:
+                case DataType.UINT:
                     return uint.sizeof;
-                case DataType.F32:
+                case DataType.FLOAT:
                     return float.sizeof;
             }
             return 0;
@@ -432,33 +431,30 @@ fn uint Accessor.size(Accessor* self) {
 macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor) {
     BufferView bufferView = self.bufferViews[accessor.bufferView];
     Buffer buffer = self.buffers[bufferView.buffer];
+    
     char* data = (buffer.data + accessor.offset + bufferView.offset);
     uint buffer_entries = bufferView.byteLength / (accessor.size() * accessor.count);
 
-    // io::printf("Offset value %d \n", accessor.offset + bufferView.offset);
-    // io::printf("Stride value %d \n", bufferView.stride);
-    // io::printf("Accessor count %d \n", accessor.count);
-    // io::printf("Accessor size %d \n", accessor.size());
-
-    // io::printf("How many times %d \n", bufferView.byteLength / (accessor.size() * accessor.count));
-
-    for (uint i = 0; i < bufferView.byteLength; i++) {
-        io::printf("%01X", data[i]);
-    }
-
     for (uint i = 0; i < (accessor.count * accessor.size() * buffer_entries); i += accessor.size()) {
-        if (accessor.size() == 2) {
-            uint value = data[i] | data[i + 1] << 8;
-            // io::printf("Parsed value %d \n", value);
+        if (accessor.data_type == DataType.USHORT) {
+            ushort value = bitcast(char[2]{data[i], data[i + 1]}, ushort);
+            io::printf("Parsed value %d \n", value);
         }
 
-        if (accessor.size() == 4) {
-            uint value = ((data[i] << 24 | (int)data[i + 1] << 16  ) | (int)data[i + 2] << 8  ) | (int)data[i + 3];
-            float value2 = (float*)data;
-            // io::printf("Parsed value %d \n", value2);
+        if (accessor.data_type == DataType.SHORT) {
+            short value = bitcast(char[2]{data[i], data[i + 1]}, short);
+            io::printf("Parsed value %d \n", value);
         }
+
+        if (accessor.data_type == DataType.UINT) {
+            uint value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, uint);
+            io::printf("Parsed value %d \n", value);
+        }
+
+        if (accessor.data_type == DataType.FLOAT) {
+            float value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, float);
+            io::printf("Parsed value %d \n", value);
+        }
+
     }
-
-        // io::printf("Buffer value %01X \n", data[i]);
-    
 }

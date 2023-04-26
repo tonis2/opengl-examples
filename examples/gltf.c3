@@ -5,13 +5,6 @@ import gltf;
 import std::collections::list;
 import std::core::mem;
 
-fn uint readInt(void* data, int size) {
-    char[4] temp;
-    mem::copy(&temp, data, size);
-    return ((temp[0] << 24  | (int)temp[1] << 16  ) | (int)temp[2] << 8  ) | (int)temp[3];
-}
-
-
 fn void main() {
     Gltf! gltf_data = gltf::loadFile("assets/minimal.gltf");
     defer gltf_data.close();
@@ -23,9 +16,10 @@ fn void main() {
 
     foreach (mesh : gltf_data.meshes) {
         Primitive prim = mesh.primitives[0];
-        int! position = prim.attributes.get_int("POSITION");
-        int indices = prim.indices;
 
+        int indices = prim.indices;
+        int! position = prim.attributes.get_int("POSITION");
+       
         Accessor indices_data = gltf_data.accessors[indices];
 
         if (catch err = gltf_data.@get_buffer(indices_data)) {
