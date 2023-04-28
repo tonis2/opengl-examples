@@ -9,7 +9,7 @@ import std::encoding::json;
 
 import base64;
 
-typedef PrimitiveList = List<Primitive>;
+typedef PrimitiveList = List<Object*>;
 typedef NodeList = List<Node>;
 typedef SceneList= List<Scene>;
 typedef MeshList = List<Mesh>;
@@ -42,19 +42,13 @@ struct Node {
     Vec3f translation;
 }
 
-struct Primitive {
-    uint indices;
-    uint material;
-    Mode mode;
-    Object* attributes;
-}
-
 struct Accessor {
     uint bufferView;
     uint offset;
     uint stride;
     uint count;
     bool normalize;
+    Mode mode;
     DataType data_type;
     AccessorType type;
 }
@@ -105,7 +99,7 @@ enum Mode {
     POINTS,
     LINES,
     LINE_LOOP,
-    LINE_STRIPE,
+    LINE_STRIP,
     TRIANGLES,
     TRIANGLE_STRIP,
     TRIANGLE_FAN
@@ -127,7 +121,8 @@ fault ParseError
     JSON_PARSE_FAILED,
     NO_BUFFER_VIEW,
     NO_BUFFER,
-    BROKEN_BUFFER
+    BROKEN_BUFFER,
+    KEY_NOT_FOUND
 }    
 
 fn Gltf! loadFile(String path) {
@@ -216,90 +211,10 @@ fn Gltf! loadFile(String path) {
             if (try name) meshItem.name = name;
             if (try primitives) {
                 foreach (primitive : primitives.array) {
-                    // Add all attributes
-                    Primitive data;
-                    Object*! indices = primitive.get("indices");
-                    Object*! material = primitive.get("material");
-                    Object*! attributes = primitive.get("attributes");
-
-                    if (try indices) {
-                        data.indices = (uint)indices.f;
-                    }
-
-                    if (try material) {
-                        data.material = (uint)material.f;
-                    }
-
-                    if (try attributes) {
-                        data.attributes = attributes;
-                    }
-
-                    meshItem.primitives.push(data);
+                    meshItem.primitives.push(primitive);
                 }
             }
             content.meshes.push(meshItem);
-        }
-    }
-
-    // Parse accessors
-    if (try accessors) {
-        foreach (accessor : accessors.array) {
-            Accessor data;
-
-            Object*! dataType = accessor.get("componentType");
-            Object*! objectType = accessor.get("type");
-            Object*! bufferView = accessor.get("bufferView");
-            Object*! count = accessor.get("count");
-            Object*! offset = accessor.get("offset");
-            Object*! stride = accessor.get("stride");
-            Object*! normalize = accessor.get("normalize");
-
-            if (try count) data.count = (uint)count.f;
-            if (try offset) data.offset = (uint)offset.f;
-            if (try normalize) data.normalize = normalize.b;
-            if (try bufferView) data.bufferView = (uint)bufferView.f;
-            if (try stride) data.stride = (uint)stride.f;
-
-            if (try dataType && try objectType) {
-                switch(dataType.f) {
-                    case 5120:
-                        data.data_type = DataType.ICHAR;
-                    case 5121:
-                        data.data_type = DataType.CHAR;
-                    case 5122:
-                        data.data_type = DataType.SHORT;
-                    case 5123:
-                        data.data_type = DataType.USHORT;
-                    case 5125:
-                        data.data_type = DataType.UINT;
-                    case 5126:
-                        data.data_type = DataType.FLOAT;
-                }
-
-                if (mem::equals(objectType.s, "SCALAR")) {
-                    data.type = AccessorType.SCALAR;
-                }
-                if (mem::equals(objectType.s, "VEC2")) {
-                    data.type = AccessorType.VEC2;
-                }
-                if (mem::equals(objectType.s, "VEC3")) {
-                    data.type = AccessorType.VEC3;
-                }
-                if (mem::equals(objectType.s, "VEC4")) {
-                    data.type = AccessorType.VEC4;
-                }
-                if (mem::equals(objectType.s, "MAT2")) {
-                    data.type = AccessorType.MAT2;
-                }
-                if (mem::equals(objectType.s, "MAT3")) {
-                    data.type = AccessorType.MAT3;
-                }
-                if (mem::equals(objectType.s, "MAT4")) {
-                    data.type = AccessorType.MAT4;
-                }   
-            }
-
-            content.accessors.push(data);
         }
     }
 
@@ -328,6 +243,96 @@ fn Gltf! loadFile(String path) {
             content.bufferViews.push(data);
         }
     }
+
+    // Parse accessors
+    if (try accessors) {
+        foreach (accessor : accessors.array) {
+            Accessor data;
+
+            Object*! dataType = accessor.get("componentType");
+            Object*! objectType = accessor.get("type");
+            Object*! bufferView = accessor.get("bufferView");
+            Object*! count = accessor.get("count");
+            Object*! offset = accessor.get("offset");
+            Object*! stride = accessor.get("stride");
+            Object*! normalize = accessor.get("normalize");
+            Object*! mode = accessor.get("mode");
+
+            if (try count) data.count = (uint)count.f;
+            if (try offset) data.offset = (uint)offset.f;
+            if (try normalize) data.normalize = normalize.b;
+            if (try stride) data.stride = (uint)stride.f;
+            if (try bufferView) data.bufferView = (uint)bufferView.f;
+            if (try mode) {
+                switch((uint)mode.f) {
+                    case 0:
+                        data.mode = Mode.POINTS;
+                    case 1:
+                        data.mode = Mode.LINES;
+                    case 2:
+                        data.mode = Mode.LINE_LOOP;
+                    case 3:
+                        data.mode = Mode.LINE_STRIP;
+                    case 4:
+                        data.mode = Mode.TRIANGLES;
+                    case 5:
+                        data.mode = Mode.TRIANGLE_STRIP;
+                    case 6:
+                        data.mode = Mode.TRIANGLE_FAN;    
+                }
+            }
+
+
+            if (try dataType && try objectType) {
+                switch(dataType.f) {
+                    case 5120:
+                        data.data_type = DataType.ICHAR;
+                    case 5121:
+                        data.data_type = DataType.CHAR;
+                    case 5122:
+                        data.data_type = DataType.SHORT;
+                    case 5123:
+                        data.data_type = DataType.USHORT;
+                    case 5125:
+                        data.data_type = DataType.UINT;
+                    case 5126:
+                        data.data_type = DataType.FLOAT;
+                }
+
+                if (mem::equals(objectType.s, "SCALAR")) {
+                    data.type = AccessorType.SCALAR;
+                }
+
+                if (mem::equals(objectType.s, "VEC2")) {
+                    data.type = AccessorType.VEC2;
+                }
+
+                if (mem::equals(objectType.s, "VEC3")) {
+                    data.type = AccessorType.VEC3;
+                }
+
+                if (mem::equals(objectType.s, "VEC4")) {
+                    data.type = AccessorType.VEC4;
+                }
+
+                if (mem::equals(objectType.s, "MAT2")) {
+                    data.type = AccessorType.MAT2;
+                }
+
+                if (mem::equals(objectType.s, "MAT3")) {
+                    data.type = AccessorType.MAT3;
+                }
+
+                if (mem::equals(objectType.s, "MAT4")) {
+                    data.type = AccessorType.MAT4;
+                }
+            }
+
+            content.accessors.push(data);
+        }
+    }
+
+  
 
     if (try buffers) { 
         foreach (buffer : buffers.array) {
@@ -381,8 +386,21 @@ fn void Gltf.close(Gltf* self) {
     self.json.free();
 }
 
-fn void Buffer.free(Buffer* self) {
-    mem::free(self.data);
+fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
+    if (mem::equals(key, "indices") || mem::equals(key, "material")) {
+        Object*! value = primitive.get(key);
+
+        if (try value) return data.accessors[(uint)value.f];
+    } else {
+        Object*! attributes = primitive.get("attributes");
+
+        if (try attributes) {
+            Object*! value = attributes.get(key);
+            if (try value) return data.accessors[(uint)value.f];
+        }
+    }
+   
+    return ParseError.KEY_NOT_FOUND!;
 }
 
 fn uint Accessor.data_len(Accessor* self) {
@@ -407,6 +425,9 @@ fn uint Accessor.data_len(Accessor* self) {
     |};
 }
 
+fn uint Accessor.data_size(Accessor* self) {
+    return self.size() * self.data_len();
+}
 
 fn uint Accessor.size(Accessor* self) {
     return {|
@@ -428,14 +449,16 @@ fn uint Accessor.size(Accessor* self) {
         |};
 }
 
-macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor) {
+fn void Buffer.free(Buffer* self) {
+    mem::free(self.data);
+}
+
+fn void! Gltf.get_buffer(Gltf* self, Accessor accessor) @inline {
     BufferView bufferView = self.bufferViews[accessor.bufferView];
     Buffer buffer = self.buffers[bufferView.buffer];
-    
     char* data = (buffer.data + accessor.offset + bufferView.offset);
-    uint buffer_entries = bufferView.byteLength / (accessor.size() * accessor.count);
 
-    for (uint i = 0; i < (accessor.count * accessor.size() * buffer_entries); i += accessor.size()) {
+    for (uint i = 0; i < bufferView.byteLength; i += accessor.size()) {
         if (accessor.data_type == DataType.USHORT) {
             ushort value = bitcast(char[2]{data[i], data[i + 1]}, ushort);
             io::printf("Parsed value %d \n", value);
@@ -453,8 +476,9 @@ macro void! Gltf.@get_buffer(Gltf* self, Accessor accessor) {
 
         if (accessor.data_type == DataType.FLOAT) {
             float value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, float);
-            io::printf("Parsed value %d \n", value);
+            io::printf(" %d ", value);
         }
-
     }
+
+    io::printf(" \n _______ \n%d");
 }
