@@ -224,7 +224,7 @@ fn int main()
     uniformData.model = model.rotate_y(rotation);
     gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
-    gl::drawElements(gl::GL_TRIANGLES, 6*6, gl::GL_UNSIGNED_INT, &indices[0]);
+    gl::drawElements(gl::GL_TRIANGLES, indices_size, gl::GL_UNSIGNED_INT, &indices[0]);
 
     glfw::pollEvents();
     glfw::swapBuffers(window);
