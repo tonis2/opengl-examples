@@ -5,10 +5,10 @@ import gl;
 import glfw;
 import gltf;
 import std::collections::object;
+
 import helpers;
 import std::math;
-import std::math::vector;
-import std::math::matrix;
+
 
 const char* VERTEX_SHADER = `
   #version 430
@@ -54,18 +54,33 @@ fn int main()
     char* renderer;
     char* version;
 
-    float rotation = 0;
     uint vertexBuffer;
     uint indexBuffer;
     uint uniformBuffer;
     uint vao;
 
-    Matrix4f model = helpers::identity_4x4().rotate_y(rotation).rotate_x(20);
+    Gltf! gltf_data = gltf::loadFile("assets/cubes.gltf");
+    defer gltf_data.close();
 
+    if (catch err = gltf_data) {
+        io::printf("Gltf loading failed %d \n", err);
+        return 1;
+    }
+
+    Node! cameraNode = gltf_data.getNode("Camera");
+
+    if (catch err = cameraNode) {
+        io::printf("Camera not found \n");
+        return 1;
+    }
+
+    Camera camera = gltf_data.cameras[cameraNode.camera];
+    Quaternionf cameraRotation = { cameraNode.rotation.x, cameraNode.rotation.y, cameraNode.rotation.z, cameraNode.rotation.w };
+  
     UniformBuffer uniformData = UniformBuffer {
-        math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, -5.0, 1000),
+        math::matrix4f_perspective(camera.perspective.aspectRatio, WIDTH / HEIGHT, camera.perspective.znear, camera.perspective.zfar),
         vector::matrix4f_look_at(Vec3f{0.0, 0.0, -1}, Vec3f{0.0, 0.0, 0.0}, Vec3f{0.0, 1.0, 0.0}),
-        model
+        helpers::identity_4x4()
     };
 
     glfw::init();
@@ -90,53 +105,17 @@ fn int main()
     glfw::makeContextCurrent(window);
     gl::init(&glfw::getProcAddress);
 
-    Gltf! gltf_data = gltf::loadFile("assets/cubes.gltf");
-    defer gltf_data.close();
-
-    if (catch err = gltf_data) {
-        io::printf("Gltf loading failed %s \n", err);
-        return 1;
-    }
-
-    // GLTF Loading
-    Mesh mesh = gltf_data.meshes[0];
-    Object* primitive = mesh.primitives[0];
-
-    Accessor! position = gltf_data.getAccessor(primitive, "POSITION");
-    Accessor! texture = gltf_data.getAccessor(primitive, "TEXCOORD_0");
-    Accessor! indices = gltf_data.getAccessor(primitive, "indices");
-
-    // Vertex buffer
-    if (try position) {
-        BufferView view = gltf_data.bufferViews[position.bufferView];
-        Buffer buffer = gltf_data.buffers[view.buffer];
-
-        gl::genBuffers(1, &vertexBuffer );
-        gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
-        gl::bufferData(gl::GL_ARRAY_BUFFER, view.byteLength, (buffer.data + view.offset), gl::GL_STATIC_DRAW);
-    }
-
-    char* index_data;
-    int indices_size;
-
-    // Index buffer
-    if (try indices) {
-        BufferView view = gltf_data.bufferViews[indices.bufferView];
-        Buffer buffer = gltf_data.buffers[view.buffer];
-
-        index_data = (buffer.data + view.offset);
-        indices_size = indices.count;
-
-        gl::genBuffers(1, &indexBuffer );
-        gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-        gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, view.byteLength, index_data, gl::GL_STATIC_DRAW);
-    }
+    gl::genBuffers(1, &vertexBuffer );
+    gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
+    gl::genBuffers(1, &indexBuffer );
+    gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 
     gl::genVertexArrays(1, &vao );
     gl::bindVertexArray( vao );
 
     defer {
         gl::deleteBuffers(1, &vertexBuffer);
+        gl::deleteBuffers(1, &indexBuffer);
         gl::deleteBuffers(1, &vao);
     }
 
@@ -186,17 +165,35 @@ fn int main()
         gl::useProgram( shader_program );
         gl::viewport(0, 0, WIDTH, HEIGHT);
 
+        foreach (node : gltf_data.nodes) {
+            if (node.mesh >= 0) {
+                GltfMesh mesh = gltf_data.meshes[node.mesh];
+            
+                // Update node transform
+                uniformData.model = helpers::identity_4x4().scale(node.scale).translate(node.translation);
+                gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
-        if (rotation < 360) {
-            rotation += 0.01;
-        } else {
-            rotation = 0;
+                Object* primitive = mesh.primitives[0];
+
+                BufferView! position = gltf_data.getBufferView(primitive, "POSITION");
+                BufferView! texture = gltf_data.getBufferView(primitive, "TEXCOORD_0");
+                BufferView! indices = gltf_data.getBufferView(primitive, "indices");
+
+                // Vertex buffer
+                if (try position) {
+                    GltfBuffer buffer = gltf_data.buffers[position.buffer];
+                    gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength, (buffer.data + position.offset), gl::GL_STATIC_DRAW);
+                }
+
+                // Index buffer
+                if (try indices) {
+                    GltfBuffer buffer = gltf_data.buffers[indices.buffer];
+                    char* index_buffer = (buffer.data + indices.offset);
+                    gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, indices.byteLength, index_buffer, gl::GL_STATIC_DRAW);
+                    gl::drawElements(gl::GL_TRIANGLES, (int)(indices.byteLength / ushort.sizeof), gl::GL_UNSIGNED_SHORT, &index_buffer[0]);
+                }
+            }
         }
-
-        // Update model rotation
-        uniformData.model = model.rotate_y(rotation);
-        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
-        gl::drawElements(gl::GL_TRIANGLES, (int)indices_size, gl::GL_UNSIGNED_SHORT, &index_data[0]);
 
         glfw::pollEvents();
         glfw::swapBuffers(window);

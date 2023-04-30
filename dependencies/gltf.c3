@@ -12,65 +12,12 @@ import base64;
 typedef PrimitiveList = List<Object*>;
 typedef NodeList = List<Node>;
 typedef SceneList= List<Scene>;
-typedef MeshList = List<Mesh>;
+typedef MeshList = List<GltfMesh>;
 typedef IndexList = List<uint>;
-typedef BufferList = List<Buffer>;
+typedef BufferList = List<GltfBuffer>;
 typedef BufferViewList = List<BufferView>;
 typedef AccessorList = List<Accessor>;
-
-struct Gltf {
-    Object* json;
-    String name;
-    NodeList nodes;
-    SceneList scenes;
-    MeshList meshes;
-    BufferList buffers;
-    BufferViewList bufferViews;
-    AccessorList accessors;
-}
-
-struct Scene {
-    String name;
-    IndexList nodes;
-}
-
-struct Node {
-    String name;
-    uint mesh;
-    Vec4f rotation;
-    Vec3f scale;
-    Vec3f translation;
-}
-
-struct Accessor {
-    uint bufferView;
-    uint offset;
-    uint stride;
-    uint count;
-    bool normalize;
-    Mode mode;
-    DataType data_type;
-    AccessorType type;
-}
-
-struct Mesh {
-    String name;
-    PrimitiveList primitives;
-}
-
-struct BufferView {
-    uint buffer;
-    uint byteLength;
-    uint offset;
-    uint stride;
-    Targets target;     
-}
-
-struct Buffer {
-    char* data;
-    uint size;
-    BufferType data_type;
-}
+typedef CameraList = List<Camera>;
 
 enum Targets {
     ARRAY_BUFFER,
@@ -123,10 +70,83 @@ fault ParseError
     NO_BUFFER,
     BROKEN_BUFFER,
     KEY_NOT_FOUND
-}    
+}
+
+fault GltfError
+{
+    KEY_NOT_FOUND
+}
+
+struct Gltf {
+    Object* json;
+    String name;
+    NodeList nodes;
+    SceneList scenes;
+    MeshList meshes;
+    BufferList buffers;
+    BufferViewList bufferViews;
+    AccessorList accessors;
+    CameraList cameras;
+}
+
+struct Scene {
+    String name;
+    IndexList nodes;
+}
+
+struct Node {
+    String name;
+    int mesh;
+    int camera;
+    Vec4f rotation;
+    Vec3f scale;
+    Vec3f translation;
+}
+
+struct Camera {
+    String name;
+    union
+    {
+        struct perspective {
+            float aspectRatio;
+            float yfov;
+            float zfar;
+            float znear;
+        }
+    }
+}
+
+struct Accessor {
+    uint bufferView;
+    uint offset;
+    uint stride;
+    uint count;
+    bool normalize;
+    Mode mode;
+    DataType data_type;
+    AccessorType type;
+}
+
+struct GltfMesh {
+    String name;
+    PrimitiveList primitives;
+}
+
+struct BufferView {
+    uint buffer;
+    uint byteLength;
+    uint offset;
+    uint stride;
+    Targets target;     
+}
+
+struct GltfBuffer {
+    char* data;
+    uint size;
+    BufferType data_type;
+}
 
 fn Gltf! loadFile(String path) {
-
     File! file = file::open(path, "r");
     if (catch err = file)
     {
@@ -155,6 +175,7 @@ fn Gltf! loadFile(String path) {
     Object*! bufferViews = gltfJson.get("bufferViews");
     Object*! accessors = gltfJson.get("accessors");
     Object*! buffers = gltfJson.get("buffers");
+    Object*! cameras = gltfJson.get("cameras");
 
     // Parse scenes
     if (try scenes) {
@@ -175,17 +196,22 @@ fn Gltf! loadFile(String path) {
     if (try nodes) {
         foreach (node : nodes.array) {
             Node nodeItem;
+            nodeItem.mesh = -1;
+            nodeItem.camera = -1;
 
             String! name = node.get_string("name");
-            if (try name) nodeItem.name = name;
+            if (try name) nodeItem.name = name; 
 
             // Parse node transforms
             Object*! rotation = node.get("rotation");
             Object*! scale = node.get("scale");
             Object*! translation = node.get("translation");
-            Object*! mesh = node.get("mesh");
 
-            if (try mesh) nodeItem.mesh = (uint)mesh.f;
+            int! mesh = node.get_int("mesh");
+            int! camera = node.get_int("camera");
+
+            if (try mesh) nodeItem.mesh = mesh;
+            if (try camera) nodeItem.camera = camera;
             if (try rotation) {
                 nodeItem.rotation = Vec4f {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
             }
@@ -204,7 +230,7 @@ fn Gltf! loadFile(String path) {
     // Parse meshes
     if (try meshes) {
         foreach (mesh : meshes.array) {
-            Mesh meshItem;
+            GltfMesh meshItem;
             String! name = mesh.get_string("name");
             Object*! primitives = mesh.get("primitives");
 
@@ -354,12 +380,45 @@ fn Gltf! loadFile(String path) {
                     bufferType = BufferType.STREAM;
                 }
 
-                content.buffers.push(Buffer {
+                content.buffers.push(GltfBuffer {
                     .data = parsedBuffer,
                     .size = size,
                     .data_type = bufferType
                 });
             }
+        }
+    }
+
+    if (try cameras) {
+        foreach (camera : cameras.array) {
+            Camera data;
+            String! cameraType = camera.get_string("type");
+            String! name = camera.get_string("name");
+
+            if (try name) content.name = name;
+            if (try cameraType) {
+                if (mem::equals(cameraType, "perspective")) {
+                    Object*! perspective = camera.get("perspective");
+
+                    if (catch err = perspective) return ParseError.BROKEN_BUFFER!;
+
+                    float! aspectRatio = (float)perspective.get_float("aspectRatio");
+                    float! yfov = (float)perspective.get_float("yfov");
+                    float! zfar = (float)perspective.get_float("zfar");
+                    float! znear = (float)perspective.get_float("znear");
+
+                    if (catch err = (aspectRatio, yfov, zfar, znear)) return ParseError.BROKEN_BUFFER!;
+
+                    data.perspective = {
+                          aspectRatio,
+                          yfov,
+                          zfar,
+                          znear  
+                    };
+                }
+            }
+
+            content.cameras.push(data);
         }
     }
 
@@ -377,6 +436,7 @@ fn void Gltf.close(Gltf* self) {
         buffer.free();
     }
 
+    self.cameras.free();
     self.accessors.free();
     self.bufferViews.free();
     self.buffers.free();
@@ -384,6 +444,16 @@ fn void Gltf.close(Gltf* self) {
     self.nodes.free();
     self.meshes.free();
     self.json.free();
+}
+
+fn Node! Gltf.getNode(Gltf* self, String name) {
+    foreach (node : self.nodes) {
+        if (mem::equals(node.name, name)) {
+            return node;
+        }
+    }
+
+    return GltfError.KEY_NOT_FOUND!;
 }
 
 fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
@@ -400,10 +470,16 @@ fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
         }
     }
    
-    return ParseError.KEY_NOT_FOUND!;
+    return GltfError.KEY_NOT_FOUND!;
 }
 
-fn uint Accessor.data_len(Accessor* self) {
+
+fn BufferView! Gltf.getBufferView(Gltf* data, Object* primitive, String key) {
+    Accessor accessor = data.getAccessor(primitive, key)?;
+    return data.bufferViews[accessor.bufferView];
+}
+
+fn uint Accessor.componentLen(Accessor* self) {
     return {|
             switch(self.type) {
                 case AccessorType.SCALAR:
@@ -425,11 +501,11 @@ fn uint Accessor.data_len(Accessor* self) {
     |};
 }
 
-fn uint Accessor.data_size(Accessor* self) {
-    return self.size() * self.data_len();
+fn uint Accessor.componentSize(Accessor* self) {
+    return self.dataSize() * self.componentLen();
 }
 
-fn uint Accessor.size(Accessor* self) {
+fn uint Accessor.dataSize(Accessor* self) {
     return {|
             switch(self.data_type) {
                 case DataType.ICHAR:
@@ -449,36 +525,36 @@ fn uint Accessor.size(Accessor* self) {
         |};
 }
 
-fn void Buffer.free(Buffer* self) {
+fn void GltfBuffer.free(GltfBuffer* self) {
     mem::free(self.data);
 }
 
-fn void! Gltf.get_buffer(Gltf* self, Accessor accessor) @inline {
-    BufferView bufferView = self.bufferViews[accessor.bufferView];
-    Buffer buffer = self.buffers[bufferView.buffer];
-    char* data = (buffer.data + accessor.offset + bufferView.offset);
+// fn void! Gltf.get_buffer(Gltf* self, Accessor accessor) @inline {
+//     BufferView bufferView = self.bufferViews[accessor.bufferView];
+//     Buffer buffer = self.buffers[bufferView.buffer];
+//     char* data = (buffer.data + accessor.offset + bufferView.offset);
 
-    for (uint i = 0; i < bufferView.byteLength; i += accessor.size()) {
-        if (accessor.data_type == DataType.USHORT) {
-            ushort value = bitcast(char[2]{data[i], data[i + 1]}, ushort);
-            io::printf("Parsed value %d \n", value);
-        }
+//     for (uint i = 0; i < bufferView.byteLength; i += accessor.size()) {
+//         if (accessor.data_type == DataType.USHORT) {
+//             ushort value = bitcast(char[2]{data[i], data[i + 1]}, ushort);
+//             io::printf("Parsed value %d \n", value);
+//         }
 
-        if (accessor.data_type == DataType.SHORT) {
-            short value = bitcast(char[2]{data[i], data[i + 1]}, short);
-            io::printf("Parsed value %d \n", value);
-        }
+//         if (accessor.data_type == DataType.SHORT) {
+//             short value = bitcast(char[2]{data[i], data[i + 1]}, short);
+//             io::printf("Parsed value %d \n", value);
+//         }
 
-        if (accessor.data_type == DataType.UINT) {
-            uint value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, uint);
-            io::printf("Parsed value %d \n", value);
-        }
+//         if (accessor.data_type == DataType.UINT) {
+//             uint value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, uint);
+//             io::printf("Parsed value %d \n", value);
+//         }
 
-        if (accessor.data_type == DataType.FLOAT) {
-            float value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, float);
-            io::printf(" %d ", value);
-        }
-    }
+//         if (accessor.data_type == DataType.FLOAT) {
+//             float value = bitcast(char[4]{data[i], data[i + 1], data[i + 2], data[i + 3]}, float);
+//             io::printf(" %d ", value);
+//         }
+//     }
 
-    io::printf(" \n _______ \n%d");
-}
+//     io::printf(" \n _______ \n%d");
+// }
