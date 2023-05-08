@@ -10,8 +10,8 @@ enum Channel : int
   STBI_RGB_ALPHA
 }
 
-fn char* stbi_load(char*, uint*, uint*, uint*, uint) @extern("stbi_load");
-fn void* stbi_image_free(char*) @extern("stbi_image_free");
+extern fn char* stbi_load(char*, uint*, uint*, uint*, uint) @extern("stbi_load");
+extern fn void* stbi_image_free(char*) @extern("stbi_image_free");
 
 fault FileError
 {
@@ -42,7 +42,7 @@ fn Image! loadImage(char* file_path, Channel channel) {
 
   if (data.pixels == null) {
      libc::printf("Image loading failed \n");
-     return FileError.FILE_NOT_FOUND!;
+     return FileError.FILE_NOT_FOUND?;
   }
 
   return data;

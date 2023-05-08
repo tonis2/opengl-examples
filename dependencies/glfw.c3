@@ -22,17 +22,17 @@ const OPENGL_CORE_PROFILE = 0x00032001;
 const OPENGL_COMPAT_PROFILE = 0x00032002;
 const OPENGL_FORWARD_COMPAT = 0x00022006;
 
-fn void init() @extern("glfwInit");
-fn void windowHint(int, int) @extern("glfwWindowHint");
-fn void pollEvents() @extern("glfwPollEvents");
-fn void swapBuffers(WindowRef window) @extern("glfwSwapBuffers");
-fn void destroyWindow(WindowRef window) @extern("glfwDestroyWindow");
-fn void makeContextCurrent(WindowRef window) @extern("glfwMakeContextCurrent");
-fn void getFramebufferSize(WindowRef window, int*, int*) @extern("glfwGetFramebufferSize");
-fn double getTime() @extern("glfwGetTime");
+extern fn void init() @extern("glfwInit");
+extern fn void windowHint(int, int) @extern("glfwWindowHint");
+extern fn void pollEvents() @extern("glfwPollEvents");
+extern fn void swapBuffers(WindowRef window) @extern("glfwSwapBuffers");
+extern fn void destroyWindow(WindowRef window) @extern("glfwDestroyWindow");
+extern fn void makeContextCurrent(WindowRef window) @extern("glfwMakeContextCurrent");
+extern fn void getFramebufferSize(WindowRef window, int*, int*) @extern("glfwGetFramebufferSize");
+extern fn double getTime() @extern("glfwGetTime");
 
-fn void terminate() @extern("glfwTerminate");
+extern fn void terminate() @extern("glfwTerminate");
 
-fn GLproc getProcAddress(char*) @extern("glfwGetProcAddress");
-fn bool windowShouldClose(WindowRef window) @extern("glfwWindowShouldClose");
-fn Monitoref createWindow(int, int, char*, Monitoref, WindowRef) @extern("glfwCreateWindow");
+extern fn GLproc getProcAddress(char*) @extern("glfwGetProcAddress");
+extern fn bool windowShouldClose(WindowRef window) @extern("glfwWindowShouldClose");
+extern fn Monitoref createWindow(int, int, char*, Monitoref, WindowRef) @extern("glfwCreateWindow");

@@ -87,7 +87,7 @@ fn int! decode(String in, char* out, int* invalid_char_index = null)
 		if (c == ERR)
 		{
 			if (invalid_char_index) *invalid_char_index = i;
-			return DecodingError.INVALID_CHARACTER!;
+			return DecodingError.INVALID_CHARACTER?;
 		}
 
 

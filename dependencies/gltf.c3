@@ -151,10 +151,10 @@ fn Gltf! loadFile(String path) {
     if (catch err = file)
     {
         if (err == IoError.FILE_NOT_FOUND) {
-            return ParseError.FILE_NOT_FOUND!;
+            return ParseError.FILE_NOT_FOUND?;
         }
 
-        return ParseError.FILE_NOT_READABLE!;
+        return ParseError.FILE_NOT_READABLE?;
     }
 
     Gltf content;
@@ -163,7 +163,7 @@ fn Gltf! loadFile(String path) {
 	Object*! gltfJson = json.parse_any();
 
     if (catch err = gltfJson) {
-        return ParseError.JSON_PARSE_FAILED!;
+        return ParseError.JSON_PARSE_FAILED?;
     }
 
     content.json = gltfJson;
@@ -375,7 +375,7 @@ fn Gltf! loadFile(String path) {
                 if (mem::equals(bufferHeader[0], "data:application/octet-stream;base64")) {
                     if (catch err = base64::decode(bufferHeader[1], parsedBuffer)) {
                          io::printf("failed parsing buffer %s \n", bufferHeader[0]);
-                         return ParseError.BROKEN_BUFFER!;
+                         return ParseError.BROKEN_BUFFER?;
                     };
                     bufferType = BufferType.STREAM;
                 }
@@ -400,14 +400,14 @@ fn Gltf! loadFile(String path) {
                 if (mem::equals(cameraType, "perspective")) {
                     Object*! perspective = camera.get("perspective");
 
-                    if (catch err = perspective) return ParseError.BROKEN_BUFFER!;
+                    if (catch err = perspective) return ParseError.BROKEN_BUFFER?;
 
                     float! aspectRatio = (float)perspective.get_float("aspectRatio");
                     float! yfov = (float)perspective.get_float("yfov");
                     float! zfar = (float)perspective.get_float("zfar");
                     float! znear = (float)perspective.get_float("znear");
 
-                    if (catch err = (aspectRatio, yfov, zfar, znear)) return ParseError.BROKEN_BUFFER!;
+                    if (catch err = aspectRatio, yfov, zfar, znear) return ParseError.BROKEN_BUFFER?;
 
                     data.perspective = {
                           aspectRatio,
@@ -422,7 +422,7 @@ fn Gltf! loadFile(String path) {
         }
     }
 
-    file.close()?;
+    if(catch file.close()) {}
     return content;
  
 }
@@ -453,7 +453,7 @@ fn Node! Gltf.getNode(Gltf* self, String name) {
         }
     }
 
-    return GltfError.KEY_NOT_FOUND!;
+    return GltfError.KEY_NOT_FOUND?;
 }
 
 fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
@@ -470,12 +470,15 @@ fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
         }
     }
    
-    return GltfError.KEY_NOT_FOUND!;
+    return GltfError.KEY_NOT_FOUND?;
 }
 
 
 fn BufferView! Gltf.getBufferView(Gltf* data, Object* primitive, String key) {
-    Accessor accessor = data.getAccessor(primitive, key)?;
+    Accessor! accessor = data.getAccessor(primitive, key);
+    if (catch accessor) {
+        return GltfError.KEY_NOT_FOUND?;
+    }
     return data.bufferViews[accessor.bufferView];
 }
 
