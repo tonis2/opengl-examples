@@ -98,7 +98,7 @@ struct Node {
     String name;
     int mesh;
     int camera;
-    Vec4f rotation;
+    Quaternionf rotation;
     Vec3f scale;
     Vec3f translation;
 }
@@ -195,12 +195,12 @@ fn Gltf! loadFile(String path) {
     // Parse nodes
     if (try nodes) {
         foreach (node : nodes.array) {
-            Node nodeItem;
-            nodeItem.mesh = -1;
-            nodeItem.camera = -1;
+            Node data;
+            data.mesh = -1;
+            data.camera = -1;
 
             String! name = node.get_string("name");
-            if (try name) nodeItem.name = name; 
+            if (try name) data.name = name; 
 
             // Parse node transforms
             Object*! rotation = node.get("rotation");
@@ -210,19 +210,19 @@ fn Gltf! loadFile(String path) {
             int! mesh = node.get_int("mesh");
             int! camera = node.get_int("camera");
 
-            if (try mesh) nodeItem.mesh = mesh;
-            if (try camera) nodeItem.camera = camera;
+            if (try mesh) data.mesh = mesh;
+            if (try camera) data.camera = camera;
             if (try rotation) {
-                nodeItem.rotation = Vec4f {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
+                data.rotation = Quaternionf {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
             }
             if (try scale) {
-                nodeItem.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
+                data.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
             }
             if (try translation) {
-                nodeItem.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
+                data.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
             }
 
-            content.nodes.push(nodeItem);
+            content.nodes.push(data);
         }
     }
 

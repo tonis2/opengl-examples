@@ -9,7 +9,6 @@ import std::collections::object;
 import helpers;
 import std::math;
 
-
 const char* VERTEX_SHADER = `
   #version 430
   
@@ -59,7 +58,7 @@ fn int main()
     uint uniformBuffer;
     uint vao;
 
-    Gltf! gltf_data = gltf::loadFile("assets/cubes.gltf");
+    Gltf! gltf_data = gltf::loadFile("assets/single.gltf");
     defer gltf_data.close();
 
     if (catch err = gltf_data) {
@@ -75,12 +74,11 @@ fn int main()
     }
 
     Camera camera = gltf_data.cameras[cameraNode.camera];
-    Quaternionf cameraRotation = { cameraNode.rotation.x, cameraNode.rotation.y, cameraNode.rotation.z, cameraNode.rotation.w };
-  
+
     UniformBuffer uniformData = UniformBuffer {
-        math::matrix4f_perspective(camera.perspective.aspectRatio, WIDTH / HEIGHT, camera.perspective.znear, camera.perspective.zfar),
-        vector::matrix4f_look_at(Vec3f{0.0, 0.0, -1}, Vec3f{0.0, 0.0, 0.0}, Vec3f{0.0, 1.0, 0.0}),
-        helpers::identity_4x4()
+        math::matrix4f_perspective(helpers::toRadians(80), WIDTH / HEIGHT, -1.0, 100),
+        cameraNode.rotation.to_matrixf().translate(cameraNode.translation),
+        matrix4f_identity()
     };
 
     glfw::init();
@@ -105,13 +103,13 @@ fn int main()
     glfw::makeContextCurrent(window);
     gl::init(&glfw::getProcAddress);
 
-    gl::genBuffers(1, &vertexBuffer );
+    gl::genBuffers(1, &vertexBuffer);
     gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
-    gl::genBuffers(1, &indexBuffer );
+    gl::genBuffers(1, &indexBuffer);
     gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 
-    gl::genVertexArrays(1, &vao );
-    gl::bindVertexArray( vao );
+    gl::genVertexArrays(1, &vao);
+    gl::bindVertexArray(vao);
 
     defer {
         gl::deleteBuffers(1, &vertexBuffer);
@@ -154,11 +152,11 @@ fn int main()
 
     defer gl::deleteBuffers(1, &uniformBuffer);
 
-    gl::depthFunc( gl::GL_LESS );
+    gl::depthFunc(gl::GL_LESS );
     gl::enable(gl::GL_DEPTH_TEST);
     gl::enable(gl::GL_CULL_FACE);
-    gl::cullFace( gl::GL_FRONT );
-    gl::frontFace( gl::GL_CW ); 
+    gl::cullFace(gl::GL_FRONT );
+    gl::frontFace(gl::GL_CW ); 
 
     while(!glfw::windowShouldClose(window)) {
         gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
@@ -170,8 +168,8 @@ fn int main()
                 GltfMesh mesh = gltf_data.meshes[node.mesh];
             
                 // Update node transform
-                uniformData.model = helpers::identity_4x4().scale(node.scale).translate(node.translation);
-                gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
+                // uniformData.model = matrix4f_identity().translate(node.translation);
+                // gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
                 Object* primitive = mesh.primitives[0];
 

@@ -121,7 +121,7 @@ fn int main()
 
   Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, -5.0, 1000);
   Matrix4f lookAt = vector::matrix4f_look_at(Vec3f{0.0, 0.0, -1}, Vec3f{0.0, 0.0, 0.0}, Vec3f{0.0, 1.0, 0.0});
-  Matrix4f model = helpers::identity_4x4().rotate_y(rotation).rotate_x(20);
+  Matrix4f model = matrix4f_identity().rotate_y(rotation).rotate_x(20);
 
   UniformBuffer uniformData = UniformBuffer {
      perspective,
@@ -211,7 +211,7 @@ fn int main()
     gl::deleteProgram(shader_program);
   }
 
-  if (catch err = (vertex_shader, fragment_shader)) {
+  if (catch err = vertex_shader, fragment_shader) {
     io::printfn("Error was %s", err);
     return 1;
   }

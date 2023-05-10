@@ -5,7 +5,7 @@ import std::io;
 import std::math;
 import std::math::vector;
 import std::math::matrix;
-
+import libc;
 import gl;
 
 const char* VERTEX_SHADER = `
@@ -98,9 +98,9 @@ fn int main()
 
   float rotation = 0;
 
-  Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, -5.0, 1000);
+  Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(80), WIDTH / HEIGHT, -5.0, 1000);
   Matrix4f lookAt = vector::matrix4f_look_at(Vec3f{0.0, 0.0, -1}, Vec3f{0.0, 0.0, 0.0}, Vec3f{0.0, 1.0, 0.0});
-  Matrix4f model = helpers::identity_4x4().rotate_y(rotation).rotate_x(20);
+  Matrix4f model = matrix4f_identity().rotate_y(rotation).rotate_x(20);
 
   UniformBuffer uniformData = UniformBuffer {
      perspective,
@@ -133,8 +133,8 @@ fn int main()
   renderer = gl::getString( gl::GL_RENDERER );
   version  = gl::getString( gl::GL_VERSION );
 
-  io::printf( "Renderer: %s \n", &renderer );
-  io::printf( "OpenGL version supported %s \n", &version );
+  libc::printf( "Renderer: %s\n", renderer );
+  libc::printf( "OpenGL version supported %s\n", version );
   
   int cube_size = cube_data.len * float.sizeof;
   int indices_size = indices.len * uint.sizeof;
