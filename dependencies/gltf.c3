@@ -18,6 +18,7 @@ typedef BufferList = List<GltfBuffer>;
 typedef BufferViewList = List<BufferView>;
 typedef AccessorList = List<Accessor>;
 typedef CameraList = List<Camera>;
+typedef MaterialList = List<Material>;
 
 enum Targets {
     ARRAY_BUFFER,
@@ -87,6 +88,7 @@ struct Gltf {
     BufferViewList bufferViews;
     AccessorList accessors;
     CameraList cameras;
+    MaterialList materials;
 }
 
 struct Scene {
@@ -98,9 +100,49 @@ struct Node {
     String name;
     int mesh;
     int camera;
+    bool hasRotation;
+    bool hasScale;
+    bool hasTranslation;
     Quaternionf rotation;
     Vec3f scale;
     Vec3f translation;
+}
+
+struct TextureImage {
+    uint index;
+    Vec2f texCoord;
+}
+
+struct Material {
+    String name;
+    bool doubleSided;
+    float[3] emissiveFactor;
+    TextureImage normalTexture;
+    TextureImage occlusionTexture;
+    struct pbrMetallicRoughness {
+        float[4] baseColorFactor;
+        float metallicFactor;
+        float roughnessFactor;
+        TextureImage baseColorTexture;
+        TextureImage metallicRoughnessTexture;
+        TextureImage emissiveTexture;
+    }
+}
+
+struct Texture {
+    uint sampler;
+    uint source;
+}
+
+struct Image {
+    String name;
+    uint bufferView;
+    BufferType mimType;
+}
+
+struct Sampler {
+    uint magFilter;
+    uint minFilter;
 }
 
 struct Camera {
@@ -146,6 +188,262 @@ struct GltfBuffer {
     BufferType data_type;
 }
 
+// Parsing JSON to structs
+fn void Scene.fromJson(Scene* self, Object* json) {
+    String! name = json.get_string("name");
+    Object*! sceneNodes = json.get("nodes");
+
+    if (try name) self.name = name;
+    if (try sceneNodes) foreach (node : sceneNodes.array) self.nodes.push((uint)node.f);
+}
+
+fn void Node.fromJson(Node* self, Object* json) {
+    self.mesh = -1;
+    self.camera = -1;
+    self.hasRotation = false;
+    self.hasScale = false;
+    self.hasTranslation = false;
+
+    String! name = json.get_string("name");
+    if (try name) self.name = name;
+
+    // Parse node transforms
+    Object*! rotation = json.get("rotation");
+    Object*! scale = json.get("scale");
+    Object*! translation = json.get("translation");
+
+    int! mesh = json.get_int("mesh");
+    int! camera = json.get_int("camera");
+
+    if (try mesh) self.mesh = mesh;
+    if (try camera) self.camera = camera;
+    if (try rotation) {
+        self.rotation = Quaternionf {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
+        self.hasRotation = true;
+    }
+    if (try scale) {
+        self.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
+        self.hasScale = true;
+    }
+    if (try translation) {
+        self.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
+        self.hasTranslation = true;
+    }
+}
+
+fn void GltfMesh.fromJson(GltfMesh* self, Object* json) {
+    String! name = json.get_string("name");
+    Object*! primitives = json.get("primitives");
+
+    if (try name) self.name = name;
+    if (try primitives) {
+        foreach (primitive : primitives.array) {
+            self.primitives.push(primitive);
+        }
+    }
+}
+
+fn void BufferView.fromJson(BufferView* self, Object* json) {
+    uint! buffer = json.get_int("buffer");
+    uint! byteLength = json.get_int("byteLength");
+    uint! offset = json.get_int("byteOffset");
+    uint! target = json.get_int("target");
+
+    if (try buffer) self.buffer = buffer;
+    if (try byteLength) self.byteLength = byteLength;
+    if (try offset) self.offset = offset;
+    if (try target) {
+        switch(target) {
+            case 34962: {
+                self.target = Targets.ARRAY_BUFFER;
+            }
+            case 34963: {
+                self.target = Targets.ELEMENT_ARRAY_BUFFER;
+            }
+        }
+    }
+}
+
+fn void Accessor.fromJson(Accessor* self, Object* json) {
+    Object*! dataType = json.get("componentType");
+    Object*! objectType = json.get("type");
+    Object*! bufferView = json.get("bufferView");
+    Object*! count = json.get("count");
+    Object*! offset = json.get("offset");
+    Object*! stride = json.get("stride");
+    Object*! normalize = json.get("normalize");
+    Object*! mode = json.get("mode");
+
+    if (try count) self.count = (uint)count.f;
+    if (try offset) self.offset = (uint)offset.f;
+    if (try normalize) self.normalize = normalize.b;
+    if (try stride) self.stride = (uint)stride.f;
+    if (try bufferView) self.bufferView = (uint)bufferView.f;
+    if (try mode) {
+        switch((uint)mode.f) {
+            case 0:
+                self.mode = Mode.POINTS;
+            case 1:
+                self.mode = Mode.LINES;
+            case 2:
+                self.mode = Mode.LINE_LOOP;
+            case 3:
+                self.mode = Mode.LINE_STRIP;
+            case 4:
+                self.mode = Mode.TRIANGLES;
+            case 5:
+                self.mode = Mode.TRIANGLE_STRIP;
+            case 6:
+                self.mode = Mode.TRIANGLE_FAN;    
+        }
+    }
+
+    if (try dataType && try objectType) {
+        switch(dataType.f) {
+            case 5120:
+                self.data_type = DataType.ICHAR;
+            case 5121:
+                self.data_type = DataType.CHAR;
+            case 5122:
+                self.data_type = DataType.SHORT;
+            case 5123:
+                self.data_type = DataType.USHORT;
+            case 5125:
+                self.data_type = DataType.UINT;
+            case 5126:
+                self.data_type = DataType.FLOAT;
+        }
+
+        if (mem::equals(objectType.s, "SCALAR")) {
+            self.type = AccessorType.SCALAR;
+        }
+
+        if (mem::equals(objectType.s, "VEC2")) {
+            self.type = AccessorType.VEC2;
+        }
+
+        if (mem::equals(objectType.s, "VEC3")) {
+            self.type = AccessorType.VEC3;
+        }
+
+        if (mem::equals(objectType.s, "VEC4")) {
+            self.type = AccessorType.VEC4;
+        }
+
+        if (mem::equals(objectType.s, "MAT2")) {
+            self.type = AccessorType.MAT2;
+        }
+
+        if (mem::equals(objectType.s, "MAT3")) {
+            self.type = AccessorType.MAT3;
+        }
+
+        if (mem::equals(objectType.s, "MAT4")) {
+            self.type = AccessorType.MAT4;
+        }
+    }
+}
+
+fn void! GltfBuffer.fromJson(GltfBuffer* self, Object* json) {
+    uint! size = json.get_int("byteLength");
+    String! data = json.get_string("uri");
+    BufferType bufferType;
+
+    if (try size && try data) {          
+        String[] bufferHeader = data.split(",");
+        defer mem::free(bufferHeader);
+        char* parsedBuffer = mem::malloc(char, size);
+
+        // Parse buffer from base64 to bytes
+        if (mem::equals(bufferHeader[0], "data:application/octet-stream;base64")) {
+            if (catch err = base64::decode(bufferHeader[1], parsedBuffer)) {
+                    io::printf("failed parsing buffer %s \n", bufferHeader[0]);
+                    return ParseError.BROKEN_BUFFER?;
+            };
+            bufferType = BufferType.STREAM;
+        }
+
+        self.data = parsedBuffer;
+        self.size = size;
+        self.data_type = bufferType;
+    } else {
+        io::printf("Buffer has no size or data \n");
+        return ParseError.BROKEN_BUFFER?;
+    }
+}
+
+fn void! Camera.fromJson(Camera* self, Object* json) {
+    String! cameraType = json.get_string("type");
+    String! name = json.get_string("name");
+
+    if (try name) self.name = name;
+    if (try cameraType) {
+        if (mem::equals(cameraType, "perspective")) {
+            Object*! perspective = json.get("perspective");
+
+            if (catch err = perspective) return ParseError.BROKEN_BUFFER?;
+
+            float! aspectRatio = (float)perspective.get_float("aspectRatio");
+            float! yfov = (float)perspective.get_float("yfov");
+            float! zfar = (float)perspective.get_float("zfar");
+            float! znear = (float)perspective.get_float("znear");
+
+            if (catch err = aspectRatio, yfov, zfar, znear) return ParseError.BROKEN_BUFFER?;
+
+            self.perspective = {
+                aspectRatio,
+                yfov,
+                zfar,
+                znear  
+            };
+        }
+    }
+}
+
+fn void Material.fromJson(Material* self, Object* json) {
+    String! name = json.get_string("name");
+    bool! doubleSided = json.get_bool("doubleSided");
+    Object*! pbrMetallicRoughness = json.get("pbrMetallicRoughness");
+    Object*! occlusionTexture = pbrMetallicRoughness.get("baseColorTexture");
+    Object*! normalTexture = pbrMetallicRoughness.get("baseColorTexture");
+
+    if (try name) self.name = name;
+    if (try doubleSided) self.doubleSided = doubleSided;
+
+    if (try occlusionTexture) self.occlusionTexture.fromJson(occlusionTexture);
+    if (try normalTexture) self.normalTexture.fromJson(normalTexture);
+
+    if (try pbrMetallicRoughness) {
+        double! metallicFactor = pbrMetallicRoughness.get_float("metallicFactor");
+        double! roughnessFactor = pbrMetallicRoughness.get_float("roughnessFactor");
+        Object*! baseColorTexture = pbrMetallicRoughness.get("baseColorTexture");
+        Object*! baseColorFactor = pbrMetallicRoughness.get("baseColorFactor");
+        Object*! metallicRoughnessTexture = pbrMetallicRoughness.get("baseColorTexture");
+
+        if (try metallicFactor && try roughnessFactor) {
+            self.pbrMetallicRoughness.metallicFactor = (float)metallicFactor;
+            self.pbrMetallicRoughness.roughnessFactor = (float)roughnessFactor;
+        }
+
+        if (try baseColorFactor) {
+            self.pbrMetallicRoughness.baseColorFactor = float[4] {(float)baseColorFactor.get_at(0).f, (float)baseColorFactor.get_at(1).f, (float)baseColorFactor.get_at(2).f, (float)baseColorFactor.get_at(3).f};
+        }
+
+        if (try baseColorTexture) self.pbrMetallicRoughness.baseColorTexture.fromJson(baseColorTexture);
+        if (try metallicRoughnessTexture) self.pbrMetallicRoughness.metallicRoughnessTexture.fromJson(baseColorTexture);
+    }
+}
+
+fn void TextureImage.fromJson(TextureImage* self, Object* json) {
+    uint! index = json.get_int("index");
+    Object*! texCoord = json.get("texCoord");
+
+    if (try index) self.index = index;
+    if (try texCoord) {
+        self.texCoord = Vec2f{(float)texCoord.get_at(0).f, (float)texCoord.get_at(1).f};
+    }
+}
+
 fn Gltf! loadFile(String path) {
     File! file = file::open(path, "r");
     if (catch err = file)
@@ -176,53 +474,23 @@ fn Gltf! loadFile(String path) {
     Object*! accessors = gltfJson.get("accessors");
     Object*! buffers = gltfJson.get("buffers");
     Object*! cameras = gltfJson.get("cameras");
+    Object*! materials = gltfJson.get("materials");
 
     // Parse scenes
     if (try scenes) {
         foreach (scene : scenes.array) {
-            Scene sceneItem;
-
-            String! name = scene.get_string("name");
-            Object*! sceneNodes = scene.get("nodes");
-
-            if (try name) sceneItem.name = name;
-            if (try sceneNodes) foreach (node : sceneNodes.array) sceneItem.nodes.push((uint)node.f);
- 
-            content.scenes.push(sceneItem);
+            Scene data;
+            data.fromJson(scene);
+            content.scenes.push(data);
         }
     }
  
     // Parse nodes
     if (try nodes) {
         foreach (node : nodes.array) {
-            Node data;
-            data.mesh = -1;
-            data.camera = -1;
-
-            String! name = node.get_string("name");
-            if (try name) data.name = name; 
-
-            // Parse node transforms
-            Object*! rotation = node.get("rotation");
-            Object*! scale = node.get("scale");
-            Object*! translation = node.get("translation");
-
-            int! mesh = node.get_int("mesh");
-            int! camera = node.get_int("camera");
-
-            if (try mesh) data.mesh = mesh;
-            if (try camera) data.camera = camera;
-            if (try rotation) {
-                data.rotation = Quaternionf {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
-            }
-            if (try scale) {
-                data.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
-            }
-            if (try translation) {
-                data.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
-            }
-
-            content.nodes.push(data);
+           Node data;
+           data.fromJson(node);
+           content.nodes.push(data);
         }
     }
 
@@ -230,42 +498,16 @@ fn Gltf! loadFile(String path) {
     // Parse meshes
     if (try meshes) {
         foreach (mesh : meshes.array) {
-            GltfMesh meshItem;
-            String! name = mesh.get_string("name");
-            Object*! primitives = mesh.get("primitives");
-
-            if (try name) meshItem.name = name;
-            if (try primitives) {
-                foreach (primitive : primitives.array) {
-                    meshItem.primitives.push(primitive);
-                }
-            }
-            content.meshes.push(meshItem);
+            GltfMesh data;
+            data.fromJson(mesh);
+            content.meshes.push(data);
         }
     }
 
     if (try bufferViews) {
         foreach (bufferView : bufferViews.array) {
             BufferView data;
-            
-            uint! buffer = bufferView.get_int("buffer");
-            uint! byteLength = bufferView.get_int("byteLength");
-            uint! offset = bufferView.get_int("byteOffset");
-            uint! target = bufferView.get_int("target");
-
-            if (try buffer) data.buffer = buffer;
-            if (try byteLength) data.byteLength = byteLength;
-            if (try offset) data.offset = offset;
-            if (try target) {
-                switch(target) {
-                    case 34962: {
-                        data.target = Targets.ARRAY_BUFFER;
-                    }
-                    case 34963: {
-                        data.target = Targets.ELEMENT_ARRAY_BUFFER;
-                    }
-                }
-            }
+            data.fromJson(bufferView);
             content.bufferViews.push(data);
         }
     }
@@ -274,152 +516,34 @@ fn Gltf! loadFile(String path) {
     if (try accessors) {
         foreach (accessor : accessors.array) {
             Accessor data;
-
-            Object*! dataType = accessor.get("componentType");
-            Object*! objectType = accessor.get("type");
-            Object*! bufferView = accessor.get("bufferView");
-            Object*! count = accessor.get("count");
-            Object*! offset = accessor.get("offset");
-            Object*! stride = accessor.get("stride");
-            Object*! normalize = accessor.get("normalize");
-            Object*! mode = accessor.get("mode");
-
-            if (try count) data.count = (uint)count.f;
-            if (try offset) data.offset = (uint)offset.f;
-            if (try normalize) data.normalize = normalize.b;
-            if (try stride) data.stride = (uint)stride.f;
-            if (try bufferView) data.bufferView = (uint)bufferView.f;
-            if (try mode) {
-                switch((uint)mode.f) {
-                    case 0:
-                        data.mode = Mode.POINTS;
-                    case 1:
-                        data.mode = Mode.LINES;
-                    case 2:
-                        data.mode = Mode.LINE_LOOP;
-                    case 3:
-                        data.mode = Mode.LINE_STRIP;
-                    case 4:
-                        data.mode = Mode.TRIANGLES;
-                    case 5:
-                        data.mode = Mode.TRIANGLE_STRIP;
-                    case 6:
-                        data.mode = Mode.TRIANGLE_FAN;    
-                }
-            }
-
-
-            if (try dataType && try objectType) {
-                switch(dataType.f) {
-                    case 5120:
-                        data.data_type = DataType.ICHAR;
-                    case 5121:
-                        data.data_type = DataType.CHAR;
-                    case 5122:
-                        data.data_type = DataType.SHORT;
-                    case 5123:
-                        data.data_type = DataType.USHORT;
-                    case 5125:
-                        data.data_type = DataType.UINT;
-                    case 5126:
-                        data.data_type = DataType.FLOAT;
-                }
-
-                if (mem::equals(objectType.s, "SCALAR")) {
-                    data.type = AccessorType.SCALAR;
-                }
-
-                if (mem::equals(objectType.s, "VEC2")) {
-                    data.type = AccessorType.VEC2;
-                }
-
-                if (mem::equals(objectType.s, "VEC3")) {
-                    data.type = AccessorType.VEC3;
-                }
-
-                if (mem::equals(objectType.s, "VEC4")) {
-                    data.type = AccessorType.VEC4;
-                }
-
-                if (mem::equals(objectType.s, "MAT2")) {
-                    data.type = AccessorType.MAT2;
-                }
-
-                if (mem::equals(objectType.s, "MAT3")) {
-                    data.type = AccessorType.MAT3;
-                }
-
-                if (mem::equals(objectType.s, "MAT4")) {
-                    data.type = AccessorType.MAT4;
-                }
-            }
-
+            data.fromJson(accessor);
             content.accessors.push(data);
         }
     }
 
   
-
-    if (try buffers) { 
+    if (try buffers) {
         foreach (buffer : buffers.array) {
-            uint! size = buffer.get_int("byteLength");
-            String! data = buffer.get_string("uri");
-            BufferType bufferType;
-
-            if (try size && try data) {          
-                String[] bufferHeader = data.split(",");
-                defer mem::free(bufferHeader);
-                char* parsedBuffer = mem::malloc(char, size);
-
-                // Parse buffer from base64 to bytes
-                if (mem::equals(bufferHeader[0], "data:application/octet-stream;base64")) {
-                    if (catch err = base64::decode(bufferHeader[1], parsedBuffer)) {
-                         io::printf("failed parsing buffer %s \n", bufferHeader[0]);
-                         return ParseError.BROKEN_BUFFER?;
-                    };
-                    bufferType = BufferType.STREAM;
-                }
-
-                content.buffers.push(GltfBuffer {
-                    .data = parsedBuffer,
-                    .size = size,
-                    .data_type = bufferType
-                });
-            }
+            GltfBuffer data;
+            if (catch err = data.fromJson(buffer)) {}
+            else {content.buffers.push(data);}
         }
     }
 
     if (try cameras) {
         foreach (camera : cameras.array) {
             Camera data;
-            String! cameraType = camera.get_string("type");
-            String! name = camera.get_string("name");
-
-            if (try name) content.name = name;
-            if (try cameraType) {
-                if (mem::equals(cameraType, "perspective")) {
-                    Object*! perspective = camera.get("perspective");
-
-                    if (catch err = perspective) return ParseError.BROKEN_BUFFER?;
-
-                    float! aspectRatio = (float)perspective.get_float("aspectRatio");
-                    float! yfov = (float)perspective.get_float("yfov");
-                    float! zfar = (float)perspective.get_float("zfar");
-                    float! znear = (float)perspective.get_float("znear");
-
-                    if (catch err = aspectRatio, yfov, zfar, znear) return ParseError.BROKEN_BUFFER?;
-
-                    data.perspective = {
-                          aspectRatio,
-                          yfov,
-                          zfar,
-                          znear  
-                    };
-                }
-            }
-
-            content.cameras.push(data);
+            if (catch err = data.fromJson(camera)) {}
+            else {content.cameras.push(data);}
         }
+    }
+
+    if (try materials) {
+        foreach (material_json : materials.array) {
+            Material material;
+            material.fromJson(material_json);
+            content.materials.push(material);
+        }   
     }
 
     if(catch file.close()) {}
@@ -443,6 +567,7 @@ fn void Gltf.close(Gltf* self) {
     self.scenes.free();
     self.nodes.free();
     self.meshes.free();
+    self.materials.free();
     self.json.free();
 }
 
@@ -483,8 +608,7 @@ fn BufferView! Gltf.getBufferView(Gltf* data, Object* primitive, String key) {
 }
 
 fn uint Accessor.componentLen(Accessor* self) {
-    return {|
-            switch(self.type) {
+    switch(self.type) {
                 case AccessorType.SCALAR:
                     return 1;
                 case AccessorType.VEC2:
@@ -499,9 +623,8 @@ fn uint Accessor.componentLen(Accessor* self) {
                     return 9;
                 case AccessorType.MAT4:
                     return 16;       
-            }
-            return 0;
-    |};
+    }
+    return 0;
 }
 
 fn uint Accessor.componentSize(Accessor* self) {
@@ -509,23 +632,21 @@ fn uint Accessor.componentSize(Accessor* self) {
 }
 
 fn uint Accessor.dataSize(Accessor* self) {
-    return {|
-            switch(self.data_type) {
-                case DataType.ICHAR:
-                    return ichar.sizeof;
-                case DataType.CHAR:
-                    return char.sizeof;
-                case DataType.SHORT:
-                    return short.sizeof;
-                case DataType.USHORT:
-                    return ushort.sizeof;
-                case DataType.UINT:
-                    return uint.sizeof;
-                case DataType.FLOAT:
-                    return float.sizeof;
-            }
-            return 0;
-        |};
+    switch(self.data_type) {
+        case DataType.ICHAR:
+            return ichar.sizeof;
+        case DataType.CHAR:
+            return char.sizeof;
+        case DataType.SHORT:
+            return short.sizeof;
+        case DataType.USHORT:
+            return ushort.sizeof;
+        case DataType.UINT:
+            return uint.sizeof;
+        case DataType.FLOAT:
+            return float.sizeof;
+    }
+    return 0;
 }
 
 fn void GltfBuffer.free(GltfBuffer* self) {

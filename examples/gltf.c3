@@ -1,4 +1,3 @@
-
 module cubes;
 import std::io;
 import gl;
@@ -58,7 +57,7 @@ fn int main()
     uint uniformBuffer;
     uint vao;
 
-    Gltf! gltf_data = gltf::loadFile("assets/single.gltf");
+    Gltf! gltf_data = gltf::loadFile("assets/minimal.gltf");
     defer gltf_data.close();
 
     if (catch err = gltf_data) {
@@ -76,9 +75,9 @@ fn int main()
     Camera camera = gltf_data.cameras[cameraNode.camera];
 
     UniformBuffer uniformData = UniformBuffer {
-        math::matrix4f_perspective(helpers::toRadians(80), WIDTH / HEIGHT, -1.0, 100),
-        cameraNode.rotation.to_matrixf().translate(cameraNode.translation),
-        matrix4f_identity()
+        math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, 0.1, 100),
+        cameraNode.rotation.to_matrixf().mul(vector::matrix4f_look_at(cameraNode.translation, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0})),
+        MATRIX4F_IDENTITY
     };
 
     glfw::init();
@@ -86,7 +85,7 @@ fn int main()
     glfw::windowHint(glfw::CONTEXT_VERSION_MINOR, 3);
     glfw::windowHint(glfw::OPENGL_PROFILE, glfw::OPENGL_CORE_PROFILE);
     glfw::windowHint(glfw::OPENGL_FORWARD_COMPAT, 1);
-    glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "OpenGL rotating cube", null, null);
+    glfw::WindowRef window = glfw::createWindow(WIDTH, HEIGHT, "OpenGL gltf example", null, null);
 
     if (window == null)
     {
@@ -168,11 +167,23 @@ fn int main()
                 GltfMesh mesh = gltf_data.meshes[node.mesh];
             
                 // Update node transform
-                // uniformData.model = matrix4f_identity().translate(node.translation);
-                // gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
+                uniformData.model = MATRIX4F_IDENTITY;
+
+                if (node.hasRotation) {
+                    uniformData.model.mul(node.rotation.to_matrixf());
+                }
+
+                if (node.hasScale) {
+                    uniformData.model.scale(node.scale);
+                }
+
+                if (node.hasTranslation) {
+                    uniformData.model.translate(node.translation);
+                }
+
+                gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
                 Object* primitive = mesh.primitives[0];
-
                 BufferView! position = gltf_data.getBufferView(primitive, "POSITION");
                 BufferView! texture = gltf_data.getBufferView(primitive, "TEXCOORD_0");
                 BufferView! indices = gltf_data.getBufferView(primitive, "indices");

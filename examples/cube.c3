@@ -98,9 +98,9 @@ fn int main()
 
   float rotation = 0;
 
-  Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(80), WIDTH / HEIGHT, -5.0, 1000);
-  Matrix4f lookAt = vector::matrix4f_look_at(Vec3f{0.0, 0.0, -1}, Vec3f{0.0, 0.0, 0.0}, Vec3f{0.0, 1.0, 0.0});
-  Matrix4f model = matrix4f_identity().rotate_y(rotation).rotate_x(20);
+  Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(80), WIDTH / HEIGHT, 1.0, 100);
+  Matrix4f lookAt = vector::matrix4f_look_at({0.0, 0.0, -5.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
+  Matrix4f model = MATRIX4F_IDENTITY.rotate_y(rotation).rotate_x(20);
 
   UniformBuffer uniformData = UniformBuffer {
      perspective,
