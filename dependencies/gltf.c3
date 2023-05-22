@@ -19,6 +19,7 @@ typedef BufferViewList = List<BufferView>;
 typedef AccessorList = List<Accessor>;
 typedef CameraList = List<Camera>;
 typedef MaterialList = List<Material>;
+typedef ImageList = List<GltfImage>;
 
 enum Targets {
     ARRAY_BUFFER,
@@ -89,6 +90,7 @@ struct Gltf {
     AccessorList accessors;
     CameraList cameras;
     MaterialList materials;
+    ImageList images;
 }
 
 struct Scene {
@@ -134,10 +136,10 @@ struct Texture {
     uint source;
 }
 
-struct Image {
+struct GltfImage {
     String name;
     uint bufferView;
-    BufferType mimType;
+    BufferType mimeType;
 }
 
 struct Sampler {
@@ -444,6 +446,29 @@ fn void TextureImage.fromJson(TextureImage* self, Object* json) {
     }
 }
 
+fn void GltfImage.fromJson(GltfImage* self, Object* json) {
+    uint! bufferView = json.get_int("bufferView");
+    String! name = json.get_string("name");
+    String! mimeType = json.get_string("mimeType");
+
+    if (try bufferView) self.bufferView = bufferView;
+    if (try name) self.name = name;
+    if (try mimeType) {
+        if (mem::equals(mimeType, "image/jpeg")) {
+            self.mimeType = BufferType.IMAGE_JPEG;
+        }
+
+        if (mem::equals(mimeType, "image/png")) {
+            self.mimeType = BufferType.IMAGE_PNG;
+        }
+
+        if (mem::equals(mimeType, "image/bmp")) {
+            self.mimeType = BufferType.IMAGE_BMP;
+        }
+    }
+}
+
+
 fn Gltf! loadFile(String path) {
     File! file = file::open(path, "r");
     if (catch err = file)
@@ -475,6 +500,7 @@ fn Gltf! loadFile(String path) {
     Object*! buffers = gltfJson.get("buffers");
     Object*! cameras = gltfJson.get("cameras");
     Object*! materials = gltfJson.get("materials");
+    Object*! images = gltfJson.get("images");
 
     // Parse scenes
     if (try scenes) {
@@ -521,7 +547,7 @@ fn Gltf! loadFile(String path) {
         }
     }
 
-  
+    // Parse buffers
     if (try buffers) {
         foreach (buffer : buffers.array) {
             GltfBuffer data;
@@ -529,7 +555,7 @@ fn Gltf! loadFile(String path) {
             else {content.buffers.push(data);}
         }
     }
-
+    // Parse cameras
     if (try cameras) {
         foreach (camera : cameras.array) {
             Camera data;
@@ -537,12 +563,20 @@ fn Gltf! loadFile(String path) {
             else {content.cameras.push(data);}
         }
     }
-
+    // Parse materials
     if (try materials) {
         foreach (material_json : materials.array) {
             Material material;
             material.fromJson(material_json);
             content.materials.push(material);
+        }   
+    }
+    // Parse images
+    if (try images) {
+        foreach (image : images.array) {
+            GltfImage data;
+            data.fromJson(image);
+            content.images.push(data);
         }   
     }
 
@@ -566,6 +600,7 @@ fn void Gltf.close(Gltf* self) {
     self.buffers.free();
     self.scenes.free();
     self.nodes.free();
+    self.images.free();
     self.meshes.free();
     self.materials.free();
     self.json.free();
