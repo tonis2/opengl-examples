@@ -20,6 +20,8 @@ typedef AccessorList = List<Accessor>;
 typedef CameraList = List<Camera>;
 typedef MaterialList = List<Material>;
 typedef ImageList = List<GltfImage>;
+typedef SamplerList = List<Sampler>;
+typedef TextureList = List<Texture>;
 
 enum Targets {
     ARRAY_BUFFER,
@@ -91,6 +93,8 @@ struct Gltf {
     CameraList cameras;
     MaterialList materials;
     ImageList images;
+    SamplerList samplers;
+    TextureList textures;
 }
 
 struct Scene {
@@ -110,7 +114,7 @@ struct Node {
     Vec3f translation;
 }
 
-struct TextureImage {
+struct TextureInfo {
     uint index;
     Vec2f texCoord;
 }
@@ -119,15 +123,15 @@ struct Material {
     String name;
     bool doubleSided;
     float[3] emissiveFactor;
-    TextureImage normalTexture;
-    TextureImage occlusionTexture;
+    TextureInfo normalTexture;
+    TextureInfo occlusionTexture;
     struct pbrMetallicRoughness {
         float[4] baseColorFactor;
         float metallicFactor;
         float roughnessFactor;
-        TextureImage baseColorTexture;
-        TextureImage metallicRoughnessTexture;
-        TextureImage emissiveTexture;
+        TextureInfo baseColorTexture;
+        TextureInfo metallicRoughnessTexture;
+        TextureInfo emissiveTexture;
     }
 }
 
@@ -436,13 +440,31 @@ fn void Material.fromJson(Material* self, Object* json) {
     }
 }
 
-fn void TextureImage.fromJson(TextureImage* self, Object* json) {
+fn void TextureInfo.fromJson(TextureInfo* self, Object* json) {
     uint! index = json.get_int("index");
     Object*! texCoord = json.get("texCoord");
 
     if (try index) self.index = index;
     if (try texCoord) {
         self.texCoord = Vec2f{(float)texCoord.get_at(0).f, (float)texCoord.get_at(1).f};
+    }
+}
+
+fn void Texture.fromJson(Texture* self, Object* json) {
+    uint! sampler = json.get_int("sampler");
+    uint! source = json.get_int("source");
+
+    if (try sampler) self.sampler = sampler;
+    if (try source) self.source = source;
+}
+
+fn void Sampler.fromJson(Sampler* self, Object* json) {
+    uint! magFilter = json.get_int("magFilter");
+    uint! minFilter = json.get_int("minFilter");
+
+    if (try magFilter && try minFilter ) {
+        self.magFilter = magFilter;
+        self.minFilter = minFilter;
     }
 }
 
@@ -501,6 +523,8 @@ fn Gltf! loadFile(String path) {
     Object*! cameras = gltfJson.get("cameras");
     Object*! materials = gltfJson.get("materials");
     Object*! images = gltfJson.get("images");
+    Object*! samplers = gltfJson.get("samplers");
+    Object*! textures = gltfJson.get("textures");
 
     // Parse scenes
     if (try scenes) {
@@ -580,7 +604,23 @@ fn Gltf! loadFile(String path) {
         }   
     }
 
-    if(catch file.close()) {}
+    if (try samplers) {
+        foreach (sampler : samplers.array) {
+            Sampler data;
+            data.fromJson(sampler);
+            content.samplers.push(data);
+        }   
+    }
+
+    if (try textures) {
+        foreach (texture : textures.array) {
+            Texture data;
+            data.fromJson(texture);
+            content.textures.push(data);
+        }   
+    }
+
+    if (catch file.close()) {}
     return content;
  
 }
@@ -603,6 +643,8 @@ fn void Gltf.close(Gltf* self) {
     self.images.free();
     self.meshes.free();
     self.materials.free();
+    self.textures.free();
+    self.samplers.free();
     self.json.free();
 }
 
@@ -616,10 +658,25 @@ fn Node! Gltf.getNode(Gltf* self, String name) {
     return GltfError.KEY_NOT_FOUND?;
 }
 
-fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
-    if (mem::equals(key, "indices") || mem::equals(key, "material")) {
-        Object*! value = primitive.get(key);
 
+fn uint! Object.getValue(Object* primitive, String key) {
+    if (mem::equals(key, "indices") || mem::equals(key, "material")) {
+        uint! value = primitive.get_int(key);
+        if (try value) return value;
+    }
+    else {
+        Object*! attributes = primitive.get("attributes");
+        if (try attributes) {
+            uint! value = attributes.get_int(key);
+            if (try value) return value;
+        }
+    }
+    return GltfError.KEY_NOT_FOUND?;
+}
+
+fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
+    if (mem::equals(key, "indices")) {
+        Object*! value = primitive.get(key);
         if (try value) return data.accessors[(uint)value.f];
     } else {
         Object*! attributes = primitive.get("attributes");
@@ -629,7 +686,7 @@ fn Accessor! Gltf.getAccessor(Gltf* data, Object* primitive, String key) {
             if (try value) return data.accessors[(uint)value.f];
         }
     }
-   
+
     return GltfError.KEY_NOT_FOUND?;
 }
 
@@ -682,6 +739,56 @@ fn uint Accessor.dataSize(Accessor* self) {
             return float.sizeof;
     }
     return 0;
+}
+
+
+// Returns matrix from node transform, scale, rotation
+fn Matrix4f Node.recompose(Node* self) {
+   Matrix4f transform = {
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        self.translation.x, self.translation.y, self.translation.z, 1.0,
+   };
+
+    Matrix4f scale = {
+        self.scale.x, 0.0, 0.0, 0.0,
+        0.0,   self.scale.x, 0.0, 0.0,
+        0.0, 0.0,   self.scale.x, 0.0,
+        0.0, 0.0, 0.0, 1.0,
+    };
+
+   Matrix4f rotation = {|
+        float x = self.rotation.i;
+        float y = self.rotation.j;
+        float z = self.rotation.k;
+        float w = self.rotation.l;
+
+        float x2 = x + x;
+        float y2 = y + y;
+        float z2 = z + z;
+
+        float xx2 = x2 * x;
+        float xy2 = x2 * y;
+        float xz2 = x2 * z;
+
+        float yy2 = y2 * y;
+        float yz2 = y2 * z;
+        float zz2 = z2 * z;
+
+        float sy2 = y2 * w;
+        float sz2 = z2 * w;
+        float sx2 = x2 * w;
+
+        return {
+            1.0 - yy2 - zz2, xy2 + sz2, xz2 - sy2, 0.0,
+            xy2 - sz2, 1.0 - xx2 - zz2, yz2 + sx2, 0.0,
+            xz2 + sy2, yz2 - sx2, 1.0 - xx2 - yy2, 0.0,
+            0.0, 0.0, 0.0, 1.0,
+        };
+   |};
+
+   return transform.mul(rotation).mul(scale);
 }
 
 fn void GltfBuffer.free(GltfBuffer* self) {

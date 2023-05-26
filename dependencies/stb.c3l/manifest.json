@@ -1,6 +1,7 @@
 
 { 
   "provides" : "stb",
+  "c-sources": ["./native/*"],
   "targets" : {
   "macos-x64" : {
       "c-sources-add": ["./native/*"],

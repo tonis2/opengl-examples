@@ -154,17 +154,14 @@ fn int main()
   renderer = gl::getString( gl::GL_RENDERER );
   version  = gl::getString( gl::GL_VERSION );
 
-  libc::printf( "Renderer: %s\n", renderer );
-  libc::printf( "OpenGL version supported %s\n", version );
-
+  libc::printf("Renderer: %s\n", renderer );
+  libc::printf("OpenGL version supported %s\n", version );
 
   // Load texture
-
   Image! image = stb::loadImage("./assets/logo.png", Channel.STBI_RGB_ALPHA);
   if (catch err = image) return 1;
 
   defer image.free();
-
 
   // Bind texture
   uint texture;
@@ -172,7 +169,7 @@ fn int main()
   gl::bindTexture(gl::GL_TEXTURE_2D, texture);
   gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
   gl::generateMipmap(gl::GL_TEXTURE_2D);
-  
+
   int cube_size = cube_data.len * float.sizeof;
   int indices_size = indices.len * uint.sizeof;
 
@@ -197,6 +194,7 @@ fn int main()
   defer {
     gl::deleteBuffers(1, &vertexBuffer);
     gl::deleteBuffers(1, &vao);
+    gl::deleteTextures(1, &texture);
   }
 
   uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);

@@ -3,8 +3,9 @@ import std::io;
 import gl;
 import glfw;
 import gltf;
+import std::collections::list;
 import std::collections::object;
-
+import stb;
 import helpers;
 import std::math;
 
@@ -44,6 +45,11 @@ struct UniformBuffer {
     Matrix4f model;
 }
 
+struct LoadedTexture {
+    uint index;
+    Image image;
+}
+
 fn int main()   
 {
     const int WIDTH = 1280;
@@ -57,7 +63,7 @@ fn int main()
     uint uniformBuffer;
     uint vao;
 
-    Gltf! gltf_data = gltf::loadFile("assets/minimal.gltf");
+    Gltf! gltf_data = gltf::loadFile("assets/cubes.gltf");
     defer gltf_data.close();
 
     if (catch err = gltf_data) {
@@ -155,7 +161,24 @@ fn int main()
     gl::enable(gl::GL_DEPTH_TEST);
     gl::enable(gl::GL_CULL_FACE);
     gl::cullFace(gl::GL_FRONT );
-    gl::frontFace(gl::GL_CW ); 
+    gl::frontFace(gl::GL_CW );
+
+    // Load textures 
+    for (uint i = 0; i < gltf_data.images.size; i++) {
+        io::printf("image %d \n", i);
+
+        // Image! image = stb::loadImage("./assets/logo.png", Channel.STBI_RGB_ALPHA);
+        // if (catch err = image) return 1;
+
+        // defer image.free();
+
+        // Bind texture
+        // uint texture;
+        // gl::genTextures(1, &texture);
+        // gl::bindTexture(gl::GL_TEXTURE_2D, texture);
+        // gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
+        // gl::generateMipmap(gl::GL_TEXTURE_2D);     
+    }
 
     while(!glfw::windowShouldClose(window)) {
         gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
@@ -166,32 +189,35 @@ fn int main()
             if (node.mesh >= 0) {
                 GltfMesh mesh = gltf_data.meshes[node.mesh];
             
-                // Update node transform
-                uniformData.model = MATRIX4F_IDENTITY;
-
-                if (node.hasRotation) {
-                    uniformData.model.mul(node.rotation.to_matrixf());
-                }
-
-                if (node.hasScale) {
-                    uniformData.model.scale(node.scale);
-                }
-
-                if (node.hasTranslation) {
-                    uniformData.model.translate(node.translation);
-                }
-
+                // Apply node transforms
+                uniformData.model = node.recompose();
                 gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
+                
 
                 Object* primitive = mesh.primitives[0];
                 BufferView! position = gltf_data.getBufferView(primitive, "POSITION");
-                BufferView! texture = gltf_data.getBufferView(primitive, "TEXCOORD_0");
                 BufferView! indices = gltf_data.getBufferView(primitive, "indices");
+      
+                BufferView! texture_pos = gltf_data.getBufferView(primitive, "TEXCOORD_0");
+                uint! material_index = primitive.getValue("material");
 
                 // Vertex buffer
                 if (try position) {
                     GltfBuffer buffer = gltf_data.buffers[position.buffer];
                     gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength, (buffer.data + position.offset), gl::GL_STATIC_DRAW);
+                }
+
+                // Parsing texture data and rendering it
+                if (try texture_pos && try material_index) {
+
+                    Material material = gltf_data.materials[material_index];
+                    Texture color_texture = gltf_data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
+                    Sampler sampler = gltf_data.samplers[color_texture.sampler];
+                    GltfImage image_info = gltf_data.images[color_texture.source];
+                    BufferView image_buffer = gltf_data.bufferViews[image_info.bufferView];
+
+                    // uint! texture_id = gltf_data.buffers
+                    // gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength, (buffer.data + position.offset), gl::GL_STATIC_DRAW);
                 }
 
                 // Index buffer

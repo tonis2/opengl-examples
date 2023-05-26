@@ -47,3 +47,18 @@ fn Image! loadImage(char* file_path, Channel channel) {
 
   return data;
 }
+
+
+// fn Image! loadFromBuffer(char* file_path, Channel channel) {
+//   Image data;  
+//   uint error;
+
+//   data.pixels = stbi_load_from_memory(file_path, &data.width, &data.height, &data.channels, (uint)channel);
+
+//   if (data.pixels == null) {
+//      libc::printf("Image loading failed \n");
+//      return FileError.FILE_NOT_FOUND?;
+//   }
+
+//   return data;
+// }
