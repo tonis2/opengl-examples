@@ -200,11 +200,11 @@ fn int main()
 
     defer gl::deleteBuffers(1, &uniformBuffer);
 
-    gl::depthFunc(gl::GL_LESS );
     gl::enable(gl::GL_DEPTH_TEST);
     gl::enable(gl::GL_CULL_FACE);
-    gl::cullFace(gl::GL_FRONT );
-    gl::frontFace(gl::GL_CW );
+    gl::cullFace( gl::GL_FRONT );
+    gl::frontFace( gl::GL_CW ); 
+ 
 
     // Load textures 
     for (uint i = 0; i < gltf_data.images.size; i++) {

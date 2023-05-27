@@ -238,11 +238,10 @@ fn int main()
   gl::bindBufferBase(gl::GL_UNIFORM_BUFFER, model_mvp, uniformBuffer);
   gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
-  gl::depthFunc( gl::GL_LESS );
   gl::enable(gl::GL_DEPTH_TEST);
   gl::enable(gl::GL_CULL_FACE);
   gl::cullFace( gl::GL_FRONT );
-  gl::frontFace( gl::GL_CW );
+  gl::frontFace( gl::GL_CW ); 
 
   // Set texture settings
   gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_S, gl::GL_REPEAT);	

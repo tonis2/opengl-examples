@@ -202,7 +202,6 @@ fn int main()
 
   defer gl::deleteBuffers(1, &uniformBuffer);
 
-  gl::depthFunc( gl::GL_LESS );
   gl::enable(gl::GL_DEPTH_TEST);
   gl::enable(gl::GL_CULL_FACE);
   gl::cullFace( gl::GL_FRONT );
