@@ -39,17 +39,13 @@ const char* FRAGMENT_SHADER = `
   }
 `;
 
+typedef LoadedImages = List<Image>;
+
 struct UniformBuffer {
     Matrix4f projection;
     Matrix4f view;
     Matrix4f model;
 }
-
-struct LoadedTexture {
-    uint index;
-    Image image;
-}
-
 
 fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
     if (node.mesh >= 0) {
@@ -76,9 +72,15 @@ fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
         if (try texture_pos && try material_index) {
             Material material = data.materials[material_index];
             Texture color_texture = data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
-            Sampler sampler = data.samplers[color_texture.sampler];
-            GltfImage image_info = data.images[color_texture.source];
-            BufferView image_buffer = data.bufferViews[image_info.bufferView];
+            Sampler color_sampler = data.samplers[color_texture.sampler];
+
+            // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_S, gl::GL_REPEAT);	
+            // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_WRAP_T, gl::GL_REPEAT);
+            // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GL_LINEAR_MIPMAP_LINEAR);
+            // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GL_LINEAR);
+
+            gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source);
+           
             // uint! texture_id = gltf_data.buffers
             // gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength, (buffer.data + position.offset), gl::GL_STATIC_DRAW);
         }
@@ -97,7 +99,7 @@ fn int main()
 {
     const int WIDTH = 1280;
     const int HEIGHT = 720;
-
+    
     char* renderer;
     char* version;
 
@@ -105,6 +107,13 @@ fn int main()
     uint indexBuffer;
     uint uniformBuffer;
     uint vao;
+
+    LoadedImages loadedImages;
+
+    defer {
+        foreach (image : loadedImages) image.free();
+        loadedImages.free();
+    };
 
     Gltf! gltf_data = gltf::loadFile("assets/platform.gltf");
     defer gltf_data.close();
@@ -202,25 +211,24 @@ fn int main()
 
     gl::enable(gl::GL_DEPTH_TEST);
     gl::enable(gl::GL_CULL_FACE);
-    gl::cullFace( gl::GL_FRONT );
-    gl::frontFace( gl::GL_CW ); 
+    gl::cullFace(gl::GL_FRONT);
+    gl::frontFace(gl::GL_CW); 
  
-
     // Load textures 
-    for (uint i = 0; i < gltf_data.images.size; i++) {
-        io::printf("image %d \n", i);
+    foreach (gltf_img : gltf_data.images) {
+        BufferView image_view = gltf_data.bufferViews[gltf_img.bufferView];
+        GltfBuffer buffer = gltf_data.buffers[image_view.buffer];
+        Image! image = stb::loadFromBuffer((buffer.data + image_view.offset), image_view.byteLength, Channel.STBI_RGB);
 
-        // Image! image = stb::loadImage("./assets/logo.png", Channel.STBI_RGB_ALPHA);
-        // if (catch err = image) return 1;
+        if (catch err = image) {
+            io::printf("Image loading failed \n");     
+            return 1;
+        };
 
-        // defer image.free();
-
-        // Bind texture
-        // uint texture;
-        // gl::genTextures(1, &texture);
-        // gl::bindTexture(gl::GL_TEXTURE_2D, texture);
-        // gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
-        // gl::generateMipmap(gl::GL_TEXTURE_2D);     
+        loadedImages.push(image);
+        gl::genTextures(1, &image.index);
+        gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGB, image.width, image.height, 0, gl::GL_RGB, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
+        gl::generateMipmap(gl::GL_TEXTURE_2D);     
     }
 
     while(!glfw::windowShouldClose(window)) {

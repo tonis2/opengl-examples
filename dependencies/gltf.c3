@@ -65,6 +65,26 @@ enum DataType {
     FLOAT,
 }
 
+enum WrapMode  {
+    CLAMP_TO_EDGE,
+    MIRRORED_REPEAT,
+    REPEAT,
+}
+
+enum MinFilter {
+    NEAREST,
+    LINEAR,
+    NEAREST_MIPMAP_NEAREST,
+    LINEAR_MIPMAP_NEAREST,
+    NEAREST_MIPMAP_LINEAR,
+    LINEAR_MIPMAP_LINEAR,
+}
+
+enum MagFilter {
+    NEAREST,
+    LINEAR,
+}
+
 fault ParseError
 {
     FILE_NOT_FOUND,
@@ -144,8 +164,10 @@ struct GltfImage {
 }
 
 struct Sampler {
-    uint magFilter;
-    uint minFilter;
+    MagFilter magFilter;
+    MinFilter minFilter;
+    WrapMode wrap_s;
+    WrapMode wrap_t;
 }
 
 struct Camera {
@@ -455,10 +477,55 @@ fn void Texture.fromJson(Texture* self, Object* json) {
 fn void Sampler.fromJson(Sampler* self, Object* json) {
     uint! magFilter = json.get_int("magFilter");
     uint! minFilter = json.get_int("minFilter");
+    uint! wrapS = json.get_int("wrapS");
+    uint! wrapT = json.get_int("wrapt");
 
-    if (try magFilter && try minFilter ) {
-        self.magFilter = magFilter;
-        self.minFilter = minFilter;
+    if (try wrapS) {
+        switch(wrapS) {
+            case 33071:
+                self.wrap_s = WrapMode.CLAMP_TO_EDGE;
+            case 33648:
+                self.wrap_s = WrapMode.MIRRORED_REPEAT;
+            case 10497:
+                self.wrap_s = WrapMode.REPEAT;     
+        }
+    }
+
+    if (try wrapT) {
+        switch(wrapT) {
+            case 33071:
+                self.wrap_t = WrapMode.CLAMP_TO_EDGE;
+            case 33648:
+                self.wrap_t = WrapMode.MIRRORED_REPEAT;
+            case 10497:
+                self.wrap_t = WrapMode.REPEAT;     
+        }
+    }
+
+    if (try magFilter) {
+        switch(magFilter) {
+            case 9728:
+                self.magFilter = MagFilter.LINEAR;
+            case 9729:
+                self.magFilter = MagFilter.NEAREST;
+        }
+    }
+
+    if (try minFilter) {
+        switch(minFilter) {
+            case 9728:
+                self.minFilter = MinFilter.NEAREST;
+            case 9729:
+                self.minFilter = MinFilter.LINEAR;
+            case 9984:
+                self.minFilter = MinFilter.NEAREST_MIPMAP_NEAREST;
+            case 9985:
+                self.minFilter = MinFilter.LINEAR_MIPMAP_NEAREST;
+            case 9986:
+                self.minFilter = MinFilter.NEAREST_MIPMAP_LINEAR;
+            case 9987:
+                self.minFilter = MinFilter.LINEAR_MIPMAP_LINEAR;                 
+        }
     }
 }
 
@@ -652,7 +719,6 @@ fn Node! Gltf.getNode(Gltf* self, String name) {
     return GltfError.KEY_NOT_FOUND?;
 }
 
-
 fn uint! Object.getValue(Object* primitive, String key) {
     if (mem::equals(key, "indices") || mem::equals(key, "material")) {
         uint! value = primitive.get_int(key);
@@ -738,7 +804,6 @@ fn uint Accessor.dataSize(Accessor* self) {
 
 // Returns matrix from node transform, scale, rotation
 fn Matrix4f Node.recompose(Node* self) {
-
    Matrix4f transform = {
         1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0,

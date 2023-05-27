@@ -11,12 +11,14 @@ enum Channel : int
 }
 
 extern fn char* stbi_load(char*, uint*, uint*, uint*, uint) @extern("stbi_load");
+extern fn char* stbi_load_from_memory(char* buffer, uint size, uint* x, uint* y, uint* channels_in_file, uint desired_channels) @extern("stbi_load_from_memory");
 extern fn void* stbi_image_free(char*) @extern("stbi_image_free");
 
 fault FileError
 {
     FILE_NOT_FOUND,
     FILE_NOT_READABLE,
+    BUFFER_NOT_READABLE,
     FAILED
 } 
 
@@ -26,6 +28,7 @@ struct Image
     uint height;
     uint width;
     uint size;
+    uint index;
     uint channels;
 }
 
@@ -35,9 +38,6 @@ fn void Image.free(Image* self) {
 
 fn Image! loadImage(char* file_path, Channel channel) {
   Image data;  
-
-  uint error;
-
   data.pixels = stbi_load(file_path, &data.width, &data.height, &data.channels, (uint)channel);
 
   if (data.pixels == null) {
@@ -48,17 +48,14 @@ fn Image! loadImage(char* file_path, Channel channel) {
   return data;
 }
 
+fn Image! loadFromBuffer(char* buffer, uint size, Channel channel) {
+  Image data;
+  data.pixels = stbi_load_from_memory(buffer, size, &data.width, &data.height, &data.channels, (uint)channel);
 
-// fn Image! loadFromBuffer(char* file_path, Channel channel) {
-//   Image data;  
-//   uint error;
+  if (data.pixels == null) {
+     libc::printf("Image loading failed \n");
+     return FileError.BUFFER_NOT_READABLE?;
+  }
 
-//   data.pixels = stbi_load_from_memory(file_path, &data.width, &data.height, &data.channels, (uint)channel);
-
-//   if (data.pixels == null) {
-//      libc::printf("Image loading failed \n");
-//      return FileError.FILE_NOT_FOUND?;
-//   }
-
-//   return data;
-// }
+  return data;
+}
