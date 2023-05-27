@@ -106,9 +106,6 @@ struct Node {
     String name;
     int mesh;
     int camera;
-    bool hasRotation;
-    bool hasScale;
-    bool hasTranslation;
     Quaternionf rotation;
     Vec3f scale;
     Vec3f translation;
@@ -206,9 +203,6 @@ fn void Scene.fromJson(Scene* self, Object* json) {
 fn void Node.fromJson(Node* self, Object* json) {
     self.mesh = -1;
     self.camera = -1;
-    self.hasRotation = false;
-    self.hasScale = false;
-    self.hasTranslation = false;
     self.scale = {1,1,1};
     self.translation = {1,1,1};
     self.rotation = quaternionf_identity();
@@ -228,15 +222,12 @@ fn void Node.fromJson(Node* self, Object* json) {
     if (try camera) self.camera = camera;
     if (try rotation) {
         self.rotation = Quaternionf {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
-        self.hasRotation = true;
     }
     if (try scale) {
         self.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
-        self.hasScale = true;
     }
     if (try translation) {
         self.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
-        self.hasTranslation = true;
     }
 }
 
@@ -747,6 +738,7 @@ fn uint Accessor.dataSize(Accessor* self) {
 
 // Returns matrix from node transform, scale, rotation
 fn Matrix4f Node.recompose(Node* self) {
+
    Matrix4f transform = {
         1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0,
