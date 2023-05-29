@@ -19,23 +19,29 @@ const char* VERTEX_SHADER = `
       mat4 model;
   };
 
-  layout( location = 0 ) in vec3 vp;
+  layout (location = 0) in vec3 vp;
+  layout (location = 1) in vec2 texturePosition;
+  
   out vec3 theColor;
+  out vec2 texCords;
 
   void main () {
     theColor = vec3(0, 255, 0);
+    texCords = texturePosition;
     gl_Position = projection * view * model * vec4(vp, 1.0);
   }
 `;
 
 const char* FRAGMENT_SHADER = `
   #version 430
+  uniform sampler2D textureData;
 
   in vec3 theColor;
+  in vec2 texCords;
   out vec4 frag_colour;
 
   void main () {
-    frag_colour = vec4(theColor, 1.0);
+    frag_colour = vec4(theColor, 1.0) * texture(textureData, texCords);
   }
 `;
 
@@ -47,6 +53,11 @@ struct UniformBuffer {
     Matrix4f model;
 }
 
+uint vertexBuffer;
+uint indexBuffer;
+uint uniformBuffer;
+uint vao;
+
 fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
     if (node.mesh >= 0) {
         GltfMesh mesh = data.meshes[node.mesh];
@@ -57,19 +68,28 @@ fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
         
         Object* primitive = mesh.primitives[0];
         BufferView! position = data.getBufferView(primitive, "POSITION");
-        BufferView! indices = data.getBufferView(primitive, "indices");
-
         BufferView! texture_pos = data.getBufferView(primitive, "TEXCOORD_0");
+        BufferView! indices = data.getBufferView(primitive, "indices");
+       
         uint! material_index = primitive.getValue("material");
 
         // Vertex buffer
-        if (try position) {
+        if (try position && try texture_pos) {
             GltfBuffer buffer = data.buffers[position.buffer];
-            gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength, (buffer.data + position.offset), gl::GL_STATIC_DRAW);
+            // Bind vertex position and texture position to same buffer
+
+            gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
+            gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength + texture_pos.byteLength, null, gl::GL_STATIC_DRAW);
+            gl::bufferSubData(gl::GL_ARRAY_BUFFER, 0, position.byteLength, (buffer.data + position.offset));
+            gl::bufferSubData(gl::GL_ARRAY_BUFFER, position.byteLength, texture_pos.byteLength, (buffer.data + texture_pos.offset));  
+
+            gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 3*float.sizeof, null);
+            gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 2*float.sizeof, &position.byteLength);
         }
 
+
         // Parsing texture data and rendering it
-        if (try texture_pos && try material_index) {
+        if (try material_index) {
             Material material = data.materials[material_index];
             Texture color_texture = data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
             Sampler color_sampler = data.samplers[color_texture.sampler];
@@ -80,15 +100,15 @@ fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
             // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GL_LINEAR);
 
             gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source);
-           
-            // uint! texture_id = gltf_data.buffers
-            // gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength, (buffer.data + position.offset), gl::GL_STATIC_DRAW);
+        
         }
 
         // Index buffer
         if (try indices) {
             GltfBuffer buffer = data.buffers[indices.buffer];
             char* index_buffer = (buffer.data + indices.offset);
+
+            
             gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, indices.byteLength, index_buffer, gl::GL_STATIC_DRAW);
             gl::drawElements(gl::GL_TRIANGLES, (int)(indices.byteLength / ushort.sizeof), gl::GL_UNSIGNED_SHORT, &index_buffer[0]);
         }
@@ -103,16 +123,15 @@ fn int main()
     char* renderer;
     char* version;
 
-    uint vertexBuffer;
-    uint indexBuffer;
-    uint uniformBuffer;
-    uint vao;
-
     LoadedImages loadedImages;
 
     defer {
-        foreach (image : loadedImages) image.free();
+        foreach (image : loadedImages) {
+            gl::deleteTextures(1, &image.index);
+            image.free();
+        };
         loadedImages.free();
+        
     };
 
     Gltf! gltf_data = gltf::loadFile("assets/platform.gltf");
@@ -125,12 +144,12 @@ fn int main()
 
     Node! cameraNode = gltf_data.getNode("Camera");
 
-    if (catch err = cameraNode) {
-        io::printf("Camera not found \n");
-        return 1;
-    }
+    // if (catch err = cameraNode) {
+    //     io::printf("Camera not found \n");
+    //     return 1;
+    // }
 
-    Camera camera = gltf_data.cameras[cameraNode.camera];
+    // Camera camera = gltf_data.cameras[cameraNode.camera];
 
     UniformBuffer uniformData = UniformBuffer {
         math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, 0.1, 100),
@@ -161,12 +180,13 @@ fn int main()
     gl::init(&glfw::getProcAddress);
 
     gl::genBuffers(1, &vertexBuffer);
-    gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
     gl::genBuffers(1, &indexBuffer);
+    
+    gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
     gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-
     gl::genVertexArrays(1, &vao);
     gl::bindVertexArray(vao);
+   
 
     defer {
         gl::deleteBuffers(1, &vertexBuffer);
@@ -196,10 +216,9 @@ fn int main()
     gl::linkProgram(shader_program);
     gl::useProgram(shader_program);
 
-    // Shader settings
     gl::enableVertexAttribArray(0);
-    gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 3*float.sizeof, null);
-
+    gl::enableVertexAttribArray(1);
+   
     // Bind uniform buffer
     uint model_mvp = gl::getUniformBlockIndex(shader_program, "matrix");
     gl::genBuffers(1, &uniformBuffer);
@@ -214,21 +233,25 @@ fn int main()
     gl::cullFace(gl::GL_FRONT);
     gl::frontFace(gl::GL_CW); 
  
-    // Load textures 
+    // Upload textures to GPU memory
     foreach (gltf_img : gltf_data.images) {
         BufferView image_view = gltf_data.bufferViews[gltf_img.bufferView];
         GltfBuffer buffer = gltf_data.buffers[image_view.buffer];
-        Image! image = stb::loadFromBuffer((buffer.data + image_view.offset), image_view.byteLength, Channel.STBI_RGB);
+        Image! image = stb::loadFromBuffer((buffer.data + image_view.offset), image_view.byteLength, Channel.STBI_RGB_ALPHA);
 
         if (catch err = image) {
-            io::printf("Image loading failed \n");     
+            io::printf("Image loading failed \n");
             return 1;
         };
 
-        loadedImages.push(image);
+        io::printf("Image loaded \n", image.index);
         gl::genTextures(1, &image.index);
-        gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGB, image.width, image.height, 0, gl::GL_RGB, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
-        gl::generateMipmap(gl::GL_TEXTURE_2D);     
+        gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
+        gl::generateMipmap(gl::GL_TEXTURE_2D);
+        
+        loadedImages.push(image);
+        // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MIN_FILTER, gl::GL_LINEAR_MIPMAP_LINEAR);
+        // gl::texParameteri(gl::GL_TEXTURE_2D, gl::GL_TEXTURE_MAG_FILTER, gl::GL_LINEAR);
     }
 
     while(!glfw::windowShouldClose(window)) {
