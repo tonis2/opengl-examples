@@ -58,41 +58,69 @@ const float CUBE_WIDTH = 1.0;
 float[] cube_data = {
 
     // Red
-    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0,  1.0, 1.0,
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,  1.0, 0.0,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    255, 0, 0,  0.0, 0.0,
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,  0.0, 1.0,
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,  255, 0, 0,  
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,  
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    255, 0, 0,  
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   255, 0, 0,  
 
     // Green
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH, 0, 255, 0,  1.0, 1.0,
-		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,  1.0, 0.0,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 255, 0,  0.0, 0.0, 
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,  0.0, 1.0,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH, 0, 255, 0,  
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,  
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 255, 0, 
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 255, 0,  
 
     //Pink
 
-		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  245, 40, 145, 1.0, 1.0,
-		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   245, 40, 145, 1.0, 0.0,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    245, 40, 145, 0.0, 0.0,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   245, 40, 145, 0.0, 1.0,
+		-CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,  245, 40, 145, 
+		-CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,   245, 40, 145, 
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    245, 40, 145, 
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   245, 40, 145, 
 
     // Yellow
-		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  254, 206, 33, 1.0, 1.0,
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   254, 206, 33, 1.0, 0.0,
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    254, 206, 33, 0.0, 0.0,
-		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   254, 206, 33, 0.0, 1.0,
+		-CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  254, 206, 33, 
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   254, 206, 33, 
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    254, 206, 33, 
+		-CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   254, 206, 33, 
 
     // Blue
-		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 193, 1.0, 1.0,
-		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0, 0, 193, 1.0, 0.0,
-		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0, 0, 193, 0.0, 0.0,
-		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0, 0, 193, 0.0, 1.0,
+		CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 193, 
+		CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,    0, 0, 193, 
+		CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,     0, 0, 193, 
+		CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,    0, 0, 193, 
 
     // Black
-    -CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 0, 1, 1.0, 1.0, 
-    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0, 0, 1, 1.0, 0.0,
-    -CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0, 0, 1, 0.0, 0.0,
-    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 1, 0.0, 1.0,
+    -CUBE_WIDTH, -CUBE_WIDTH, -CUBE_WIDTH,  0, 0, 1,  
+    -CUBE_WIDTH, -CUBE_WIDTH, CUBE_WIDTH,   0, 0, 1, 
+    -CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH,    0, 0, 1, 
+    -CUBE_WIDTH, CUBE_WIDTH, -CUBE_WIDTH,   0, 0, 1, 
+};
+
+
+float[] texture_positions = {
+  1.0, 1.0,
+  1.0, 0.0,
+  0.0, 0.0,
+  0.0, 1.0,
+  1.0, 1.0,
+  1.0, 0.0,
+  0.0, 0.0,
+  0.0, 1.0,
+  1.0, 1.0,
+  1.0, 0.0,
+  0.0, 0.0,
+  0.0, 1.0,
+  1.0, 1.0,
+  1.0, 0.0,
+  0.0, 0.0,
+  0.0, 1.0,
+  1.0, 1.0,
+  1.0, 0.0,
+  0.0, 0.0,
+  0.0, 1.0,
+  1.0, 1.0,
+  1.0, 0.0,
+  0.0, 0.0,
+  0.0, 1.0,
 };
 
 uint [] indices = {
@@ -170,8 +198,9 @@ fn int main()
   gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
   gl::generateMipmap(gl::GL_TEXTURE_2D);
 
-  int cube_size = cube_data.len * float.sizeof;
-  int indices_size = indices.len * uint.sizeof;
+  usz cube_size = cube_data.len * float.sizeof;
+  usz indices_size = indices.len * uint.sizeof;
+  usz texture_pos_size = texture_positions.len * float.sizeof;
 
   uint vertexBuffer;
   uint indexBuffer;
@@ -181,7 +210,10 @@ fn int main()
   // Vertex buffer
   gl::genBuffers(1, &vertexBuffer );
   gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
-  gl::bufferData(gl::GL_ARRAY_BUFFER, cube_size, cube_data, gl::GL_STATIC_DRAW);
+  gl::bufferData(gl::GL_ARRAY_BUFFER, cube_size + texture_pos_size, null, gl::GL_STATIC_DRAW);
+
+  gl::bufferSubData(gl::GL_ARRAY_BUFFER, 0, cube_size, cube_data);
+  gl::bufferSubData(gl::GL_ARRAY_BUFFER, cube_size, texture_pos_size, texture_positions);
 
   // Index buffer
   gl::genBuffers(1, &indexBuffer );
@@ -223,13 +255,13 @@ fn int main()
 
   // Shader settings
   gl::enableVertexAttribArray(0);
-  gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 8*float.sizeof, null);
+  gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 6*float.sizeof, null);
 
   gl::enableVertexAttribArray(1);
-  gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 8*float.sizeof, (void*)(3*float.sizeof));
+  gl::vertexAttribPointer(1, 3, gl::GL_FLOAT, false, 6*float.sizeof, (void*)(3*float.sizeof));
 
   gl::enableVertexAttribArray(2);
-  gl::vertexAttribPointer(2, 2, gl::GL_FLOAT, false, 8*float.sizeof, (void*)(6*float.sizeof));
+  gl::vertexAttribPointer(2, 2, gl::GL_FLOAT, false, 0, (void*)cube_size);
 
 
   // Bind uniform buffer
