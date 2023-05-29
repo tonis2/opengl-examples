@@ -80,11 +80,12 @@ fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
 
             gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
             gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength + texture_pos.byteLength, null, gl::GL_STATIC_DRAW);
+            
             gl::bufferSubData(gl::GL_ARRAY_BUFFER, 0, position.byteLength, (buffer.data + position.offset));
             gl::bufferSubData(gl::GL_ARRAY_BUFFER, position.byteLength, texture_pos.byteLength, (buffer.data + texture_pos.offset));  
 
-            gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 3*float.sizeof, null);
-            gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 2*float.sizeof, &position.byteLength);
+            gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 0, null);
+            gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 0, (void*)(usz)(position.byteLength));
         }
 
 
@@ -244,8 +245,8 @@ fn int main()
             return 1;
         };
 
-        io::printf("Image loaded \n", image.index);
         gl::genTextures(1, &image.index);
+        gl::bindTexture(gl::GL_TEXTURE_2D, image.index);
         gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGBA, image.width, image.height, 0, gl::GL_RGBA, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
         gl::generateMipmap(gl::GL_TEXTURE_2D);
         
