@@ -50,6 +50,7 @@ fn Image! loadImage(char* file_path, Channel channel) {
 
 fn Image! loadFromBuffer(char* buffer, uint size, Channel channel) {
   Image data;
+  data.index = 0;
   data.pixels = stbi_load_from_memory(buffer, size, &data.width, &data.height, &data.channels, (uint)channel);
 
   if (data.pixels == null) {

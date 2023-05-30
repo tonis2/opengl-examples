@@ -226,7 +226,6 @@ fn int main()
   defer {
     gl::deleteBuffers(1, &vertexBuffer);
     gl::deleteBuffers(1, &vao);
-    gl::deleteTextures(1, &texture);
   }
 
   uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
