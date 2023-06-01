@@ -26,7 +26,6 @@ const char* VERTEX_SHADER = `
   out vec2 texCords;
 
   void main () {
-    theColor = vec3(0, 255, 0);
     texCords = texturePosition;
     gl_Position = projection * view * model * vec4(vp, 1.0);
   }
@@ -36,12 +35,11 @@ const char* FRAGMENT_SHADER = `
   #version 430
   uniform sampler2D textureData;
 
-  in vec3 theColor;
   in vec2 texCords;
   out vec4 frag_colour;
 
   void main () {
-    frag_colour = vec4(theColor, 1.0) * texture(textureData, texCords);
+    frag_colour = texture(textureData, texCords);
   }
 `;
 
@@ -94,7 +92,7 @@ fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
             Material material = data.materials[material_index];
             Texture color_texture = data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
             Sampler color_sampler = data.samplers[color_texture.sampler];
-            // gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source + 1);
+            gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source + 1);
         }
 
         // Index buffer
@@ -144,8 +142,8 @@ fn int main()
     // Camera camera = gltf_data.cameras[cameraNode.camera];
 
     UniformBuffer uniformData = UniformBuffer {
-        math::matrix4f_perspective(helpers::toRadians(60), WIDTH / HEIGHT, 0.1, 100),
-        vector::matrix4f_look_at({0.0, 3.0, -5.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
+        math::matrix4f_perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
+        vector::matrix4f_look_at({0.0, 0.0, -10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
         MATRIX4F_IDENTITY
     };
 
