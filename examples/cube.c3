@@ -98,14 +98,10 @@ fn int main()
 
   float rotation = 0;
 
-  Matrix4f perspective = math::matrix4f_perspective(helpers::toRadians(80), WIDTH / HEIGHT, 1.0, 100);
-  Matrix4f lookAt = vector::matrix4f_look_at({0.0, 0.0, -5.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
-  Matrix4f model = MATRIX4F_IDENTITY.rotate_y(rotation).rotate_x(20);
-
-  UniformBuffer uniformData = UniformBuffer {
-     perspective,
-     lookAt,
-     model
+  UniformBuffer uniformData = {
+      helpers::perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
+      vector::matrix4f_look_at({0.0, 0.0, -10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
+      MATRIX4F_IDENTITY
   };
 
   glfw::init();
@@ -220,7 +216,7 @@ fn int main()
     }
     
     // Update model rotation
-    uniformData.model = model.rotate_y(rotation);
+    uniformData.model = MATRIX4F_IDENTITY.rotate_y(rotation);
     gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
     gl::drawElements(gl::GL_TRIANGLES, indices_size, gl::GL_UNSIGNED_INT, &indices[0]);

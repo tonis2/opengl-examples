@@ -141,8 +141,8 @@ fn int main()
 
     // Camera camera = gltf_data.cameras[cameraNode.camera];
 
-    UniformBuffer uniformData = UniformBuffer {
-        math::matrix4f_perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
+    UniformBuffer uniformData = {
+        helpers::perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
         vector::matrix4f_look_at({0.0, 0.0, -10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
         MATRIX4F_IDENTITY
     };
