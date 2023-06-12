@@ -4,6 +4,10 @@ typedef WindowRef = void*;
 typedef Monitoref = void*;
 typedef GLproc = void*;
 
+const GLFW_RELEASE = 0;
+const GLFW_PRESS = 1;
+const GLFW_REPEAT = 2;
+
 const CONTEXT_VERSION_MAJOR = 0x00022002;
 const CONTEXT_VERSION_MINOR = 0x00022003;
 const CONTEXT_REVISION = 0x00022004;
@@ -22,6 +26,10 @@ const OPENGL_CORE_PROFILE = 0x00032001;
 const OPENGL_COMPAT_PROFILE = 0x00032002;
 const OPENGL_FORWARD_COMPAT = 0x00022006;
 
+
+def KeyCallback = fn void(WindowRef window, int key, int scancode, int action, int mods);
+def MouseCallback = fn void(WindowRef window, int button, int action, int mods);
+
 extern fn void init() @extern("glfwInit");
 extern fn void windowHint(int, int) @extern("glfwWindowHint");
 extern fn void pollEvents() @extern("glfwPollEvents");
@@ -35,4 +43,7 @@ extern fn void terminate() @extern("glfwTerminate");
 
 extern fn GLproc getProcAddress(char*) @extern("glfwGetProcAddress");
 extern fn bool windowShouldClose(WindowRef window) @extern("glfwWindowShouldClose");
+extern fn bool getCursorPos(WindowRef window, double* x_pos, double* y_pos) @extern("glfwGetCursorPos");
+extern fn void setKeyCallback(WindowRef window, KeyCallback* callback) @extern("glfwSetKeyCallback");
+extern fn void setMouseButtonCallback(WindowRef window, MouseCallback* callback) @extern("glfwSetMouseButtonCallback");
 extern fn Monitoref createWindow(int, int, char*, Monitoref, WindowRef) @extern("glfwCreateWindow");

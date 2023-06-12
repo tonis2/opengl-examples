@@ -129,6 +129,7 @@ struct Node {
     Quaternionf rotation;
     Vec3f scale;
     Vec3f translation;
+    Node* parent;
 }
 
 struct TextureInfo {
@@ -245,11 +246,16 @@ fn void Node.fromJson(Node* self, Object* json) {
     if (try rotation) {
         self.rotation = Quaternionf {(float)rotation.get_at(0).f, (float)rotation.get_at(1).f, (float)rotation.get_at(2).f, (float)rotation.get_at(3).f};
     }
+
     if (try scale) {
-        self.scale = Vec3f {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
+        self.scale = {(float)scale.get_at(0).f, (float)scale.get_at(1).f, (float)scale.get_at(2).f };
     }
+
     if (try translation) {
-        self.translation = Vec3f {(float)translation.get_at(0).f, (float)translation.get_at(1).f, (float)translation.get_at(2).f };
+        float x = (float)translation.get_at(0).f;
+        float y = (float)translation.get_at(1).f;
+        float z = (float)translation.get_at(2).f;
+        self.translation = {x, y, z };
     }
 }
 
@@ -804,7 +810,8 @@ fn uint Accessor.dataSize(Accessor* self) {
 
 // Returns matrix from node transform, scale, rotation
 fn Matrix4f Node.recompose(Node* self) {
-   Matrix4f transform = {
+
+   Matrix4f translation = {
         1.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0,
@@ -813,8 +820,8 @@ fn Matrix4f Node.recompose(Node* self) {
 
     Matrix4f scale = {
         self.scale.x, 0.0, 0.0, 0.0,
-        0.0,   self.scale.x, 0.0, 0.0,
-        0.0, 0.0,   self.scale.x, 0.0,
+        0.0,   self.scale.y, 0.0, 0.0,
+        0.0, 0.0,   self.scale.z, 0.0,
         0.0, 0.0, 0.0, 1.0,
     };
 
@@ -848,7 +855,7 @@ fn Matrix4f Node.recompose(Node* self) {
         };
    |};
 
-   return transform.mul(rotation).mul(scale);
+   return scale.mul(translation);
 }
 
 fn void GltfBuffer.free(GltfBuffer* self) {

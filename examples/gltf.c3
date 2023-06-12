@@ -55,6 +55,43 @@ uint vertexBuffer;
 uint indexBuffer;
 uint uniformBuffer;
 uint vao;
+double xPos, yPos;
+
+float cameraX = 0; 
+float cameraY = 0; 
+float cameraZ = -10;
+
+UniformBuffer uniformData;
+
+fn void keyboardEvents(WindowRef window, int key, int scancode, int action, int mods) {
+
+    // up arrow 
+    if (key == 265) {
+        cameraY += 0.5;
+    }
+
+    // down arrow 
+    if (key == 264) {
+        cameraY -= 0.5;
+    }
+
+    // left arrow 
+    if (key == 262) {
+        cameraX -= 0.5;
+    }
+
+    // right arrow 
+    if (key == 263) {
+        cameraX += 0.5;
+    }
+
+    uniformData.view = vector::matrix4f_look_at({cameraX, cameraY, cameraZ}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
+}
+
+fn void mouseEvents(WindowRef window, int button, int action, int mods) {
+    io::printf("button code %d \n", button);
+    // io::printf("x pos %d , y pos %d \n", xPos, yPos);
+}
 
 fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
     if (node.mesh >= 0) {
@@ -124,7 +161,7 @@ fn int main()
         
     };
 
-    Gltf! gltf_data = gltf::loadFile("assets/cubes.gltf");
+    Gltf! gltf_data = gltf::loadFile("assets/boat.gltf");
     defer gltf_data.close();
 
     if (catch err = gltf_data) {
@@ -141,9 +178,9 @@ fn int main()
 
     // Camera camera = gltf_data.cameras[cameraNode.camera];
 
-    UniformBuffer uniformData = {
+    uniformData = {
         helpers::perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
-        vector::matrix4f_look_at({0.0, 0.0, -10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
+        vector::matrix4f_look_at({cameraX, cameraY, cameraZ}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
         MATRIX4F_IDENTITY
     };
 
@@ -243,16 +280,24 @@ fn int main()
         loadedImages.push(image);
     }
 
+
+    glfw::setKeyCallback(window, (KeyCallback*)&keyboardEvents);
+    glfw::setMouseButtonCallback(window, (MouseCallback*)&mouseEvents);
+
     while(!glfw::windowShouldClose(window)) {
         gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
         gl::useProgram( shader_program );
         gl::viewport(0, 0, WIDTH, HEIGHT);
+
+        // Update world rotation
+        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
         foreach (node : gltf_data.nodes) {
             drawNode(node, gltf_data, &uniformData);
         }
        
         glfw::pollEvents();
+        glfw::getCursorPos(window, &xPos, &yPos);
         glfw::swapBuffers(window);
     }
 
