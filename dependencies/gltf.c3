@@ -226,8 +226,6 @@ fn void Scene.fromJson(Scene* self, Object* json) {
 fn void Node.fromJson(Node* self, Object* json) {
     self.mesh = -1;
     self.camera = -1;
-    self.scale = {1,1,1};
-    self.translation = {1,1,1};
     self.rotation = quaternionf_identity();
 
     String! name = json.get_string("name");
