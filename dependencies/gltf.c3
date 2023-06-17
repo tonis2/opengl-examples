@@ -253,7 +253,7 @@ fn void Node.fromJson(Node* self, Object* json) {
         float x = (float)translation.get_at(0).f;
         float y = (float)translation.get_at(1).f;
         float z = (float)translation.get_at(2).f;
-        self.translation = {x, y, z };
+        self.translation = {x, y, z};
     }
 }
 
@@ -445,6 +445,7 @@ fn void Material.fromJson(Material* self, Object* json) {
         Object*! baseColorTexture = pbrMetallicRoughness.get("baseColorTexture");
         Object*! baseColorFactor = pbrMetallicRoughness.get("baseColorFactor");
         Object*! metallicRoughnessTexture = pbrMetallicRoughness.get("baseColorTexture");
+        self.pbrMetallicRoughness.baseColorFactor = {1.0, 1.0, 1.0, 1.0};
 
         if (try metallicFactor && try roughnessFactor) {
             self.pbrMetallicRoughness.metallicFactor = (float)metallicFactor;
@@ -853,7 +854,7 @@ fn Matrix4f Node.recompose(Node* self) {
         };
    |};
 
-   return scale.mul(translation);
+   return scale.mul(translation).mul(rotation);
 }
 
 fn void GltfBuffer.free(GltfBuffer* self) {
