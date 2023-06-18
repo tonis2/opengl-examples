@@ -257,6 +257,14 @@ fn void Node.fromJson(Node* self, Object* json) {
     }
 }
 
+fn bool Node.hasMesh(Node* self) {
+    return self.mesh != -1;
+}
+
+fn bool Node.hasCamera(Node* self) {
+    return self.mesh != -1;
+}
+
 fn void GltfMesh.fromJson(GltfMesh* self, Object* json) {
     String! name = json.get_string("name");
     Object*! primitives = json.get("primitives");

@@ -18,15 +18,18 @@ const char* VERTEX_SHADER = `
       mat4 view;
       mat4 model;
   };
+  
 
   layout (location = 0) in vec3 vp;
   layout (location = 1) in vec2 texturePosition;
+  layout (location = 2) in vec4 color;
   
-  out vec3 theColor;
+  out vec4 materialColor;
   out vec2 texCords;
 
   void main () {
     texCords = texturePosition;
+    materialColor = vec4(1.0, 1.0, 1.0, 1.0);
     gl_Position = projection * view * model * vec4(vp, 1.0);
   }
 `;
@@ -36,10 +39,11 @@ const char* FRAGMENT_SHADER = `
   uniform sampler2D textureData;
 
   in vec2 texCords;
+  in vec4 materialColor;
   out vec4 frag_colour;
 
   void main () {
-    frag_colour = texture(textureData, texCords);
+    frag_colour = materialColor * texture(textureData, texCords);
   }
 `;
 
@@ -89,56 +93,60 @@ fn void keyboardEvents(WindowRef window, int key, int scancode, int action, int 
 }
 
 fn void mouseEvents(WindowRef window, int button, int action, int mods) {
-    io::printf("button code %d \n", button);
+    // io::printf("button code %d \n", button);
     // io::printf("x pos %d , y pos %d \n", xPos, yPos);
 }
 
-fn void drawNode(Node node, Gltf data, UniformBuffer* uniformData) {
+fn void drawNode(Node node, Gltf data) {
     if (node.mesh >= 0) {
         GltfMesh mesh = data.meshes[node.mesh];
     
         // Apply node transforms
         uniformData.model = node.recompose();
-        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, uniformData, gl::GL_DYNAMIC_DRAW);
+        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
         
         Object* primitive = mesh.primitives[0];
+        Accessor! position_accessor = data.getAccessor(primitive, "POSITION");
         BufferView! position = data.getBufferView(primitive, "POSITION");
         BufferView! texture_pos = data.getBufferView(primitive, "TEXCOORD_0");
         BufferView! indices = data.getBufferView(primitive, "indices");
-       
         uint! material_index = primitive.getValue("material");
 
-        // Vertex buffer
-        if (try position && try texture_pos) {
-            GltfBuffer buffer = data.buffers[position.buffer];
-            // Bind vertex position and texture position to same buffer
-
-            gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
-            gl::bufferData(gl::GL_ARRAY_BUFFER, position.byteLength + texture_pos.byteLength, null, gl::GL_STATIC_DRAW);
-            
-            gl::bufferSubData(gl::GL_ARRAY_BUFFER, 0, position.byteLength, (buffer.data + position.offset));
-            gl::bufferSubData(gl::GL_ARRAY_BUFFER, position.byteLength, texture_pos.byteLength, (buffer.data + texture_pos.offset));  
-
-            gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 0, null);
-            gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 0, (void*)(usz)(position.byteLength));
+        if (catch err = position, texture_pos, indices, material_index, position_accessor) {
+            io::printf("failed node parsing \n");
+            return;
         }
 
+        // Buffer for position + texcordinate + color
+        uint render_buffer_size = position.byteLength + texture_pos.byteLength + (uint)(position_accessor.count * float.sizeof * 4);
+        char* render_buffer = mem::malloc(char, render_buffer_size);
 
-        // Parsing texture data and rendering it
-        if (try material_index) {
-            Material material = data.materials[material_index];
-            Texture color_texture = data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
-            Sampler color_sampler = data.samplers[color_texture.sampler];
-            gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source + 1);
-        }
+        gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
+        
+        // Parsing texture data
+        Material material = data.materials[material_index];
+        // Bind texture data
+        Texture color_texture = data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
+        Sampler color_sampler = data.samplers[color_texture.sampler];
+        gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source + 1);
+
+        // Copy buffers to render_buffer
+        GltfBuffer buffer = data.buffers[position.buffer];
+        mem::copy(render_buffer, (buffer.data + position.offset), position.byteLength);
+        mem::copy((render_buffer + position.byteLength), (buffer.data + texture_pos.offset), texture_pos.byteLength);
+        // mem::copy((render_buffer + position.byteLength + texture_pos.byteLength), &material.pbrMetallicRoughness.baseColorFactor, (uint)(position_accessor.count * float.sizeof * 4));
+
+        gl::bufferData(gl::GL_ARRAY_BUFFER, render_buffer_size, render_buffer, gl::GL_STATIC_DRAW);
+
+        gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 0, null);
+        gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 0, (void*)(usz)position.byteLength);
+        // gl::vertexAttribPointer(2, 4, gl::GL_FLOAT, false, 0, (void*)(usz)(position.byteLength + texture_pos.byteLength));
 
         // Index buffer
-        if (try indices) {
-            GltfBuffer buffer = data.buffers[indices.buffer];
-            char* index_buffer = (buffer.data + indices.offset);
-            gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, indices.byteLength, index_buffer, gl::GL_STATIC_DRAW);
-            gl::drawElements(gl::GL_TRIANGLES, (int)(indices.byteLength / ushort.sizeof), gl::GL_UNSIGNED_SHORT, &index_buffer[0]);
-        }
+        char* index_buffer = (buffer.data + indices.offset);
+        gl::bufferData(gl::GL_ELEMENT_ARRAY_BUFFER, indices.byteLength, index_buffer, gl::GL_STATIC_DRAW);
+        gl::drawElements(gl::GL_TRIANGLES, (int)(indices.byteLength / ushort.sizeof), gl::GL_UNSIGNED_SHORT, &index_buffer[0]);
+        mem::free(render_buffer);
     }
 }
 
@@ -244,6 +252,8 @@ fn int main()
 
     gl::enableVertexAttribArray(0);
     gl::enableVertexAttribArray(1);
+    // gl::enableVertexAttribArray(2);
+
    
     // Bind uniform buffer
     uint model_mvp = gl::getUniformBlockIndex(shader_program, "matrix");
@@ -288,12 +298,13 @@ fn int main()
         gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
         gl::useProgram( shader_program );
         gl::viewport(0, 0, WIDTH, HEIGHT);
-
+ 
+        
         // Update world rotation
         gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
         foreach (node : gltf_data.nodes) {
-            drawNode(node, gltf_data, &uniformData);
+            drawNode(node, gltf_data);
         }
        
         glfw::pollEvents();
