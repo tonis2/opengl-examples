@@ -17,7 +17,7 @@ typedef IndexList = List<uint>;
 typedef BufferList = List<GltfBuffer>;
 typedef BufferViewList = List<BufferView>;
 typedef AccessorList = List<Accessor>;
-typedef CameraList = List<Camera>;
+typedef CameraList = List<GltfCamera>;
 typedef MaterialList = List<Material>;
 typedef ImageList = List<GltfImage>;
 typedef SamplerList = List<Sampler>;
@@ -171,7 +171,7 @@ struct Sampler {
     WrapMode wrap_t;
 }
 
-struct Camera {
+struct GltfCamera {
     String name;
     union
     {
@@ -406,7 +406,7 @@ fn void! GltfBuffer.fromJson(GltfBuffer* self, Object* json) {
     }
 }
 
-fn void! Camera.fromJson(Camera* self, Object* json) {
+fn void! GltfCamera.fromJson(GltfCamera* self, Object* json) {
     String! cameraType = json.get_string("type");
     String! name = json.get_string("name");
 
@@ -656,7 +656,7 @@ fn Gltf! loadFile(String path) {
     // Parse cameras
     if (try cameras) {
         foreach (camera : cameras.array) {
-            Camera data;
+            GltfCamera data;
             if (catch err = data.fromJson(camera)) {}
             else {content.cameras.push(data);}
         }

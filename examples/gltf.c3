@@ -7,6 +7,7 @@ import std::collections::list;
 import std::collections::object;
 import stb;
 import helpers;
+import camera;
 import std::math;
 
 const char* VERTEX_SHADER = `
@@ -62,8 +63,7 @@ struct GltfMaterial {
     float[4] color;
 }
 
-uint vertexBuffer;
-uint indexBuffer;
+uint vertexBuffer, indexBuffer;
 uint uniformBuffer, materialBuffer;
 uint vao;
 double xPos, yPos;
