@@ -19,10 +19,8 @@ const char* VERTEX_SHADER = `
       mat4 model;
   };
   
-
   layout (location = 0) in vec3 vp;
   layout (location = 1) in vec2 texturePosition;
-  layout (location = 2) in vec4 color;
   
   out vec4 materialColor;
   out vec2 texCords;
@@ -118,7 +116,7 @@ fn void drawNode(Node node, Gltf data) {
         }
 
         // Buffer for position + texcordinate + color
-        uint render_buffer_size = position.byteLength + texture_pos.byteLength + (uint)(position_accessor.count * float.sizeof * 4);
+        uint render_buffer_size = position.byteLength + texture_pos.byteLength;
         char* render_buffer = mem::malloc(char, render_buffer_size);
 
         gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
@@ -140,7 +138,6 @@ fn void drawNode(Node node, Gltf data) {
 
         gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 0, null);
         gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 0, (void*)(usz)position.byteLength);
-        // gl::vertexAttribPointer(2, 4, gl::GL_FLOAT, false, 0, (void*)(usz)(position.byteLength + texture_pos.byteLength));
 
         // Index buffer
         char* index_buffer = (buffer.data + indices.offset);
@@ -252,7 +249,6 @@ fn int main()
 
     gl::enableVertexAttribArray(0);
     gl::enableVertexAttribArray(1);
-    // gl::enableVertexAttribArray(2);
 
    
     // Bind uniform buffer
