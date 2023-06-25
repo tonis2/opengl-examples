@@ -137,9 +137,7 @@ fn void drawNode(Node node, Gltf data) {
         Sampler color_sampler = data.samplers[color_texture.sampler];
         gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source + 1);
 
-        material = {
-            materialData.pbrMetallicRoughness.baseColorFactor,
-        };
+        material.color = materialData.pbrMetallicRoughness.baseColorFactor;
 
         // Set material buffer data
         gl::bindBufferRange(gl::GL_UNIFORM_BUFFER, 1, materialBuffer, 0, 192);
@@ -228,10 +226,12 @@ fn int main()
     glfw::makeContextCurrent(window);
     gl::init(&glfw::getProcAddress);
 
+    // Generate buffers
     gl::genBuffers(1, &vertexBuffer);
     gl::genBuffers(1, &indexBuffer);
-    
-    gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
+    gl::genBuffers(1, &uniformBuffer);
+    gl::genBuffers(1, &materialBuffer);
+
     gl::bindBuffer(gl::GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
     gl::genVertexArrays(1, &vao);
     gl::bindVertexArray(vao);
@@ -239,6 +239,8 @@ fn int main()
     defer {
         gl::deleteBuffers(1, &vertexBuffer);
         gl::deleteBuffers(1, &indexBuffer);
+        gl::deleteBuffers(1, &uniformBuffer);
+        gl::deleteBuffers(1, &materialBuffer);
         gl::deleteBuffers(1, &vao);
     }
 
@@ -266,13 +268,6 @@ fn int main()
 
     gl::enableVertexAttribArray(0);
     gl::enableVertexAttribArray(1);
-   
-    // Bind uniform buffer
-    gl::genBuffers(1, &uniformBuffer);
-    gl::genBuffers(1, &materialBuffer);
- 
-    defer gl::deleteBuffers(1, &uniformBuffer);
-    defer gl::deleteBuffers(1, &materialBuffer);
 
     gl::enable(gl::GL_DEPTH_TEST);
     gl::enable(gl::GL_CULL_FACE);
