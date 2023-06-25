@@ -18,6 +18,11 @@ const char* VERTEX_SHADER = `
       mat4 view;
       mat4 model;
   };
+
+  layout(binding = 1) uniform material
+  {
+      vec4 colorValue;
+  };
   
   layout (location = 0) in vec3 vp;
   layout (location = 1) in vec2 texturePosition;
@@ -27,7 +32,7 @@ const char* VERTEX_SHADER = `
 
   void main () {
     texCords = texturePosition;
-    materialColor = vec4(1.0, 1.0, 1.0, 1.0);
+    materialColor = colorValue;
     gl_Position = projection * view * model * vec4(vp, 1.0);
   }
 `;
@@ -53,9 +58,13 @@ struct UniformBuffer {
     Matrix4f model;
 }
 
+struct GltfMaterial {
+    float[4] color;
+}
+
 uint vertexBuffer;
 uint indexBuffer;
-uint uniformBuffer;
+uint uniformBuffer, materialBuffer;
 uint vao;
 double xPos, yPos;
 
@@ -64,6 +73,7 @@ float cameraY = 0;
 float cameraZ = -10;
 
 UniformBuffer uniformData;
+GltfMaterial material;
 
 fn void keyboardEvents(WindowRef window, int key, int scancode, int action, int mods) {
 
@@ -101,6 +111,7 @@ fn void drawNode(Node node, Gltf data) {
     
         // Apply node transforms
         uniformData.model = node.recompose();
+        gl::bindBufferRange(gl::GL_UNIFORM_BUFFER, 0, uniformBuffer, 0, 192);
         gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
         
         Object* primitive = mesh.primitives[0];
@@ -118,26 +129,32 @@ fn void drawNode(Node node, Gltf data) {
         // Buffer for position + texcordinate + color
         uint render_buffer_size = position.byteLength + texture_pos.byteLength;
         char* render_buffer = mem::malloc(char, render_buffer_size);
-
-        gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
         
         // Parsing texture data
-        Material material = data.materials[material_index];
+        Material materialData = data.materials[material_index];
         // Bind texture data
-        Texture color_texture = data.textures[material.pbrMetallicRoughness.baseColorTexture.index];
+        Texture color_texture = data.textures[materialData.pbrMetallicRoughness.baseColorTexture.index];
         Sampler color_sampler = data.samplers[color_texture.sampler];
         gl::bindTexture(gl::GL_TEXTURE_2D, color_texture.source + 1);
+
+        material = {
+            materialData.pbrMetallicRoughness.baseColorFactor,
+        };
+
+        // Set material buffer data
+        gl::bindBufferRange(gl::GL_UNIFORM_BUFFER, 1, materialBuffer, 0, 192);
+        gl::bufferData(gl::GL_UNIFORM_BUFFER, 192, &material, gl::GL_DYNAMIC_DRAW);
 
         // Copy buffers to render_buffer
         GltfBuffer buffer = data.buffers[position.buffer];
         mem::copy(render_buffer, (buffer.data + position.offset), position.byteLength);
         mem::copy((render_buffer + position.byteLength), (buffer.data + texture_pos.offset), texture_pos.byteLength);
-        // mem::copy((render_buffer + position.byteLength + texture_pos.byteLength), &material.pbrMetallicRoughness.baseColorFactor, (uint)(position_accessor.count * float.sizeof * 4));
 
-        gl::bufferData(gl::GL_ARRAY_BUFFER, render_buffer_size, render_buffer, gl::GL_STATIC_DRAW);
-
+        // Set vertex buffer data
+        gl::bindBuffer(gl::GL_ARRAY_BUFFER, vertexBuffer);
         gl::vertexAttribPointer(0, 3, gl::GL_FLOAT, false, 0, null);
         gl::vertexAttribPointer(1, 2, gl::GL_FLOAT, false, 0, (void*)(usz)position.byteLength);
+        gl::bufferData(gl::GL_ARRAY_BUFFER, render_buffer_size, render_buffer, gl::GL_STATIC_DRAW);
 
         // Index buffer
         char* index_buffer = (buffer.data + indices.offset);
@@ -249,16 +266,13 @@ fn int main()
 
     gl::enableVertexAttribArray(0);
     gl::enableVertexAttribArray(1);
-
    
     // Bind uniform buffer
-    uint model_mvp = gl::getUniformBlockIndex(shader_program, "matrix");
     gl::genBuffers(1, &uniformBuffer);
-    gl::bindBuffer(gl::GL_UNIFORM_BUFFER, uniformBuffer);
-    gl::bindBufferBase(gl::GL_UNIFORM_BUFFER, model_mvp, uniformBuffer);
-    gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
-
+    gl::genBuffers(1, &materialBuffer);
+ 
     defer gl::deleteBuffers(1, &uniformBuffer);
+    defer gl::deleteBuffers(1, &materialBuffer);
 
     gl::enable(gl::GL_DEPTH_TEST);
     gl::enable(gl::GL_CULL_FACE);
@@ -297,6 +311,7 @@ fn int main()
  
         
         // Update world rotation
+        gl::bindBuffer(gl::GL_UNIFORM_BUFFER, uniformBuffer);
         gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
         foreach (node : gltf_data.nodes) {
