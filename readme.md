@@ -17,6 +17,7 @@ Then you can run examples with
 
 `c3c run triangle`
 
+`c3c run gltf`
 
 
 The OpenGL binding generator repository is [here](https://github.com/tonis2/opengl-c3) 
