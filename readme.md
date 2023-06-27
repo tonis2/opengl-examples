@@ -20,7 +20,7 @@ Then you can run examples with
 `c3c run gltf`
 
 
-OpenGL 4.3 is required to run all examples, MacOs unfortunately only supports 4.1.
+OpenGL 4.3 is required to run all examples, MacOS unfortunately only supports 4.1.
 
 Should work on Windows, but haven't tested the library bindings.
 
