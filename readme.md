@@ -20,5 +20,8 @@ Then you can run examples with
 `c3c run gltf`
 
 
+OpenGL 4.3 is required to run all examples, MacOs unfortunately only supports 4.1.
+Should work on Windows, but haven't tested the library bindings.
+
 The OpenGL binding generator repository is [here](https://github.com/tonis2/opengl-c3) 
 
