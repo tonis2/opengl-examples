@@ -1,8 +1,10 @@
 module glfw;
 
-typedef WindowRef = void*;
-typedef Monitoref = void*;
-typedef GLproc = void*;
+def WindowRef = void*;
+def Monitoref = void*;
+def GLproc = void*;
+def KeyCallback = fn void(WindowRef window, int key, int scancode, int action, int mods);
+def MouseCallback = fn void(WindowRef window, int button, int action, int mods);
 
 const GLFW_RELEASE = 0;
 const GLFW_PRESS = 1;
@@ -27,8 +29,6 @@ const OPENGL_COMPAT_PROFILE = 0x00032002;
 const OPENGL_FORWARD_COMPAT = 0x00022006;
 
 
-def KeyCallback = fn void(WindowRef window, int key, int scancode, int action, int mods);
-def MouseCallback = fn void(WindowRef window, int button, int action, int mods);
 
 extern fn void init() @extern("glfwInit");
 extern fn void windowHint(int, int) @extern("glfwWindowHint");
@@ -38,7 +38,6 @@ extern fn void destroyWindow(WindowRef window) @extern("glfwDestroyWindow");
 extern fn void makeContextCurrent(WindowRef window) @extern("glfwMakeContextCurrent");
 extern fn void getFramebufferSize(WindowRef window, int*, int*) @extern("glfwGetFramebufferSize");
 extern fn double getTime() @extern("glfwGetTime");
-
 extern fn void terminate() @extern("glfwTerminate");
 
 extern fn GLproc getProcAddress(char*) @extern("glfwGetProcAddress");

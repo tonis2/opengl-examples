@@ -1,12 +1,11 @@
 {
 	"langrev": "1",
 	"warnings": ["no-unused"],
-
 	"linked-libraries": ["glfw"],
 	"authors": [],
 	"version": "0.1.0",
 	"dependencies": ["opengl", "stb"],
-	"dependency-search-paths": [ "dependencies" ],
+	"dependency-search-paths": ["dependencies"],
 	"sources": ["./dependencies/helpers.c3", "./dependencies/glfw.c3", "./dependencies/camera.c3"],
 	"c-sources": ["./dependencies/stb.c3l/native/*"],
 	"cflags": "-fPIE",
@@ -22,7 +21,6 @@
 		"texture": {
 			"type": "executable",
 			"sources-add": ["./examples/texture.c3"]
-	
 		},
 		"gltf": {
 			"type": "executable",

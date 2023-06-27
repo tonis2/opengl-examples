@@ -51,7 +51,7 @@ const char* FRAGMENT_SHADER = `
   }
 `;
 
-typedef LoadedImages = List<Image>;
+def LoadedImages = List<Image>;
 
 struct GltfMaterial {
     float[4] color;
@@ -101,9 +101,7 @@ fn void mouseEvents(WindowRef window, int button, int action, int mods) {
     }
 
     // right button
-    if (button == 1) {
-
-    }
+    if (button == 1) {}
 }
 
 fn void drawNode(Node node, Gltf data) {

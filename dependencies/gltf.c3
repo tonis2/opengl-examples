@@ -9,19 +9,19 @@ import std::encoding::json;
 
 import base64;
 
-typedef PrimitiveList = List<Object*>;
-typedef NodeList = List<Node>;
-typedef SceneList= List<Scene>;
-typedef MeshList = List<GltfMesh>;
-typedef IndexList = List<uint>;
-typedef BufferList = List<GltfBuffer>;
-typedef BufferViewList = List<BufferView>;
-typedef AccessorList = List<Accessor>;
-typedef CameraList = List<GltfCamera>;
-typedef MaterialList = List<Material>;
-typedef ImageList = List<GltfImage>;
-typedef SamplerList = List<Sampler>;
-typedef TextureList = List<Texture>;
+def PrimitiveList = List<Object*>;
+def NodeList = List<Node>;
+def SceneList= List<Scene>;
+def MeshList = List<GltfMesh>;
+def IndexList = List<uint>;
+def BufferList = List<GltfBuffer>;
+def BufferViewList = List<BufferView>;
+def AccessorList = List<Accessor>;
+def CameraList = List<GltfCamera>;
+def MaterialList = List<Material>;
+def ImageList = List<GltfImage>;
+def SamplerList = List<Sampler>;
+def TextureList = List<Texture>;
 
 enum Targets {
     ARRAY_BUFFER,
