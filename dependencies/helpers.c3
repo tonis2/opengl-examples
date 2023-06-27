@@ -45,21 +45,6 @@ fn Matrix4f perspective(float fov, float aspect_ratio, float near, float far)
     };
 }
 
-
-fn Matrix4f perspective2(float fov, float aspect_ratio, float near, float far)
-{
-    
-	float f =  1 / (float)math::tan(fov * 0.5);
-	float rangeInv = (float)1.0 / (near - far);
-	
-    return Matrix4f {
-        f / aspect_ratio, 0, 0, 0,
-        0, f, 0, 0,
-        0, 0, (near + far) / (near - far), -1,
-        0, 0, 2 * far * near / (near - far), 0,
-    };
-}
-
 fn Matrix4f lookAt(Vec3f eye, Vec3f target, Vec3f up)
 {
     Vec3f vz = (eye - target).normalize();

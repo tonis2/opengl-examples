@@ -53,12 +53,6 @@ const char* FRAGMENT_SHADER = `
 
 typedef LoadedImages = List<Image>;
 
-struct UniformBuffer {
-    Matrix4f projection;
-    Matrix4f view;
-    Matrix4f model;
-}
-
 struct GltfMaterial {
     float[4] color;
 }
@@ -67,52 +61,60 @@ uint vertexBuffer, indexBuffer;
 uint uniformBuffer, materialBuffer;
 uint vao;
 double xPos, yPos;
+double xPosDelta, yPosDelta;
+bool rightMouseClick = false;
 
-float cameraX = 0; 
-float cameraY = 0; 
-float cameraZ = -10;
-
-UniformBuffer uniformData;
+Camera renderCamera;
 GltfMaterial material;
 
 fn void keyboardEvents(WindowRef window, int key, int scancode, int action, int mods) {
 
     // up arrow 
     if (key == 265) {
-        cameraY += 0.5;
+        renderCamera.add_zoom(-0.5);
     }
 
     // down arrow 
     if (key == 264) {
-        cameraY -= 0.5;
+        renderCamera.add_zoom(0.5);
     }
 
-    // left arrow 
-    if (key == 262) {
-        cameraX -= 0.5;
-    }
+    // // left arrow 
+    // if (key == 262) {
+    //     renderCamera.scene_offset({0.0, 0.5, 0.0});
+    // }
 
-    // right arrow 
-    if (key == 263) {
-        cameraX += 0.5;
-    }
-
-    uniformData.view = vector::matrix4f_look_at({cameraX, cameraY, cameraZ}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0});
+    // // right arrow 
+    // if (key == 263) {
+    //     renderCamera.scene_offset({0.0, -0.5, 0.0});
+    // }
 }
 
 fn void mouseEvents(WindowRef window, int button, int action, int mods) {
-    // io::printf("button code %d \n", button);
-    // io::printf("x pos %d , y pos %d \n", xPos, yPos);
+    // left mouse button action
+    if (button == 0) {
+        if (action == 1) {
+            rightMouseClick = true;
+        } else {
+            rightMouseClick = false;
+        }
+    }
+
+    // right button
+    if (button == 1) {
+
+    }
 }
 
 fn void drawNode(Node node, Gltf data) {
     if (node.mesh >= 0) {
         GltfMesh mesh = data.meshes[node.mesh];
+
+        UniformData uniformData = renderCamera.matrix(node.recompose());
     
         // Apply node transforms
-        uniformData.model = node.recompose();
-        gl::bindBufferRange(gl::GL_UNIFORM_BUFFER, 0, uniformBuffer, 0, 192);
-        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
+        gl::bindBufferRange(gl::GL_UNIFORM_BUFFER, 0, uniformBuffer, 0, UniformData.sizeof);
+        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformData.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
         
         Object* primitive = mesh.primitives[0];
         Accessor! position_accessor = data.getAccessor(primitive, "POSITION");
@@ -198,11 +200,7 @@ fn int main()
 
     // Camera camera = gltf_data.cameras[cameraNode.camera];
 
-    uniformData = {
-        helpers::perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
-        vector::matrix4f_look_at({cameraX, cameraY, cameraZ}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
-        MATRIX4F_IDENTITY
-    };
+    renderCamera = camera::new({0, 0, 0}, 10, WIDTH / HEIGHT);
 
     glfw::init();
     glfw::windowHint(glfw::CONTEXT_VERSION_MAJOR, 4);
@@ -282,8 +280,7 @@ fn int main()
             io::printf("Image loading failed \n");
             return 1;
         };
-     
-                 
+       
         gl::genTextures(1, &image.index);
         gl::bindTexture(gl::GL_TEXTURE_2D, image.index);
         gl::texImage2D(gl::GL_TEXTURE_2D, 0, gl::GL_RGB, image.width, image.height, 0, gl::GL_RGB, gl::GL_UNSIGNED_BYTE, &image.pixels[0]);
@@ -303,18 +300,26 @@ fn int main()
         gl::clear( gl::GL_COLOR_BUFFER_BIT | gl::GL_DEPTH_BUFFER_BIT );
         gl::useProgram( shader_program );
         gl::viewport(0, 0, WIDTH, HEIGHT);
- 
-        
-        // Update world rotation
-        gl::bindBuffer(gl::GL_UNIFORM_BUFFER, uniformBuffer);
-        gl::bufferData(gl::GL_UNIFORM_BUFFER, UniformBuffer.sizeof, &uniformData, gl::GL_DYNAMIC_DRAW);
 
         foreach (node : gltf_data.nodes) {
             drawNode(node, gltf_data);
         }
+
+        if (rightMouseClick == true) {
+            // Slow down mouse delta, and rotate the model
+            renderCamera.rotate_x(-(float)(xPosDelta * 0.5));
+            renderCamera.rotate_y(-(float)(yPosDelta * 0.5));
+        }
        
         glfw::pollEvents();
-        glfw::getCursorPos(window, &xPos, &yPos);
+        double xLocal, yLocal;
+        glfw::getCursorPos(window, &xLocal, &yLocal);
+
+        xPosDelta = xLocal - xPos;
+        yPosDelta = yLocal - yPos;
+        xPos = xLocal;
+        yPos = yLocal;
+
         glfw::swapBuffers(window);
     }
 
