@@ -6,8 +6,7 @@ import std::math;
 import std::core::mem;
 import std::collections::list;
 import std::encoding::json;
-
-import base64;
+import std::encoding::base64;
 
 def PrimitiveList = List<Object*>;
 def NodeList = List<Node>;
@@ -386,13 +385,17 @@ fn void! GltfBuffer.fromJson(GltfBuffer* self, Object* json) {
     if (try size && try data) {          
         String[] bufferHeader = data.split(",");
         defer mem::free(bufferHeader);
-        char* parsedBuffer = mem::malloc(char, size);
+        char[] parsedBuffer = mem::malloc(char, size + 2);
 
         // Parse buffer from base64 to bytes
         if (mem::equals(bufferHeader[0], "data:application/octet-stream;base64")) {
-            if (catch err = base64::decode(bufferHeader[1], parsedBuffer)) {
-                    io::printf("failed parsing buffer %s \n", bufferHeader[0]);
-                    return ParseError.BROKEN_BUFFER?;
+            Base64Decoder decoder;
+            decoder.init(base64::STD_ALPHABET, -1)!;
+
+            // Decode buffer from base64
+            if (catch err = decoder.decode(bufferHeader[1], parsedBuffer)) {
+                io::printfn("Buffer parsing error: '%s'.", err);
+                return ParseError.BROKEN_BUFFER?;
             };
             bufferType = BufferType.STREAM;
         }

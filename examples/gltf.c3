@@ -105,7 +105,7 @@ fn void mouseEvents(WindowRef window, int button, int action, int mods) {
 }
 
 fn void drawNode(Node node, Gltf data) {
-    if (node.mesh >= 0) {
+    if (node.hasMesh()) {
         GltfMesh mesh = data.meshes[node.mesh];
 
         UniformData uniformData = renderCamera.matrix(node.recompose());
