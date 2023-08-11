@@ -91,14 +91,19 @@ fn int main()
   gl::genVertexArrays(1, &vao );
   gl::bindVertexArray( vao );
 
-  defer {
-    gl::deleteBuffers(1, &vertexBuffer);
-    gl::deleteBuffers(1, &vao);
-  }
+    defer {
+        gl::deleteBuffers(1, &vertexBuffer);
+        gl::deleteBuffers(1, &vao);
+    }
 
-  uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
-  uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
-  uint shader_program = gl::createProgram();
+    uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
+    uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
+    uint shader_program = gl::createProgram();
+
+    if (catch err = vertex_shader, fragment_shader) {
+        libc::printf("Error was %s\n", err);
+        return 1;
+    }
 
   defer {
     gl::detachShader(shader_program, vertex_shader);	
@@ -106,11 +111,6 @@ fn int main()
     gl::deleteShader(vertex_shader);
     gl::deleteShader(fragment_shader);
     gl::deleteProgram(shader_program);
-  }
-
-  if (catch err = vertex_shader) {
-    libc::printf("Error was %s\n", err); 
-    return 1;
   }
 
   gl::attachShader(shader_program, vertex_shader);

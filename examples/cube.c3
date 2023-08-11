@@ -99,7 +99,7 @@ fn int main()
   float rotation = 0;
 
   UniformBuffer uniformData = {
-      helpers::perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
+      matrix4f_perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
       vector::matrix4f_look_at({0.0, 0.0, -10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
       MATRIX4F_IDENTITY
   };
@@ -162,17 +162,17 @@ fn int main()
   uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
   uint shader_program = gl::createProgram();
 
+  if (catch err = vertex_shader, fragment_shader) {
+    io::printf("Error was %s\n", err);
+    return 1;
+  }
+
   defer {
     gl::detachShader(shader_program, vertex_shader);	
     gl::detachShader(shader_program, fragment_shader);
     gl::deleteShader(vertex_shader);
     gl::deleteShader(fragment_shader);
     gl::deleteProgram(shader_program);
-  }
-
-  if (catch err = vertex_shader) {
-    io::printf("Error was %s\n", err); 
-    return 1;
   }
 
   gl::attachShader(shader_program, vertex_shader);

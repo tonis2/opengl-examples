@@ -91,7 +91,7 @@ fn void Camera.scene_offset(Camera* self, Vec3f offset) {
 }
 
 fn UniformData Camera.matrix(Camera* self, Matrix4f model) {
-    Matrix4f perspective = helpers::perspective(radians(45.0), self.aspect, self.min_zoom, self.max_zoom);
+    Matrix4f perspective = matrix4f_perspective(radians(45.0), self.aspect, self.min_zoom, self.max_zoom);
     Matrix4f view = vector::matrix4f_look_at(self.eye, self.focus, {0.0, 1.0, 0.0});
     Matrix4f position = {
             1.0, 0.0, 0.0, 0.0,

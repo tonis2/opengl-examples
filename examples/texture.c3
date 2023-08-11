@@ -148,7 +148,7 @@ fn int main()
   float rotation = 0;
 
   UniformBuffer uniformData = {
-      helpers::perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
+      matrix4f_perspective(0.6, WIDTH / HEIGHT, 0.1, 100),
       vector::matrix4f_look_at({0.0, 0.0, -10.0}, {0.0, 0.0, 0.0}, {0.0, 1.0, 0.0}),
       MATRIX4F_IDENTITY
   };
@@ -224,9 +224,20 @@ fn int main()
     gl::deleteBuffers(1, &vao);
   }
 
-  uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
-  uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
-  uint shader_program = gl::createProgram();
+    uint! vertex_shader = helpers::create_shader(gl::GL_VERTEX_SHADER, &VERTEX_SHADER);
+    uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
+    uint shader_program = gl::createProgram();
+
+    if (catch err = vertex_shader) {
+        io::printfn("Error was %s", err);
+        return 1;
+    }
+
+
+    if (catch err = fragment_shader) {
+        io::printfn("Error was %s", err);
+        return 1;
+    }
 
   defer {
     gl::detachShader(shader_program, vertex_shader);	
@@ -237,10 +248,7 @@ fn int main()
     gl::deleteTextures(1, &texture);
   }
 
-  if (catch err = vertex_shader, fragment_shader) {
-    io::printfn("Error was %s", err);
-    return 1;
-  }
+
 
   gl::attachShader(shader_program, vertex_shader);
   gl::attachShader(shader_program, fragment_shader);

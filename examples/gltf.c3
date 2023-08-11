@@ -51,7 +51,7 @@ const char* FRAGMENT_SHADER = `
   }
 `;
 
-def LoadedImages = List<Image>;
+def LoadedImages = List(<Image>);
 
 struct GltfMaterial {
     float[4] color;
@@ -182,13 +182,12 @@ fn int main()
     };
 
     Gltf! gltf_data = gltf::loadFile("assets/boat.gltf");
-    defer gltf_data.close();
-
     if (catch err = gltf_data) {
         io::printf("Gltf loading failed %d \n", err);
         return 1;
     }
 
+    defer gltf_data.close();
     Node! cameraNode = gltf_data.getNode("Camera");
 
     // if (catch err = cameraNode) {
@@ -244,17 +243,17 @@ fn int main()
     uint! fragment_shader = helpers::create_shader(gl::GL_FRAGMENT_SHADER, &FRAGMENT_SHADER);
     uint shader_program = gl::createProgram();
 
+    if (catch err = vertex_shader, fragment_shader) {
+        io::printf("Error was %s\n", err);
+        return 1;
+    }
+
     defer {
         gl::detachShader(shader_program, vertex_shader);	
         gl::detachShader(shader_program, fragment_shader);
         gl::deleteShader(vertex_shader);
         gl::deleteShader(fragment_shader);
         gl::deleteProgram(shader_program);
-    }
-
-    if (catch err = vertex_shader) {
-        io::printf("Error was %s\n", err); 
-        return 1;
     }
 
     gl::attachShader(shader_program, vertex_shader);

@@ -8,19 +8,19 @@ import std::collections::list;
 import std::encoding::json;
 import std::encoding::base64;
 
-def PrimitiveList = List<Object*>;
-def NodeList = List<Node>;
-def SceneList= List<Scene>;
-def MeshList = List<GltfMesh>;
-def IndexList = List<uint>;
-def BufferList = List<GltfBuffer>;
-def BufferViewList = List<BufferView>;
-def AccessorList = List<Accessor>;
-def CameraList = List<GltfCamera>;
-def MaterialList = List<Material>;
-def ImageList = List<GltfImage>;
-def SamplerList = List<Sampler>;
-def TextureList = List<Texture>;
+def PrimitiveList = List(<Object*>);
+def NodeList = List(<Node>);
+def SceneList= List(<Scene>);
+def MeshList = List(<GltfMesh>);
+def IndexList = List(<uint>);
+def BufferList = List(<GltfBuffer>);
+def BufferViewList = List(<BufferView>);
+def AccessorList = List(<Accessor>);
+def CameraList = List(<GltfCamera>);
+def MaterialList = List(<Material>);
+def ImageList = List(<GltfImage>);
+def SamplerList = List(<Sampler>);
+def TextureList = List(<Texture>);
 
 enum Targets {
     ARRAY_BUFFER,
@@ -468,7 +468,7 @@ fn void Material.fromJson(Material* self, Object* json) {
         }
 
         if (try baseColorTexture) self.pbrMetallicRoughness.baseColorTexture.fromJson(baseColorTexture);
-        if (try metallicRoughnessTexture) self.pbrMetallicRoughness.metallicRoughnessTexture.fromJson(baseColorTexture);
+        if (try metallicRoughnessTexture) self.pbrMetallicRoughness.metallicRoughnessTexture.fromJson(metallicRoughnessTexture);
     }
 }
 
@@ -792,7 +792,6 @@ fn uint Accessor.componentLen(Accessor* self) {
                 case AccessorType.MAT4:
                     return 16;       
     }
-    return 0;
 }
 
 fn uint Accessor.componentSize(Accessor* self) {
@@ -814,7 +813,6 @@ fn uint Accessor.dataSize(Accessor* self) {
         case DataType.FLOAT:
             return float.sizeof;
     }
-    return 0;
 }
 
 
