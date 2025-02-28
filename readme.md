@@ -19,6 +19,4 @@ Then you can run examples with
 
 `c3c run gltf`
 
-Get C3 OpenGL bindings from 
-https://github.com/c3lang/vendor/tree/main/libraries
 
